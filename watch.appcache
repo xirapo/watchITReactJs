@@ -1,0 +1,13 @@
+CACHE MANIFEST
+# v1 2011-08-14
+index.html
+css/*
+media/*
+
+# Usar desde la red si está disponible
+#NETWORK:
+#network.html
+
+# Contenido de fallback
+#FALLBACK:
+#/ fallback.html
