@@ -1,4 +1,5 @@
-//THis run in front
+//This file run on front...
+//Set here all initial configurations
 
 var
     os = require('os'),
@@ -6,7 +7,8 @@ var
     gui = require('nw.gui'),
     fs = require('fs'),
     win = gui.Window.get(),
-    ROOT_TMP_FOLDER = path.join(os.tmpDir(), 'watchIT');
+    ROOT_TMP_FOLDER = path.join(os.tmpDir(), 'watchIT'), //TMP global folder
+    ENVIRONMENT = 'dev'; // dev or prod
 
 // Create the System Temp Folder.
 // This is used to store temporary data like movie files.
@@ -55,11 +57,11 @@ win.on('close', function () {
 
 // Set the app title (for Windows mostly)
 win.title = 'watchIT';
-
+//If dev.. show tools
+if (ENVIRONMENT == 'dev') win.showDevTools();
 
 // Focus the window when the app opens
 win.focus();
-
 
 // Cancel all new windows (Middle clicks / New Tab)
 win.on('new-win-policy', function (frame, url, policy) {
@@ -97,12 +99,9 @@ document.addEventListener('keydown', function (e) {
     }
 });
 
-//jQuery
-//jQuery.noConflict();
-
 //videoJS conf
 //Not help improve
-window.HELP_IMPROVE_VIDEOJS = false;
+//To add prototype functions
 Function.prototype.add = function (name, fn) {
     this.prototype[name.trim()] = fn;
 };
