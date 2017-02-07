@@ -86,16 +86,23 @@ window.addEventListener("dragstart", preventDefault, false);
 
 //Prevent default reload, devtools
 document.addEventListener('keydown', function (e) {
+
+    var keyCode = (e.which || e.keyCode);
     // not reload
     // not console
+
     //Reload
-    if ((e.which || e.keyCode) == 116 && ENVIRONMENT !== 'dev') {
+    if (keyCode == 116 && ENVIRONMENT === 'dev') {
+        location.reload();
+    } else if (keyCode == 116) {
         e.preventDefault()
     }
-    if ((e.which || e.keyCode) == 122) {
+
+    if (keyCode == 122) {
         e.preventDefault()
     }
-    if ((e.which || e.keyCode) == 123) {
+
+    if (keyCode == 123) {
         e.preventDefault()
     }
 });
