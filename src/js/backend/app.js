@@ -88,7 +88,8 @@ window.addEventListener("dragstart", preventDefault, false);
 document.addEventListener('keydown', function (e) {
     // not reload
     // not console
-    if ((e.which || e.keyCode) == 116) {
+    //Reload
+    if ((e.which || e.keyCode) == 116 && ENVIRONMENT !== 'dev') {
         e.preventDefault()
     }
     if ((e.which || e.keyCode) == 122) {
