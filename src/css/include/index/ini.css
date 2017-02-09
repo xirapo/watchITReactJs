@@ -35438,7 +35438,8 @@ https://smacss.com/book/type-state
 .dropdown .dropdown-content {
   background-color: rgba(0, 0, 0, 0.9);
   overflow-x: hidden;
-  z-index: 1000; }
+  z-index: 1000;
+  max-width: 100% !important; }
   .dropdown .dropdown-content li {
     min-height: 100% !important;
     line-height: normal !important; }

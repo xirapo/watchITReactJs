@@ -27773,22 +27773,6 @@
 	            }
 	        }
 	    }, {
-	        key: 'onHoverToggle',
-	        value: function onHoverToggle(e) {
-
-	            //If active, set OFF
-	            if (this.state.active) {
-	                this.setState({
-	                    active: false
-	                });
-	                return;
-	            }
-	            //If not ative, set ON
-	            this.setState({
-	                active: true
-	            });
-	        }
-	    }, {
 	        key: 'render',
 	        value: function render() {
 	            var _this3 = this;
