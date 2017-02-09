@@ -5,8 +5,7 @@ export default class AppMoviesNavBarMenu extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            label: false,
-            active: false
+            label: false
         }
     }
 
