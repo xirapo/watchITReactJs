@@ -72,12 +72,10 @@ export default class AppMoviesNavBarMenu extends React.Component {
 
     render() {
         return (
-            <ul className="dropdown"
-                onMouseEnter={(e)=>{this.onHoverToggle(e)}}
-                onMouseLeave={(e)=>{this.onHoverToggle(e)}}>
+            <ul className="dropdown">
 
                 {/*Drop down main container*/}
-                <li className="dropdown">
+                <li>
                     <a className="dropdown-button" href="javascript:void(0)">
                         <span className="font-light-gray">{this.props.btnText}</span>
                         {
@@ -98,7 +96,7 @@ export default class AppMoviesNavBarMenu extends React.Component {
                     </a>
 
                     {/*Menu List*/}
-                    <ul className={this.state.active && "dropdown-content active relative" || "dropdown-content relative"}>
+                    <ul className="dropdown-content relative">
                         <CustomScrollbars
                             autoHide
                             autoHideTimeout={1000}

@@ -27795,16 +27795,10 @@
 
 	            return _react2.default.createElement(
 	                'ul',
-	                { className: 'dropdown',
-	                    onMouseEnter: function onMouseEnter(e) {
-	                        _this3.onHoverToggle(e);
-	                    },
-	                    onMouseLeave: function onMouseLeave(e) {
-	                        _this3.onHoverToggle(e);
-	                    } },
+	                { className: 'dropdown' },
 	                _react2.default.createElement(
 	                    'li',
-	                    { className: 'dropdown' },
+	                    null,
 	                    _react2.default.createElement(
 	                        'a',
 	                        { className: 'dropdown-button', href: 'javascript:void(0)' },
@@ -27830,7 +27824,7 @@
 	                    ),
 	                    _react2.default.createElement(
 	                        'ul',
-	                        { className: this.state.active && "dropdown-content active relative" || "dropdown-content relative" },
+	                        { className: 'dropdown-content relative' },
 	                        _react2.default.createElement(
 	                            _index2.default,
 	                            {
