@@ -54,22 +54,7 @@ export default class AppMoviesNavBarMenu extends React.Component {
         }
 
     }
-
-    onHoverToggle(e) {
-
-        //If active, set OFF
-        if (this.state.active) {
-            this.setState({
-                active: false
-            });
-            return;
-        }
-        //If not ative, set ON
-        this.setState({
-            active: true
-        })
-    }
-
+    
     render() {
         return (
             <ul className="dropdown">
