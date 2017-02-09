@@ -175,7 +175,6 @@ export default class AppMovieDetail extends React.Component {
                                 </div>
                             </nav>
                         </footer>
-
                     </section>
                 </div>
             )

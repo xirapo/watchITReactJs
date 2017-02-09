@@ -27782,7 +27782,7 @@
 	                { className: 'dropdown' },
 	                _react2.default.createElement(
 	                    'li',
-	                    null,
+	                    { className: 'dropdown' },
 	                    _react2.default.createElement(
 	                        'a',
 	                        { className: 'dropdown-button', href: 'javascript:void(0)' },

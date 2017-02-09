@@ -54,13 +54,13 @@ export default class AppMoviesNavBarMenu extends React.Component {
         }
 
     }
-    
+
     render() {
         return (
             <ul className="dropdown">
 
                 {/*Drop down main container*/}
-                <li>
+                <li className="dropdown">
                     <a className="dropdown-button" href="javascript:void(0)">
                         <span className="font-light-gray">{this.props.btnText}</span>
                         {
