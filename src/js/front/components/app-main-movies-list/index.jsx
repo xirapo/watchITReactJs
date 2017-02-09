@@ -16,7 +16,7 @@ export default class AppMoviesList extends React.Component {
             movies: []
         };
 
-        //Inital data
+        //Initial data
         this.updateMovies(
             this.props.sort,
             this.props.genre

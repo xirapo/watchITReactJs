@@ -21738,11 +21738,11 @@
 	Settings.wtAPI = {
 	    timeout: 10000, // Request timeout,
 	    cache_timeout: 10000000, // Request cache timeout,
-	    root: 'http://127.0.0.1:8000/v1/api',
-	    auth: 'http://127.0.0.1:8000/v1/api/auth/',
-	    user_me: 'http://127.0.0.1:8000/v1/api/user/',
-	    playlist: 'http://127.0.0.1:8000/v1/api/playlist/',
-	    search: 'http://127.0.0.1:8000/v1/api/movies/search/'
+	    root: 'http://127.0.0.1:8000/api/v1',
+	    auth: 'http://127.0.0.1:8000/api/v1/auth/',
+	    user_me: 'http://127.0.0.1:8000/api/v1/user/',
+	    playlist: 'http://127.0.0.1:8000/api/v1/playlist/',
+	    search: 'http://127.0.0.1:8000/api/v1/movies/search/'
 	};
 
 	// Settings.wtAPI = {

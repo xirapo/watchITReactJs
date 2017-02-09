@@ -3,7 +3,7 @@ import AppMoviePlayer from '../../components/app-main-player/index.jsx'
 import AppMoviePlayerLoader from '../../components/app-main-player-loader/index.jsx'
 
 //Login view class
-export default class App extends React.Component {
+export default class MoviePlayer extends React.Component {
     constructor(props) {
         super(props);
 

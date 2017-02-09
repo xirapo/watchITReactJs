@@ -154,7 +154,6 @@ https://smacss.com/book/type-state
   }
 
   .dropdown-content {
-    opacity: 0;
     background-color: rgba(0, 0, 0, 0.9);
     overflow-x: hidden;
     z-index: 1000;
@@ -174,7 +173,7 @@ https://smacss.com/book/type-state
     }
   }
 
-  .active {
+  &:hover .dropdown-content {
     display: block;
     top: 0;
     position: absolute;

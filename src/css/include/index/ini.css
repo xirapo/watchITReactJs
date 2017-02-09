@@ -35436,7 +35436,6 @@ https://smacss.com/book/type-state
   margin-left: 5px;
   font-weight: bold; }
 .dropdown .dropdown-content {
-  opacity: 0;
   background-color: rgba(0, 0, 0, 0.9);
   overflow-x: hidden;
   z-index: 1000; }
@@ -35449,7 +35448,7 @@ https://smacss.com/book/type-state
       font-size: 15px !important; }
       .dropdown .dropdown-content li a:hover {
         color: #000; }
-.dropdown .active {
+.dropdown:hover .dropdown-content {
   display: block;
   top: 0;
   position: absolute;

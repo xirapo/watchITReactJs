@@ -27670,12 +27670,18 @@
 	            return _react2.default.createElement(
 	                'div',
 	                { className: 'nav-wrapper' },
-	                _react2.default.createElement(_index2.default, { btnText: 'Sort By', list: this.state.sort, onChange: function onChange(e) {
+	                _react2.default.createElement(_index2.default, {
+	                    btnText: 'Sort By', list: this.state.sort,
+	                    onChange: function onChange(e) {
 	                        return _this2.onChange('sort', e);
-	                    } }),
-	                _react2.default.createElement(_index2.default, { btnText: 'Genre', list: this.state.genres, onChange: function onChange(e) {
+	                    }
+	                }),
+	                _react2.default.createElement(_index2.default, {
+	                    btnText: 'Genre', list: this.state.genres,
+	                    onChange: function onChange(e) {
 	                        return _this2.onChange('genre', e);
-	                    } })
+	                    }
+	                })
 	            );
 	        }
 	    }]);
@@ -29385,7 +29391,7 @@
 	            movies: []
 	        };
 
-	        //Inital data
+	        //Initial data
 	        _this.updateMovies(_this.props.sort, _this.props.genre);
 	        return _this;
 	    }
@@ -29738,11 +29744,11 @@
 	Settings.wtAPI = {
 	    timeout: 10000, // Request timeout,
 	    cache_timeout: 10000000, // Request cache timeout,
-	    root: 'http://127.0.0.1:8000/v1/api',
-	    auth: 'http://127.0.0.1:8000/v1/api/auth/',
-	    user_me: 'http://127.0.0.1:8000/v1/api/user/',
-	    playlist: 'http://127.0.0.1:8000/v1/api/playlist/',
-	    search: 'http://127.0.0.1:8000/v1/api/movies/search/'
+	    root: 'http://127.0.0.1:8000/api/v1',
+	    auth: 'http://127.0.0.1:8000/api/v1/auth/',
+	    user_me: 'http://127.0.0.1:8000/api/v1/user/',
+	    playlist: 'http://127.0.0.1:8000/api/v1/playlist/',
+	    search: 'http://127.0.0.1:8000/api/v1/movies/search/'
 	};
 
 	// Settings.wtAPI = {
@@ -32049,16 +32055,16 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	//Login view class
-	var App = function (_React$Component) {
-	    _inherits(App, _React$Component);
+	var MovieMain = function (_React$Component) {
+	    _inherits(MovieMain, _React$Component);
 
-	    function App(props) {
-	        _classCallCheck(this, App);
+	    function MovieMain(props) {
+	        _classCallCheck(this, MovieMain);
 
-	        return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+	        return _possibleConstructorReturn(this, (MovieMain.__proto__ || Object.getPrototypeOf(MovieMain)).call(this, props));
 	    }
 
-	    _createClass(App, [{
+	    _createClass(MovieMain, [{
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
@@ -32078,10 +32084,10 @@
 	        }
 	    }]);
 
-	    return App;
+	    return MovieMain;
 	}(_react2.default.Component);
 
-	exports.default = App;
+	exports.default = MovieMain;
 
 /***/ },
 /* 297 */
@@ -35118,14 +35124,14 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	//Login view class
-	var App = function (_React$Component) {
-	    _inherits(App, _React$Component);
+	var MoviePlayer = function (_React$Component) {
+	    _inherits(MoviePlayer, _React$Component);
 
-	    function App(props) {
-	        _classCallCheck(this, App);
+	    function MoviePlayer(props) {
+	        _classCallCheck(this, MoviePlayer);
 
 	        //Decode string and pass to json object
-	        var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+	        var _this = _possibleConstructorReturn(this, (MoviePlayer.__proto__ || Object.getPrototypeOf(MoviePlayer)).call(this, props));
 
 	        _this.state = {
 	            state: 'Connecting',
@@ -35136,7 +35142,7 @@
 	        return _this;
 	    }
 
-	    _createClass(App, [{
+	    _createClass(MoviePlayer, [{
 	        key: 'onProgress',
 	        value: function onProgress(percent, state) {
 	            //Change state
@@ -35185,10 +35191,10 @@
 	        }
 	    }]);
 
-	    return App;
+	    return MoviePlayer;
 	}(_react2.default.Component);
 
-	exports.default = App;
+	exports.default = MoviePlayer;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(300).Buffer))
 
 /***/ },

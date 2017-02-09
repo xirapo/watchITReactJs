@@ -110,8 +110,15 @@ export default class AppMoviesNavBar extends React.Component {
     render() {
         return (
             <div className="nav-wrapper">
-                <AppMoviesNavBarMenu btnText="Sort By" list={this.state.sort} onChange={(e)=>this.onChange('sort',e)}/>
-                <AppMoviesNavBarMenu btnText="Genre" list={this.state.genres} onChange={(e)=>this.onChange('genre',e)}/>
+                <AppMoviesNavBarMenu
+                    btnText="Sort By" list={this.state.sort}
+                    onChange={(e)=>this.onChange('sort',e)}
+                />
+
+                <AppMoviesNavBarMenu
+                    btnText="Genre" list={this.state.genres}
+                    onChange={(e)=>this.onChange('genre',e)}
+                />
             </div>
         )
     }
