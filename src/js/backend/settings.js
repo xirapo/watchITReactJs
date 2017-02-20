@@ -78,12 +78,13 @@ Settings.openSub = {
 };
 
 //WatchIt API
+// Estos end points debe obtenerlos desde el api
 Settings.wtAPI = {
     timeout: 10000, // Request timeout,
     cache_timeout: 10000000, // Request cache timeout,
     root: 'http://127.0.0.1:8000/api/v1',
     auth: 'http://127.0.0.1:8000/api/v1/auth/',
-    user_me: 'http://127.0.0.1:8000/api/v1/user/',
+    user: 'http://127.0.0.1:8000/api/v1/user/',
     playlist: 'http://127.0.0.1:8000/api/v1/playlist/',
     search: 'http://127.0.0.1:8000/api/v1/movies/search/'
 };

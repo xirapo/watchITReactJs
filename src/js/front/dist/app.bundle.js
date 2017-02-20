@@ -27149,6 +27149,11 @@
 	            location.href = 'app://host/index.html';
 	        }
 
+	        //Default state for user_id
+	        _this.state = {
+	            user_id: localStorage.getItem('user')
+	        };
+
 	        return _this;
 	    }
 
@@ -27161,7 +27166,7 @@
 	                _react2.default.createElement(
 	                    'aside',
 	                    { id: 'main_menu_aside', className: 'col l2 m2 full-height padding-top-15' },
-	                    _react2.default.createElement(_index6.default, { request: setting.wtAPI.user_me }),
+	                    _react2.default.createElement(_index6.default, { request: setting.wtAPI.user + '?id=' + this.state.user_id }),
 	                    _react2.default.createElement(_index2.default, null)
 	                ),
 	                _react2.default.createElement(
@@ -27728,8 +27733,7 @@
 	        var _this = _possibleConstructorReturn(this, (AppMoviesNavBarMenu.__proto__ || Object.getPrototypeOf(AppMoviesNavBarMenu)).call(this, props));
 
 	        _this.state = {
-	            label: false,
-	            active: false
+	            label: false
 	        };
 	        return _this;
 	    }
@@ -29719,12 +29723,13 @@
 	};
 
 	//WatchIt API
+	// Estos end points debe obtenerlos desde el api
 	Settings.wtAPI = {
 	    timeout: 10000, // Request timeout,
 	    cache_timeout: 10000000, // Request cache timeout,
 	    root: 'http://127.0.0.1:8000/api/v1',
 	    auth: 'http://127.0.0.1:8000/api/v1/auth/',
-	    user_me: 'http://127.0.0.1:8000/api/v1/user/',
+	    user: 'http://127.0.0.1:8000/api/v1/user/',
 	    playlist: 'http://127.0.0.1:8000/api/v1/playlist/',
 	    search: 'http://127.0.0.1:8000/api/v1/movies/search/'
 	};

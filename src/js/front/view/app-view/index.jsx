@@ -17,6 +17,11 @@ export default class App extends React.Component {
             location.href = 'app://host/index.html'
         }
 
+        //Default state for user_id
+        this.state = {
+            user_id: localStorage.getItem('user')
+        }
+
     }
 
 
@@ -25,7 +30,7 @@ export default class App extends React.Component {
             <div className="relative full-height">
                 {/*The menu aside*/}
                 <aside id="main_menu_aside" className="col l2 m2 full-height padding-top-15">
-                    <AppTinyProfile request={setting.wtAPI.user_me}/>
+                    <AppTinyProfile request={setting.wtAPI.user + '?id=' + this.state.user_id}/>
                     <AppMainMenu />
                 </aside>
 
