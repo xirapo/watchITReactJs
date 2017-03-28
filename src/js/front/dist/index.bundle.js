@@ -143,7 +143,7 @@
 	                if (res.data.token) {
 	                    //Save token
 	                    localStorage.setItem('token', res.data.token);
-	                    localStorage.setItem('user', res.data.id);
+	                    localStorage.setItem('user', res.data.user_id);
 	                    this.setState({ success: true });
 
 	                    //After a second

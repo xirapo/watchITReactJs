@@ -72,7 +72,7 @@ export default class AppMoviesList extends React.Component {
                 autoHideTimeout={1000}
                 autoHideDuration={200}
                 autoHeight
-                autoHeightMin={800}
+                autoHeightMin={750}
                 thumbMinSize={30}
                 universal={true}
             >

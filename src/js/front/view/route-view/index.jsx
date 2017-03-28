@@ -4,7 +4,7 @@ import {render} from 'react-dom'
 
 import App from '../app-view/index.jsx'
 import Movie from '../movie-view/index.jsx'
-import Player from '../movie-player/index.jsx'
+import Player from '../movie-player-view/index.jsx'
 
 
 render(
