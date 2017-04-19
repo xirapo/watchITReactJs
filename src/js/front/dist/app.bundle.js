@@ -24460,10 +24460,6 @@
 
 	var _auth3 = _interopRequireDefault(_auth2);
 
-	var _settings = __webpack_require__(235);
-
-	var _settings2 = _interopRequireDefault(_settings);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -24475,8 +24471,6 @@
 	//Components
 
 	//Require for auth
-
-	//Default settings
 
 
 	//Login view class
@@ -24490,9 +24484,10 @@
 	        var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
 	        var _auth = new _auth3.default();
+
 	        // //Default state for user_id
 	        _this.state = {
-	            user: _auth.authUser.id
+	            user: _auth.authUser
 	        };
 	        return _this;
 	    }
@@ -24506,7 +24501,7 @@
 	                _react2.default.createElement(
 	                    'aside',
 	                    { id: 'main_menu_aside', className: 'col l2 m2 full-height padding-top-15' },
-	                    _react2.default.createElement(_index6.default, { request: _settings2.default.wtAPI.user + '/' + this.state.user.id }),
+	                    _react2.default.createElement(_index6.default, { request: Setting.api.user + '/' + this.state.user.id }),
 	                    _react2.default.createElement(_index2.default, null)
 	                ),
 	                _react2.default.createElement(
