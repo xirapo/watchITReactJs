@@ -62,7 +62,7 @@
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _auth = __webpack_require__(272);
+	var _auth = __webpack_require__(271);
 
 	var _auth2 = _interopRequireDefault(_auth);
 
@@ -24456,9 +24456,17 @@
 
 	var _index6 = _interopRequireDefault(_index5);
 
-	var _auth2 = __webpack_require__(272);
+	var _auth = __webpack_require__(271);
 
-	var _auth3 = _interopRequireDefault(_auth2);
+	var _auth2 = _interopRequireDefault(_auth);
+
+	var _user = __webpack_require__(272);
+
+	var _user2 = _interopRequireDefault(_user);
+
+	var _movies = __webpack_require__(273);
+
+	var _movies2 = _interopRequireDefault(_movies);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -24483,12 +24491,27 @@
 	        //Auth object
 	        var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
-	        var _auth = new _auth3.default();
+	        _this.auth = new _auth2.default();
+	        _this.user = new _user2.default();
+	        _this.movie = new _movies2.default();
 
-	        // //Default state for user_id
-	        _this.state = {
-	            user: _auth.authUser
-	        };
+	        //Default state
+	        _this.state = {};
+
+	        //Get data
+	        _this.user.get(_this.auth.authUser.id, //User id
+	        _this.auth.token //The request token
+	        ).then(function (res) {
+	            _this.setState({
+	                user: res
+	            });
+	        }).catch(function (e) {});
+
+	        //Get movies
+	        _this.movie.filter({}, _this.auth.token).then(function (res) {
+	            console.log(res);
+	        }).catch(function (e) {});
+
 	        return _this;
 	    }
 
@@ -24501,14 +24524,10 @@
 	                _react2.default.createElement(
 	                    'aside',
 	                    { id: 'main_menu_aside', className: 'col l2 m2 full-height padding-top-15' },
-	                    _react2.default.createElement(_index6.default, { request: Setting.api.user + '/' + this.state.user.id }),
+	                    this.state.user && _react2.default.createElement(_index6.default, { user: this.state.user }),
 	                    _react2.default.createElement(_index2.default, null)
 	                ),
-	                _react2.default.createElement(
-	                    'section',
-	                    { className: 'col l10 m10' },
-	                    _react2.default.createElement(_index4.default, null)
-	                )
+	                _react2.default.createElement('section', { className: 'col l10 m10' })
 	            );
 	        }
 	    }]);
@@ -24611,7 +24630,7 @@
 /* 209 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -24622,6 +24641,10 @@
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
+
+	var _propTypes = __webpack_require__(184);
+
+	var _propTypes2 = _interopRequireDefault(_propTypes);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -24641,25 +24664,25 @@
 	    }
 
 	    _createClass(AppMenuItems, [{
-	        key: "render",
+	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
-	                "div",
-	                { className: "clearfix" },
+	                'div',
+	                { className: 'clearfix' },
 	                this.props.items.map(function (i, k) {
 	                    return _react2.default.createElement(
-	                        "div",
-	                        { className: "row margin-bottom-5", key: k },
+	                        'div',
+	                        { className: 'row margin-bottom-5', key: k },
 	                        _react2.default.createElement(
-	                            "div",
-	                            { className: "col l12 m12" },
+	                            'div',
+	                            { className: 'col l12 m12' },
 	                            _react2.default.createElement(
-	                                "a",
+	                                'a',
 	                                { href: "#" + i.href, className: i.textColor + "-text" },
-	                                _react2.default.createElement("i", { className: i.icon + " relative top-2 margin-right-10 tiny" }),
+	                                _react2.default.createElement('i', { className: i.icon + " relative top-2 margin-right-10 tiny" }),
 	                                _react2.default.createElement(
-	                                    "strong",
-	                                    { className: "bold" },
+	                                    'strong',
+	                                    { className: 'bold' },
 	                                    i.content
 	                                )
 	                            )
@@ -24669,17 +24692,17 @@
 	            );
 	        }
 	    }], [{
-	        key: "defaultProps",
+	        key: 'defaultProps',
 	        get: function get() {
 	            return {
 	                items: []
 	            };
 	        }
 	    }, {
-	        key: "propTypes",
+	        key: 'propTypes',
 	        get: function get() {
 	            return {
-	                items: _react2.default.PropTypes.array.isRequired
+	                items: _propTypes2.default.array.isRequired
 	            };
 	        }
 	    }]);
@@ -24693,7 +24716,7 @@
 /* 210 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -24704,6 +24727,10 @@
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
+
+	var _propTypes = __webpack_require__(184);
+
+	var _propTypes2 = _interopRequireDefault(_propTypes);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -24723,31 +24750,31 @@
 	    }
 
 	    _createClass(AppMenuHeaders, [{
-	        key: "render",
+	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
-	                "div",
+	                'div',
 	                { className: "row " + this.props.className },
 	                _react2.default.createElement(
-	                    "div",
-	                    { className: "col l10 m9" },
+	                    'div',
+	                    { className: 'col l10 m9' },
 	                    _react2.default.createElement(
-	                        "strong",
-	                        { className: "font-light-gray bold" },
+	                        'strong',
+	                        { className: 'font-light-gray bold' },
 	                        this.props.content
 	                    )
 	                ),
 	                this.props.action && _react2.default.createElement(
-	                    "div",
-	                    { className: "col l2 m3 text-center" },
+	                    'div',
+	                    { className: 'col l2 m3 text-center' },
 	                    _react2.default.createElement(
-	                        "a",
-	                        { href: "#w", className: "tooltip" },
-	                        _react2.default.createElement("i", { className: "icon-add-to-list top-2 relative font-light-gray tiny white-hover" }),
+	                        'a',
+	                        { href: '#w', className: 'tooltip' },
+	                        _react2.default.createElement('i', { className: 'icon-add-to-list top-2 relative font-light-gray tiny white-hover' }),
 	                        _react2.default.createElement(
-	                            "span",
+	                            'span',
 	                            {
-	                                className: "z-index-top font-size-small bold black-text top-tip grey lighten-1 border-grey-bottom" },
+	                                className: 'z-index-top font-size-small bold black-text top-tip grey lighten-1 border-grey-bottom' },
 	                            this.props.action
 	                        )
 	                    )
@@ -24755,10 +24782,10 @@
 	            );
 	        }
 	    }], [{
-	        key: "propTypes",
+	        key: 'propTypes',
 	        get: function get() {
 	            return {
-	                content: _react2.default.PropTypes.string.isRequired
+	                content: _propTypes2.default.string.isRequired
 	            };
 	        }
 	    }]);
@@ -26805,6 +26832,10 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _propTypes = __webpack_require__(184);
+
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+
 	var _index = __webpack_require__(233);
 
 	var _index2 = _interopRequireDefault(_index);
@@ -26867,17 +26898,21 @@
 	                });
 	            });
 	        }
-	    }, {
-	        key: 'componentWillReceiveProps',
-	        value: function componentWillReceiveProps(nextProps) {
-	            //Start loader
-	            this.setState({
-	                loader: true
-	            });
 
-	            //Updating
-	            this.updateMovies(nextProps.sort, nextProps.genre);
-	        }
+	        // componentWillReceiveProps(nextProps) {
+	        //     //Start loader
+	        //     this.setState({
+	        //         loader: true
+	        //     });
+	        //
+	        //     //Updating
+	        //     this.updateMovies(
+	        //         nextProps.sort,
+	        //         nextProps.genre
+	        //     )
+	        // }
+
+
 	    }, {
 	        key: 'render',
 	        value: function render() {
@@ -26895,7 +26930,7 @@
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'col l12 m12' },
-	                    this.state.movies.map(function (i, k) {
+	                    this.props.movies.map(function (i, k) {
 	                        return _react2.default.createElement(
 	                            'div',
 	                            { className: 'col l2 m2 padding-left-2 padding-right-2 padding-bottom-2 padding-top-2',
@@ -26921,8 +26956,8 @@
 	        key: 'propTypes',
 	        get: function get() {
 	            return {
-	                sort: _react2.default.PropTypes.string.isRequired,
-	                genre: _react2.default.PropTypes.string.isRequired
+	                sort: _propTypes2.default.string.isRequired,
+	                genre: _propTypes2.default.string.isRequired
 	            };
 	        }
 	    }]);
@@ -27172,8 +27207,7 @@
 	    root: 'http://127.0.0.1:8000/api/v1/',
 	    auth: 'http://127.0.0.1:8000/api/v1/auth/',
 	    user: 'http://127.0.0.1:8000/api/v1/user/',
-	    playlist: 'http://127.0.0.1:8000/api/v1/playlist/',
-	    search: 'http://127.0.0.1:8000/api/v1/movies/search/'
+	    movies: 'http://127.0.0.1:8000/api/v1/movies/'
 	};
 
 	exports.default = Settings;
@@ -31187,10 +31221,6 @@
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _index3 = __webpack_require__(271);
-
-	var _index4 = _interopRequireDefault(_index3);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -31199,43 +31229,17 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	//Request
-	var axios = __webpack_require__(238);
+	// import AppMenuProfileStatistics from '../app-aside-tiny-box-profile-statistics/index.jsx'
+
 
 	//Class Profile
-
 	var AppTinyProfile = function (_React$Component) {
 	    _inherits(AppTinyProfile, _React$Component);
 
 	    function AppTinyProfile(props) {
 	        _classCallCheck(this, AppTinyProfile);
 
-	        var _this = _possibleConstructorReturn(this, (AppTinyProfile.__proto__ || Object.getPrototypeOf(AppTinyProfile)).call(this, props));
-
-	        _this.state = {
-	            user_data: {
-	                profile_pic_small: '',
-	                fullname: ''
-	            }
-	        };
-
-	        //Get token from localStorage
-	        var _token = localStorage.getItem('token');
-
-	        //If token
-	        if (_token && _this.props.request) {
-	            axios({
-	                url: _this.props.request,
-	                timeout: 1000,
-	                headers: { 'Authorization': 'Bearer ' + _token }
-	            }).then(function (e) {
-	                //Handle data for user
-	                _this.setState({
-	                    user_data: e.data.data
-	                });
-	            });
-	        }
-	        return _this;
+	        return _possibleConstructorReturn(this, (AppTinyProfile.__proto__ || Object.getPrototypeOf(AppTinyProfile)).call(this, props));
 	    }
 
 	    _createClass(AppTinyProfile, [{
@@ -31248,19 +31252,11 @@
 	                    'div',
 	                    { className: 'row' },
 	                    _react2.default.createElement(_index2.default, {
-	                        picture: this.state.user_data.profile_pic_small,
-	                        fullname: this.state.user_data.fullname
+	                        picture: this.props.user.profile_pic_small,
+	                        fullname: this.props.user.fullname
 	                    })
-	                ),
-	                _react2.default.createElement(_index4.default, null)
+	                )
 	            );
-	        }
-	    }], [{
-	        key: 'propTypes',
-	        get: function get() {
-	            return {
-	                request: _react2.default.PropTypes.string.isRequired
-	            };
 	        }
 	    }]);
 
@@ -31273,7 +31269,7 @@
 /* 270 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -31284,6 +31280,10 @@
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
+
+	var _propTypes = __webpack_require__(184);
+
+	var _propTypes2 = _interopRequireDefault(_propTypes);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31303,50 +31303,50 @@
 	    }
 
 	    _createClass(AppMenuProfileAvatar, [{
-	        key: "render",
+	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
-	                "div",
-	                { className: "clearfix" },
+	                'div',
+	                { className: 'clearfix' },
 	                _react2.default.createElement(
-	                    "div",
-	                    { className: "col l3 m4 relative top-5 small-picture" },
+	                    'div',
+	                    { className: 'col l3 m4 relative top-5 small-picture' },
 	                    _react2.default.createElement(
-	                        "figure",
+	                        'figure',
 	                        null,
-	                        _react2.default.createElement("img", { src: this.props.picture, alt: "" })
+	                        _react2.default.createElement('img', { src: this.props.picture, alt: '' })
 	                    )
 	                ),
 	                _react2.default.createElement(
-	                    "div",
-	                    { className: "col l9 m8" },
+	                    'div',
+	                    { className: 'col l9 m8' },
 	                    _react2.default.createElement(
-	                        "div",
-	                        { className: "col l12 m12 truncate white-text" },
+	                        'div',
+	                        { className: 'col l12 m12 truncate white-text' },
 	                        _react2.default.createElement(
-	                            "strong",
-	                            { className: "bold no-margin" },
+	                            'strong',
+	                            { className: 'bold no-margin' },
 	                            this.props.fullname
 	                        )
 	                    ),
 	                    _react2.default.createElement(
-	                        "div",
-	                        { className: "col l12 m12 " },
+	                        'div',
+	                        { className: 'col l12 m12 ' },
 	                        _react2.default.createElement(
-	                            "a",
-	                            { href: "#logout", className: "font-size-tiny font-light-gray bold white-text" },
-	                            "Log out"
+	                            'a',
+	                            { href: '#logout', className: 'font-size-tiny font-light-gray bold white-text' },
+	                            'Log out'
 	                        )
 	                    )
 	                )
 	            );
 	        }
 	    }], [{
-	        key: "propTypes",
+	        key: 'propTypes',
 	        get: function get() {
 	            return {
-	                fullname: _react2.default.PropTypes.string.isRequired,
-	                picture: _react2.default.PropTypes.string.isRequired
+	                fullname: _propTypes2.default.string.isRequired,
+	                picture: _propTypes2.default.string.isRequired
 	            };
 	        }
 	    }]);
@@ -31358,127 +31358,6 @@
 
 /***/ }),
 /* 271 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var AppMenuProfileStatistics = function (_React$Component) {
-	    _inherits(AppMenuProfileStatistics, _React$Component);
-
-	    function AppMenuProfileStatistics(props) {
-	        _classCallCheck(this, AppMenuProfileStatistics);
-
-	        var _this = _possibleConstructorReturn(this, (AppMenuProfileStatistics.__proto__ || Object.getPrototypeOf(AppMenuProfileStatistics)).call(this, props));
-
-	        _this.state = {
-	            followers: 0,
-	            following: 0,
-	            plays: 0
-	        };
-	        return _this;
-	    }
-
-	    _createClass(AppMenuProfileStatistics, [{
-	        key: "render",
-	        value: function render() {
-	            return _react2.default.createElement(
-	                "div",
-	                { className: "clearfix" },
-	                _react2.default.createElement(
-	                    "div",
-	                    { className: "col l4 m6 text-center" },
-	                    _react2.default.createElement(
-	                        "div",
-	                        null,
-	                        _react2.default.createElement(
-	                            "strong",
-	                            { className: "font-size-tiny bold white-text" },
-	                            this.state.following
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        "div",
-	                        null,
-	                        _react2.default.createElement(
-	                            "span",
-	                            { className: "font-light-gray font-size-tiny" },
-	                            "following"
-	                        )
-	                    )
-	                ),
-	                _react2.default.createElement(
-	                    "div",
-	                    { className: "col l4 m6 text-center" },
-	                    _react2.default.createElement(
-	                        "div",
-	                        null,
-	                        _react2.default.createElement(
-	                            "strong",
-	                            { className: "font-size-tiny bold white-text" },
-	                            this.state.followers
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        "div",
-	                        null,
-	                        _react2.default.createElement(
-	                            "span",
-	                            { className: "font-light-gray font-size-tiny" },
-	                            "followers"
-	                        )
-	                    )
-	                ),
-	                _react2.default.createElement(
-	                    "div",
-	                    { className: "col l4 text-center hide-on-md hide-on-med-only" },
-	                    _react2.default.createElement(
-	                        "div",
-	                        null,
-	                        _react2.default.createElement(
-	                            "strong",
-	                            { className: "font-size-tiny bold white-text" },
-	                            this.state.plays
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        "div",
-	                        null,
-	                        _react2.default.createElement(
-	                            "span",
-	                            { className: "font-light-gray font-size-tiny" },
-	                            "plays"
-	                        )
-	                    )
-	                )
-	            );
-	        }
-	    }]);
-
-	    return AppMenuProfileStatistics;
-	}(_react2.default.Component);
-
-	exports.default = AppMenuProfileStatistics;
-
-/***/ }),
-/* 272 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31573,6 +31452,128 @@
 	}();
 
 	exports.default = Authentication;
+
+/***/ }),
+/* 272 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * Created by gmena on 04-19-17.
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+
+
+	var _settings = __webpack_require__(235);
+
+	var _settings2 = _interopRequireDefault(_settings);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var axios = __webpack_require__(238);
+	//var is_js = require('is_js');
+
+	var User = function () {
+	    function User() {
+	        _classCallCheck(this, User);
+	    }
+
+	    _createClass(User, [{
+	        key: 'get',
+	        value: function get(id, token) {
+	            /**
+	             * Return user details
+	             * @param id
+	             */
+
+	            return new Promise(function (resolve, err) {
+	                //Request to auth endpoint
+	                axios({
+	                    url: _settings2.default.api.user + id,
+	                    timeout: _settings2.default.api.timeout,
+	                    headers: { 'Authorization': 'Bearer ' + token }
+	                }).then(function (res) {
+	                    resolve(res.data.data);
+	                }).catch(function (e) {
+	                    err(e.response);
+	                });
+	            });
+	        }
+	    }]);
+
+	    return User;
+	}();
+
+	exports.default = User;
+
+/***/ }),
+/* 273 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * Created by gmena on 04-19-17.
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+
+
+	var _settings = __webpack_require__(235);
+
+	var _settings2 = _interopRequireDefault(_settings);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var axios = __webpack_require__(238);
+	//var is_js = require('is_js');
+
+	var Movies = function () {
+	    function Movies() {
+	        _classCallCheck(this, Movies);
+	    }
+
+	    _createClass(Movies, [{
+	        key: 'filter',
+	        value: function filter() {
+	            var filters = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+	            var token = arguments[1];
+
+	            /**
+	             * Return movies
+	             * @param filter
+	             * @param token
+	             */
+
+	            return new Promise(function (resolve, err) {
+	                //Request to auth endpoint
+	                axios({
+	                    url: _settings2.default.api.movies,
+	                    timeout: _settings2.default.api.timeout,
+	                    headers: { 'Authorization': 'Bearer ' + token }
+	                }).then(function (res) {
+	                    resolve(res.data.data);
+	                }).catch(function (e) {
+	                    err(e.response);
+	                });
+	            });
+	        }
+	    }]);
+
+	    return Movies;
+	}();
+
+	exports.default = Movies;
 
 /***/ })
 /******/ ]);

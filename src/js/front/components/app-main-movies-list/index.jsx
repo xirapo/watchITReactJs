@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import AppMoviesListAvatar from '../app-main-movies-list-avatar/index.jsx'
 import CustomScrollbars from '../util-scroller/index.jsx';
 import BoxLoader from '../util-box-loader/index.jsx'
@@ -31,8 +33,8 @@ export default class AppMoviesList extends React.Component {
 
     static get propTypes() {
         return {
-            sort: React.PropTypes.string.isRequired,
-            genre: React.PropTypes.string.isRequired
+            sort: PropTypes.string.isRequired,
+            genre: PropTypes.string.isRequired
         }
     }
 
@@ -50,18 +52,18 @@ export default class AppMoviesList extends React.Component {
         })
     }
 
-    componentWillReceiveProps(nextProps) {
-        //Start loader
-        this.setState({
-            loader: true
-        });
-
-        //Updating
-        this.updateMovies(
-            nextProps.sort,
-            nextProps.genre
-        )
-    }
+    // componentWillReceiveProps(nextProps) {
+    //     //Start loader
+    //     this.setState({
+    //         loader: true
+    //     });
+    //
+    //     //Updating
+    //     this.updateMovies(
+    //         nextProps.sort,
+    //         nextProps.genre
+    //     )
+    // }
 
 
     render() {
@@ -78,7 +80,7 @@ export default class AppMoviesList extends React.Component {
             >
                 <div className="col l12 m12">
                     {
-                        this.state.movies.map((i, k)=> {
+                        this.props.movies.map((i, k)=> {
                             return (
                                 <div className="col l2 m2 padding-left-2 padding-right-2 padding-bottom-2 padding-top-2"
                                      key={k}>

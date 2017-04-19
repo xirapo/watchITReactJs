@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 export default class AppMenuProfileAvatar extends React.Component {
     constructor(props) {
@@ -7,8 +8,8 @@ export default class AppMenuProfileAvatar extends React.Component {
 
     static get propTypes() {
         return {
-            fullname: React.PropTypes.string.isRequired,
-            picture: React.PropTypes.string.isRequired
+            fullname: PropTypes.string.isRequired,
+            picture: PropTypes.string.isRequired
         }
     }
 

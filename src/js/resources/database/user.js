@@ -7,21 +7,20 @@ var axios = require('axios');
 
 export default class User {
 
-    get(id) {
+    get(id, token) {
         /**
          * Return user details
          * @param id
          */
 
         return (new Promise((resolve, err) => {
-            //Set form data
-            let _request_params = new FormData();
-            _request_params.append('email', email);
-            _request_params.append('password', password);
-
             //Request to auth endpoint
-            axios.get(setting.api.user + '/id').then((res)=> {
-
+            axios({
+                url: setting.api.user + id,
+                timeout: setting.api.timeout,
+                headers: {'Authorization': 'Bearer ' + token}
+            }).then((res)=> {
+                resolve(res.data.data);
             }).catch((e)=> {
                 err(e.response)
             })

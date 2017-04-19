@@ -54,8 +54,7 @@ Settings.api = {
     root: 'http://127.0.0.1:8000/api/v1/',
     auth: 'http://127.0.0.1:8000/api/v1/auth/',
     user: 'http://127.0.0.1:8000/api/v1/user/',
-    playlist: 'http://127.0.0.1:8000/api/v1/playlist/',
-    search: 'http://127.0.0.1:8000/api/v1/movies/search/'
+    movies: 'http://127.0.0.1:8000/api/v1/movies/'
 };
 
 export default Settings;

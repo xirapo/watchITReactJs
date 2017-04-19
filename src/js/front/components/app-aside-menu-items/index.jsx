@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 export default class AppMenuItems extends React.Component {
     constructor(props) {
@@ -13,7 +14,7 @@ export default class AppMenuItems extends React.Component {
 
     static get propTypes() {
         return {
-            items: React.PropTypes.array.isRequired
+            items: PropTypes.array.isRequired
         }
     }
 

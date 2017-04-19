@@ -58,11 +58,11 @@
 
 	var _reactDom = __webpack_require__(36);
 
-	var _index = __webpack_require__(273);
+	var _index = __webpack_require__(274);
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _auth = __webpack_require__(272);
+	var _auth = __webpack_require__(271);
 
 	var _auth2 = _interopRequireDefault(_auth);
 
@@ -24500,8 +24500,7 @@
 	    root: 'http://127.0.0.1:8000/api/v1/',
 	    auth: 'http://127.0.0.1:8000/api/v1/auth/',
 	    user: 'http://127.0.0.1:8000/api/v1/user/',
-	    playlist: 'http://127.0.0.1:8000/api/v1/playlist/',
-	    search: 'http://127.0.0.1:8000/api/v1/movies/search/'
+	    movies: 'http://127.0.0.1:8000/api/v1/movies/'
 	};
 
 	exports.default = Settings;
@@ -28419,8 +28418,7 @@
 /***/ }),
 /* 269 */,
 /* 270 */,
-/* 271 */,
-/* 272 */
+/* 271 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28517,7 +28515,9 @@
 	exports.default = Authentication;
 
 /***/ }),
-/* 273 */
+/* 272 */,
+/* 273 */,
+/* 274 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28532,19 +28532,19 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _index = __webpack_require__(274);
+	var _index = __webpack_require__(275);
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _index3 = __webpack_require__(275);
+	var _index3 = __webpack_require__(276);
 
 	var _index4 = _interopRequireDefault(_index3);
 
-	var _index5 = __webpack_require__(279);
+	var _index5 = __webpack_require__(280);
 
 	var _index6 = _interopRequireDefault(_index5);
 
-	var _auth = __webpack_require__(272);
+	var _auth = __webpack_require__(271);
 
 	var _auth2 = _interopRequireDefault(_auth);
 
@@ -28691,7 +28691,7 @@
 	exports.default = LoginForm;
 
 /***/ }),
-/* 274 */
+/* 275 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -28781,7 +28781,7 @@
 	exports.default = MainLoader;
 
 /***/ }),
-/* 275 */
+/* 276 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28802,7 +28802,7 @@
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	var _index = __webpack_require__(276);
+	var _index = __webpack_require__(277);
 
 	var _index2 = _interopRequireDefault(_index);
 
@@ -28810,7 +28810,7 @@
 
 	var _index4 = _interopRequireDefault(_index3);
 
-	var _index5 = __webpack_require__(277);
+	var _index5 = __webpack_require__(278);
 
 	var _index6 = _interopRequireDefault(_index5);
 
@@ -28939,7 +28939,7 @@
 	exports.default = FormBox;
 
 /***/ }),
-/* 276 */
+/* 277 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29011,7 +29011,7 @@
 	exports.default = FormBoxAlert;
 
 /***/ }),
-/* 277 */
+/* 278 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29026,7 +29026,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _index = __webpack_require__(278);
+	var _index = __webpack_require__(279);
 
 	var _index2 = _interopRequireDefault(_index);
 
@@ -29078,7 +29078,7 @@
 	exports.default = FormBoxButton;
 
 /***/ }),
-/* 278 */
+/* 279 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -29131,7 +29131,7 @@
 	exports.default = FormBoxLoader;
 
 /***/ }),
-/* 279 */
+/* 280 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';

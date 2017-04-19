@@ -3,11 +3,6 @@ import React from 'react'
 export default class AppMenuProfileStatistics extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            followers: 0,
-            following: 0,
-            plays: 0
-        }
     }
 
     render() {
@@ -16,7 +11,7 @@ export default class AppMenuProfileStatistics extends React.Component {
                 <div className="col l4 m6 text-center">
                     <div>
                         <strong className="font-size-tiny bold white-text">
-                            {this.state.following}
+                            0
                         </strong>
                     </div>
                     <div>
@@ -28,7 +23,7 @@ export default class AppMenuProfileStatistics extends React.Component {
                 <div className="col l4 m6 text-center">
                     <div>
                         <strong className="font-size-tiny bold white-text">
-                            {this.state.followers}
+                            0
                         </strong>
                     </div>
                     <div>
@@ -40,7 +35,7 @@ export default class AppMenuProfileStatistics extends React.Component {
                 <div className="col l4 text-center hide-on-md hide-on-med-only">
                     <div>
                         <strong className="font-size-tiny bold white-text">
-                            {this.state.plays}
+                            0
                         </strong>
                     </div>
                     <div>

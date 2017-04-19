@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 export default class AppMenuHeaders extends React.Component {
     constructor(props) {
@@ -8,7 +9,7 @@ export default class AppMenuHeaders extends React.Component {
 
     static get propTypes() {
         return {
-            content: React.PropTypes.string.isRequired
+            content: PropTypes.string.isRequired
         }
     }
 
