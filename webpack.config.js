@@ -8,8 +8,8 @@ var APP_DIR = path.resolve(__dirname, 'src/js/front');
 module.exports = {
     cache: true,
     entry: {
-        index: APP_DIR + '/view/login-view/index.jsx',
-        app: APP_DIR + '/view/route-view/index.jsx'
+        index: APP_DIR + '/view/index/init-view/index.jsx',
+        app: APP_DIR + '/view/app/init-view/index.jsx'
     },
     output: {
         path: BUILD_DIR,

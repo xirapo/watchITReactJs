@@ -2,7 +2,7 @@ var dirs = require('./global');
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 //Webpack
-var WebpackDevServer = require("webpack-dev-server");
+//var WebpackDevServer = require("webpack-dev-server");
 var webpack = require('webpack');
 var webpackConf = require('./webpack.config');
 var NwBuilder = require('nw-builder');
@@ -29,23 +29,23 @@ gulp.task("nw:webpack", function (callback) {
 });
 
 
-gulp.task("nw:webpack-server", function(callback) {
-    // modify some webpack config options
-    var myConfig = Object.create(webpackConf);
-    myConfig.devtool = "eval";
-    myConfig.debug = true;
-
-    // Start a webpack-dev-server
-    new WebpackDevServer(webpack(myConfig), {
-        publicPath: "/" + myConfig.output.publicPath,
-        stats: {
-            colors: true
-        }
-    }).listen(8000, "localhost", function(err) {
-        if(err) throw new gutil.PluginError("webpack-dev-server", err);
-        gutil.log("[webpack-dev-server]", "http://localhost:8080/webpack-dev-server/index.html");
-    });
-});
+// gulp.task("nw:webpack-server", function(callback) {
+//     // modify some webpack config options
+//     var myConfig = Object.create(webpackConf);
+//     myConfig.devtool = "eval";
+//     myConfig.debug = true;
+//
+//     // Start a webpack-dev-server
+//     new WebpackDevServer(webpack(myConfig), {
+//         publicPath: "/" + myConfig.output.publicPath,
+//         stats: {
+//             colors: true
+//         }
+//     }).listen(8000, "localhost", function(err) {
+//         if(err) throw new gutil.PluginError("webpack-dev-server", err);
+//         gutil.log("[webpack-dev-server]", "http://localhost:8080/webpack-dev-server/index.html");
+//     });
+// });
 
 
 //Build

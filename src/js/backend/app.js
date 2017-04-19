@@ -46,9 +46,9 @@ var wipeTmpFolder = function () {
 // Wipe the tmpFolder when closing the app (this frees up disk space)
 win.on('close', function () {
     //If user setting clear cache
-    if (Settings.custom.clearCache) {
-        wipeTmpFolder();
-    }
+    // if (Settings.custom.clearCache) {
+    //     wipeTmpFolder();
+    // }
 
     //Remove subs
     wipeTmpSubs();

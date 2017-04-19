@@ -1,6 +1,6 @@
 import React from 'react'
-import AppMoviePlayer from '../../components/app-main-player/index.jsx'
-import AppMoviePlayerLoader from '../../components/app-main-player-loader/index.jsx'
+import AppMoviePlayer from '../../../components/app-main-player/index.jsx'
+import AppMoviePlayerLoader from '../../../components/app-main-player-loader/index.jsx'
 
 //Login view class
 export default class MoviePlayer extends React.Component {

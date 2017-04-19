@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 export default class FormBoxInput extends React.Component {
     constructor(props) {
@@ -18,8 +19,8 @@ export default class FormBoxInput extends React.Component {
 
     static get propTypes() {
         return {
-            placeholder: React.PropTypes.string.isRequired,
-            icon: React.PropTypes.string.isRequired
+            placeholder: PropTypes.string.isRequired,
+            icon: PropTypes.string.isRequired
         }
     }
 
@@ -40,8 +41,7 @@ export default class FormBoxInput extends React.Component {
         return (
             <div className={"input-field col " + this.props.size}>
                 <i className={this.props.icon + " normalize-medium-icon top-10 prefix small white-text"}> </i>
-                <input
-                    {...this.props}
+                <input {...this.props}
                     onChange={(e)=> this.handleChange(e) }
                     required={this.props.required}
                     className="white-text validate browser-default"

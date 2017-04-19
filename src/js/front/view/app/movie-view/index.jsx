@@ -1,6 +1,6 @@
 import React from 'react'
-import MainHeader from '../../components/util-header/index.jsx'
-import MovieDetails from '../../components/app-movie-details/index.jsx'
+import MainHeader from '../../../components/util-header/index.jsx'
+import MovieDetails from '../../../components/app-movie-details/index.jsx'
 
 //Login view class
 export default class MovieMain extends React.Component {

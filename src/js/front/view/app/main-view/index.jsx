@@ -1,27 +1,24 @@
+//Basic
 import React from 'react'
-
-import AppMainMenu from '../../components/app-aside-menu/index.jsx'
-import AppMoviesSection from '../../components/app-main-movies/index.jsx'
-import AppTinyProfile from '../../components/app-aside-tiny-box-profile/index.jsx'
-
-//Require for request
-var setting = require('../../../backend/settings');
+//Components
+import AppMainMenu from '../../../components/app-aside-menu/index.jsx'
+import AppMoviesSection from '../../../components/app-main-movies/index.jsx'
+import AppTinyProfile from '../../../components/app-aside-tiny-box-profile/index.jsx'
+//Require for auth
+import Auth from '../../../../resources/database/auth'
+//Default settings
+import Setting from '../../../../backend/settings'
 
 //Login view class
 export default class App extends React.Component {
     constructor(props) {
         super(props);
-
-        //No logged? GO OUT!!!
-        if (!localStorage.getItem('token')) {
-            location.href = 'app://host/index.html'
-        }
-
-        //Default state for user_id
+        //Auth object
+        let _auth = new Auth();
+        // //Default state for user_id
         this.state = {
-            user_id: localStorage.getItem('user')
+            user: _auth.authUser.id
         }
-
     }
 
 
@@ -30,7 +27,7 @@ export default class App extends React.Component {
             <div className="relative full-height">
                 {/*The menu aside*/}
                 <aside id="main_menu_aside" className="col l2 m2 full-height padding-top-15">
-                    <AppTinyProfile request={setting.wtAPI.user + '?id=' + this.state.user_id}/>
+                    <AppTinyProfile request={Setting.wtAPI.user + '/' + this.state.user.id}/>
                     <AppMainMenu />
                 </aside>
 
