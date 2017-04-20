@@ -2,7 +2,7 @@
  * Created by gmena on 04-19-17.
  */
 import setting from '../../backend/settings'
-var axios = require('axios');
+import axios from 'axios'
 //var is_js = require('is_js');
 
 export default class User {

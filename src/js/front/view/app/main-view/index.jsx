@@ -29,14 +29,18 @@ export default class App extends React.Component {
             this.setState({
                 user: res
             });
-        }).catch((e)=>{});
+        }).catch((e)=> {
+        });
 
         //Get movies
         this.movie.filter(
             {}, this.auth.token
-        ).then((res)=>{
-            console.log(res);
-        }).catch((e)=>{});
+        ).then((res)=> {
+            this.setState({
+                movies: res
+            })
+        }).catch((e)=> {
+        });
 
     }
 

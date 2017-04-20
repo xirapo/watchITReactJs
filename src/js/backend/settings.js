@@ -5,8 +5,8 @@ var Settings = {};
 var path = require('path');
 var os = require('os');
 
-Settings.loginView = '/index.html';
-Settings.appView = '/src/app.html';
+Settings.loginView = '/';
+Settings.appView = '/app';
 
 /////////////////////
 //Users Settings//

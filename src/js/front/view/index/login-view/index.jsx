@@ -1,17 +1,19 @@
 //Basic
 import React from 'react'
+import PropTypes from 'prop-types'
 //Components
 import MainLoader from '../../../components/util-main-loader/index.jsx'
 import FormBox from '../../../components/form-box/index.jsx'
 import Logo from '../../../components/util-header-logo/index.jsx'
 //Require for auth
-import Auth from '../../../../resources/database/auth'
 //Default settings
+import Auth from '../../../../resources/database/auth'
 import Setting from '../../../../backend/settings'
 
 
 //Login view class
 export default class LoginForm extends React.Component {
+
     constructor(props) {
         super(props);
         //Authentication
@@ -49,6 +51,11 @@ export default class LoginForm extends React.Component {
 
     }
 
+    static get contextTypes() {
+        return {
+            router: PropTypes.object
+        }
+    }
 
     handleRequest(fields) {
 
@@ -73,7 +80,9 @@ export default class LoginForm extends React.Component {
             //Redirect
             setTimeout(()=> {
                 //Redirect to main app
-                location.href = Setting.appView
+                this.context.router.history.push(
+                    Setting.appView
+                )
             }, 1000)
 
         }).catch((e)=> {
