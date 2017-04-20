@@ -2,8 +2,12 @@
 import React from 'react'
 //Components
 import AppMainMenu from '../../../components/app-aside-menu/index.jsx'
-import AppMoviesSection from '../../../components/app-main-movies/index.jsx'
+import AppMoviesNav from '../../../components/app-main-movies-nav-bar/index.jsx'
+import AppMoviesList from '../../../components/app-main-movies-list/index.jsx'
+import AppMainTopInput from '../../../components/app-main-movies-top-inputs/index.jsx'
 import AppTinyProfile from '../../../components/app-aside-tiny-box-profile/index.jsx'
+import BoxLoader from '../../../components/util-box-loader/index.jsx'
+import FormBoxLoader from '../../../components/form-box-loader/index.jsx'
 //Require for auth
 //Database (Api Handler)
 import Auth from '../../../../resources/database/auth'
@@ -19,10 +23,16 @@ export default class App extends React.Component {
         this.auth = new Auth();
         this.user = new User();
         this.movie = new Movie();
-
+        //Default offset
+        this.offset = 1;
         //Default state
-        this.state = {};
+        this.state = {
+            loading: true,
+            scrollUpdate: false
+        };
+
         this.sort = {
+            limit: 30,
             sort_by: 'date_uploaded',
             order: 'desc'
         };
@@ -60,24 +70,63 @@ export default class App extends React.Component {
             filter, token
         ).then((res)=> {
             this.setState({
-                movies: res
+                movies: res,
+                loading: false,
+                scrollUpdate: false
+
             })
         }).catch((e)=> {
         });
     }
 
+    resetLimit() {
+        this.offset = 1;
+        this.sort.limit = 30
+    }
+
+    onUpdate(e) {
+        //On Scroll down
+        if (e.top == 1) {
+            this.sort.limit = (++this.offset * 30);
+            this.setState({
+                scrollUpdate: true
+            });
+
+            //Request new movies
+            this.filterMovies(
+                this.sort,
+                this.auth.token
+            )
+        }
+    }
+
 
     onChange(sort, by) {
         let _sort = {};
-        _sort[sort] = by;
-        this.sort = Object.assign(
-            {}, this.sort, _sort
-        );
+
+        //If by?
+        if (by) {
+            _sort[sort] = by;
+            this.sort = Object.assign(
+                {}, this.sort, _sort
+            );
+        } else {
+            if (sort in this.sort) {
+                delete this.sort[sort]
+            }
+        }
+        //Reset offset
+        this.resetLimit();
+        this.setState({
+            loading: true,
+            scrollUpdate: false
+        });
 
         //Re set movies
         this.filterMovies(
-            this.sort, this.auth.token
-        )
+            this.sort,
+            this.auth.token
+        );
     }
 
 
@@ -92,10 +141,29 @@ export default class App extends React.Component {
 
                 {/*The movies menu*/}
                 <section className="col l10 m10">
-                    <AppMoviesSection
-                        movies={this.state.movies}
-                        onChange={(type,e)=>this.onChange(type,e)}
-                    />
+                    <div className="clearfix">
+                        <section className="row no-margin">
+                            <AppMainTopInput/>
+                        </section>
+
+                        <nav className="col l12 m12 transparent z-depth-0 margin-bottom-10">
+                            <AppMoviesNav onChange={(t,e)=>this.onChange(t,e)}/>
+                        </nav>
+
+                        <div className="row full-height">
+                            {
+                                !this.state.loading
+                                && this.state.movies
+                                && <AppMoviesList
+                                    movies={this.state.movies}
+                                    onUpdate={(e)=>this.onUpdate(e)}
+                                />
+                                || <BoxLoader/>
+                            }
+                            {/*Check for new data loading*/}
+                            {this.state.scrollUpdate && <FormBoxLoader />}
+                        </div>
+                    </div>
                 </section>
             </div>
         )

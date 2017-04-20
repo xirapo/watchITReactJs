@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import CustomScrollbars from '../util-scroller/index.jsx';
 
 export default class AppMoviesNavBarMenu extends React.Component {
@@ -11,8 +12,8 @@ export default class AppMoviesNavBarMenu extends React.Component {
 
     static get propTypes() {
         return {
-            list: React.PropTypes.array.isRequired,
-            btnText: React.PropTypes.string.isRequired
+            list: PropTypes.array.isRequired,
+            btnText: PropTypes.string.isRequired
         }
     }
 
@@ -46,10 +47,9 @@ export default class AppMoviesNavBarMenu extends React.Component {
         this.setState({
             label: _label
         });
-
         //Select action
         if (this.props.onChange) {
-            this.props.onChange(_action);
+            this.props.onChange(_action, _label);
         }
 
     }
@@ -64,13 +64,17 @@ export default class AppMoviesNavBarMenu extends React.Component {
                         <span className="font-light-gray">{this.props.btnText}</span>
                         {
                             /*The main button*/
+                            //Set personalized label
                             this.state.label
                             && <strong className="dropdown-result blue-text">
                                 {this.state.label}
                             </strong>
+
+                            //Or get default
                             || this.props.list.map((i, k)=> {
                                 return (
-                                    i.default && <strong className="dropdown-result blue-text" key={k}>
+                                    i.default
+                                    && <strong className="dropdown-result blue-text" key={k}>
                                         {i.label}
                                     </strong>
                                 )
@@ -86,7 +90,7 @@ export default class AppMoviesNavBarMenu extends React.Component {
                             autoHideTimeout={1000}
                             autoHideDuration={200}
                             autoHeight
-                            autoHeightMax={600}
+                            autoHeightMax={500}
                             thumbMinSize={30}
                             universal={true}>
 

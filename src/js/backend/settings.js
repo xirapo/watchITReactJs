@@ -22,7 +22,6 @@ Settings.custom = {
 //Torrent conf
 Settings.system = {
     // Minimum bytes loaded to open video
-    MAX_HOME_MOVIES: 30,
     MAX_CACHE_REQUEST_TIMEOUT: 3600000 * 24, // Milliseconds 24h
     MAX_NUM_CONNECTIONS: 100, //Max num of peers 100
     MIN_PERCENTAGE_LOADED: 0.5, //Min % of loaded size

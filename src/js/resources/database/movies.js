@@ -16,12 +16,6 @@ export default class Movies {
          * @param token
          */
         return (new Promise((resolve, err) => {
-            //Merge filters
-            filters = Object.assign({}, filters, {
-                    limit: setting.system.MAX_HOME_MOVIES
-                }
-            );
-
             //Request to auth endpoint
             axios({
                 url: setting.api.movies + util.jsonToQString(filters),

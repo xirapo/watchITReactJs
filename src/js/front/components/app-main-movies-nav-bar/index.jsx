@@ -24,77 +24,73 @@ export default class AppMoviesNavBar extends React.Component {
             }],
             genres: [{
                 'label': 'All',
-                'action': 'all',
                 'default': true
             }, {
                 'label': 'Action',
-                'action': 'action'
+                'action': 'Action'
             }, {
                 'label': 'Adventure',
-                'action': 'adventure'
+                'action': 'Adventure'
             }, {
                 'label': 'Animation',
-                'action': 'animation'
+                'action': 'Animation'
             }, {
                 'label': 'Biography',
-                'action': 'biography'
+                'action': 'Biography'
             }, {
                 'label': 'Comedy',
-                'action': 'comedy'
+                'action': 'Comedy'
             }, {
                 'label': 'Crime',
-                'action': 'crime'
+                'action': 'Crime'
             }, {
                 'label': 'Documentary',
-                'action': 'documentary'
+                'action': 'Documentary'
             }, {
                 'label': 'Drama',
-                'action': 'drama'
+                'action': 'Drama'
             }, {
                 'label': 'Family',
-                'action': 'family'
+                'action': 'Family'
             }, {
                 'label': 'Fantasy',
-                'action': 'fantasy'
+                'action': 'Fantasy'
             }, {
                 'label': 'Film-Noir',
-                'action': 'film-noir'
+                'action': 'Film-noir'
             }, {
                 'label': 'History',
-                'action': 'history'
+                'action': 'History'
             }, {
                 'label': 'Horror',
-                'action': 'horror'
+                'action': 'Horror'
             }, {
                 'label': 'Music',
-                'action': 'music'
+                'action': 'Music'
             }, {
                 'label': 'Musical',
-                'action': 'musical'
+                'action': 'Musical'
             }, {
                 'label': 'Mystery',
-                'action': 'mystery'
+                'action': 'Mystery'
             }, {
                 'label': 'Romance',
-                'action': 'romance'
-            }, {
-                'label': 'Romance',
-                'action': 'romance'
-            }, {
+                'action': 'Romance'
+            },  {
                 'label': 'Sci-Fi',
-                'action': 'sci-fi'
+                'action': 'Sci-Fi'
             }, {
                 'label': 'Sport',
-                'action': 'sport'
+                'action': 'Sport'
             }, {
                 'label': 'Thriller',
-                'action': 'thriller'
+                'action': 'Thriller'
             }, {
                 'label': 'War',
-                'action': 'war'
+                'action': 'War'
             }, {
                 'label': 'Western',
-                'action': 'western'
+                'action': 'Western'
             }]
         }
     }

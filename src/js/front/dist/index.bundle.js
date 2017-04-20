@@ -26239,7 +26239,6 @@
 	//Torrent conf
 	Settings.system = {
 	    // Minimum bytes loaded to open video
-	    MAX_HOME_MOVIES: 30,
 	    MAX_CACHE_REQUEST_TIMEOUT: 3600000 * 24, // Milliseconds 24h
 	    MAX_NUM_CONNECTIONS: 100, //Max num of peers 100
 	    MIN_PERCENTAGE_LOADED: 0.5, //Min % of loaded size
@@ -30097,19 +30096,35 @@
 
 	var _index4 = _interopRequireDefault(_index3);
 
-	var _index5 = __webpack_require__(292);
+	var _index5 = __webpack_require__(287);
 
 	var _index6 = _interopRequireDefault(_index5);
+
+	var _index7 = __webpack_require__(289);
+
+	var _index8 = _interopRequireDefault(_index7);
+
+	var _index9 = __webpack_require__(290);
+
+	var _index10 = _interopRequireDefault(_index9);
+
+	var _index11 = __webpack_require__(292);
+
+	var _index12 = _interopRequireDefault(_index11);
+
+	var _index13 = __webpack_require__(228);
+
+	var _index14 = _interopRequireDefault(_index13);
 
 	var _auth = __webpack_require__(230);
 
 	var _auth2 = _interopRequireDefault(_auth);
 
-	var _user = __webpack_require__(294);
+	var _user = __webpack_require__(293);
 
 	var _user2 = _interopRequireDefault(_user);
 
-	var _movies = __webpack_require__(295);
+	var _movies = __webpack_require__(294);
 
 	var _movies2 = _interopRequireDefault(_movies);
 
@@ -30140,10 +30155,16 @@
 	        _this.auth = new _auth2.default();
 	        _this.user = new _user2.default();
 	        _this.movie = new _movies2.default();
-
+	        //Default offset
+	        _this.offset = 1;
 	        //Default state
-	        _this.state = {};
+	        _this.state = {
+	            loading: true,
+	            scrollUpdate: false
+	        };
+
 	        _this.sort = {
+	            limit: 30,
 	            sort_by: 'date_uploaded',
 	            order: 'desc'
 	        };
@@ -30181,16 +30202,53 @@
 	            //Get movies
 	            this.movie.filter(filter, token).then(function (res) {
 	                _this3.setState({
-	                    movies: res
+	                    movies: res,
+	                    loading: false,
+	                    scrollUpdate: false
+
 	                });
 	            }).catch(function (e) {});
+	        }
+	    }, {
+	        key: 'resetLimit',
+	        value: function resetLimit() {
+	            this.offset = 1;
+	            this.sort.limit = 30;
+	        }
+	    }, {
+	        key: 'onUpdate',
+	        value: function onUpdate(e) {
+	            //On Scroll down
+	            if (e.top == 1) {
+	                this.sort.limit = ++this.offset * 30;
+	                this.setState({
+	                    scrollUpdate: true
+	                });
+
+	                //Request new movies
+	                this.filterMovies(this.sort, this.auth.token);
+	            }
 	        }
 	    }, {
 	        key: 'onChange',
 	        value: function onChange(sort, by) {
 	            var _sort = {};
-	            _sort[sort] = by;
-	            this.sort = _extends({}, this.sort, _sort);
+
+	            //If by?
+	            if (by) {
+	                _sort[sort] = by;
+	                this.sort = _extends({}, this.sort, _sort);
+	            } else {
+	                if (sort in this.sort) {
+	                    delete this.sort[sort];
+	                }
+	            }
+	            //Reset offset
+	            this.resetLimit();
+	            this.setState({
+	                loading: true,
+	                scrollUpdate: false
+	            });
 
 	            //Re set movies
 	            this.filterMovies(this.sort, this.auth.token);
@@ -30206,18 +30264,39 @@
 	                _react2.default.createElement(
 	                    'aside',
 	                    { id: 'main_menu_aside', className: 'col l2 m2 full-height padding-top-15' },
-	                    _react2.default.createElement(_index6.default, { user: this.state.user }),
+	                    _react2.default.createElement(_index10.default, { user: this.state.user }),
 	                    _react2.default.createElement(_index2.default, null)
 	                ),
 	                _react2.default.createElement(
 	                    'section',
 	                    { className: 'col l10 m10' },
-	                    _react2.default.createElement(_index4.default, {
-	                        movies: this.state.movies,
-	                        onChange: function onChange(type, e) {
-	                            return _this4.onChange(type, e);
-	                        }
-	                    })
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'clearfix' },
+	                        _react2.default.createElement(
+	                            'section',
+	                            { className: 'row no-margin' },
+	                            _react2.default.createElement(_index8.default, null)
+	                        ),
+	                        _react2.default.createElement(
+	                            'nav',
+	                            { className: 'col l12 m12 transparent z-depth-0 margin-bottom-10' },
+	                            _react2.default.createElement(_index4.default, { onChange: function onChange(t, e) {
+	                                    return _this4.onChange(t, e);
+	                                } })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'row full-height' },
+	                            !this.state.loading && this.state.movies && _react2.default.createElement(_index6.default, {
+	                                movies: this.state.movies,
+	                                onUpdate: function onUpdate(e) {
+	                                    return _this4.onUpdate(e);
+	                                }
+	                            }) || _react2.default.createElement(_index12.default, null),
+	                            this.state.scrollUpdate && _react2.default.createElement(_index14.default, null)
+	                        )
+	                    )
 	                )
 	            );
 	        }
@@ -30503,173 +30582,6 @@
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _index3 = __webpack_require__(269);
-
-	var _index4 = _interopRequireDefault(_index3);
-
-	var _index5 = __webpack_require__(289);
-
-	var _index6 = _interopRequireDefault(_index5);
-
-	var _index7 = __webpack_require__(291);
-
-	var _index8 = _interopRequireDefault(_index7);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var AppMoviesSection = function (_React$Component) {
-	    _inherits(AppMoviesSection, _React$Component);
-
-	    function AppMoviesSection(props) {
-	        _classCallCheck(this, AppMoviesSection);
-
-	        return _possibleConstructorReturn(this, (AppMoviesSection.__proto__ || Object.getPrototypeOf(AppMoviesSection)).call(this, props));
-	    }
-
-	    _createClass(AppMoviesSection, [{
-	        key: 'render',
-	        value: function render() {
-	            var _this2 = this;
-
-	            return _react2.default.createElement(
-	                'div',
-	                { className: 'clearfix' },
-	                _react2.default.createElement(
-	                    'section',
-	                    { className: 'row no-margin' },
-	                    _react2.default.createElement(_index8.default, null)
-	                ),
-	                _react2.default.createElement(
-	                    'nav',
-	                    { className: 'col l12 m12 transparent z-depth-0 margin-bottom-10' },
-	                    _react2.default.createElement(_index4.default, { onChange: function onChange(t, e) {
-	                            return _this2.props.onChange(t, e);
-	                        } })
-	                ),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'row full-height' },
-	                    this.props.movies && _react2.default.createElement(_index6.default, { movies: this.props.movies }) || _react2.default.createElement(_index2.default, null)
-	                )
-	            );
-	        }
-	    }]);
-
-	    return AppMoviesSection;
-	}(_react2.default.Component);
-
-	exports.default = AppMoviesSection;
-
-/***/ }),
-/* 268 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var BoxLoader = function (_React$Component) {
-	    _inherits(BoxLoader, _React$Component);
-
-	    function BoxLoader(props) {
-	        _classCallCheck(this, BoxLoader);
-
-	        return _possibleConstructorReturn(this, (BoxLoader.__proto__ || Object.getPrototypeOf(BoxLoader)).call(this, props));
-	    }
-
-	    _createClass(BoxLoader, [{
-	        key: "render",
-	        value: function render() {
-	            return _react2.default.createElement(
-	                "section",
-	                {
-	                    className: "width-" + this.props.size + "-p col absolute full-height no-top no-right valign-wrapper"
-	                },
-	                _react2.default.createElement(
-	                    "div",
-	                    { className: "valign center-block" },
-	                    _react2.default.createElement(
-	                        "div",
-	                        { className: "preloader-wrapper active" },
-	                        _react2.default.createElement(
-	                            "div",
-	                            { className: "spinner-layer spinner-blue-only" },
-	                            _react2.default.createElement(
-	                                "div",
-	                                { className: "circle-clipper left" },
-	                                _react2.default.createElement("div", { className: "circle" })
-	                            ),
-	                            _react2.default.createElement(
-	                                "div",
-	                                { className: "gap-patch" },
-	                                _react2.default.createElement("div", { className: "circle" })
-	                            ),
-	                            _react2.default.createElement(
-	                                "div",
-	                                { className: "circle-clipper right" },
-	                                _react2.default.createElement("div", { className: "circle" })
-	                            )
-	                        )
-	                    )
-	                )
-	            );
-	        }
-	    }], [{
-	        key: "defaultProps",
-	        get: function get() {
-	            return {
-	                size: 83
-	            };
-	        }
-	    }]);
-
-	    return BoxLoader;
-	}(_react2.default.Component);
-
-	exports.default = BoxLoader;
-
-/***/ }),
-/* 269 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _index = __webpack_require__(270);
-
-	var _index2 = _interopRequireDefault(_index);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -30706,77 +30618,73 @@
 	            }],
 	            genres: [{
 	                'label': 'All',
-	                'action': 'all',
 	                'default': true
 	            }, {
 	                'label': 'Action',
-	                'action': 'action'
+	                'action': 'Action'
 	            }, {
 	                'label': 'Adventure',
-	                'action': 'adventure'
+	                'action': 'Adventure'
 	            }, {
 	                'label': 'Animation',
-	                'action': 'animation'
+	                'action': 'Animation'
 	            }, {
 	                'label': 'Biography',
-	                'action': 'biography'
+	                'action': 'Biography'
 	            }, {
 	                'label': 'Comedy',
-	                'action': 'comedy'
+	                'action': 'Comedy'
 	            }, {
 	                'label': 'Crime',
-	                'action': 'crime'
+	                'action': 'Crime'
 	            }, {
 	                'label': 'Documentary',
-	                'action': 'documentary'
+	                'action': 'Documentary'
 	            }, {
 	                'label': 'Drama',
-	                'action': 'drama'
+	                'action': 'Drama'
 	            }, {
 	                'label': 'Family',
-	                'action': 'family'
+	                'action': 'Family'
 	            }, {
 	                'label': 'Fantasy',
-	                'action': 'fantasy'
+	                'action': 'Fantasy'
 	            }, {
 	                'label': 'Film-Noir',
-	                'action': 'film-noir'
+	                'action': 'Film-noir'
 	            }, {
 	                'label': 'History',
-	                'action': 'history'
+	                'action': 'History'
 	            }, {
 	                'label': 'Horror',
-	                'action': 'horror'
+	                'action': 'Horror'
 	            }, {
 	                'label': 'Music',
-	                'action': 'music'
+	                'action': 'Music'
 	            }, {
 	                'label': 'Musical',
-	                'action': 'musical'
+	                'action': 'Musical'
 	            }, {
 	                'label': 'Mystery',
-	                'action': 'mystery'
+	                'action': 'Mystery'
 	            }, {
 	                'label': 'Romance',
-	                'action': 'romance'
-	            }, {
-	                'label': 'Romance',
-	                'action': 'romance'
+	                'action': 'Romance'
 	            }, {
 	                'label': 'Sci-Fi',
-	                'action': 'sci-fi'
+	                'action': 'Sci-Fi'
 	            }, {
 	                'label': 'Sport',
-	                'action': 'sport'
+	                'action': 'Sport'
 	            }, {
 	                'label': 'Thriller',
-	                'action': 'thriller'
+	                'action': 'Thriller'
 	            }, {
 	                'label': 'War',
-	                'action': 'war'
+	                'action': 'War'
 	            }, {
 	                'label': 'Western',
-	                'action': 'western'
+	                'action': 'Western'
 	            }]
 	        };
 	        return _this;
@@ -30820,7 +30728,7 @@
 	exports.default = AppMoviesNavBar;
 
 /***/ }),
-/* 270 */
+/* 268 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30835,7 +30743,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _index = __webpack_require__(271);
+	var _propTypes = __webpack_require__(184);
+
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+
+	var _index = __webpack_require__(269);
 
 	var _index2 = _interopRequireDefault(_index);
 
@@ -30893,10 +30805,9 @@
 	            this.setState({
 	                label: _label
 	            });
-
 	            //Select action
 	            if (this.props.onChange) {
-	                this.props.onChange(_action);
+	                this.props.onChange(_action, _label);
 	            }
 	        }
 	    }, {
@@ -30920,11 +30831,15 @@
 	                        ),
 
 	                        /*The main button*/
+	                        //Set personalized label
 	                        this.state.label && _react2.default.createElement(
 	                            'strong',
 	                            { className: 'dropdown-result blue-text' },
 	                            this.state.label
-	                        ) || this.props.list.map(function (i, k) {
+	                        )
+
+	                        //Or get default
+	                        || this.props.list.map(function (i, k) {
 	                            return i.default && _react2.default.createElement(
 	                                'strong',
 	                                { className: 'dropdown-result blue-text', key: k },
@@ -30943,7 +30858,7 @@
 	                                autoHideTimeout: 1000,
 	                                autoHideDuration: 200,
 	                                autoHeight: true,
-	                                autoHeightMax: 600,
+	                                autoHeightMax: 500,
 	                                thumbMinSize: 30,
 	                                universal: true },
 
@@ -30973,8 +30888,8 @@
 	        key: 'propTypes',
 	        get: function get() {
 	            return {
-	                list: _react2.default.PropTypes.array.isRequired,
-	                btnText: _react2.default.PropTypes.string.isRequired
+	                list: _propTypes2.default.array.isRequired,
+	                btnText: _propTypes2.default.string.isRequired
 	            };
 	        }
 	    }]);
@@ -30985,7 +30900,7 @@
 	exports.default = AppMoviesNavBarMenu;
 
 /***/ }),
-/* 271 */
+/* 269 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31002,7 +30917,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactCustomScrollbars = __webpack_require__(272);
+	var _reactCustomScrollbars = __webpack_require__(270);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31094,7 +31009,7 @@
 	exports.default = CustomScrollbars;
 
 /***/ }),
-/* 272 */
+/* 270 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31104,7 +31019,7 @@
 	});
 	exports.Scrollbars = undefined;
 
-	var _Scrollbars = __webpack_require__(273);
+	var _Scrollbars = __webpack_require__(271);
 
 	var _Scrollbars2 = _interopRequireDefault(_Scrollbars);
 
@@ -31114,7 +31029,7 @@
 	exports.Scrollbars = _Scrollbars2["default"];
 
 /***/ }),
-/* 273 */
+/* 271 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31127,11 +31042,11 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _raf2 = __webpack_require__(274);
+	var _raf2 = __webpack_require__(272);
 
 	var _raf3 = _interopRequireDefault(_raf2);
 
-	var _domCss = __webpack_require__(276);
+	var _domCss = __webpack_require__(274);
 
 	var _domCss2 = _interopRequireDefault(_domCss);
 
@@ -31141,29 +31056,29 @@
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	var _isString = __webpack_require__(282);
+	var _isString = __webpack_require__(280);
 
 	var _isString2 = _interopRequireDefault(_isString);
 
-	var _getScrollbarWidth = __webpack_require__(283);
+	var _getScrollbarWidth = __webpack_require__(281);
 
 	var _getScrollbarWidth2 = _interopRequireDefault(_getScrollbarWidth);
 
-	var _returnFalse = __webpack_require__(284);
+	var _returnFalse = __webpack_require__(282);
 
 	var _returnFalse2 = _interopRequireDefault(_returnFalse);
 
-	var _getInnerWidth = __webpack_require__(285);
+	var _getInnerWidth = __webpack_require__(283);
 
 	var _getInnerWidth2 = _interopRequireDefault(_getInnerWidth);
 
-	var _getInnerHeight = __webpack_require__(286);
+	var _getInnerHeight = __webpack_require__(284);
 
 	var _getInnerHeight2 = _interopRequireDefault(_getInnerHeight);
 
-	var _styles = __webpack_require__(287);
+	var _styles = __webpack_require__(285);
 
-	var _defaultRenderElements = __webpack_require__(288);
+	var _defaultRenderElements = __webpack_require__(286);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -31917,10 +31832,10 @@
 	};
 
 /***/ }),
-/* 274 */
+/* 272 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(global) {var now = __webpack_require__(275)
+	/* WEBPACK VAR INJECTION */(function(global) {var now = __webpack_require__(273)
 	  , root = typeof window === 'undefined' ? global : window
 	  , vendors = ['moz', 'webkit']
 	  , suffix = 'AnimationFrame'
@@ -31996,7 +31911,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 275 */
+/* 273 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {// Generated by CoffeeScript 1.7.1
@@ -32035,13 +31950,13 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 276 */
+/* 274 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var prefix = __webpack_require__(277)
-	var toCamelCase = __webpack_require__(278)
+	var prefix = __webpack_require__(275)
+	var toCamelCase = __webpack_require__(276)
 	var cache = { 'float': 'cssFloat' }
-	var addPxToStyle = __webpack_require__(281)
+	var addPxToStyle = __webpack_require__(279)
 
 	function style (element, property, value) {
 	  var camel = cache[property]
@@ -32102,7 +32017,7 @@
 
 
 /***/ }),
-/* 277 */
+/* 275 */
 /***/ (function(module, exports) {
 
 	var div = null
@@ -32138,11 +32053,11 @@
 
 
 /***/ }),
-/* 278 */
+/* 276 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	
-	var space = __webpack_require__(279)
+	var space = __webpack_require__(277)
 
 	/**
 	 * Export.
@@ -32165,11 +32080,11 @@
 
 
 /***/ }),
-/* 279 */
+/* 277 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	
-	var clean = __webpack_require__(280)
+	var clean = __webpack_require__(278)
 
 	/**
 	 * Export.
@@ -32192,7 +32107,7 @@
 
 
 /***/ }),
-/* 280 */
+/* 278 */
 /***/ (function(module, exports) {
 
 	
@@ -32265,7 +32180,7 @@
 
 
 /***/ }),
-/* 281 */
+/* 279 */
 /***/ (function(module, exports) {
 
 	/* The following list is defined in React's core */
@@ -32311,7 +32226,7 @@
 	};
 
 /***/ }),
-/* 282 */
+/* 280 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -32325,7 +32240,7 @@
 	}
 
 /***/ }),
-/* 283 */
+/* 281 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32335,7 +32250,7 @@
 	});
 	exports["default"] = getScrollbarWidth;
 
-	var _domCss = __webpack_require__(276);
+	var _domCss = __webpack_require__(274);
 
 	var _domCss2 = _interopRequireDefault(_domCss);
 
@@ -32366,7 +32281,7 @@
 	}
 
 /***/ }),
-/* 284 */
+/* 282 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -32380,7 +32295,7 @@
 	}
 
 /***/ }),
-/* 285 */
+/* 283 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -32400,7 +32315,7 @@
 	}
 
 /***/ }),
-/* 286 */
+/* 284 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -32420,7 +32335,7 @@
 	}
 
 /***/ }),
-/* 287 */
+/* 285 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -32496,7 +32411,7 @@
 	};
 
 /***/ }),
-/* 288 */
+/* 286 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32578,7 +32493,7 @@
 	}
 
 /***/ }),
-/* 289 */
+/* 287 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32593,11 +32508,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _index = __webpack_require__(290);
+	var _index = __webpack_require__(288);
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _index3 = __webpack_require__(271);
+	var _index3 = __webpack_require__(269);
 
 	var _index4 = _interopRequireDefault(_index3);
 
@@ -32630,7 +32545,9 @@
 	                    autoHeight: true,
 	                    autoHeightMin: 500,
 	                    thumbMinSize: 30,
-	                    universal: true },
+	                    universal: true,
+	                    onScrollFrame: this.props.onUpdate
+	                },
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'col l12 m12' },
@@ -32657,7 +32574,7 @@
 	exports.default = AppMoviesList;
 
 /***/ }),
-/* 290 */
+/* 288 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32762,7 +32679,7 @@
 	exports.default = AppMoviesListAvatar;
 
 /***/ }),
-/* 291 */
+/* 289 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32842,7 +32759,7 @@
 	exports.default = AppMainTopInputs;
 
 /***/ }),
-/* 292 */
+/* 290 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32861,7 +32778,7 @@
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _index3 = __webpack_require__(293);
+	var _index3 = __webpack_require__(291);
 
 	var _index4 = _interopRequireDefault(_index3);
 
@@ -32910,7 +32827,7 @@
 	exports.default = AppTinyProfile;
 
 /***/ }),
-/* 293 */
+/* 291 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33001,7 +32918,91 @@
 	exports.default = AppMenuProfileAvatar;
 
 /***/ }),
-/* 294 */
+/* 292 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var BoxLoader = function (_React$Component) {
+	    _inherits(BoxLoader, _React$Component);
+
+	    function BoxLoader(props) {
+	        _classCallCheck(this, BoxLoader);
+
+	        return _possibleConstructorReturn(this, (BoxLoader.__proto__ || Object.getPrototypeOf(BoxLoader)).call(this, props));
+	    }
+
+	    _createClass(BoxLoader, [{
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement(
+	                "section",
+	                {
+	                    className: "width-" + this.props.size + "-p col absolute full-height no-top no-right valign-wrapper"
+	                },
+	                _react2.default.createElement(
+	                    "div",
+	                    { className: "valign center-block" },
+	                    _react2.default.createElement(
+	                        "div",
+	                        { className: "preloader-wrapper active" },
+	                        _react2.default.createElement(
+	                            "div",
+	                            { className: "spinner-layer spinner-blue-only" },
+	                            _react2.default.createElement(
+	                                "div",
+	                                { className: "circle-clipper left" },
+	                                _react2.default.createElement("div", { className: "circle" })
+	                            ),
+	                            _react2.default.createElement(
+	                                "div",
+	                                { className: "gap-patch" },
+	                                _react2.default.createElement("div", { className: "circle" })
+	                            ),
+	                            _react2.default.createElement(
+	                                "div",
+	                                { className: "circle-clipper right" },
+	                                _react2.default.createElement("div", { className: "circle" })
+	                            )
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }], [{
+	        key: "defaultProps",
+	        get: function get() {
+	            return {
+	                size: 83
+	            };
+	        }
+	    }]);
+
+	    return BoxLoader;
+	}(_react2.default.Component);
+
+	exports.default = BoxLoader;
+
+/***/ }),
+/* 293 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33064,7 +33065,7 @@
 	exports.default = User;
 
 /***/ }),
-/* 295 */
+/* 294 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33072,8 +33073,6 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * Created by gmena on 04-19-17.
@@ -33085,7 +33084,7 @@
 
 	var _settings2 = _interopRequireDefault(_settings);
 
-	var _requestHelper = __webpack_require__(296);
+	var _requestHelper = __webpack_require__(295);
 
 	var _requestHelper2 = _interopRequireDefault(_requestHelper);
 
@@ -33116,11 +33115,6 @@
 	             * @param token
 	             */
 	            return new Promise(function (resolve, err) {
-	                //Merge filters
-	                filters = _extends({}, filters, {
-	                    limit: _settings2.default.system.MAX_HOME_MOVIES
-	                });
-
 	                //Request to auth endpoint
 	                (0, _axios2.default)({
 	                    url: _settings2.default.api.movies + _requestHelper2.default.jsonToQString(filters),
@@ -33142,7 +33136,7 @@
 	exports.default = Movies;
 
 /***/ }),
-/* 296 */
+/* 295 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33151,7 +33145,7 @@
 	    value: true
 	});
 
-	var _is_js = __webpack_require__(297);
+	var _is_js = __webpack_require__(296);
 
 	var _is_js2 = _interopRequireDefault(_is_js);
 
@@ -33170,7 +33164,7 @@
 	    */
 
 /***/ }),
-/* 297 */
+/* 296 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global) {/*!

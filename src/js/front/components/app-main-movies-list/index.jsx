@@ -7,7 +7,7 @@ export default class AppMoviesList extends React.Component {
     constructor(props) {
         super(props);
     }
-    
+
     render() {
         return (
             <CustomScrollbars
@@ -17,7 +17,9 @@ export default class AppMoviesList extends React.Component {
                 autoHeight
                 autoHeightMin={500}
                 thumbMinSize={30}
-                universal={true}>
+                universal={true}
+                onScrollFrame={this.props.onUpdate}
+            >
 
                 <div className="col l12 m12">
                     {
@@ -33,7 +35,7 @@ export default class AppMoviesList extends React.Component {
                         })
                     }
                 </div>
-            </CustomScrollbars> 
+            </CustomScrollbars>
         )
     }
 }
