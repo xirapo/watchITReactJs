@@ -9,15 +9,15 @@ export default class AppMoviesNavBar extends React.Component {
                 'label': 'Year',
                 'action': 'year'
             }, {
-                'label': 'More Viewed',
-                'action': 'download_count'
+                'label': 'Title',
+                'action': 'title'
             }, {
                 'label': 'Recently Added',
-                'action': 'date_added'
-            }, {
-                'label': 'Popularity',
-                'action': 'like_count',
+                'action': 'date_uploaded',
                 'default': true
+            }, {
+                'label': 'Runtime',
+                'action': 'runtime'
             }, {
                 'label': 'Rating',
                 'action': 'rating'
@@ -112,12 +112,12 @@ export default class AppMoviesNavBar extends React.Component {
             <div className="nav-wrapper">
                 <AppMoviesNavBarMenu
                     btnText="Sort By" list={this.state.sort}
-                    onChange={(e)=>this.onChange('sort',e)}
+                    onChange={(e)=>this.onChange('sort_by',e)}
                 />
 
                 <AppMoviesNavBarMenu
                     btnText="Genre" list={this.state.genres}
-                    onChange={(e)=>this.onChange('genre',e)}
+                    onChange={(e)=>this.onChange('genres',e)}
                 />
             </div>
         )

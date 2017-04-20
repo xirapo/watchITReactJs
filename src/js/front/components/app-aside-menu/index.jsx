@@ -34,12 +34,16 @@ export default class AppMainMenu extends React.Component {
         return (
             <section className="row vertical-padding">
                 <div id="main_menu">
-                    <AppMenuHeaders content="MAIN" className="margin-bottom-5"/>
                     {/*Main Menu items*/}
+                    <AppMenuHeaders className="margin-bottom-5">
+                        MAIN
+                    </AppMenuHeaders>
                     <AppMenuItems items={this.state.menu.items}/>
-                    
+
                     {/*Main menu playlist*/}
-                    <AppMenuHeaders content="YOUR LISTS" className="margin-top-5" action="Add Playlist"/>
+                    <AppMenuHeaders className="margin-top-5" action="Add Playlist">
+                        LISTS
+                    </AppMenuHeaders>
                     <AppMenuItems items={this.state.playlist.items}/>
                 </div>
             </section>

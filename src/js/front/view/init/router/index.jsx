@@ -1,9 +1,9 @@
 //Basic
+import React from 'react'
+import {render} from 'react-dom'
 import {Route, Redirect} from 'react-router'
 import {HashRouter} from 'react-router-dom'
 import createBrowserHistory from 'history/createBrowserHistory'
-import React from 'react'
-import {render} from 'react-dom'
 
 //Components
 import Login from '../../index/login-view/index.jsx'
@@ -13,27 +13,32 @@ import App from '../../app/main-view/index.jsx'
 
 //Require for auth
 import Auth from '../../../../resources/database/auth'
+import Setting from '../../../../backend/settings'
 
 //Check for auth
-let _authenticated = new Auth();
+const auth = new Auth();
 const history = createBrowserHistory();
 
 
-if (_authenticated.isAuth) {
-    location.hash = '/app'
+//Check Auth for logged
+function checkOut() {
+    return !auth.isAuth
+        ? (<Login/>)
+        : (<Redirect to={Setting.appView}/>)
 }
 
-//Check Auth
-function checkAuth(Component) {
-    return _authenticated.isAuth
-        ? (<Component />) : (<Redirect to="/"/>)
+//Require logged
+function requireAuth(Component) {
+    return auth.isAuth
+        ? (<Component />)
+        : (<Redirect to={Setting.loginView}/>)
 }
 
 render(
     <HashRouter history={history}>
-        <div>
-            <Route exact path="/" component={Login}/>
-            <Route path="/app" render={()=>(checkAuth(App))}/>
+        <div className="full-height">
+            <Route exact path="/" render={checkOut}/>
+            <Route path="/app" render={()=>(requireAuth(App))}/>
         </div>
     </HashRouter>,
     document.getElementById('main_app')

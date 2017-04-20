@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 export default class AppMoviesListAvatar extends React.Component {
 
@@ -12,7 +13,7 @@ export default class AppMoviesListAvatar extends React.Component {
 
     static get propTypes() {
         return {
-            src: React.PropTypes.string.isRequired
+            src: PropTypes.string.isRequired
         }
     }
 

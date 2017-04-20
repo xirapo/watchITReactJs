@@ -1,83 +1,24 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-
 import AppMoviesListAvatar from '../app-main-movies-list-avatar/index.jsx'
 import CustomScrollbars from '../util-scroller/index.jsx';
-import BoxLoader from '../util-box-loader/index.jsx'
 
-//Require for request
-let setting = require('../../../backend/settings');
-//Request
-let axios = require('axios');
 
 export default class AppMoviesList extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            loader: true,
-            movies: []
-        };
-
-        //Initial data
-        this.updateMovies(
-            this.props.sort,
-            this.props.genre
-        )
     }
-
-    static get defaultProps() {
-        return {
-            limit: 24
-        }
-    }
-
-    static get propTypes() {
-        return {
-            sort: PropTypes.string.isRequired,
-            genre: PropTypes.string.isRequired
-        }
-    }
-
-    updateMovies(sort, genre, limit = 24) {
-        //Request movies
-        return axios({
-            url: setting.ytsAPI.listMovies + '?limit=' + limit + '&sort_by=' + sort + '&genre=' + genre,
-            timeout: setting.ytsAPI.timeout
-        }).then((e)=> {
-            //Set state for rendering
-            this.setState({
-                movies: e.data.data.movies,
-                loader: false
-            })
-        })
-    }
-
-    // componentWillReceiveProps(nextProps) {
-    //     //Start loader
-    //     this.setState({
-    //         loader: true
-    //     });
-    //
-    //     //Updating
-    //     this.updateMovies(
-    //         nextProps.sort,
-    //         nextProps.genre
-    //     )
-    // }
-
-
+    
     render() {
         return (
-            !this.state.loader
-            && <CustomScrollbars
+            <CustomScrollbars
                 autoHide
                 autoHideTimeout={1000}
                 autoHideDuration={200}
                 autoHeight
-                autoHeightMin={750}
+                autoHeightMin={500}
                 thumbMinSize={30}
-                universal={true}
-            >
+                universal={true}>
+
                 <div className="col l12 m12">
                     {
                         this.props.movies.map((i, k)=> {
@@ -92,7 +33,7 @@ export default class AppMoviesList extends React.Component {
                         })
                     }
                 </div>
-            </CustomScrollbars> || <BoxLoader />
+            </CustomScrollbars> 
         )
     }
 }

@@ -5,9 +5,11 @@ import AppMainMenu from '../../../components/app-aside-menu/index.jsx'
 import AppMoviesSection from '../../../components/app-main-movies/index.jsx'
 import AppTinyProfile from '../../../components/app-aside-tiny-box-profile/index.jsx'
 //Require for auth
+//Database (Api Handler)
 import Auth from '../../../../resources/database/auth'
 import User from '../../../../resources/database/user'
 import Movie from '../../../../resources/database/movies'
+
 
 //Login view class
 export default class App extends React.Component {
@@ -20,11 +22,29 @@ export default class App extends React.Component {
 
         //Default state
         this.state = {};
+        this.sort = {
+            sort_by: 'date_uploaded',
+            order: 'desc'
+        };
 
+        //Start filtering
+        this.filterMovies(
+            this.sort,
+            this.auth.token
+        );
+
+        this.basicUserData(
+            this.auth.authUser.id,
+            this.auth.token
+        );
+
+    }
+
+    basicUserData(id, token) {
         //Get data
         this.user.get(
-            this.auth.authUser.id, //User id
-            this.auth.token //The request token
+            id, //User id
+            token //The request token
         ).then((res)=> {
             this.setState({
                 user: res
@@ -32,16 +52,32 @@ export default class App extends React.Component {
         }).catch((e)=> {
         });
 
+    }
+
+    filterMovies(filter = {}, token) {
         //Get movies
         this.movie.filter(
-            {}, this.auth.token
+            filter, token
         ).then((res)=> {
             this.setState({
                 movies: res
             })
         }).catch((e)=> {
         });
+    }
 
+
+    onChange(sort, by) {
+        let _sort = {};
+        _sort[sort] = by;
+        this.sort = Object.assign(
+            {}, this.sort, _sort
+        );
+
+        //Re set movies
+        this.filterMovies(
+            this.sort, this.auth.token
+        )
     }
 
 
@@ -50,13 +86,16 @@ export default class App extends React.Component {
             <div className="relative full-height">
                 {/*The menu aside*/}
                 <aside id="main_menu_aside" className="col l2 m2 full-height padding-top-15">
-                    {this.state.user && <AppTinyProfile user={this.state.user}/> }
+                    <AppTinyProfile user={this.state.user}/>
                     <AppMainMenu />
                 </aside>
 
                 {/*The movies menu*/}
                 <section className="col l10 m10">
-
+                    <AppMoviesSection
+                        movies={this.state.movies}
+                        onChange={(type,e)=>this.onChange(type,e)}
+                    />
                 </section>
             </div>
         )

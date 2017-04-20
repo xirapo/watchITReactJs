@@ -17,6 +17,7 @@ export default class User {
             //Request to auth endpoint
             axios({
                 url: setting.api.user + id,
+                method: 'get',
                 timeout: setting.api.timeout,
                 headers: {'Authorization': 'Bearer ' + token}
             }).then((res)=> {

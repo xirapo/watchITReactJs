@@ -22,7 +22,9 @@ export default class FormBoxButton extends React.Component {
             >
                 {
                     /*If click*/
-                    this.props.type == "submit" && this.props.clicked && <FormBoxLoader /> || this.props.children
+                    this.props.type == "submit"
+                    && this.props.clicked && <FormBoxLoader />
+                    || this.props.children
                 }
             </button>
         )

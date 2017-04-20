@@ -1,28 +1,20 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 export default class AppMenuHeaders extends React.Component {
     constructor(props) {
         super(props);
     }
-    
-
-    static get propTypes() {
-        return {
-            content: PropTypes.string.isRequired
-        }
-    }
 
     render() {
         return (
             <div className={"row " + this.props.className}>
-                <div className="col l10 m9">
+                <div className="col l9 m9">
                     <strong className="font-light-gray bold">
-                        {this.props.content}
+                        {this.props.children}
                     </strong>
                 </div>
                 {
-                    this.props.action && <div className="col l2 m3 text-center">
+                    this.props.action && <div className="col l3 m3 text-center">
                         <a href="#w" className="tooltip">
                             <i className="icon-add-to-list top-2 relative font-light-gray tiny white-hover"/>
                                 <span
