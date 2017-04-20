@@ -1,5 +1,5 @@
 import React from 'react'
-import FormBoxLoader from '../form-box-loader/index.jsx'
+import BarLoader from '../util-bar-loader/index.jsx'
 
 export default class FormBoxButton extends React.Component {
     constructor(props) {
@@ -23,7 +23,7 @@ export default class FormBoxButton extends React.Component {
                 {
                     /*If click*/
                     this.props.type == "submit"
-                    && this.props.clicked && <FormBoxLoader />
+                    && this.props.clicked && <BarLoader />
                     || this.props.children
                 }
             </button>

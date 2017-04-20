@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import PulseLoader from '../../components/util-pulse-loader/index.jsx'
 
 export default class AppMoviesListAvatar extends React.Component {
 
@@ -43,18 +44,17 @@ export default class AppMoviesListAvatar extends React.Component {
 
                 {
                     /*Spinner loader*/
-                    this.state.status == 0 && <img
-                        alt="" className="center-block margin-top-50-p responsive-img"
-                        src="app://host/src/media/img/spinner/ring.svg"
-                    />
+                    this.state.status == 0
+                    && <PulseLoader className="center-block margin-top-50-p responsive-img"/>
                 }
 
                 {
                     /*The image*/
-                    <img className={this.props.className + (this.state.loaded && " responsive-img poster-main-view" || " hide")}
-                         src={this.props.src}
-                         onLoad={(e)=>this.handleImageLoaded(e)}
-                         onError={(e)=>{this.handleImageError(e)}}
+                    <img
+                        className={this.props.className + (this.state.loaded && " responsive-img poster-main-view" || " hide")}
+                        src={this.props.src}
+                        onLoad={(e)=>this.handleImageLoaded(e)}
+                        onError={(e)=>{this.handleImageError(e)}}
                     />
                 }
             </div>

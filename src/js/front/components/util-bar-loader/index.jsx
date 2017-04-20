@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default class FormBoxLoader extends React.Component {
+export default class BarLoader extends React.Component {
     constructor(props) {
         super(props);
     }

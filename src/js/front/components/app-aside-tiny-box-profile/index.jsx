@@ -1,5 +1,5 @@
 import React from 'react'
-import FormBoxLoader from '../form-box-loader/index.jsx'
+import BarLoader from '../util-bar-loader/index.jsx'
 import AppMenuProfileAvatar from '../app-aside-tiny-box-profile-avatar/index.jsx'
 // import AppMenuProfileStatistics from '../app-aside-tiny-box-profile-statistics/index.jsx'
 
@@ -9,7 +9,7 @@ export default class AppTinyProfile extends React.Component {
     constructor(props) {
         super(props);
     }
-    
+
     render() {
         return (
             (
@@ -20,7 +20,7 @@ export default class AppTinyProfile extends React.Component {
                             fullname={this.props.user.fullname}
                         />
                     </div>
-                </div> || <FormBoxLoader />
+                </div> || <BarLoader />
             )
         )
     }

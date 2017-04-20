@@ -26011,16 +26011,16 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var FormBoxLoader = function (_React$Component) {
-	    _inherits(FormBoxLoader, _React$Component);
+	var BarLoader = function (_React$Component) {
+	    _inherits(BarLoader, _React$Component);
 
-	    function FormBoxLoader(props) {
-	        _classCallCheck(this, FormBoxLoader);
+	    function BarLoader(props) {
+	        _classCallCheck(this, BarLoader);
 
-	        return _possibleConstructorReturn(this, (FormBoxLoader.__proto__ || Object.getPrototypeOf(FormBoxLoader)).call(this, props));
+	        return _possibleConstructorReturn(this, (BarLoader.__proto__ || Object.getPrototypeOf(BarLoader)).call(this, props));
 	    }
 
-	    _createClass(FormBoxLoader, [{
+	    _createClass(BarLoader, [{
 	        key: "render",
 	        value: function render() {
 	            return _react2.default.createElement(
@@ -26035,10 +26035,10 @@
 	        }
 	    }]);
 
-	    return FormBoxLoader;
+	    return BarLoader;
 	}(_react2.default.Component);
 
-	exports.default = FormBoxLoader;
+	exports.default = BarLoader;
 
 /***/ }),
 /* 229 */
@@ -30100,15 +30100,15 @@
 
 	var _index6 = _interopRequireDefault(_index5);
 
-	var _index7 = __webpack_require__(289);
+	var _index7 = __webpack_require__(290);
 
 	var _index8 = _interopRequireDefault(_index7);
 
-	var _index9 = __webpack_require__(290);
+	var _index9 = __webpack_require__(291);
 
 	var _index10 = _interopRequireDefault(_index9);
 
-	var _index11 = __webpack_require__(292);
+	var _index11 = __webpack_require__(293);
 
 	var _index12 = _interopRequireDefault(_index11);
 
@@ -30120,11 +30120,11 @@
 
 	var _auth2 = _interopRequireDefault(_auth);
 
-	var _user = __webpack_require__(293);
+	var _user = __webpack_require__(294);
 
 	var _user2 = _interopRequireDefault(_user);
 
-	var _movies = __webpack_require__(294);
+	var _movies = __webpack_require__(295);
 
 	var _movies2 = _interopRequireDefault(_movies);
 
@@ -32593,6 +32593,10 @@
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
+	var _index = __webpack_require__(289);
+
+	var _index2 = _interopRequireDefault(_index);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -32647,13 +32651,11 @@
 	                }),
 
 	                /*Spinner loader*/
-	                this.state.status == 0 && _react2.default.createElement('img', {
-	                    alt: '', className: 'center-block margin-top-50-p responsive-img',
-	                    src: 'app://host/src/media/img/spinner/ring.svg'
-	                }),
+	                this.state.status == 0 && _react2.default.createElement(_index2.default, { className: 'center-block margin-top-50-p responsive-img' }),
 
 	                /*The image*/
-	                _react2.default.createElement('img', { className: this.props.className + (this.state.loaded && " responsive-img poster-main-view" || " hide"),
+	                _react2.default.createElement('img', {
+	                    className: this.props.className + (this.state.loaded && " responsive-img poster-main-view" || " hide"),
 	                    src: this.props.src,
 	                    onLoad: function onLoad(e) {
 	                        return _this2.handleImageLoaded(e);
@@ -32680,6 +32682,54 @@
 
 /***/ }),
 /* 289 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var PulseLoader = function (_React$Component) {
+	    _inherits(PulseLoader, _React$Component);
+
+	    function PulseLoader(props) {
+	        _classCallCheck(this, PulseLoader);
+
+	        return _possibleConstructorReturn(this, (PulseLoader.__proto__ || Object.getPrototypeOf(PulseLoader)).call(this, props));
+	    }
+
+	    _createClass(PulseLoader, [{
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement("img", _extends({ alt: "", src: "app://host/src/media/img/spinner/puff.svg"
+	            }, this.props));
+	        }
+	    }]);
+
+	    return PulseLoader;
+	}(_react2.default.Component);
+
+	exports.default = PulseLoader;
+
+/***/ }),
+/* 290 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32759,7 +32809,7 @@
 	exports.default = AppMainTopInputs;
 
 /***/ }),
-/* 290 */
+/* 291 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32778,7 +32828,7 @@
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _index3 = __webpack_require__(291);
+	var _index3 = __webpack_require__(292);
 
 	var _index4 = _interopRequireDefault(_index3);
 
@@ -32827,7 +32877,7 @@
 	exports.default = AppTinyProfile;
 
 /***/ }),
-/* 291 */
+/* 292 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32918,7 +32968,7 @@
 	exports.default = AppMenuProfileAvatar;
 
 /***/ }),
-/* 292 */
+/* 293 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -33002,7 +33052,7 @@
 	exports.default = BoxLoader;
 
 /***/ }),
-/* 293 */
+/* 294 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33065,7 +33115,7 @@
 	exports.default = User;
 
 /***/ }),
-/* 294 */
+/* 295 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33084,7 +33134,7 @@
 
 	var _settings2 = _interopRequireDefault(_settings);
 
-	var _requestHelper = __webpack_require__(295);
+	var _requestHelper = __webpack_require__(296);
 
 	var _requestHelper2 = _interopRequireDefault(_requestHelper);
 
@@ -33136,7 +33186,7 @@
 	exports.default = Movies;
 
 /***/ }),
-/* 295 */
+/* 296 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33145,7 +33195,7 @@
 	    value: true
 	});
 
-	var _is_js = __webpack_require__(296);
+	var _is_js = __webpack_require__(297);
 
 	var _is_js2 = _interopRequireDefault(_is_js);
 
@@ -33164,7 +33214,7 @@
 	    */
 
 /***/ }),
-/* 296 */
+/* 297 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global) {/*!

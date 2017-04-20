@@ -7,7 +7,7 @@ import AppMoviesList from '../../../components/app-main-movies-list/index.jsx'
 import AppMainTopInput from '../../../components/app-main-movies-top-inputs/index.jsx'
 import AppTinyProfile from '../../../components/app-aside-tiny-box-profile/index.jsx'
 import BoxLoader from '../../../components/util-box-loader/index.jsx'
-import FormBoxLoader from '../../../components/form-box-loader/index.jsx'
+import BarLoader from '../../../components/util-bar-loader/index.jsx'
 //Require for auth
 //Database (Api Handler)
 import Auth from '../../../../resources/database/auth'
@@ -160,8 +160,9 @@ export default class App extends React.Component {
                                 />
                                 || <BoxLoader/>
                             }
+                            
                             {/*Check for new data loading*/}
-                            {this.state.scrollUpdate && <FormBoxLoader />}
+                            {this.state.scrollUpdate && <BarLoader />}
                         </div>
                     </div>
                 </section>
