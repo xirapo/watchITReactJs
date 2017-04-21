@@ -11,8 +11,9 @@ import MovieDetails from '../../../components/app-movie-details/index.jsx'
 import Auth from '../../../../resources/database/auth'
 import User from '../../../../resources/database/user'
 import Movie from '../../../../resources/database/movies'
+
 //Login view class
-export default class MovieMain extends React.Component {
+export default class MainMovie extends React.Component {
     constructor(props) {
         super(props);
 
@@ -34,7 +35,6 @@ export default class MovieMain extends React.Component {
         })
 
     }
-    
 
     render() {
         return (

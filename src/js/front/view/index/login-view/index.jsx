@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 //Components
 import MainLoader from '../../../components/util-main-loader/index.jsx'
-import FormBox from '../../../components/form-box/index.jsx'
+import FormBox from '../../../components/app-form/index.jsx'
 import Logo from '../../../components/util-header-logo/index.jsx'
 //Require for auth
 //Default settings

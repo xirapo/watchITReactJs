@@ -1,20 +1,27 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 export default class FlowText extends React.Component {
     constructor(props) {
         super(props);
     }
 
+    static get defaultProps() {
+        return {
+            size: 20
+        }
+    }
+
     static get propTypes() {
         return {
-            content: React.PropTypes.string.isRequired
+            content: PropTypes.string.isRequired
         }
     }
 
     render() {
         return (
             <div className="col l12 s12 m12">
-                <p className="flow-text font-size-22 font-light-gray">
+                <p className={"flow-text font-size-" + this.props.size + " font-light-gray"}>
                     {this.props.content}
                 </p>
             </div>

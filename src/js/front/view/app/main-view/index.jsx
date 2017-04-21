@@ -1,11 +1,11 @@
 //Basic
 import React from 'react'
 //Components
-import AppMainMenu from '../../../components/app-aside-menu/index.jsx'
+import AppMainMenu from '../../../components/app-main-aside-menu/index.jsx'
 import AppMoviesNav from '../../../components/app-main-movies-nav-bar/index.jsx'
 import AppMoviesList from '../../../components/app-main-movies-list/index.jsx'
 import AppMainTopInput from '../../../components/app-main-movies-top-inputs/index.jsx'
-import AppTinyProfile from '../../../components/app-aside-tiny-box-profile/index.jsx'
+import AppTinyProfile from '../../../components/app-tiny-box-profile/index.jsx'
 import BoxLoader from '../../../components/util-box-loader/index.jsx'
 import BarLoader from '../../../components/util-bar-loader/index.jsx'
 //Require for auth
@@ -16,7 +16,7 @@ import Movie from '../../../../resources/database/movies'
 
 
 //Login view class
-export default class App extends React.Component {
+export default class Main extends React.Component {
     constructor(props) {
         super(props);
         //Auth object

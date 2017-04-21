@@ -1,7 +1,7 @@
 import React from 'react'
 import BarLoader from '../util-bar-loader/index.jsx'
 
-export default class FormBoxButton extends React.Component {
+export default class BoxButton extends React.Component {
     constructor(props) {
         super(props);
     }

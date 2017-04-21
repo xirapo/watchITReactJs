@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import CustomScrollbars from '../util-scroller/index.jsx';
 
-export default class AppMoviesNavBarMenu extends React.Component {
+export default class NavBarMenu extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -89,7 +89,7 @@ export default class AppMoviesNavBarMenu extends React.Component {
                             autoHide
                             autoHideTimeout={1000}
                             autoHideDuration={200}
-                            autoHeight
+                            autoHeight={true}
                             autoHeightMax={500}
                             thumbMinSize={30}
                             universal={true}>

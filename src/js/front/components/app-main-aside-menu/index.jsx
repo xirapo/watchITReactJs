@@ -1,6 +1,6 @@
 import React from 'react'
-import AppMenuItems from '../app-aside-menu-items/index.jsx'
-import AppMenuHeaders from '../app-aside-menu-headers/index.jsx'
+import AppMenuItems from '../app-menu-items/index.jsx'
+import AppMenuHeaders from '../app-menu-headers/index.jsx'
 
 export default class AppMainMenu extends React.Component {
     constructor(props) {

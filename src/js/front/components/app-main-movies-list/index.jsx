@@ -1,7 +1,7 @@
 //Basic
 import React from 'react'
 //Components
-import AppMoviesListAvatar from '../app-main-movies-list-avatar/index.jsx'
+import MoviePoster from '../app-movie-poster/index.jsx'
 import CustomScrollbars from '../util-scroller/index.jsx';
 
 
@@ -27,7 +27,7 @@ export default class AppMoviesList extends React.Component {
                             return (
                                 <div key={k} className="col l2 m2 padding-2">
                                     <a href={"#/app/movie/" + i.imdb_code }>
-                                        <AppMoviesListAvatar src={i.medium_cover_image }/>
+                                        <MoviePoster src={i.medium_cover_image }/>
                                     </a>
                                 </div>
                             )

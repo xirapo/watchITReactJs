@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export default class FormBoxInput extends React.Component {
+export default class BoxInput extends React.Component {
     constructor(props) {
         super(props);
         this.state = {value: ''};

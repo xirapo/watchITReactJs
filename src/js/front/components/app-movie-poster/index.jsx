@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import PulseLoader from '../../components/util-pulse-loader/index.jsx'
 
-export default class AppMoviesListAvatar extends React.Component {
+export default class MoviePoster extends React.Component {
 
     constructor(props) {
         super(props);

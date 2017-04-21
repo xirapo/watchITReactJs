@@ -39,7 +39,7 @@ render(
     <HashRouter history={history}>
         <div className="full-height">
             <Route name="login" exact path="/" render={checkOut}/>
-            <Route name="app" path="/app" render={(n)=>(requireAuth(App,n))}/>
+            <Route name="app" exact path="/app" render={(n)=>(requireAuth(App,n))}/>
             <Route name="movie" path="/app/movie/:imdb" render={(n)=>(requireAuth(Movie,n))}/>
         </div>
     </HashRouter>,

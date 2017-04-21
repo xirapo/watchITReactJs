@@ -1,5 +1,5 @@
 import React from 'react'
-import FormBoxInput from '../form-box-inputs/index.jsx'
+import BoxInput from '../app-inputs/index.jsx'
 
 export default class AppMainTopInputs extends React.Component {
     constructor(props) {
@@ -11,7 +11,7 @@ export default class AppMainTopInputs extends React.Component {
         return (
             <div className="clearfix">
                 <form action="javascript:void(0);">
-                    <FormBoxInput
+                    <BoxInput
                         type="text"
                         icon="icon-open-book"
                         size="l5 m5"
@@ -21,7 +21,7 @@ export default class AppMainTopInputs extends React.Component {
                 </form>
 
                 <form action="javascript:void(0);">
-                    <FormBoxInput
+                    <BoxInput
                         type="text"
                         icon="icon-signal"
                         size="l5 m5"

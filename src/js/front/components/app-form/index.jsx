@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import FormBoxAlert from '../form-box-alerts/index.jsx'
-import FormBoxInput from '../form-box-inputs/index.jsx'
-import FormBoxButton from '../form-box-buttons/index.jsx'
+import BoxAlert from '../app-alerts/index.jsx'
+import BoxInput from '../app-inputs/index.jsx'
+import BoxButton from '../app-buttons/index.jsx'
 
 export default class FormBox extends React.Component {
 
@@ -60,7 +60,7 @@ export default class FormBox extends React.Component {
                         /* Generate inputs */
                         this.props.input.map((i, k)=> {
                             return (
-                                <FormBoxInput {...i}
+                                <BoxInput {...i}
                                     onChange={(e)=> this.setValue(e) }
                                     key={k}
                                 />
@@ -76,12 +76,12 @@ export default class FormBox extends React.Component {
                         this.props.buttons.map((i, k)=> {
                             return (
                                 <div className={"input-field col " + i.size} key={k}>
-                                    <FormBoxButton
+                                    <BoxButton
                                         clicked={this.props.submitted}
                                         className={i.color}
                                         type={i.type}>
                                         <span>{i.text}</span>
-                                    </FormBoxButton>
+                                    </BoxButton>
                                 </div>
                             )
                         })
@@ -90,7 +90,7 @@ export default class FormBox extends React.Component {
 
                 {/*Alert*/}
                 <div className="row">
-                    {this.props.error && <FormBoxAlert content={this.props.error}/>}
+                    {this.props.error && <BoxAlert content={this.props.error}/>}
                 </div>
             </form>
         )

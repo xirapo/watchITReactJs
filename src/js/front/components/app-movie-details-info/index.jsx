@@ -1,5 +1,4 @@
 import React from 'react'
-import AppMovieDetailInfoItem from '../app-movie-details-info-item/index.jsx'
 
 export default class AppMovieDetailInfo extends React.Component {
     constructor(props) {
@@ -35,13 +34,10 @@ export default class AppMovieDetailInfo extends React.Component {
                     Object.keys(this.props.info).map((char, idx)=> {
                         return (
                             <div className={"col " + (idx == 0 && 'padding-left-0')} key={idx}>
-                                <AppMovieDetailInfoItem
-                                    color={this.state[char]['color']}
-                                    align={this.state[char]['align']}
-                                    icon={this.state[char]['icon']}
-                                >
+                                <strong className={this.state[char]['color'] + "-text flow-text " + this.state[char]['align'] + "-align"}>
+                                    <i className={"top-3 normalize-medium-icon small left margin-right-10 icon-" + this.state[char]['icon']}/>
                                     {this.props.info[char]}
-                                </AppMovieDetailInfoItem>
+                                </strong>
                             </div>
                         )
                     })
