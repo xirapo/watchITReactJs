@@ -51,7 +51,7 @@ export default class AppMoviesListAvatar extends React.Component {
                 {
                     /*The image*/
                     <img
-                        className={this.props.className + (this.state.loaded && " responsive-img poster-main-view" || " hide")}
+                        className={(this.state.loaded && " responsive-img poster-main-view" || " hide")}
                         src={this.props.src}
                         onLoad={(e)=>this.handleImageLoaded(e)}
                         onError={(e)=>{this.handleImageError(e)}}

@@ -31,5 +31,27 @@ export default class Movies {
 
     }
 
+    get(imdb, token) {
+        /**
+         * Return movie by imdb code
+         * @param imdb
+         * @param token
+         */
+        return (new Promise((resolve, err) => {
+            //Request to auth endpoint
+            axios({
+                url: setting.api.movies + imdb,
+                method: 'get',
+                timeout: setting.api.timeout,
+                headers: {'Authorization': 'Bearer ' + token}
+            }).then((res)=> {
+                resolve(res.data.data);
+            }).catch((e)=> {
+                err(e.response)
+            })
+        }));
+
+    }
+
 
 }

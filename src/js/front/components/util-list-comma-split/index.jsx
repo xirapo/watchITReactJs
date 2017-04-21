@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 export default class ListCommaSplit extends React.Component {
     constructor(props) {
@@ -7,7 +8,7 @@ export default class ListCommaSplit extends React.Component {
 
     static get propTypes() {
         return {
-            list: React.PropTypes.array.isRequired
+            list: PropTypes.array.isRequired
         }
     }
 
