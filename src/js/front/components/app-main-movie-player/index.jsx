@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactPlayer from 'react-player'
 import PropTypes from 'prop-types'
 
 
@@ -15,6 +14,12 @@ export default class AppMoviesPlayer extends React.Component {
         //Initial State
         this.state = {
             canPlay: false
+        }
+    }
+
+    static get defaultProps() {
+        return {
+            subs: {}
         }
     }
 
@@ -35,11 +40,21 @@ export default class AppMoviesPlayer extends React.Component {
                 this.player.on('canplay', ()=> {
                     //Set controls true
                     this.player.controls(true);
+                    console.log(this.props.subs);
+
+                    //Set canPlay
+                    this.setState({
+                        canPlay: true
+                    });
 
                     //Handle ready
-                    if (this.props.canPlay) {
-                        this.props.canPlay(this.player);
+                    if (this.props.onCanPlay) {
+                        this.props.onCanPlay(
+                            this.state.url,
+                            this.state.flix
+                        );
                     }
+
                 })
             }
         );
@@ -66,12 +81,14 @@ export default class AppMoviesPlayer extends React.Component {
         //Set url
         this.setState({
             url: url,
-            canPlay: true
+            flix: flix
         });
 
         //Handle ready
         if (this.props.onReady) {
-            this.props.onReady(url, flix);
+            this.props.onReady(
+                url, flix
+            );
         }
     }
 

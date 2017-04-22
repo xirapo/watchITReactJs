@@ -1,7 +1,6 @@
 //Basic
 import React from 'react'
 //Components
-import BoxButton from '../app-buttons/index.jsx'
 import BoxImage from '../app-image/index.jsx'
 import NavBarMenu from '../app-nav-bar-menu/index.jsx'
 import AppMovieDetailInfo from '../app-movie-details-info/index.jsx'
@@ -147,7 +146,7 @@ export default class AppMovieDetail extends React.Component {
                                 <ul>
                                     <li className="dropdown">
                                         <a className="dropdown-button" href="#modal-trailer">
-                                            <span className="font-light-gray right">Watch Trailer</span>
+                                            <span className="font-light-gray right">Trailer</span>
                                             <i className="icon-video tiny relative top-2 left margin-left-4"/>
                                         </a>
                                     </li>

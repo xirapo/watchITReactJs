@@ -37,7 +37,7 @@ $m-width_height: max-height max-width min-height min-width;
 }
 
 //Generate padding, margin
-@for $i from 0 through 50 {
+@for $i from 0 through 100 {
 
   @each $m_p in $margin_padding {
     .#{$m_p}-#{$i} {
