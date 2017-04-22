@@ -25,6 +25,26 @@ export default class AppMoviesPlayer extends React.Component {
     }
 
     componentDidMount() {
+        //The player
+        this.player = videojs(
+            'my-video', {
+                autoplay: true,
+                preload: true,
+                controls: false
+            }, () => {
+                this.player.on('canplay', ()=> {
+                    //Set controls true
+                    this.player.controls(true);
+
+                    //Handle ready
+                    if (this.props.canPlay) {
+                        this.props.canPlay(this.player);
+                    }
+                })
+            }
+        );
+
+        //Start streamer
         Streamer.playTorrent(
             this.props.torrent,
             this.onReady,
@@ -32,19 +52,18 @@ export default class AppMoviesPlayer extends React.Component {
             this.onError
         );
 
-        this.player = videojs(this.videoNode, {
-            autoplay: true,
-            preload: true,
-            controls:true
-        }, function onPlayerReady() {
-            console.log('onPlayerReady', this)
-        });
 
     }
 
+    // destroy player on unmount
+    componentWillUnmount() {
+        if (this.player) {
+            this.player.dispose()
+        }
+    }
 
     onReady(url, flix) {
-
+        //Set url
         this.setState({
             url: url,
             canPlay: true
@@ -67,7 +86,6 @@ export default class AppMoviesPlayer extends React.Component {
     }
 
     onError(e) {
-
         //Handle error
         if (this.props.onError) {
             this.props.onError(e);
@@ -79,10 +97,9 @@ export default class AppMoviesPlayer extends React.Component {
             (
 
                 <div className={this.state.canPlay && "left relative full-height full-width" || "invisible"}>
-                    <video
-                        src={this.state.url}
-                        ref={ node => this.videoNode = node }
-                        className=" vjs-matrix video-js full-width full-height"
+                    <video id="my-video"
+                           src={this.state.url}
+                           className=" vjs-matrix video-js full-width full-height"
                     />
                 </div>
             )

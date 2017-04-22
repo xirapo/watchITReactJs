@@ -33975,20 +33975,42 @@
 	    _createClass(AppMoviesPlayer, [{
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
-	            Streamer.playTorrent(this.props.torrent, this.onReady, this.onProgress, this.onError);
+	            var _this2 = this;
 
-	            this.player = videojs(this.videoNode, {
+	            //The player
+	            this.player = videojs('my-video', {
 	                autoplay: true,
 	                preload: true,
-	                controls: true
-	            }, function onPlayerReady() {
-	                console.log('onPlayerReady', this);
+	                controls: false
+	            }, function () {
+	                _this2.player.on('canplay', function () {
+	                    //Set controls true
+	                    _this2.player.controls(true);
+
+	                    //Handle ready
+	                    if (_this2.props.canPlay) {
+	                        _this2.props.canPlay(_this2.player);
+	                    }
+	                });
 	            });
+
+	            //Start streamer
+	            Streamer.playTorrent(this.props.torrent, this.onReady, this.onProgress, this.onError);
+	        }
+
+	        // destroy player on unmount
+
+	    }, {
+	        key: 'componentWillUnmount',
+	        value: function componentWillUnmount() {
+	            if (this.player) {
+	                this.player.dispose();
+	            }
 	        }
 	    }, {
 	        key: 'onReady',
 	        value: function onReady(url, flix) {
-
+	            //Set url
 	            this.setState({
 	                url: url,
 	                canPlay: true
@@ -34011,7 +34033,6 @@
 	    }, {
 	        key: 'onError',
 	        value: function onError(e) {
-
 	            //Handle error
 	            if (this.props.onError) {
 	                this.props.onError(e);
@@ -34020,16 +34041,11 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var _this2 = this;
-
 	            return _react2.default.createElement(
 	                'div',
 	                { className: this.state.canPlay && "left relative full-height full-width" || "invisible" },
-	                _react2.default.createElement('video', {
+	                _react2.default.createElement('video', { id: 'my-video',
 	                    src: this.state.url,
-	                    ref: function ref(node) {
-	                        return _this2.videoNode = node;
-	                    },
 	                    className: ' vjs-matrix video-js full-width full-height'
 	                })
 	            );
