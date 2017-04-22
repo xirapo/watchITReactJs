@@ -68,9 +68,13 @@
 
 	var _index4 = _interopRequireDefault(_index3);
 
-	var _index5 = __webpack_require__(297);
+	var _index5 = __webpack_require__(296);
 
 	var _index6 = _interopRequireDefault(_index5);
+
+	var _index7 = __webpack_require__(302);
+
+	var _index8 = _interopRequireDefault(_index7);
 
 	var _auth = __webpack_require__(230);
 
@@ -84,13 +88,12 @@
 
 	//Check for auth
 
-	//import Player from '../app/movie-player-view/index.jsx'
 
 	//Require for auth
-	//Basic
-	var auth = new _auth2.default();
+
 
 	//Components
+	var auth = new _auth2.default(); //Basic
 
 	var history = (0, _createBrowserHistory2.default)();
 
@@ -114,8 +117,11 @@
 	        _react2.default.createElement(_reactRouter.Route, { name: 'app', exact: true, path: '/app', render: function render(n) {
 	                return requireAuth(_index4.default, n);
 	            } }),
-	        _react2.default.createElement(_reactRouter.Route, { name: 'movie', path: '/app/movie/:imdb', render: function render(n) {
+	        _react2.default.createElement(_reactRouter.Route, { name: 'movie', exact: true, path: '/app/movie/:imdb', render: function render(n) {
 	                return requireAuth(_index6.default, n);
+	            } }),
+	        _react2.default.createElement(_reactRouter.Route, { name: 'movie', path: '/app/movie/play/:torrent', render: function render(n) {
+	                return requireAuth(_index8.default, n);
 	            } })
 	    )
 	), document.getElementById('main_app'));
@@ -22459,7 +22465,7 @@
 
 	// This implementation is based heavily on node's url.parse
 	var resolvePathname = function resolvePathname(to) {
-	  var from = arguments.length <= 1 || arguments[1] === undefined ? '' : arguments[1];
+	  var from = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
 
 	  var toParts = to && to.split('/') || [];
 	  var fromParts = from && from.split('/') || [];
@@ -22530,13 +22536,9 @@
 
 	  if (a == null || b == null) return false;
 
-	  if (Array.isArray(a)) {
-	    if (!Array.isArray(b) || a.length !== b.length) return false;
-
-	    return a.every(function (item, index) {
-	      return valueEqual(item, b[index]);
-	    });
-	  }
+	  if (Array.isArray(a)) return Array.isArray(b) && a.length === b.length && a.every(function (item, index) {
+	    return valueEqual(item, b[index]);
+	  });
 
 	  var aType = typeof a === 'undefined' ? 'undefined' : _typeof(a);
 	  var bType = typeof b === 'undefined' ? 'undefined' : _typeof(b);
@@ -26241,17 +26243,6 @@
 	/////////////////////
 	//Resource Settings//
 	/////////////////////
-
-	//Torrent conf
-	Settings.system = {
-	    // Minimum bytes loaded to open video
-	    MAX_CACHE_REQUEST_TIMEOUT: 3600000 * 24, // Milliseconds 24h
-	    MAX_NUM_CONNECTIONS: 100, //Max num of peers 100
-	    MIN_PERCENTAGE_LOADED: 0.5, //Min % of loaded size
-	    MIN_SIZE_LOADED: 10 * 1024 * 1024, //Min size loaded
-	    MAGNET_RESOLVE_TIMEOUT: 60 * 1000, //Engine destroy timeout resolving magnet,
-	    TORRENT_TRACKERS: ['udp://open.demonii.com:1337/announce', 'udp://tracker.openbittorrent.com:80', 'udp://tracker.coppersurfer.tk:6969', 'udp://glotorrents.pw:6969/announce', 'udp://tracker.opentrackr.org:1337/announce', 'udp://torrent.gresille.org:80/announce', 'udp://p4p.arenabg.com:1337', 'udp://tracker.leechers-paradise.org:6969']
-	};
 
 	Settings.ws = {
 	    ws_url: 'ws://localhost:9600',
@@ -30657,7 +30648,7 @@
 	                'action': 'Fantasy'
 	            }, {
 	                'label': 'Film-Noir',
-	                'action': 'Film-noir'
+	                'action': 'Film-Noir'
 	            }, {
 	                'label': 'History',
 	                'action': 'History'
@@ -31121,18 +31112,13 @@
 	        _this.handleDrag = _this.handleDrag.bind(_this);
 	        _this.handleDragEnd = _this.handleDragEnd.bind(_this);
 
-	        _this.state = _this.getInitialState();
+	        _this.state = {
+	            didMountUniversal: false
+	        };
 	        return _this;
 	    }
 
 	    _createClass(Scrollbars, [{
-	        key: 'getInitialState',
-	        value: function getInitialState() {
-	            return {
-	                didMountUniversal: false
-	            };
-	        }
-	    }, {
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
 	            this.addListeners();
@@ -32612,13 +32598,13 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var MoviePoster = function (_React$Component) {
-	    _inherits(MoviePoster, _React$Component);
+	var BoxImage = function (_React$Component) {
+	    _inherits(BoxImage, _React$Component);
 
-	    function MoviePoster(props) {
-	        _classCallCheck(this, MoviePoster);
+	    function BoxImage(props) {
+	        _classCallCheck(this, BoxImage);
 
-	        var _this = _possibleConstructorReturn(this, (MoviePoster.__proto__ || Object.getPrototypeOf(MoviePoster)).call(this, props));
+	        var _this = _possibleConstructorReturn(this, (BoxImage.__proto__ || Object.getPrototypeOf(BoxImage)).call(this, props));
 
 	        _this.state = {
 	            status: 0,
@@ -32627,13 +32613,18 @@
 	        return _this;
 	    }
 
-	    _createClass(MoviePoster, [{
+	    _createClass(BoxImage, [{
 	        key: 'handleImageLoaded',
 	        value: function handleImageLoaded(e) {
 	            this.setState({
 	                status: 1,
 	                loaded: true
 	            });
+
+	            //If need a hook :)
+	            if (this.props.handleImageLoaded) {
+	                this.props.handleImageLoaded(e);
+	            }
 	        }
 	    }, {
 	        key: 'handleImageError',
@@ -32648,8 +32639,8 @@
 	            var _this2 = this;
 
 	            return _react2.default.createElement(
-	                'div',
-	                { className: 'clearfix' },
+	                'figure',
+	                { className: 'clearfix no-margin' },
 
 	                /*No poster found*/
 	                this.state.status < 0 && _react2.default.createElement('img', {
@@ -32662,7 +32653,7 @@
 
 	                /*The image*/
 	                _react2.default.createElement('img', {
-	                    className: this.state.loaded && " responsive-img poster-main-view" || " hide",
+	                    className: this.state.loaded && "responsive-img poster-main-view" || " hide",
 	                    src: this.props.src,
 	                    onLoad: function onLoad(e) {
 	                        return _this2.handleImageLoaded(e);
@@ -32680,12 +32671,19 @@
 	                src: _propTypes2.default.string.isRequired
 	            };
 	        }
+	    }, {
+	        key: 'defaultProps',
+	        get: function get() {
+	            return {
+	                height: 230
+	            };
+	        }
 	    }]);
 
-	    return MoviePoster;
+	    return BoxImage;
 	}(_react2.default.Component);
 
-	exports.default = MoviePoster;
+	exports.default = BoxImage;
 
 /***/ }),
 /* 289 */
@@ -33149,19 +33147,16 @@
 
 /***/ }),
 /* 295 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-
-	var _is_js = __webpack_require__(296);
-
-	var _is_js2 = _interopRequireDefault(_is_js);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	/**
+	 * Created by gmena on 04-20-17.
+	 */
 
 	exports.default = {
 	    jsonToQString: function jsonToQString(ob) {
@@ -33171,925 +33166,10 @@
 	        }, '').slice(0, -1));
 	    }
 
-	}; /**
-	    * Created by gmena on 04-20-17.
-	    */
+	};
 
 /***/ }),
 /* 296 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global) {/*!
-	 * is.js 0.8.0
-	 * Author: Aras Atasaygin
-	 */
-
-	// AMD with global, Node, or global
-	;(function(root, factory) {    // eslint-disable-line no-extra-semi
-	    if (true) {
-	        // AMD. Register as an anonymous module.
-	        !(__WEBPACK_AMD_DEFINE_RESULT__ = function() {
-	            // Also create a global in case some scripts
-	            // that are loaded still are looking for
-	            // a global even when an AMD loader is in use.
-	            return (root.is = factory());
-	        }.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	    } else if (typeof exports === 'object') {
-	        // Node. Does not work with strict CommonJS, but
-	        // only CommonJS-like enviroments that support module.exports,
-	        // like Node.
-	        module.exports = factory();
-	    } else {
-	        // Browser globals (root is self)
-	        root.is = factory();
-	    }
-	}(this, function() {
-
-	    // Baseline
-	    /* -------------------------------------------------------------------------- */
-
-	    // define 'is' object and current version
-	    var is = {};
-	    is.VERSION = '0.8.0';
-
-	    // define interfaces
-	    is.not = {};
-	    is.all = {};
-	    is.any = {};
-
-	    // cache some methods to call later on
-	    var toString = Object.prototype.toString;
-	    var slice = Array.prototype.slice;
-	    var hasOwnProperty = Object.prototype.hasOwnProperty;
-
-	    // helper function which reverses the sense of predicate result
-	    function not(func) {
-	        return function() {
-	            return !func.apply(null, slice.call(arguments));
-	        };
-	    }
-
-	    // helper function which call predicate function per parameter and return true if all pass
-	    function all(func) {
-	        return function() {
-	            var params = getParams(arguments);
-	            var length = params.length;
-	            for (var i = 0; i < length; i++) {
-	                if (!func.call(null, params[i])) {
-	                    return false;
-	                }
-	            }
-	            return true;
-	        };
-	    }
-
-	    // helper function which call predicate function per parameter and return true if any pass
-	    function any(func) {
-	        return function() {
-	            var params = getParams(arguments);
-	            var length = params.length;
-	            for (var i = 0; i < length; i++) {
-	                if (func.call(null, params[i])) {
-	                    return true;
-	                }
-	            }
-	            return false;
-	        };
-	    }
-
-	    // build a 'comparator' object for various comparison checks
-	    var comparator = {
-	        '<': function(a, b) { return a < b; },
-	        '<=': function(a, b) { return a <= b; },
-	        '>': function(a, b) { return a > b; },
-	        '>=': function(a, b) { return a >= b; }
-	    }
-
-	    // helper function which compares a version to a range
-	    function compareVersion(version, range) {
-	        var string = (range + '');
-	        var n = +(string.match(/\d+/) || NaN);
-	        var op = string.match(/^[<>]=?|/)[0];
-	        return comparator[op] ? comparator[op](version, n) : (version == n || n !== n);
-	    }
-
-	    // helper function which extracts params from arguments
-	    function getParams(args) {
-	        var params = slice.call(args);
-	        var length = params.length;
-	        if (length === 1 && is.array(params[0])) {    // support array
-	            params = params[0];
-	        }
-	        return params;
-	    }
-
-	    // Type checks
-	    /* -------------------------------------------------------------------------- */
-
-	    // is a given value Arguments?
-	    is.arguments = function(value) {    // fallback check is for IE
-	        return toString.call(value) === '[object Arguments]' ||
-	            (value != null && typeof value === 'object' && 'callee' in value);
-	    };
-
-	    // is a given value Array?
-	    is.array = Array.isArray || function(value) {    // check native isArray first
-	        return toString.call(value) === '[object Array]';
-	    };
-
-	    // is a given value Boolean?
-	    is.boolean = function(value) {
-	        return value === true || value === false || toString.call(value) === '[object Boolean]';
-	    };
-
-	    // is a given value Char?
-	    is.char = function(value) {
-	        return is.string(value) && value.length === 1;
-	    };
-
-	    // is a given value Date Object?
-	    is.date = function(value) {
-	        return toString.call(value) === '[object Date]';
-	    };
-
-	    // is a given object a DOM node?
-	    is.domNode = function(object) {
-	        return is.object(object) && object.nodeType > 0;
-	    };
-
-	    // is a given value Error object?
-	    is.error = function(value) {
-	        return toString.call(value) === '[object Error]';
-	    };
-
-	    // is a given value function?
-	    is['function'] = function(value) {    // fallback check is for IE
-	        return toString.call(value) === '[object Function]' || typeof value === 'function';
-	    };
-
-	    // is given value a pure JSON object?
-	    is.json = function(value) {
-	        return toString.call(value) === '[object Object]';
-	    };
-
-	    // is a given value NaN?
-	    is.nan = function(value) {    // NaN is number :) Also it is the only value which does not equal itself
-	        return value !== value;
-	    };
-
-	    // is a given value null?
-	    is['null'] = function(value) {
-	        return value === null;
-	    };
-
-	    // is a given value number?
-	    is.number = function(value) {
-	        return is.not.nan(value) && toString.call(value) === '[object Number]';
-	    };
-
-	    // is a given value object?
-	    is.object = function(value) {
-	        return Object(value) === value;
-	    };
-
-	    // is a given value RegExp?
-	    is.regexp = function(value) {
-	        return toString.call(value) === '[object RegExp]';
-	    };
-
-	    // are given values same type?
-	    // prevent NaN, Number same type check
-	    is.sameType = function(value, other) {
-	        var tag = toString.call(value);
-	        if (tag !== toString.call(other)) {
-	            return false;
-	        }
-	        if (tag === '[object Number]') {
-	            return !is.any.nan(value, other) || is.all.nan(value, other);
-	        }
-	        return true;
-	    };
-	    // sameType method does not support 'all' and 'any' interfaces
-	    is.sameType.api = ['not'];
-
-	    // is a given value String?
-	    is.string = function(value) {
-	        return toString.call(value) === '[object String]';
-	    };
-
-	    // is a given value undefined?
-	    is.undefined = function(value) {
-	        return value === void 0;
-	    };
-
-	    // is a given value window?
-	    // setInterval method is only available for window object
-	    is.windowObject = function(value) {
-	        return value != null && typeof value === 'object' && 'setInterval' in value;
-	    };
-
-	    // Presence checks
-	    /* -------------------------------------------------------------------------- */
-
-	    //is a given value empty? Objects, arrays, strings
-	    is.empty = function(value) {
-	        if (is.object(value)) {
-	            var length = Object.getOwnPropertyNames(value).length;
-	            if (length === 0 || (length === 1 && is.array(value)) ||
-	                    (length === 2 && is.arguments(value))) {
-	                return true;
-	            }
-	            return false;
-	        }
-	        return value === '';
-	    };
-
-	    // is a given value existy?
-	    is.existy = function(value) {
-	        return value != null;
-	    };
-
-	    // is a given value falsy?
-	    is.falsy = function(value) {
-	        return !value;
-	    };
-
-	    // is a given value truthy?
-	    is.truthy = not(is.falsy);
-
-	    // Arithmetic checks
-	    /* -------------------------------------------------------------------------- */
-
-	    // is a given number above minimum parameter?
-	    is.above = function(n, min) {
-	        return is.all.number(n, min) && n > min;
-	    };
-	    // above method does not support 'all' and 'any' interfaces
-	    is.above.api = ['not'];
-
-	    // is a given number decimal?
-	    is.decimal = function(n) {
-	        return is.number(n) && n % 1 !== 0;
-	    };
-
-	    // are given values equal? supports numbers, strings, regexes, booleans
-	    // TODO: Add object and array support
-	    is.equal = function(value, other) {
-	        // check 0 and -0 equity with Infinity and -Infinity
-	        if (is.all.number(value, other)) {
-	            return value === other && 1 / value === 1 / other;
-	        }
-	        // check regexes as strings too
-	        if (is.all.string(value, other) || is.all.regexp(value, other)) {
-	            return '' + value === '' + other;
-	        }
-	        if (is.all.boolean(value, other)) {
-	            return value === other;
-	        }
-	        return false;
-	    };
-	    // equal method does not support 'all' and 'any' interfaces
-	    is.equal.api = ['not'];
-
-	    // is a given number even?
-	    is.even = function(n) {
-	        return is.number(n) && n % 2 === 0;
-	    };
-
-	    // is a given number finite?
-	    is.finite = isFinite || function(n) {
-	        return is.not.infinite(n) && is.not.nan(n);
-	    };
-
-	    // is a given number infinite?
-	    is.infinite = function(n) {
-	        return n === Infinity || n === -Infinity;
-	    };
-
-	    // is a given number integer?
-	    is.integer = function(n) {
-	        return is.number(n) && n % 1 === 0;
-	    };
-
-	    // is a given number negative?
-	    is.negative = function(n) {
-	        return is.number(n) && n < 0;
-	    };
-
-	    // is a given number odd?
-	    is.odd = function(n) {
-	        return is.number(n) && n % 2 === 1;
-	    };
-
-	    // is a given number positive?
-	    is.positive = function(n) {
-	        return is.number(n) && n > 0;
-	    };
-
-	    // is a given number above maximum parameter?
-	    is.under = function(n, max) {
-	        return is.all.number(n, max) && n < max;
-	    };
-	    // least method does not support 'all' and 'any' interfaces
-	    is.under.api = ['not'];
-
-	    // is a given number within minimum and maximum parameters?
-	    is.within = function(n, min, max) {
-	        return is.all.number(n, min, max) && n > min && n < max;
-	    };
-	    // within method does not support 'all' and 'any' interfaces
-	    is.within.api = ['not'];
-
-	    // Regexp checks
-	    /* -------------------------------------------------------------------------- */
-	    // Steven Levithan, Jan Goyvaerts: Regular Expressions Cookbook
-	    // Scott Gonzalez: Email address validation
-
-	    // dateString match m/d/yy and mm/dd/yyyy, allowing any combination of one or two digits for the day and month, and two or four digits for the year
-	    // eppPhone match extensible provisioning protocol format
-	    // nanpPhone match north american number plan format
-	    // time match hours, minutes, and seconds, 24-hour clock
-	    var regexes = {
-	        affirmative: /^(?:1|t(?:rue)?|y(?:es)?|ok(?:ay)?)$/,
-	        alphaNumeric: /^[A-Za-z0-9]+$/,
-	        caPostalCode: /^(?!.*[DFIOQU])[A-VXY][0-9][A-Z]\s?[0-9][A-Z][0-9]$/,
-	        creditCard: /^(?:(4[0-9]{12}(?:[0-9]{3})?)|(5[1-5][0-9]{14})|(6(?:011|5[0-9]{2})[0-9]{12})|(3[47][0-9]{13})|(3(?:0[0-5]|[68][0-9])[0-9]{11})|((?:2131|1800|35[0-9]{3})[0-9]{11}))$/,
-	        dateString: /^(1[0-2]|0?[1-9])([\/-])(3[01]|[12][0-9]|0?[1-9])(?:\2)(?:[0-9]{2})?[0-9]{2}$/,
-	        email: /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))$/i, // eslint-disable-line no-control-regex
-	        eppPhone: /^\+[0-9]{1,3}\.[0-9]{4,14}(?:x.+)?$/,
-	        hexadecimal: /^(?:0x)?[0-9a-fA-F]+$/,
-	        hexColor: /^#?([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/,
-	        ipv4: /^(?:(?:\d|[1-9]\d|1\d{2}|2[0-4]\d|25[0-5])\.){3}(?:\d|[1-9]\d|1\d{2}|2[0-4]\d|25[0-5])$/,
-	        ipv6: /^((?=.*::)(?!.*::.+::)(::)?([\dA-F]{1,4}:(:|\b)|){5}|([\dA-F]{1,4}:){6})((([\dA-F]{1,4}((?!\3)::|:\b|$))|(?!\2\3)){2}|(((2[0-4]|1\d|[1-9])?\d|25[0-5])\.?\b){4})$/i,
-	        nanpPhone: /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/,
-	        socialSecurityNumber: /^(?!000|666)[0-8][0-9]{2}-?(?!00)[0-9]{2}-?(?!0000)[0-9]{4}$/,
-	        timeString: /^(2[0-3]|[01]?[0-9]):([0-5]?[0-9]):([0-5]?[0-9])$/,
-	        ukPostCode: /^[A-Z]{1,2}[0-9RCHNQ][0-9A-Z]?\s?[0-9][ABD-HJLNP-UW-Z]{2}$|^[A-Z]{2}-?[0-9]{4}$/,
-	        url: /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/i,
-	        usZipCode: /^[0-9]{5}(?:-[0-9]{4})?$/
-	    };
-
-	    function regexpCheck(regexp, regexes) {
-	        is[regexp] = function(value) {
-	            return regexes[regexp].test(value);
-	        };
-	    }
-
-	    // create regexp checks methods from 'regexes' object
-	    for (var regexp in regexes) {
-	        if (regexes.hasOwnProperty(regexp)) {
-	            regexpCheck(regexp, regexes);
-	        }
-	    }
-
-	    // simplify IP checks by calling the regex helpers for IPv4 and IPv6
-	    is.ip = function(value) {
-	        return is.ipv4(value) || is.ipv6(value);
-	    };
-
-	    // String checks
-	    /* -------------------------------------------------------------------------- */
-
-	    // is a given string or sentence capitalized?
-	    is.capitalized = function(string) {
-	        if (is.not.string(string)) {
-	            return false;
-	        }
-	        var words = string.split(' ');
-	        for (var i = 0; i < words.length; i++) {
-	            var word = words[i];
-	            if (word.length) {
-	                var chr = word.charAt(0);
-	                if (chr !== chr.toUpperCase()) {
-	                    return false;
-	                }
-	            }
-	        }
-	        return true;
-	    };
-
-	    // is string end with a given target parameter?
-	    is.endWith = function(string, target) {
-	        if (is.not.string(string)) {
-	            return false;
-	        }
-	        target += '';
-	        var position = string.length - target.length;
-	        return position >= 0 && string.indexOf(target, position) === position;
-	    };
-	    // endWith method does not support 'all' and 'any' interfaces
-	    is.endWith.api = ['not'];
-
-	    // is a given string include parameter target?
-	    is.include = function(string, target) {
-	        return string.indexOf(target) > -1;
-	    };
-	    // include method does not support 'all' and 'any' interfaces
-	    is.include.api = ['not'];
-
-	    // is a given string all lowercase?
-	    is.lowerCase = function(string) {
-	        return is.string(string) && string === string.toLowerCase();
-	    };
-
-	    // is a given string palindrome?
-	    is.palindrome = function(string) {
-	        if (is.not.string(string)) {
-	            return false;
-	        }
-	        string = string.replace(/[^a-zA-Z0-9]+/g, '').toLowerCase();
-	        var length = string.length - 1;
-	        for (var i = 0, half = Math.floor(length / 2); i <= half; i++) {
-	            if (string.charAt(i) !== string.charAt(length - i)) {
-	                return false;
-	            }
-	        }
-	        return true;
-	    };
-
-	    // is a given value space?
-	    // horizantal tab: 9, line feed: 10, vertical tab: 11, form feed: 12, carriage return: 13, space: 32
-	    is.space = function(value) {
-	        if (is.not.char(value)) {
-	            return false;
-	        }
-	        var charCode = value.charCodeAt(0);
-	        return (charCode > 8 && charCode < 14) || charCode === 32;
-	    };
-
-	    // is string start with a given target parameter?
-	    is.startWith = function(string, target) {
-	        return is.string(string) && string.indexOf(target) === 0;
-	    };
-	    // startWith method does not support 'all' and 'any' interfaces
-	    is.startWith.api = ['not'];
-
-	    // is a given string all uppercase?
-	    is.upperCase = function(string) {
-	        return is.string(string) && string === string.toUpperCase();
-	    };
-
-	    // Time checks
-	    /* -------------------------------------------------------------------------- */
-
-	    var days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
-	    var months = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'];
-
-	    // is a given dates day equal given day parameter?
-	    is.day = function(date, day) {
-	        return is.date(date) && day.toLowerCase() === days[date.getDay()];
-	    };
-	    // day method does not support 'all' and 'any' interfaces
-	    is.day.api = ['not'];
-
-	    // is a given date in daylight saving time?
-	    is.dayLightSavingTime = function(date) {
-	        var january = new Date(date.getFullYear(), 0, 1);
-	        var july = new Date(date.getFullYear(), 6, 1);
-	        var stdTimezoneOffset = Math.max(january.getTimezoneOffset(), july.getTimezoneOffset());
-	        return date.getTimezoneOffset() < stdTimezoneOffset;
-	    };
-
-	    // is a given date future?
-	    is.future = function(date) {
-	        var now = new Date();
-	        return is.date(date) && date.getTime() > now.getTime();
-	    };
-
-	    // is date within given range?
-	    is.inDateRange = function(date, start, end) {
-	        if (is.not.date(date) || is.not.date(start) || is.not.date(end)) {
-	            return false;
-	        }
-	        var stamp = date.getTime();
-	        return stamp > start.getTime() && stamp < end.getTime();
-	    };
-	    // inDateRange method does not support 'all' and 'any' interfaces
-	    is.inDateRange.api = ['not'];
-
-	    // is a given date in last month range?
-	    is.inLastMonth = function(date) {
-	        return is.inDateRange(date, new Date(new Date().setMonth(new Date().getMonth() - 1)), new Date());
-	    };
-
-	    // is a given date in last week range?
-	    is.inLastWeek = function(date) {
-	        return is.inDateRange(date, new Date(new Date().setDate(new Date().getDate() - 7)), new Date());
-	    };
-
-	    // is a given date in last year range?
-	    is.inLastYear = function(date) {
-	        return is.inDateRange(date, new Date(new Date().setFullYear(new Date().getFullYear() - 1)), new Date());
-	    };
-
-	    // is a given date in next month range?
-	    is.inNextMonth = function(date) {
-	        return is.inDateRange(date, new Date(), new Date(new Date().setMonth(new Date().getMonth() + 1)));
-	    };
-
-	    // is a given date in next week range?
-	    is.inNextWeek = function(date) {
-	        return is.inDateRange(date, new Date(), new Date(new Date().setDate(new Date().getDate() + 7)));
-	    };
-
-	    // is a given date in next year range?
-	    is.inNextYear = function(date) {
-	        return is.inDateRange(date, new Date(), new Date(new Date().setFullYear(new Date().getFullYear() + 1)));
-	    };
-
-	    // is the given year a leap year?
-	    is.leapYear = function(year) {
-	        return is.number(year) && ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0);
-	    };
-
-	    // is a given dates month equal given month parameter?
-	    is.month = function(date, month) {
-	        return is.date(date) && month.toLowerCase() === months[date.getMonth()];
-	    };
-	    // month method does not support 'all' and 'any' interfaces
-	    is.month.api = ['not'];
-
-	    // is a given date past?
-	    is.past = function(date) {
-	        var now = new Date();
-	        return is.date(date) && date.getTime() < now.getTime();
-	    };
-
-	    // is a given date in the parameter quarter?
-	    is.quarterOfYear = function(date, quarter) {
-	        return is.date(date) && is.number(quarter) && quarter === Math.floor((date.getMonth() + 3) / 3);
-	    };
-	    // quarterOfYear method does not support 'all' and 'any' interfaces
-	    is.quarterOfYear.api = ['not'];
-
-	    // is a given date indicate today?
-	    is.today = function(date) {
-	        var now = new Date();
-	        var todayString = now.toDateString();
-	        return is.date(date) && date.toDateString() === todayString;
-	    };
-
-	    // is a given date indicate tomorrow?
-	    is.tomorrow = function(date) {
-	        var now = new Date();
-	        var tomorrowString = new Date(now.setDate(now.getDate() + 1)).toDateString();
-	        return is.date(date) && date.toDateString() === tomorrowString;
-	    };
-
-	    // is a given date weekend?
-	    // 6: Saturday, 0: Sunday
-	    is.weekend = function(date) {
-	        return is.date(date) && (date.getDay() === 6 || date.getDay() === 0);
-	    };
-
-	    // is a given date weekday?
-	    is.weekday = not(is.weekend);
-
-	    // is a given dates year equal given year parameter?
-	    is.year = function(date, year) {
-	        return is.date(date) && is.number(year) && year === date.getFullYear();
-	    };
-	    // year method does not support 'all' and 'any' interfaces
-	    is.year.api = ['not'];
-
-	    // is a given date indicate yesterday?
-	    is.yesterday = function(date) {
-	        var now = new Date();
-	        var yesterdayString = new Date(now.setDate(now.getDate() - 1)).toDateString();
-	        return is.date(date) && date.toDateString() === yesterdayString;
-	    };
-
-	    // Environment checks
-	    /* -------------------------------------------------------------------------- */
-
-	    var freeGlobal = is.windowObject(typeof global == 'object' && global) && global;
-	    var freeSelf = is.windowObject(typeof self == 'object' && self) && self;
-	    var thisGlobal = is.windowObject(typeof this == 'object' && this) && this;
-	    var root = freeGlobal || freeSelf || thisGlobal || Function('return this')();
-
-	    var document = freeSelf && freeSelf.document;
-	    var previousIs = root.is;
-
-	    // store navigator properties to use later
-	    var navigator = freeSelf && freeSelf.navigator;
-	    var appVersion = (navigator && navigator.appVersion || '').toLowerCase();
-	    var userAgent = (navigator && navigator.userAgent || '').toLowerCase();
-	    var vendor = (navigator && navigator.vendor || '').toLowerCase();
-
-	    // is current device android?
-	    is.android = function() {
-	        return /android/.test(userAgent);
-	    };
-	    // android method does not support 'all' and 'any' interfaces
-	    is.android.api = ['not'];
-
-	    // is current device android phone?
-	    is.androidPhone = function() {
-	        return /android/.test(userAgent) && /mobile/.test(userAgent);
-	    };
-	    // androidPhone method does not support 'all' and 'any' interfaces
-	    is.androidPhone.api = ['not'];
-
-	    // is current device android tablet?
-	    is.androidTablet = function() {
-	        return /android/.test(userAgent) && !/mobile/.test(userAgent);
-	    };
-	    // androidTablet method does not support 'all' and 'any' interfaces
-	    is.androidTablet.api = ['not'];
-
-	    // is current device blackberry?
-	    is.blackberry = function() {
-	        return /blackberry/.test(userAgent) || /bb10/.test(userAgent);
-	    };
-	    // blackberry method does not support 'all' and 'any' interfaces
-	    is.blackberry.api = ['not'];
-
-	    // is current browser chrome?
-	    // parameter is optional
-	    is.chrome = function(range) {
-	        var match = /google inc/.test(vendor) ? userAgent.match(/(?:chrome|crios)\/(\d+)/) : null;
-	        return match !== null && compareVersion(match[1], range);
-	    };
-	    // chrome method does not support 'all' and 'any' interfaces
-	    is.chrome.api = ['not'];
-
-	    // is current device desktop?
-	    is.desktop = function() {
-	        return is.not.mobile() && is.not.tablet();
-	    };
-	    // desktop method does not support 'all' and 'any' interfaces
-	    is.desktop.api = ['not'];
-
-	    // is current browser edge?
-	    // parameter is optional
-	    is.edge = function(range) {
-	        var match = userAgent.match(/edge\/(\d+)/);
-	        return match !== null && compareVersion(match[1], range);
-	    };
-	    // edge method does not support 'all' and 'any' interfaces
-	    is.edge.api = ['not'];
-
-	    // is current browser firefox?
-	    // parameter is optional
-	    is.firefox = function(range) {
-	        var match = userAgent.match(/(?:firefox|fxios)\/(\d+)/);
-	        return match !== null && compareVersion(match[1], range);
-	    };
-	    // firefox method does not support 'all' and 'any' interfaces
-	    is.firefox.api = ['not'];
-
-	    // is current browser internet explorer?
-	    // parameter is optional
-	    is.ie = function(range) {
-	        var match = userAgent.match(/(?:msie |trident.+?; rv:)(\d+)/);
-	        return match !== null && compareVersion(match[1], range);
-	    };
-	    // ie method does not support 'all' and 'any' interfaces
-	    is.ie.api = ['not'];
-
-	    // is current device ios?
-	    is.ios = function() {
-	        return is.iphone() || is.ipad() || is.ipod();
-	    };
-	    // ios method does not support 'all' and 'any' interfaces
-	    is.ios.api = ['not'];
-
-	    // is current device ipad?
-	    // parameter is optional
-	    is.ipad = function(range) {
-	        var match = userAgent.match(/ipad.+?os (\d+)/);
-	        return match !== null && compareVersion(match[1], range);
-	    };
-	    // ipad method does not support 'all' and 'any' interfaces
-	    is.ipad.api = ['not'];
-
-	    // is current device iphone?
-	    // parameter is optional
-	    is.iphone = function(range) {
-	        // original iPhone doesn't have the os portion of the UA
-	        var match = userAgent.match(/iphone(?:.+?os (\d+))?/);
-	        return match !== null && compareVersion(match[1] || 1, range);
-	    };
-	    // iphone method does not support 'all' and 'any' interfaces
-	    is.iphone.api = ['not'];
-
-	    // is current device ipod?
-	    // parameter is optional
-	    is.ipod = function(range) {
-	        var match = userAgent.match(/ipod.+?os (\d+)/);
-	        return match !== null && compareVersion(match[1], range);
-	    };
-	    // ipod method does not support 'all' and 'any' interfaces
-	    is.ipod.api = ['not'];
-
-	    // is current operating system linux?
-	    is.linux = function() {
-	        return /linux/.test(appVersion);
-	    };
-	    // linux method does not support 'all' and 'any' interfaces
-	    is.linux.api = ['not'];
-
-	    // is current operating system mac?
-	    is.mac = function() {
-	        return /mac/.test(appVersion);
-	    };
-	    // mac method does not support 'all' and 'any' interfaces
-	    is.mac.api = ['not'];
-
-	    // is current device mobile?
-	    is.mobile = function() {
-	        return is.iphone() || is.ipod() || is.androidPhone() || is.blackberry() || is.windowsPhone();
-	    };
-	    // mobile method does not support 'all' and 'any' interfaces
-	    is.mobile.api = ['not'];
-
-	    // is current state offline?
-	    is.offline = not(is.online);
-	    // offline method does not support 'all' and 'any' interfaces
-	    is.offline.api = ['not'];
-
-	    // is current state online?
-	    is.online = function() {
-	        return !navigator || navigator.onLine === true;
-	    };
-	    // online method does not support 'all' and 'any' interfaces
-	    is.online.api = ['not'];
-
-	    // is current browser opera?
-	    // parameter is optional
-	    is.opera = function(range) {
-	        var match = userAgent.match(/(?:^opera.+?version|opr)\/(\d+)/);
-	        return match !== null && compareVersion(match[1], range);
-	    };
-	    // opera method does not support 'all' and 'any' interfaces
-	    is.opera.api = ['not'];
-
-	    // is current browser phantomjs?
-	    // parameter is optional
-	    is.phantom = function(range) {
-	        var match = userAgent.match(/phantomjs\/(\d+)/);
-	        return match !== null && compareVersion(match[1], range);
-	    };
-	    // phantom method does not support 'all' and 'any' interfaces
-	    is.phantom.api = ['not'];
-
-	    // is current browser safari?
-	    // parameter is optional
-	    is.safari = function(range) {
-	        var match = userAgent.match(/version\/(\d+).+?safari/);
-	        return match !== null && compareVersion(match[1], range);
-	    };
-	    // safari method does not support 'all' and 'any' interfaces
-	    is.safari.api = ['not'];
-
-	    // is current device tablet?
-	    is.tablet = function() {
-	        return is.ipad() || is.androidTablet() || is.windowsTablet();
-	    };
-	    // tablet method does not support 'all' and 'any' interfaces
-	    is.tablet.api = ['not'];
-
-	    // is current device supports touch?
-	    is.touchDevice = function() {
-	        return !!document && ('ontouchstart' in freeSelf ||
-	            ('DocumentTouch' in freeSelf && document instanceof DocumentTouch));
-	    };
-	    // touchDevice method does not support 'all' and 'any' interfaces
-	    is.touchDevice.api = ['not'];
-
-	    // is current operating system windows?
-	    is.windows = function() {
-	        return /win/.test(appVersion);
-	    };
-	    // windows method does not support 'all' and 'any' interfaces
-	    is.windows.api = ['not'];
-
-	    // is current device windows phone?
-	    is.windowsPhone = function() {
-	        return is.windows() && /phone/.test(userAgent);
-	    };
-	    // windowsPhone method does not support 'all' and 'any' interfaces
-	    is.windowsPhone.api = ['not'];
-
-	    // is current device windows tablet?
-	    is.windowsTablet = function() {
-	        return is.windows() && is.not.windowsPhone() && /touch/.test(userAgent);
-	    };
-	    // windowsTablet method does not support 'all' and 'any' interfaces
-	    is.windowsTablet.api = ['not'];
-
-	    // Object checks
-	    /* -------------------------------------------------------------------------- */
-
-	    // has a given object got parameterized count property?
-	    is.propertyCount = function(object, count) {
-	        if (is.not.object(object) || is.not.number(count)) {
-	            return false;
-	        }
-	        var n = 0;
-	        for (var property in object) {
-	            if (hasOwnProperty.call(object, property) && ++n > count) {
-	                return false;
-	            }
-	        }
-	        return n === count;
-	    };
-	    // propertyCount method does not support 'all' and 'any' interfaces
-	    is.propertyCount.api = ['not'];
-
-	    // is given object has parameterized property?
-	    is.propertyDefined = function(object, property) {
-	        return is.object(object) && is.string(property) && property in object;
-	    };
-	    // propertyDefined method does not support 'all' and 'any' interfaces
-	    is.propertyDefined.api = ['not'];
-
-	    // Array checks
-	    /* -------------------------------------------------------------------------- */
-
-	    // is a given item in an array?
-	    is.inArray = function(value, array) {
-	        if (is.not.array(array)) {
-	            return false;
-	        }
-	        for (var i = 0; i < array.length; i++) {
-	            if (array[i] === value) {
-	                return true;
-	            }
-	        }
-	        return false;
-	    };
-	    // inArray method does not support 'all' and 'any' interfaces
-	    is.inArray.api = ['not'];
-
-	    // is a given array sorted?
-	    is.sorted = function(array, sign) {
-	        if (is.not.array(array)) {
-	            return false;
-	        }
-	        var predicate = comparator[sign] || comparator['>='];
-	        for (var i = 1; i < array.length; i++) {
-	            if (!predicate(array[i], array[i - 1])) {
-	                return false;
-	            }
-	        }
-	        return true;
-	    };
-
-	    // API
-	    // Set 'not', 'all' and 'any' interfaces to methods based on their api property
-	    /* -------------------------------------------------------------------------- */
-
-	    function setInterfaces() {
-	        var options = is;
-	        for (var option in options) {
-	            if (hasOwnProperty.call(options, option) && is['function'](options[option])) {
-	                var interfaces = options[option].api || ['not', 'all', 'any'];
-	                for (var i = 0; i < interfaces.length; i++) {
-	                    if (interfaces[i] === 'not') {
-	                        is.not[option] = not(is[option]);
-	                    }
-	                    if (interfaces[i] === 'all') {
-	                        is.all[option] = all(is[option]);
-	                    }
-	                    if (interfaces[i] === 'any') {
-	                        is.any[option] = any(is[option]);
-	                    }
-	                }
-	            }
-	        }
-	    }
-	    setInterfaces();
-
-	    // Configuration methods
-	    // Intentionally added after setInterfaces function
-	    /* -------------------------------------------------------------------------- */
-
-	    // change namespace of library to prevent name collisions
-	    // var preferredName = is.setNamespace();
-	    // preferredName.odd(3);
-	    // => true
-	    is.setNamespace = function() {
-	        root.is = previousIs;
-	        return this;
-	    };
-
-	    // set optional regexes to methods
-	    is.setRegexp = function(regexp, name) {
-	        for (var r in regexes) {
-	            if (hasOwnProperty.call(regexes, r) && (name === r)) {
-	                regexes[r] = regexp;
-	            }
-	        }
-	    };
-
-	    return is;
-	}));
-
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
-
-/***/ }),
-/* 297 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34108,11 +33188,11 @@
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _index3 = __webpack_require__(298);
+	var _index3 = __webpack_require__(297);
 
 	var _index4 = _interopRequireDefault(_index3);
 
-	var _index5 = __webpack_require__(299);
+	var _index5 = __webpack_require__(298);
 
 	var _index6 = _interopRequireDefault(_index5);
 
@@ -34184,7 +33264,7 @@
 	                ),
 	                _react2.default.createElement(
 	                    'section',
-	                    { className: 'row' },
+	                    { className: 'row margin-top-20' },
 	                    this.state.movies && _react2.default.createElement(_index6.default, { movie: this.state.movies }) || _react2.default.createElement(_index2.default, { size: '100' })
 	                )
 	            );
@@ -34197,7 +33277,7 @@
 	exports.default = MainMovie;
 
 /***/ }),
-/* 298 */
+/* 297 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34270,7 +33350,7 @@
 	exports.default = MainHeader;
 
 /***/ }),
-/* 299 */
+/* 298 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {'use strict';
@@ -34289,19 +33369,19 @@
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _index3 = __webpack_require__(268);
+	var _index3 = __webpack_require__(288);
 
 	var _index4 = _interopRequireDefault(_index3);
 
-	var _index5 = __webpack_require__(288);
+	var _index5 = __webpack_require__(268);
 
 	var _index6 = _interopRequireDefault(_index5);
 
-	var _index7 = __webpack_require__(300);
+	var _index7 = __webpack_require__(299);
 
 	var _index8 = _interopRequireDefault(_index7);
 
-	var _index9 = __webpack_require__(301);
+	var _index9 = __webpack_require__(300);
 
 	var _index10 = _interopRequireDefault(_index9);
 
@@ -34309,7 +33389,7 @@
 
 	var _index12 = _interopRequireDefault(_index11);
 
-	var _index13 = __webpack_require__(302);
+	var _index13 = __webpack_require__(301);
 
 	var _index14 = _interopRequireDefault(_index13);
 
@@ -34355,7 +33435,6 @@
 	            var _to_url_object = {};
 
 	            _to_url_object['torrent'] = torrent;
-	            _to_url_object['id'] = this.props.movie.id;
 	            _to_url_object['title'] = this.props.movie.title;
 	            _to_url_object['imdb_code'] = this.props.movie.imdb_code;
 
@@ -34388,42 +33467,11 @@
 	                    { className: 'col l4 m4' },
 	                    _react2.default.createElement(
 	                        'div',
-	                        { className: 'row max-height-750 overflow-hidden fixed-poster-resolution' },
-	                        _react2.default.createElement(_index6.default, { className: 'full-width', src: this.props.movie.large_cover_image })
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'row' },
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'col l6 m6 padding-left-0' },
-	                            _react2.default.createElement(
-	                                'a',
-	                                { href: "#/movie/play/" + this.state.torrent },
-	                                _react2.default.createElement(
-	                                    _index2.default,
-	                                    { className: 'darken-4' },
-	                                    _react2.default.createElement(
-	                                        'span',
-	                                        { className: 'z-index-top font-size-small bold capitalize' },
-	                                        'Play'
-	                                    )
-	                                )
-	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'col l6 m6 padding-right-0' },
-	                            _react2.default.createElement(
-	                                _index2.default,
-	                                { className: 'darken-4 light-green' },
-	                                _react2.default.createElement(
-	                                    'span',
-	                                    { className: 'z-index-top  font-size-small bold capitalize' },
-	                                    'Add'
-	                                )
-	                            )
-	                        )
+	                        { className: 'row overflow-hidden fixed-poster-resolution' },
+	                        _react2.default.createElement(_index4.default, {
+	                            className: 'full-width',
+	                            src: this.props.movie.large_cover_image
+	                        })
 	                    )
 	                ),
 	                _react2.default.createElement(
@@ -34478,11 +33526,29 @@
 	                        { className: 'row' },
 	                        _react2.default.createElement(
 	                            'nav',
-	                            { className: 'col s12 l12 m12 transparent z-depth-0' },
+	                            { className: 'col l8 m8 transparent z-depth-0' },
 	                            _react2.default.createElement(
 	                                'div',
 	                                { className: 'nav-wrapper' },
-	                                _react2.default.createElement(_index4.default, {
+	                                _react2.default.createElement(
+	                                    'ul',
+	                                    null,
+	                                    _react2.default.createElement(
+	                                        'li',
+	                                        { className: 'dropdown' },
+	                                        _react2.default.createElement(
+	                                            'a',
+	                                            { className: 'dropdown-button clearfix', href: "#/app/movie/play/" + this.state.torrent },
+	                                            _react2.default.createElement(
+	                                                'span',
+	                                                { className: 'font-light-gray right' },
+	                                                'Play'
+	                                            ),
+	                                            _react2.default.createElement('i', { className: 'icon-controller-play tiny relative top-2 left margin-left-4' })
+	                                        )
+	                                    )
+	                                ),
+	                                _react2.default.createElement(_index6.default, {
 	                                    btnText: 'Resolution',
 	                                    onChange: function onChange(torrent) {
 	                                        return _this2.setTorrent(torrent);
@@ -34525,7 +33591,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(237).Buffer))
 
 /***/ }),
-/* 300 */
+/* 299 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34611,7 +33677,7 @@
 	exports.default = AppMovieDetailInfo;
 
 /***/ }),
-/* 301 */
+/* 300 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34682,7 +33748,7 @@
 	exports.default = FlowText;
 
 /***/ }),
-/* 302 */
+/* 301 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34746,6 +33812,2464 @@
 	}(_react2.default.Component);
 
 	exports.default = ListCommaSplit;
+
+/***/ }),
+/* 302 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(Buffer) {'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _index = __webpack_require__(303);
+
+	var _index2 = _interopRequireDefault(_index);
+
+	var _index3 = __webpack_require__(319);
+
+	var _index4 = _interopRequireDefault(_index3);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	//Login view class
+	var MoviePlayer = function (_React$Component) {
+	    _inherits(MoviePlayer, _React$Component);
+
+	    function MoviePlayer(props) {
+	        _classCallCheck(this, MoviePlayer);
+
+	        //Decode string and pass to json object
+	        var _this = _possibleConstructorReturn(this, (MoviePlayer.__proto__ || Object.getPrototypeOf(MoviePlayer)).call(this, props));
+
+	        _this.state = {
+	            state: 'Connecting',
+	            percent: 0,
+	            canPlay: false,
+	            movieInfo: JSON.parse(new Buffer(_this.props.match.params.torrent, 'base64').toString())
+	        };
+	        return _this;
+	    }
+
+	    _createClass(MoviePlayer, [{
+	        key: 'onProgress',
+	        value: function onProgress(percent, state) {
+	            //Change state
+	            this.setState({
+	                state: state,
+	                percent: percent
+	            });
+	        }
+	    }, {
+	        key: 'onReady',
+	        value: function onReady(url) {
+	            this.setState({
+	                canPlay: true
+	            });
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var _this2 = this;
+
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                !this.state.canPlay && _react2.default.createElement(
+	                    'div',
+	                    { className: 'absolute full-width full-height player-overlay-loader' },
+	                    _react2.default.createElement(_index4.default, {
+	                        stateText: this.state.state,
+	                        statePercent: this.state.percent,
+	                        movieInfo: this.state.movieInfo
+	                    })
+	                ),
+	                _react2.default.createElement(
+	                    'section',
+	                    { className: 'absolute full-width full-height clearfix video-stream' },
+	                    _react2.default.createElement(_index2.default, {
+	                        torrent: this.state.movieInfo.torrent,
+	                        onProgress: function onProgress(p, s) {
+	                            _this2.onProgress(p, s);
+	                        },
+	                        onReady: function onReady(u) {
+	                            _this2.onReady(u);
+	                        }
+	                    })
+	                )
+	            );
+	        }
+	    }]);
+
+	    return MoviePlayer;
+	}(_react2.default.Component);
+
+	exports.default = MoviePlayer;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(237).Buffer))
+
+/***/ }),
+/* 303 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactPlayer = __webpack_require__(304);
+
+	var _reactPlayer2 = _interopRequireDefault(_reactPlayer);
+
+	var _propTypes = __webpack_require__(184);
+
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var AppMoviesPlayer = function (_React$Component) {
+	    _inherits(AppMoviesPlayer, _React$Component);
+
+	    function AppMoviesPlayer(props) {
+	        _classCallCheck(this, AppMoviesPlayer);
+
+	        //Binding context to methods
+	        var _this = _possibleConstructorReturn(this, (AppMoviesPlayer.__proto__ || Object.getPrototypeOf(AppMoviesPlayer)).call(this, props));
+
+	        _this.onReady = _this.onReady.bind(_this);
+	        _this.onProgress = _this.onProgress.bind(_this);
+	        _this.onError = _this.onError.bind(_this);
+
+	        //Initial State
+	        _this.state = {
+	            canPlay: false
+	        };
+	        return _this;
+	    }
+
+	    _createClass(AppMoviesPlayer, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            Streamer.playTorrent(this.props.torrent, this.onReady, this.onProgress, this.onError);
+
+	            this.player = videojs(this.videoNode, {
+	                autoplay: true,
+	                preload: true,
+	                controls: true
+	            }, function onPlayerReady() {
+	                console.log('onPlayerReady', this);
+	            });
+	        }
+	    }, {
+	        key: 'onReady',
+	        value: function onReady(url, flix) {
+
+	            this.setState({
+	                url: url,
+	                canPlay: true
+	            });
+
+	            //Handle ready
+	            if (this.props.onReady) {
+	                this.props.onReady(url, flix);
+	            }
+	        }
+	    }, {
+	        key: 'onProgress',
+	        value: function onProgress(flix, percent, state) {
+
+	            //Handle progress
+	            if (this.props.onProgress) {
+	                this.props.onProgress(parseInt(percent), state, flix);
+	            }
+	        }
+	    }, {
+	        key: 'onError',
+	        value: function onError(e) {
+
+	            //Handle error
+	            if (this.props.onError) {
+	                this.props.onError(e);
+	            }
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var _this2 = this;
+
+	            return _react2.default.createElement(
+	                'div',
+	                { className: this.state.canPlay && "left relative full-height full-width" || "invisible" },
+	                _react2.default.createElement('video', {
+	                    src: this.state.url,
+	                    ref: function ref(node) {
+	                        return _this2.videoNode = node;
+	                    },
+	                    className: ' vjs-matrix video-js full-width full-height'
+	                })
+	            );
+	        }
+	    }], [{
+	        key: 'propTypes',
+	        get: function get() {
+	            return {
+	                torrent: _propTypes2.default.string.isRequired
+	            };
+	        }
+	    }]);
+
+	    return AppMoviesPlayer;
+	}(_react2.default.Component);
+
+	exports.default = AppMoviesPlayer;
+
+/***/ }),
+/* 304 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _props3 = __webpack_require__(305);
+
+	var _YouTube = __webpack_require__(306);
+
+	var _YouTube2 = _interopRequireDefault(_YouTube);
+
+	var _SoundCloud = __webpack_require__(310);
+
+	var _SoundCloud2 = _interopRequireDefault(_SoundCloud);
+
+	var _Vimeo = __webpack_require__(313);
+
+	var _Vimeo2 = _interopRequireDefault(_Vimeo);
+
+	var _FilePlayer = __webpack_require__(312);
+
+	var _FilePlayer2 = _interopRequireDefault(_FilePlayer);
+
+	var _Streamable = __webpack_require__(316);
+
+	var _Streamable2 = _interopRequireDefault(_Streamable);
+
+	var _Vidme = __webpack_require__(317);
+
+	var _Vidme2 = _interopRequireDefault(_Vidme);
+
+	var _Wistia = __webpack_require__(318);
+
+	var _Wistia2 = _interopRequireDefault(_Wistia);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ReactPlayer = function (_Component) {
+	  _inherits(ReactPlayer, _Component);
+
+	  function ReactPlayer() {
+	    var _ref;
+
+	    var _temp, _this, _ret;
+
+	    _classCallCheck(this, ReactPlayer);
+
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ReactPlayer.__proto__ || Object.getPrototypeOf(ReactPlayer)).call.apply(_ref, [this].concat(args))), _this), _this.seekTo = function (fraction) {
+	      if (_this.player) {
+	        _this.player.seekTo(fraction);
+	      }
+	    }, _this.getDuration = function () {
+	      if (!_this.player) return null;
+	      return _this.player.getDuration();
+	    }, _this.getCurrentTime = function () {
+	      if (!_this.player) return null;
+	      var duration = _this.player.getDuration();
+	      var fractionPlayed = _this.player.getFractionPlayed();
+	      if (duration === null || fractionPlayed === null) {
+	        return null;
+	      }
+	      return fractionPlayed * duration;
+	    }, _this.progress = function () {
+	      if (_this.props.url && _this.player) {
+	        var loaded = _this.player.getFractionLoaded() || 0;
+	        var played = _this.player.getFractionPlayed() || 0;
+	        var duration = _this.player.getDuration();
+	        var progress = {};
+	        if (loaded !== _this.prevLoaded) {
+	          progress.loaded = loaded;
+	          if (duration) {
+	            progress.loadedSeconds = progress.loaded * duration;
+	          }
+	        }
+	        if (played !== _this.prevPlayed) {
+	          progress.played = played;
+	          if (duration) {
+	            progress.playedSeconds = progress.played * duration;
+	          }
+	        }
+	        if (progress.loaded || progress.played) {
+	          _this.props.onProgress(progress);
+	        }
+	        _this.prevLoaded = loaded;
+	        _this.prevPlayed = played;
+	      }
+	      _this.progressTimeout = setTimeout(_this.progress, _this.props.progressFrequency);
+	    }, _this.ref = function (player) {
+	      _this.player = player;
+	    }, _this.renderPlayer = function (Player) {
+	      var active = Player.canPlay(_this.props.url);
+
+	      var _this$props = _this.props,
+	          youtubeConfig = _this$props.youtubeConfig,
+	          soundcloudConfig = _this$props.soundcloudConfig,
+	          vimeoConfig = _this$props.vimeoConfig,
+	          vidmeConfig = _this$props.vidmeConfig,
+	          fileConfig = _this$props.fileConfig,
+	          activeProps = _objectWithoutProperties(_this$props, ['youtubeConfig', 'soundcloudConfig', 'vimeoConfig', 'vidmeConfig', 'fileConfig']);
+
+	      var props = active ? _extends({}, activeProps, { ref: _this.ref }) : {};
+	      return _react2['default'].createElement(Player, _extends({
+	        key: Player.displayName,
+	        youtubeConfig: youtubeConfig,
+	        soundcloudConfig: soundcloudConfig,
+	        vimeoConfig: vimeoConfig,
+	        vidmeConfig: vidmeConfig,
+	        fileConfig: fileConfig
+	      }, props));
+	    }, _temp), _possibleConstructorReturn(_this, _ret);
+	  }
+
+	  _createClass(ReactPlayer, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.progress();
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      clearTimeout(this.progressTimeout);
+	    }
+	  }, {
+	    key: 'shouldComponentUpdate',
+	    value: function shouldComponentUpdate(nextProps) {
+	      return this.props.url !== nextProps.url || this.props.playing !== nextProps.playing || this.props.volume !== nextProps.volume || this.props.playbackRate !== nextProps.playbackRate || this.props.height !== nextProps.height || this.props.width !== nextProps.width || this.props.hidden !== nextProps.hidden;
+	    }
+	  }, {
+	    key: 'renderPlayers',
+	    value: function renderPlayers() {
+	      // Build array of players to render based on URL and preload config
+	      var _props = this.props,
+	          url = _props.url,
+	          youtubeConfig = _props.youtubeConfig,
+	          vimeoConfig = _props.vimeoConfig;
+
+	      var players = [];
+	      if (_YouTube2['default'].canPlay(url)) {
+	        players.push(_YouTube2['default']);
+	      } else if (_SoundCloud2['default'].canPlay(url)) {
+	        players.push(_SoundCloud2['default']);
+	      } else if (_Vimeo2['default'].canPlay(url)) {
+	        players.push(_Vimeo2['default']);
+	      } else if (_Streamable2['default'].canPlay(url)) {
+	        players.push(_Streamable2['default']);
+	      } else if (_Vidme2['default'].canPlay(url)) {
+	        players.push(_Vidme2['default']);
+	      } else if (_Wistia2['default'].canPlay(url)) {
+	        players.push(_Wistia2['default']);
+	      } else if (url) {
+	        // Fall back to FilePlayer if nothing else can play the URL
+	        players.push(_FilePlayer2['default']);
+	      }
+	      // Render additional players if preload config is set
+	      if (!_YouTube2['default'].canPlay(url) && youtubeConfig.preload) {
+	        players.push(_YouTube2['default']);
+	      }
+	      if (!_Vimeo2['default'].canPlay(url) && vimeoConfig.preload) {
+	        players.push(_Vimeo2['default']);
+	      }
+	      return players.map(this.renderPlayer);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _props2 = this.props,
+	          style = _props2.style,
+	          width = _props2.width,
+	          height = _props2.height,
+	          className = _props2.className,
+	          hidden = _props2.hidden;
+
+	      var players = this.renderPlayers();
+	      return _react2['default'].createElement(
+	        'div',
+	        { style: _extends({}, style, { width: width, height: height }), className: className, hidden: hidden },
+	        players
+	      );
+	    }
+	  }]);
+
+	  return ReactPlayer;
+	}(_react.Component);
+
+	ReactPlayer.displayName = 'ReactPlayer';
+	ReactPlayer.propTypes = _props3.propTypes;
+	ReactPlayer.defaultProps = _props3.defaultProps;
+	exports['default'] = ReactPlayer;
+	module.exports = exports['default'];
+
+/***/ }),
+/* 305 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.defaultProps = exports.propTypes = undefined;
+
+	var _propTypes = __webpack_require__(184);
+
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var string = _propTypes2['default'].string,
+	    bool = _propTypes2['default'].bool,
+	    number = _propTypes2['default'].number,
+	    oneOfType = _propTypes2['default'].oneOfType,
+	    shape = _propTypes2['default'].shape,
+	    object = _propTypes2['default'].object,
+	    func = _propTypes2['default'].func;
+	var propTypes = exports.propTypes = {
+	  url: string,
+	  playing: bool,
+	  loop: bool,
+	  controls: bool,
+	  volume: number,
+	  playbackRate: number,
+	  width: oneOfType([string, number]),
+	  height: oneOfType([string, number]),
+	  hidden: bool,
+	  className: string,
+	  style: object,
+	  progressFrequency: number,
+	  playsinline: bool,
+	  soundcloudConfig: shape({
+	    clientId: string,
+	    showArtwork: bool
+	  }),
+	  youtubeConfig: shape({
+	    playerVars: object,
+	    preload: bool
+	  }),
+	  vimeoConfig: shape({
+	    iframeParams: object,
+	    preload: bool
+	  }),
+	  vidmeConfig: shape({
+	    format: string
+	  }),
+	  fileConfig: shape({
+	    attributes: object
+	  }),
+	  onReady: func,
+	  onStart: func,
+	  onPlay: func,
+	  onPause: func,
+	  onBuffer: func,
+	  onEnded: func,
+	  onError: func,
+	  onDuration: func,
+	  onProgress: func
+	};
+
+	var defaultProps = exports.defaultProps = {
+	  playing: false,
+	  loop: false,
+	  controls: false,
+	  volume: 0.8,
+	  playbackRate: 1,
+	  width: 640,
+	  height: 360,
+	  hidden: false,
+	  progressFrequency: 1000,
+	  playsinline: false,
+	  soundcloudConfig: {
+	    clientId: 'e8b6f84fbcad14c301ca1355cae1dea2',
+	    showArtwork: true
+	  },
+	  youtubeConfig: {
+	    playerVars: {},
+	    preload: false
+	  },
+	  vimeoConfig: {
+	    iframeParams: {},
+	    preload: false
+	  },
+	  vidmeConfig: {
+	    format: null
+	  },
+	  fileConfig: {
+	    attributes: {}
+	  },
+	  onReady: function onReady() {},
+	  onStart: function onStart() {},
+	  onPlay: function onPlay() {},
+	  onPause: function onPause() {},
+	  onBuffer: function onBuffer() {},
+	  onEnded: function onEnded() {},
+	  onError: function onError() {},
+	  onDuration: function onDuration() {},
+	  onProgress: function onProgress() {}
+	};
+
+/***/ }),
+/* 306 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _loadScript = __webpack_require__(307);
+
+	var _loadScript2 = _interopRequireDefault(_loadScript);
+
+	var _Base2 = __webpack_require__(308);
+
+	var _Base3 = _interopRequireDefault(_Base2);
+
+	var _utils = __webpack_require__(309);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var SDK_URL = 'https://www.youtube.com/iframe_api';
+	var SDK_GLOBAL = 'YT';
+	var SDK_GLOBAL_READY = 'onYouTubeIframeAPIReady';
+	var MATCH_URL = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+	var BLANK_VIDEO_URL = 'https://www.youtube.com/watch?v=GlCmAC4MHek';
+	var DEFAULT_PLAYER_VARS = {
+	  autoplay: 0,
+	  playsinline: 1,
+	  showinfo: 0,
+	  rel: 0,
+	  iv_load_policy: 3
+	};
+
+	var YouTube = function (_Base) {
+	  _inherits(YouTube, _Base);
+
+	  function YouTube() {
+	    var _ref;
+
+	    var _temp, _this, _ret;
+
+	    _classCallCheck(this, YouTube);
+
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = YouTube.__proto__ || Object.getPrototypeOf(YouTube)).call.apply(_ref, [this].concat(args))), _this), _this.onStateChange = function (_ref2) {
+	      var data = _ref2.data;
+	      var _this$props = _this.props,
+	          onPause = _this$props.onPause,
+	          onBuffer = _this$props.onBuffer;
+	      var _window$SDK_GLOBAL$Pl = window[SDK_GLOBAL].PlayerState,
+	          PLAYING = _window$SDK_GLOBAL$Pl.PLAYING,
+	          PAUSED = _window$SDK_GLOBAL$Pl.PAUSED,
+	          BUFFERING = _window$SDK_GLOBAL$Pl.BUFFERING,
+	          ENDED = _window$SDK_GLOBAL$Pl.ENDED,
+	          CUED = _window$SDK_GLOBAL$Pl.CUED;
+
+	      if (data === PLAYING) _this.onPlay();
+	      if (data === PAUSED) onPause();
+	      if (data === BUFFERING) onBuffer();
+	      if (data === ENDED) _this.onEnded();
+	      if (data === CUED) _this.onReady();
+	    }, _this.onEnded = function () {
+	      var _this$props2 = _this.props,
+	          loop = _this$props2.loop,
+	          onEnded = _this$props2.onEnded;
+
+	      if (loop) {
+	        _this.seekTo(0);
+	      }
+	      onEnded();
+	    }, _this.ref = function (container) {
+	      _this.container = container;
+	    }, _temp), _possibleConstructorReturn(_this, _ret);
+	  }
+
+	  _createClass(YouTube, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var _props = this.props,
+	          url = _props.url,
+	          youtubeConfig = _props.youtubeConfig;
+
+	      if (!url && youtubeConfig.preload) {
+	        this.preloading = true;
+	        this.load(BLANK_VIDEO_URL);
+	      }
+	      _get(YouTube.prototype.__proto__ || Object.getPrototypeOf(YouTube.prototype), 'componentDidMount', this).call(this);
+	    }
+	  }, {
+	    key: 'getSDK',
+	    value: function getSDK() {
+	      if (window[SDK_GLOBAL] && window[SDK_GLOBAL].loaded) {
+	        return Promise.resolve(window[SDK_GLOBAL]);
+	      }
+	      return new Promise(function (resolve, reject) {
+	        var previousOnReady = window[SDK_GLOBAL_READY];
+	        window[SDK_GLOBAL_READY] = function () {
+	          if (previousOnReady) previousOnReady();
+	          resolve(window[SDK_GLOBAL]);
+	        };
+	        (0, _loadScript2['default'])(SDK_URL, function (err) {
+	          if (err) reject(err);
+	        });
+	      });
+	    }
+	  }, {
+	    key: 'load',
+	    value: function load(url) {
+	      var _this2 = this;
+
+	      var _props2 = this.props,
+	          playsinline = _props2.playsinline,
+	          controls = _props2.controls,
+	          youtubeConfig = _props2.youtubeConfig,
+	          _onError = _props2.onError;
+
+	      var id = url && url.match(MATCH_URL)[1];
+	      if (this.isReady) {
+	        this.player.cueVideoById({
+	          videoId: id,
+	          startSeconds: (0, _utils.parseStartTime)(url)
+	        });
+	        return;
+	      }
+	      if (this.loadingSDK) {
+	        this.loadOnReady = url;
+	        return;
+	      }
+	      this.loadingSDK = true;
+	      this.getSDK().then(function (YT) {
+	        _this2.player = new YT.Player(_this2.container, {
+	          width: '100%',
+	          height: '100%',
+	          videoId: id,
+	          playerVars: _extends({}, DEFAULT_PLAYER_VARS, {
+	            controls: controls ? 1 : 0,
+	            start: (0, _utils.parseStartTime)(url),
+	            origin: window.location.origin,
+	            playsinline: playsinline
+	          }, youtubeConfig.playerVars),
+	          events: {
+	            onReady: function onReady() {
+	              _this2.loadingSDK = false;
+	              _this2.onReady();
+	            },
+	            onStateChange: _this2.onStateChange,
+	            onError: function onError(event) {
+	              return _onError(event.data);
+	            }
+	          }
+	        });
+	      }, _onError);
+	    }
+	  }, {
+	    key: 'play',
+	    value: function play() {
+	      if (!this.isReady || !this.player.playVideo) return;
+	      this.player.playVideo();
+	    }
+	  }, {
+	    key: 'pause',
+	    value: function pause() {
+	      if (!this.isReady || !this.player.pauseVideo) return;
+	      this.player.pauseVideo();
+	    }
+	  }, {
+	    key: 'stop',
+	    value: function stop() {
+	      if (!this.isReady || !this.player.stopVideo) return;
+	      this.player.stopVideo();
+	    }
+	  }, {
+	    key: 'seekTo',
+	    value: function seekTo(fraction) {
+	      _get(YouTube.prototype.__proto__ || Object.getPrototypeOf(YouTube.prototype), 'seekTo', this).call(this, fraction);
+	      if (!this.isReady || !this.player.seekTo) return;
+	      this.player.seekTo(this.getDuration() * fraction);
+	    }
+	  }, {
+	    key: 'setVolume',
+	    value: function setVolume(fraction) {
+	      if (!this.isReady || !this.player.setVolume) return;
+	      this.player.setVolume(fraction * 100);
+	    }
+	  }, {
+	    key: 'setPlaybackRate',
+	    value: function setPlaybackRate(rate) {
+	      if (!this.isReady || !this.player.setPlaybackRate) return;
+	      this.player.setPlaybackRate(rate);
+	    }
+	  }, {
+	    key: 'getDuration',
+	    value: function getDuration() {
+	      if (!this.isReady || !this.player.getDuration) return null;
+	      return this.player.getDuration();
+	    }
+	  }, {
+	    key: 'getFractionPlayed',
+	    value: function getFractionPlayed() {
+	      if (!this.isReady || !this.getDuration()) return null;
+	      return this.player.getCurrentTime() / this.getDuration();
+	    }
+	  }, {
+	    key: 'getFractionLoaded',
+	    value: function getFractionLoaded() {
+	      if (!this.isReady || !this.player.getVideoLoadedFraction) return null;
+	      return this.player.getVideoLoadedFraction();
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var style = {
+	        width: '100%',
+	        height: '100%',
+	        display: this.props.url ? 'block' : 'none'
+	      };
+	      return _react2['default'].createElement(
+	        'div',
+	        { style: style },
+	        _react2['default'].createElement('div', { ref: this.ref })
+	      );
+	    }
+	  }], [{
+	    key: 'canPlay',
+	    value: function canPlay(url) {
+	      return MATCH_URL.test(url);
+	    }
+	  }]);
+
+	  return YouTube;
+	}(_Base3['default']);
+
+	YouTube.displayName = 'YouTube';
+	exports['default'] = YouTube;
+	module.exports = exports['default'];
+
+/***/ }),
+/* 307 */
+/***/ (function(module, exports) {
+
+	
+	module.exports = function load (src, opts, cb) {
+	  var head = document.head || document.getElementsByTagName('head')[0]
+	  var script = document.createElement('script')
+
+	  if (typeof opts === 'function') {
+	    cb = opts
+	    opts = {}
+	  }
+
+	  opts = opts || {}
+	  cb = cb || function() {}
+
+	  script.type = opts.type || 'text/javascript'
+	  script.charset = opts.charset || 'utf8';
+	  script.async = 'async' in opts ? !!opts.async : true
+	  script.src = src
+
+	  if (opts.attrs) {
+	    setAttributes(script, opts.attrs)
+	  }
+
+	  if (opts.text) {
+	    script.text = '' + opts.text
+	  }
+
+	  var onend = 'onload' in script ? stdOnEnd : ieOnEnd
+	  onend(script, cb)
+
+	  // some good legacy browsers (firefox) fail the 'in' detection above
+	  // so as a fallback we always set onload
+	  // old IE will ignore this and new IE will set onload
+	  if (!script.onload) {
+	    stdOnEnd(script, cb);
+	  }
+
+	  head.appendChild(script)
+	}
+
+	function setAttributes(script, attrs) {
+	  for (var attr in attrs) {
+	    script.setAttribute(attr, attrs[attr]);
+	  }
+	}
+
+	function stdOnEnd (script, cb) {
+	  script.onload = function () {
+	    this.onerror = this.onload = null
+	    cb(null, script)
+	  }
+	  script.onerror = function () {
+	    // this.onload = null here is necessary
+	    // because even IE9 works not like others
+	    this.onerror = this.onload = null
+	    cb(new Error('Failed to load ' + this.src), script)
+	  }
+	}
+
+	function ieOnEnd (script, cb) {
+	  script.onreadystatechange = function () {
+	    if (this.readyState != 'complete' && this.readyState != 'loaded') return
+	    this.onreadystatechange = null
+	    cb(null, script) // there is no way to catch loading errors in IE8
+	  }
+	}
+
+
+/***/ }),
+/* 308 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _props2 = __webpack_require__(305);
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var SEEK_ON_PLAY_EXPIRY = 5000;
+
+	var Base = function (_Component) {
+	  _inherits(Base, _Component);
+
+	  function Base() {
+	    var _ref;
+
+	    var _temp, _this, _ret;
+
+	    _classCallCheck(this, Base);
+
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Base.__proto__ || Object.getPrototypeOf(Base)).call.apply(_ref, [this].concat(args))), _this), _this.isReady = false, _this.startOnPlay = true, _this.durationOnPlay = false, _this.seekOnPlay = null, _this.onPlay = function () {
+	      var _this$props = _this.props,
+	          volume = _this$props.volume,
+	          onStart = _this$props.onStart,
+	          onPlay = _this$props.onPlay,
+	          onDuration = _this$props.onDuration,
+	          playbackRate = _this$props.playbackRate;
+
+	      if (_this.startOnPlay) {
+	        _this.setPlaybackRate(playbackRate);
+	        _this.setVolume(volume);
+	        onStart();
+	        _this.startOnPlay = false;
+	      }
+	      onPlay();
+	      if (_this.seekOnPlay) {
+	        _this.seekTo(_this.seekOnPlay);
+	        _this.seekOnPlay = null;
+	      }
+	      if (_this.durationOnPlay) {
+	        onDuration(_this.getDuration());
+	        _this.durationOnPlay = false;
+	      }
+	    }, _this.onReady = function () {
+	      var _this$props2 = _this.props,
+	          onReady = _this$props2.onReady,
+	          playing = _this$props2.playing,
+	          onDuration = _this$props2.onDuration;
+
+	      _this.isReady = true;
+	      onReady();
+	      if (playing || _this.preloading) {
+	        _this.preloading = false;
+	        if (_this.loadOnReady) {
+	          _this.load(_this.loadOnReady);
+	          _this.loadOnReady = null;
+	        } else {
+	          _this.play();
+	        }
+	      }
+	      var duration = _this.getDuration();
+	      if (duration) {
+	        onDuration(duration);
+	      } else {
+	        _this.durationOnPlay = true;
+	      }
+	    }, _temp), _possibleConstructorReturn(_this, _ret);
+	  }
+
+	  _createClass(Base, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var url = this.props.url;
+
+	      this.mounted = true;
+	      if (url) {
+	        this.load(url);
+	      }
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      this.stop();
+	      this.mounted = false;
+	    }
+	  }, {
+	    key: 'componentWillReceiveProps',
+	    value: function componentWillReceiveProps(nextProps) {
+	      var _props = this.props,
+	          url = _props.url,
+	          playing = _props.playing,
+	          volume = _props.volume,
+	          playbackRate = _props.playbackRate;
+	      // Invoke player methods based on incoming props
+
+	      if (url !== nextProps.url && nextProps.url) {
+	        this.seekOnPlay = null;
+	        this.startOnPlay = true;
+	        this.load(nextProps.url);
+	      } else if (url && !nextProps.url) {
+	        this.stop();
+	        clearTimeout(this.updateTimeout);
+	      } else if (!playing && nextProps.playing) {
+	        this.play();
+	      } else if (playing && !nextProps.playing) {
+	        this.pause();
+	      } else if (volume !== nextProps.volume) {
+	        this.setVolume(nextProps.volume);
+	      } else if (playbackRate !== nextProps.playbackRate) {
+	        this.setPlaybackRate(nextProps.playbackRate);
+	      }
+	    }
+	  }, {
+	    key: 'shouldComponentUpdate',
+	    value: function shouldComponentUpdate(nextProps) {
+	      return this.props.url !== nextProps.url;
+	    }
+	  }, {
+	    key: 'seekTo',
+	    value: function seekTo(fraction) {
+	      var _this2 = this;
+
+	      // When seeking before player is ready, store value and seek later
+	      if (!this.isReady && fraction !== 0) {
+	        this.seekOnPlay = fraction;
+	        setTimeout(function () {
+	          _this2.seekOnPlay = null;
+	        }, SEEK_ON_PLAY_EXPIRY);
+	      }
+	    }
+	  }]);
+
+	  return Base;
+	}(_react.Component);
+
+	Base.propTypes = _props2.propTypes;
+	Base.defaultProps = _props2.defaultProps;
+	exports['default'] = Base;
+	module.exports = exports['default'];
+
+/***/ }),
+/* 309 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+	exports.parseStartTime = parseStartTime;
+	var MATCH_START_QUERY = /[?&#](?:start|t)=([0-9hms]+)/;
+	var MATCH_START_STAMP = /(\d+)(h|m|s)/g;
+	var MATCH_NUMERIC = /^\d+$/;
+
+	// Parse YouTube URL for a start time param, ie ?t=1h14m30s
+	// and return the start time in seconds
+	function parseStartTime(url) {
+	  var match = url.match(MATCH_START_QUERY);
+	  if (match) {
+	    var stamp = match[1];
+	    if (stamp.match(MATCH_START_STAMP)) {
+	      return parseStartStamp(stamp);
+	    }
+	    if (MATCH_NUMERIC.test(stamp)) {
+	      return parseInt(stamp, 10);
+	    }
+	  }
+	  return 0;
+	}
+
+	function parseStartStamp(stamp) {
+	  var seconds = 0;
+	  var array = MATCH_START_STAMP.exec(stamp);
+	  while (array !== null) {
+	    var _array = array,
+	        _array2 = _slicedToArray(_array, 3),
+	        count = _array2[1],
+	        period = _array2[2];
+
+	    if (period === 'h') seconds += parseInt(count, 10) * 60 * 60;
+	    if (period === 'm') seconds += parseInt(count, 10) * 60;
+	    if (period === 's') seconds += parseInt(count, 10);
+	    array = MATCH_START_STAMP.exec(stamp);
+	  }
+	  return seconds;
+	}
+
+/***/ }),
+/* 310 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _fetchJsonp = __webpack_require__(311);
+
+	var _fetchJsonp2 = _interopRequireDefault(_fetchJsonp);
+
+	var _FilePlayer2 = __webpack_require__(312);
+
+	var _FilePlayer3 = _interopRequireDefault(_FilePlayer2);
+
+	var _props3 = __webpack_require__(305);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var RESOLVE_URL = '//api.soundcloud.com/resolve.json';
+	var MATCH_URL = /^https?:\/\/(soundcloud.com|snd.sc)\/([a-z0-9-_]+\/[a-z0-9-_]+)$/;
+
+	var songData = {}; // Cache song data requests
+
+	var SoundCloud = function (_FilePlayer) {
+	  _inherits(SoundCloud, _FilePlayer);
+
+	  function SoundCloud() {
+	    var _ref;
+
+	    var _temp, _this, _ret;
+
+	    _classCallCheck(this, SoundCloud);
+
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SoundCloud.__proto__ || Object.getPrototypeOf(SoundCloud)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+	      image: null
+	    }, _this.clientId = _this.props.soundcloudConfig.clientId || _props3.defaultProps.soundcloudConfig.clientId, _this.ref = function (player) {
+	      _this.player = player;
+	    }, _temp), _possibleConstructorReturn(_this, _ret);
+	  }
+
+	  _createClass(SoundCloud, [{
+	    key: 'shouldComponentUpdate',
+	    value: function shouldComponentUpdate(nextProps, nextState) {
+	      return _get(SoundCloud.prototype.__proto__ || Object.getPrototypeOf(SoundCloud.prototype), 'shouldComponentUpdate', this).call(this, nextProps, nextState) || this.state.image !== nextState.image;
+	    }
+	  }, {
+	    key: 'getSongData',
+	    value: function getSongData(url) {
+	      var _this2 = this;
+
+	      if (songData[url]) {
+	        return Promise.resolve(songData[url]);
+	      }
+	      return (0, _fetchJsonp2['default'])(RESOLVE_URL + '?url=' + url + '&client_id=' + this.clientId).then(function (response) {
+	        if (response.ok) {
+	          songData[url] = response.json();
+	          return songData[url];
+	        } else {
+	          _this2.props.onError(new Error('SoundCloud track could not be resolved'));
+	        }
+	      });
+	    }
+	  }, {
+	    key: 'load',
+	    value: function load(url) {
+	      var _this3 = this;
+
+	      var _props = this.props,
+	          soundcloudConfig = _props.soundcloudConfig,
+	          onError = _props.onError;
+
+	      this.stop();
+	      this.getSongData(url).then(function (data) {
+	        if (!_this3.mounted) return;
+	        if (!data.streamable) {
+	          onError(new Error('SoundCloud track is not streamable'));
+	          return;
+	        }
+	        var image = data.artwork_url || data.user.avatar_url;
+	        if (image && soundcloudConfig.showArtwork) {
+	          _this3.setState({ image: image.replace('-large', '-t500x500') });
+	        }
+	        _this3.player.src = data.stream_url + '?client_id=' + _this3.clientId;
+	      }, onError);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _props2 = this.props,
+	          url = _props2.url,
+	          loop = _props2.loop,
+	          controls = _props2.controls;
+
+	      var style = {
+	        display: url ? 'block' : 'none',
+	        height: '100%',
+	        backgroundImage: this.state.image ? 'url(' + this.state.image + ')' : null,
+	        backgroundSize: 'cover',
+	        backgroundPosition: 'center'
+	      };
+	      return _react2['default'].createElement(
+	        'div',
+	        { style: style },
+	        _react2['default'].createElement('audio', {
+	          ref: this.ref,
+	          type: 'audio/mpeg',
+	          preload: 'auto',
+	          style: {
+	            width: '100%',
+	            height: '100%'
+	          },
+	          controls: controls,
+	          loop: loop
+	        })
+	      );
+	    }
+	  }], [{
+	    key: 'canPlay',
+	    value: function canPlay(url) {
+	      return MATCH_URL.test(url);
+	    }
+	  }]);
+
+	  return SoundCloud;
+	}(_FilePlayer3['default']);
+
+	SoundCloud.displayName = 'SoundCloud';
+	exports['default'] = SoundCloud;
+	module.exports = exports['default'];
+
+/***/ }),
+/* 311 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
+	  if (true) {
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, module], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  } else if (typeof exports !== 'undefined' && typeof module !== 'undefined') {
+	    factory(exports, module);
+	  } else {
+	    var mod = {
+	      exports: {}
+	    };
+	    factory(mod.exports, mod);
+	    global.fetchJsonp = mod.exports;
+	  }
+	})(this, function (exports, module) {
+	  'use strict';
+
+	  var defaultOptions = {
+	    timeout: 5000,
+	    jsonpCallback: 'callback',
+	    jsonpCallbackFunction: null
+	  };
+
+	  function generateCallbackFunction() {
+	    return 'jsonp_' + Date.now() + '_' + Math.ceil(Math.random() * 100000);
+	  }
+
+	  // Known issue: Will throw 'Uncaught ReferenceError: callback_*** is not defined'
+	  // error if request timeout
+	  function clearFunction(functionName) {
+	    // IE8 throws an exception when you try to delete a property on window
+	    // http://stackoverflow.com/a/1824228/751089
+	    try {
+	      delete window[functionName];
+	    } catch (e) {
+	      window[functionName] = undefined;
+	    }
+	  }
+
+	  function removeScript(scriptId) {
+	    var script = document.getElementById(scriptId);
+	    document.getElementsByTagName('head')[0].removeChild(script);
+	  }
+
+	  function fetchJsonp(_url) {
+	    var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+
+	    // to avoid param reassign
+	    var url = _url;
+	    var timeout = options.timeout || defaultOptions.timeout;
+	    var jsonpCallback = options.jsonpCallback || defaultOptions.jsonpCallback;
+
+	    var timeoutId = undefined;
+
+	    return new Promise(function (resolve, reject) {
+	      var callbackFunction = options.jsonpCallbackFunction || generateCallbackFunction();
+	      var scriptId = jsonpCallback + '_' + callbackFunction;
+
+	      window[callbackFunction] = function (response) {
+	        resolve({
+	          ok: true,
+	          // keep consistent with fetch API
+	          json: function json() {
+	            return Promise.resolve(response);
+	          }
+	        });
+
+	        if (timeoutId) clearTimeout(timeoutId);
+
+	        removeScript(scriptId);
+
+	        clearFunction(callbackFunction);
+	      };
+
+	      // Check if the user set their own params, and if not add a ? to start a list of params
+	      url += url.indexOf('?') === -1 ? '?' : '&';
+
+	      var jsonpScript = document.createElement('script');
+	      jsonpScript.setAttribute('src', '' + url + jsonpCallback + '=' + callbackFunction);
+	      jsonpScript.id = scriptId;
+	      document.getElementsByTagName('head')[0].appendChild(jsonpScript);
+
+	      timeoutId = setTimeout(function () {
+	        reject(new Error('JSONP request to ' + _url + ' timed out'));
+
+	        clearFunction(callbackFunction);
+	        removeScript(scriptId);
+	      }, timeout);
+	    });
+	  }
+
+	  // export as global function
+	  /*
+	  let local;
+	  if (typeof global !== 'undefined') {
+	    local = global;
+	  } else if (typeof self !== 'undefined') {
+	    local = self;
+	  } else {
+	    try {
+	      local = Function('return this')();
+	    } catch (e) {
+	      throw new Error('polyfill failed because global object is unavailable in this environment');
+	    }
+	  }
+	  local.fetchJsonp = fetchJsonp;
+	  */
+
+	  module.exports = fetchJsonp;
+	});
+
+/***/ }),
+/* 312 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Base2 = __webpack_require__(308);
+
+	var _Base3 = _interopRequireDefault(_Base2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var AUDIO_EXTENSIONS = /\.(m4a|mp4a|mpga|mp2|mp2a|mp3|m2a|m3a|wav|weba|aac|oga|spx)($|\?)/i;
+
+	var FilePlayer = function (_Base) {
+	  _inherits(FilePlayer, _Base);
+
+	  function FilePlayer() {
+	    var _ref;
+
+	    var _temp, _this, _ret;
+
+	    _classCallCheck(this, FilePlayer);
+
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = FilePlayer.__proto__ || Object.getPrototypeOf(FilePlayer)).call.apply(_ref, [this].concat(args))), _this), _this.ref = function (player) {
+	      _this.player = player;
+	    }, _temp), _possibleConstructorReturn(_this, _ret);
+	  }
+
+	  _createClass(FilePlayer, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var _this2 = this;
+
+	      var _props = this.props,
+	          playsinline = _props.playsinline,
+	          onPause = _props.onPause,
+	          onEnded = _props.onEnded,
+	          onError = _props.onError;
+
+	      this.player.addEventListener('canplay', this.onReady);
+	      this.player.addEventListener('play', this.onPlay);
+	      this.player.addEventListener('pause', function () {
+	        if (_this2.mounted) {
+	          onPause();
+	        }
+	      });
+	      this.player.addEventListener('ended', onEnded);
+	      this.player.addEventListener('error', onError);
+	      if (playsinline) {
+	        this.player.setAttribute('playsinline', '');
+	        this.player.setAttribute('webkit-playsinline', '');
+	      }
+	      _get(FilePlayer.prototype.__proto__ || Object.getPrototypeOf(FilePlayer.prototype), 'componentDidMount', this).call(this);
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      var _props2 = this.props,
+	          onPause = _props2.onPause,
+	          onEnded = _props2.onEnded,
+	          onError = _props2.onError;
+
+	      this.player.removeEventListener('canplay', this.onReady);
+	      this.player.removeEventListener('play', this.onPlay);
+	      this.player.removeEventListener('pause', onPause);
+	      this.player.removeEventListener('ended', onEnded);
+	      this.player.removeEventListener('error', onError);
+	      _get(FilePlayer.prototype.__proto__ || Object.getPrototypeOf(FilePlayer.prototype), 'componentWillUnmount', this).call(this);
+	    }
+	  }, {
+	    key: 'load',
+	    value: function load(url) {
+	      this.player.src = url;
+	      if (this.props.playing) {
+	        this.player.load();
+	      }
+	    }
+	  }, {
+	    key: 'play',
+	    value: function play() {
+	      this.player.play();
+	    }
+	  }, {
+	    key: 'pause',
+	    value: function pause() {
+	      this.player.pause();
+	    }
+	  }, {
+	    key: 'stop',
+	    value: function stop() {
+	      this.player.removeAttribute('src');
+	    }
+	  }, {
+	    key: 'seekTo',
+	    value: function seekTo(fraction) {
+	      _get(FilePlayer.prototype.__proto__ || Object.getPrototypeOf(FilePlayer.prototype), 'seekTo', this).call(this, fraction);
+	      this.player.currentTime = this.getDuration() * fraction;
+	    }
+	  }, {
+	    key: 'setVolume',
+	    value: function setVolume(fraction) {
+	      this.player.volume = fraction;
+	    }
+	  }, {
+	    key: 'setPlaybackRate',
+	    value: function setPlaybackRate(rate) {
+	      this.player.playbackRate = rate;
+	    }
+	  }, {
+	    key: 'getDuration',
+	    value: function getDuration() {
+	      if (!this.isReady) return null;
+	      return this.player.duration;
+	    }
+	  }, {
+	    key: 'getFractionPlayed',
+	    value: function getFractionPlayed() {
+	      if (!this.isReady) return null;
+	      return this.player.currentTime / this.getDuration();
+	    }
+	  }, {
+	    key: 'getFractionLoaded',
+	    value: function getFractionLoaded() {
+	      if (!this.isReady || this.player.buffered.length === 0) return null;
+	      return this.player.buffered.end(0) / this.getDuration();
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _props3 = this.props,
+	          url = _props3.url,
+	          loop = _props3.loop,
+	          controls = _props3.controls,
+	          fileConfig = _props3.fileConfig;
+
+	      var Media = AUDIO_EXTENSIONS.test(url) ? 'audio' : 'video';
+	      var style = {
+	        width: '100%',
+	        height: '100%',
+	        display: url ? 'block' : 'none'
+	      };
+	      return _react2['default'].createElement(Media, _extends({
+	        ref: this.ref,
+	        style: style,
+	        preload: 'auto',
+	        controls: controls,
+	        loop: loop
+	      }, fileConfig.attributes));
+	    }
+	  }], [{
+	    key: 'canPlay',
+	    value: function canPlay(url) {
+	      return true;
+	    }
+	  }]);
+
+	  return FilePlayer;
+	}(_Base3['default']);
+
+	FilePlayer.displayName = 'FilePlayer';
+	exports['default'] = FilePlayer;
+	module.exports = exports['default'];
+
+/***/ }),
+/* 313 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _queryString = __webpack_require__(314);
+
+	var _Base2 = __webpack_require__(308);
+
+	var _Base3 = _interopRequireDefault(_Base2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var IFRAME_SRC = 'https://player.vimeo.com/video/';
+	var MATCH_URL = /https?:\/\/(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^/]*)\/videos\/|album\/(\d+)\/video\/|video\/|)(\d+)(?:$|\/|\?)/;
+	var MATCH_MESSAGE_ORIGIN = /^https?:\/\/player.vimeo.com/;
+	var BLANK_VIDEO_URL = 'https://vimeo.com/127250231';
+	var DEFAULT_IFRAME_PARAMS = {
+	  api: 1,
+	  autoplay: 0,
+	  badge: 0,
+	  byline: 0,
+	  fullscreen: 1,
+	  portrait: 0,
+	  title: 0
+	};
+
+	var Vimeo = function (_Base) {
+	  _inherits(Vimeo, _Base);
+
+	  function Vimeo() {
+	    var _ref;
+
+	    var _temp, _this, _ret;
+
+	    _classCallCheck(this, Vimeo);
+
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Vimeo.__proto__ || Object.getPrototypeOf(Vimeo)).call.apply(_ref, [this].concat(args))), _this), _this.onMessage = function (e) {
+	      if (!MATCH_MESSAGE_ORIGIN.test(e.origin)) return;
+	      _this.origin = _this.origin || e.origin;
+	      var data = JSON.parse(e.data);
+	      if (data.event === 'ready') {
+	        _this.postMessage('getDuration');
+	        _this.postMessage('addEventListener', 'playProgress');
+	        _this.postMessage('addEventListener', 'loadProgress');
+	        _this.postMessage('addEventListener', 'play');
+	        _this.postMessage('addEventListener', 'pause');
+	        _this.postMessage('addEventListener', 'finish');
+	      }
+	      if (data.event === 'playProgress') _this.fractionPlayed = data.data.percent;
+	      if (data.event === 'loadProgress') _this.fractionLoaded = data.data.percent;
+	      if (data.event === 'play') _this.onPlay();
+	      if (data.event === 'pause') _this.props.onPause();
+	      if (data.event === 'finish') _this.onEnded();
+	      if (data.method === 'getDuration') {
+	        _this.duration = data.value; // Store for use later
+	        _this.onReady();
+	      }
+	    }, _this.onEnded = function () {
+	      var _this$props = _this.props,
+	          loop = _this$props.loop,
+	          onEnded = _this$props.onEnded;
+
+	      if (loop) {
+	        _this.seekTo(0);
+	      }
+	      onEnded();
+	    }, _this.postMessage = function (method, value) {
+	      if (!_this.origin) return;
+	      var data = JSON.stringify({ method: method, value: value });
+	      return _this.iframe.contentWindow && _this.iframe.contentWindow.postMessage(data, _this.origin);
+	    }, _this.ref = function (iframe) {
+	      _this.iframe = iframe;
+	    }, _temp), _possibleConstructorReturn(_this, _ret);
+	  }
+
+	  _createClass(Vimeo, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var _props = this.props,
+	          url = _props.url,
+	          vimeoConfig = _props.vimeoConfig;
+
+	      window.addEventListener('message', this.onMessage, false);
+
+	      if (!url && vimeoConfig.preload) {
+	        this.preloading = true;
+	        this.load(BLANK_VIDEO_URL);
+	      }
+
+	      _get(Vimeo.prototype.__proto__ || Object.getPrototypeOf(Vimeo.prototype), 'componentDidMount', this).call(this);
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      window.removeEventListener('message', this.onMessage, false);
+	      _get(Vimeo.prototype.__proto__ || Object.getPrototypeOf(Vimeo.prototype), 'componentWillUnmount', this).call(this);
+	    }
+	  }, {
+	    key: 'getIframeParams',
+	    value: function getIframeParams() {
+	      return _extends({}, DEFAULT_IFRAME_PARAMS, this.props.vimeoConfig.iframeParams);
+	    }
+	  }, {
+	    key: 'load',
+	    value: function load(url) {
+	      var id = url.match(MATCH_URL)[3];
+	      this.iframe.src = IFRAME_SRC + id + '?' + (0, _queryString.stringify)(this.getIframeParams());
+	    }
+	  }, {
+	    key: 'play',
+	    value: function play() {
+	      this.postMessage('play');
+	    }
+	  }, {
+	    key: 'pause',
+	    value: function pause() {
+	      this.postMessage('pause');
+	    }
+	  }, {
+	    key: 'stop',
+	    value: function stop() {
+	      this.iframe.src = '';
+	    }
+	  }, {
+	    key: 'seekTo',
+	    value: function seekTo(fraction) {
+	      _get(Vimeo.prototype.__proto__ || Object.getPrototypeOf(Vimeo.prototype), 'seekTo', this).call(this, fraction);
+	      this.postMessage('seekTo', this.duration * fraction);
+	    }
+	  }, {
+	    key: 'setVolume',
+	    value: function setVolume(fraction) {
+	      this.postMessage('setVolume', fraction);
+	    }
+	  }, {
+	    key: 'setPlaybackRate',
+	    value: function setPlaybackRate(rate) {
+	      this.postMessage('setPlaybackRate', rate);
+	    }
+	  }, {
+	    key: 'getDuration',
+	    value: function getDuration() {
+	      return this.duration;
+	    }
+	  }, {
+	    key: 'getFractionPlayed',
+	    value: function getFractionPlayed() {
+	      return this.fractionPlayed || null;
+	    }
+	  }, {
+	    key: 'getFractionLoaded',
+	    value: function getFractionLoaded() {
+	      return this.fractionLoaded || null;
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _getIframeParams = this.getIframeParams(),
+	          fullscreen = _getIframeParams.fullscreen;
+
+	      var style = {
+	        display: this.props.url ? 'block' : 'none',
+	        width: '100%',
+	        height: '100%'
+	      };
+	      return _react2['default'].createElement('iframe', {
+	        ref: this.ref,
+	        frameBorder: '0',
+	        style: style,
+	        allowFullScreen: fullscreen
+	      });
+	    }
+	  }], [{
+	    key: 'canPlay',
+	    value: function canPlay(url) {
+	      return MATCH_URL.test(url);
+	    }
+	  }]);
+
+	  return Vimeo;
+	}(_Base3['default']);
+
+	Vimeo.displayName = 'Vimeo';
+	exports['default'] = Vimeo;
+	module.exports = exports['default'];
+
+/***/ }),
+/* 314 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	var strictUriEncode = __webpack_require__(315);
+	var objectAssign = __webpack_require__(4);
+
+	function encoderForArrayFormat(opts) {
+		switch (opts.arrayFormat) {
+			case 'index':
+				return function (key, value, index) {
+					return value === null ? [
+						encode(key, opts),
+						'[',
+						index,
+						']'
+					].join('') : [
+						encode(key, opts),
+						'[',
+						encode(index, opts),
+						']=',
+						encode(value, opts)
+					].join('');
+				};
+
+			case 'bracket':
+				return function (key, value) {
+					return value === null ? encode(key, opts) : [
+						encode(key, opts),
+						'[]=',
+						encode(value, opts)
+					].join('');
+				};
+
+			default:
+				return function (key, value) {
+					return value === null ? encode(key, opts) : [
+						encode(key, opts),
+						'=',
+						encode(value, opts)
+					].join('');
+				};
+		}
+	}
+
+	function parserForArrayFormat(opts) {
+		var result;
+
+		switch (opts.arrayFormat) {
+			case 'index':
+				return function (key, value, accumulator) {
+					result = /\[(\d*)\]$/.exec(key);
+
+					key = key.replace(/\[\d*\]$/, '');
+
+					if (!result) {
+						accumulator[key] = value;
+						return;
+					}
+
+					if (accumulator[key] === undefined) {
+						accumulator[key] = {};
+					}
+
+					accumulator[key][result[1]] = value;
+				};
+
+			case 'bracket':
+				return function (key, value, accumulator) {
+					result = /(\[\])$/.exec(key);
+					key = key.replace(/\[\]$/, '');
+
+					if (!result) {
+						accumulator[key] = value;
+						return;
+					} else if (accumulator[key] === undefined) {
+						accumulator[key] = [value];
+						return;
+					}
+
+					accumulator[key] = [].concat(accumulator[key], value);
+				};
+
+			default:
+				return function (key, value, accumulator) {
+					if (accumulator[key] === undefined) {
+						accumulator[key] = value;
+						return;
+					}
+
+					accumulator[key] = [].concat(accumulator[key], value);
+				};
+		}
+	}
+
+	function encode(value, opts) {
+		if (opts.encode) {
+			return opts.strict ? strictUriEncode(value) : encodeURIComponent(value);
+		}
+
+		return value;
+	}
+
+	function keysSorter(input) {
+		if (Array.isArray(input)) {
+			return input.sort();
+		} else if (typeof input === 'object') {
+			return keysSorter(Object.keys(input)).sort(function (a, b) {
+				return Number(a) - Number(b);
+			}).map(function (key) {
+				return input[key];
+			});
+		}
+
+		return input;
+	}
+
+	exports.extract = function (str) {
+		return str.split('?')[1] || '';
+	};
+
+	exports.parse = function (str, opts) {
+		opts = objectAssign({arrayFormat: 'none'}, opts);
+
+		var formatter = parserForArrayFormat(opts);
+
+		// Create an object with no prototype
+		// https://github.com/sindresorhus/query-string/issues/47
+		var ret = Object.create(null);
+
+		if (typeof str !== 'string') {
+			return ret;
+		}
+
+		str = str.trim().replace(/^(\?|#|&)/, '');
+
+		if (!str) {
+			return ret;
+		}
+
+		str.split('&').forEach(function (param) {
+			var parts = param.replace(/\+/g, ' ').split('=');
+			// Firefox (pre 40) decodes `%3D` to `=`
+			// https://github.com/sindresorhus/query-string/pull/37
+			var key = parts.shift();
+			var val = parts.length > 0 ? parts.join('=') : undefined;
+
+			// missing `=` should be `null`:
+			// http://w3.org/TR/2012/WD-url-20120524/#collect-url-parameters
+			val = val === undefined ? null : decodeURIComponent(val);
+
+			formatter(decodeURIComponent(key), val, ret);
+		});
+
+		return Object.keys(ret).sort().reduce(function (result, key) {
+			var val = ret[key];
+			if (Boolean(val) && typeof val === 'object' && !Array.isArray(val)) {
+				// Sort object keys, not values
+				result[key] = keysSorter(val);
+			} else {
+				result[key] = val;
+			}
+
+			return result;
+		}, Object.create(null));
+	};
+
+	exports.stringify = function (obj, opts) {
+		var defaults = {
+			encode: true,
+			strict: true,
+			arrayFormat: 'none'
+		};
+
+		opts = objectAssign(defaults, opts);
+
+		var formatter = encoderForArrayFormat(opts);
+
+		return obj ? Object.keys(obj).sort().map(function (key) {
+			var val = obj[key];
+
+			if (val === undefined) {
+				return '';
+			}
+
+			if (val === null) {
+				return encode(key, opts);
+			}
+
+			if (Array.isArray(val)) {
+				var result = [];
+
+				val.slice().forEach(function (val2) {
+					if (val2 === undefined) {
+						return;
+					}
+
+					result.push(formatter(key, val2, result.length));
+				});
+
+				return result.join('&');
+			}
+
+			return encode(key, opts) + '=' + encode(val, opts);
+		}).filter(function (x) {
+			return x.length > 0;
+		}).join('&') : '';
+	};
+
+
+/***/ }),
+/* 315 */
+/***/ (function(module, exports) {
+
+	'use strict';
+	module.exports = function (str) {
+		return encodeURIComponent(str).replace(/[!'()*]/g, function (c) {
+			return '%' + c.charCodeAt(0).toString(16).toUpperCase();
+		});
+	};
+
+
+/***/ }),
+/* 316 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _FilePlayer2 = __webpack_require__(312);
+
+	var _FilePlayer3 = _interopRequireDefault(_FilePlayer2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var RESOLVE_URL = 'https://api.streamable.com/videos/';
+	var MATCH_URL = /^https?:\/\/streamable.com\/([a-z0-9]+)$/;
+
+	var cache = {}; // Cache song data requests
+
+	var Streamable = function (_FilePlayer) {
+	  _inherits(Streamable, _FilePlayer);
+
+	  function Streamable() {
+	    _classCallCheck(this, Streamable);
+
+	    return _possibleConstructorReturn(this, (Streamable.__proto__ || Object.getPrototypeOf(Streamable)).apply(this, arguments));
+	  }
+
+	  _createClass(Streamable, [{
+	    key: 'getData',
+	    value: function getData(url) {
+	      var onError = this.props.onError;
+
+	      var id = url.match(MATCH_URL)[1];
+	      if (cache[id]) {
+	        return Promise.resolve(cache[id]);
+	      }
+	      return window.fetch(RESOLVE_URL + id).then(function (response) {
+	        if (response.status === 200) {
+	          cache[id] = response.json();
+	          return cache[id];
+	        } else {
+	          onError(new Error('Streamable track could not be resolved'));
+	        }
+	      });
+	    }
+	  }, {
+	    key: 'load',
+	    value: function load(url) {
+	      var _this2 = this;
+
+	      var onError = this.props.onError;
+
+	      this.stop();
+	      this.getData(url).then(function (data) {
+	        if (!_this2.mounted) return;
+	        _this2.player.src = data.files.mp4.url;
+	      }, onError);
+	    }
+	  }], [{
+	    key: 'canPlay',
+	    value: function canPlay(url) {
+	      return MATCH_URL.test(url);
+	    }
+	  }]);
+
+	  return Streamable;
+	}(_FilePlayer3['default']);
+
+	Streamable.displayName = 'Streamable';
+	exports['default'] = Streamable;
+	module.exports = exports['default'];
+
+/***/ }),
+/* 317 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _FilePlayer2 = __webpack_require__(312);
+
+	var _FilePlayer3 = _interopRequireDefault(_FilePlayer2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var RESOLVE_URL = 'https://api.vid.me/videoByUrl/';
+	var MATCH_URL = /^https?:\/\/vid.me\/([a-z0-9]+)$/i;
+
+	var cache = {}; // Cache song data requests
+
+	var Vidme = function (_FilePlayer) {
+	  _inherits(Vidme, _FilePlayer);
+
+	  function Vidme() {
+	    _classCallCheck(this, Vidme);
+
+	    return _possibleConstructorReturn(this, (Vidme.__proto__ || Object.getPrototypeOf(Vidme)).apply(this, arguments));
+	  }
+
+	  _createClass(Vidme, [{
+	    key: 'getData',
+	    value: function getData(url) {
+	      var onError = this.props.onError;
+
+	      var id = url.match(MATCH_URL)[1];
+	      if (cache[id]) {
+	        return Promise.resolve(cache[id]);
+	      }
+	      return window.fetch(RESOLVE_URL + id).then(function (response) {
+	        if (response.status === 200) {
+	          cache[id] = response.json();
+	          return cache[id];
+	        } else {
+	          onError(new Error('Vidme track could not be resolved'));
+	        }
+	      });
+	    }
+	  }, {
+	    key: 'getURL',
+	    value: function getURL(_ref) {
+	      var video = _ref.video;
+	      var vidmeConfig = this.props.vidmeConfig;
+
+	      if (vidmeConfig.format && video.formats && video.formats.length !== 0) {
+	        var index = video.formats.findIndex(function (f) {
+	          return f.type === vidmeConfig.format;
+	        });
+	        if (index !== -1) {
+	          return video.formats[index].uri;
+	        } else {
+	          console.warn('Vidme format "' + vidmeConfig.format + '" was not found for ' + video.full_url);
+	        }
+	      }
+	      return video.complete_url;
+	    }
+	  }, {
+	    key: 'load',
+	    value: function load(url) {
+	      var _this2 = this;
+
+	      var onError = this.props.onError;
+
+	      this.stop();
+	      this.getData(url).then(function (data) {
+	        if (!_this2.mounted) return;
+	        _this2.player.src = _this2.getURL(data);
+	      }, onError);
+	    }
+	  }], [{
+	    key: 'canPlay',
+	    value: function canPlay(url) {
+	      return MATCH_URL.test(url);
+	    }
+	  }]);
+
+	  return Vidme;
+	}(_FilePlayer3['default']);
+
+	Vidme.displayName = 'Vidme';
+	exports['default'] = Vidme;
+	module.exports = exports['default'];
+
+/***/ }),
+/* 318 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _loadScript = __webpack_require__(307);
+
+	var _loadScript2 = _interopRequireDefault(_loadScript);
+
+	var _Base2 = __webpack_require__(308);
+
+	var _Base3 = _interopRequireDefault(_Base2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var SDK_URL = '//fast.wistia.com/assets/external/E-v1.js';
+	var SDK_GLOBAL = 'Wistia';
+	var MATCH_URL = /^https?:\/\/(.+)?(wistia.com|wi.st)\/(medias|embed)\/(.*)$/;
+
+	var Wistia = function (_Base) {
+	  _inherits(Wistia, _Base);
+
+	  function Wistia() {
+	    _classCallCheck(this, Wistia);
+
+	    return _possibleConstructorReturn(this, (Wistia.__proto__ || Object.getPrototypeOf(Wistia)).apply(this, arguments));
+	  }
+
+	  _createClass(Wistia, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var _this2 = this;
+
+	      var _props = this.props,
+	          onStart = _props.onStart,
+	          onPause = _props.onPause,
+	          onEnded = _props.onEnded;
+
+	      this.loadingSDK = true;
+	      this.getSDK().then(function () {
+	        window._wq = window._wq || [];
+	        window._wq.push({
+	          id: _this2.getID(_this2.props.url),
+	          onReady: function onReady(player) {
+	            _this2.loadingSDK = false;
+	            _this2.player = player;
+	            _this2.player.bind('start', onStart);
+	            _this2.player.bind('play', _this2.onPlay);
+	            _this2.player.bind('pause', onPause);
+	            _this2.player.bind('end', onEnded);
+	            _this2.onReady();
+	          }
+	        });
+	      });
+	    }
+	  }, {
+	    key: 'getSDK',
+	    value: function getSDK() {
+	      return new Promise(function (resolve, reject) {
+	        if (window[SDK_GLOBAL]) {
+	          resolve();
+	        } else {
+	          (0, _loadScript2['default'])(SDK_URL, function (err, script) {
+	            if (err) reject(err);
+	            resolve(script);
+	          });
+	        }
+	      });
+	    }
+	  }, {
+	    key: 'getID',
+	    value: function getID(url) {
+	      return url && url.match(MATCH_URL)[4];
+	    }
+	  }, {
+	    key: 'load',
+	    value: function load(url) {
+	      var id = this.getID(url);
+	      if (this.isReady) {
+	        this.player.replaceWith(id);
+	        this.props.onReady();
+	        this.onReady();
+	      }
+	    }
+	  }, {
+	    key: 'play',
+	    value: function play() {
+	      if (!this.isReady || !this.player) return;
+	      this.player.play();
+	    }
+	  }, {
+	    key: 'pause',
+	    value: function pause() {
+	      if (!this.isReady || !this.player) return;
+	      this.player && this.player.pause();
+	    }
+	  }, {
+	    key: 'stop',
+	    value: function stop() {
+	      if (!this.isReady || !this.player) return;
+	      this.player.pause();
+	    }
+	  }, {
+	    key: 'seekTo',
+	    value: function seekTo(fraction) {
+	      _get(Wistia.prototype.__proto__ || Object.getPrototypeOf(Wistia.prototype), 'seekTo', this).call(this, fraction);
+	      if (!this.isReady || !this.player) return;
+	      this.player.time(this.getDuration() * fraction);
+	    }
+	  }, {
+	    key: 'setVolume',
+	    value: function setVolume(fraction) {
+	      if (!this.isReady || !this.player || !this.player.volume) return;
+	      this.player.volume(fraction);
+	    }
+	  }, {
+	    key: 'setPlaybackRate',
+	    value: function setPlaybackRate(rate) {
+	      if (!this.isReady || !this.player || !this.player.playbackRate) return;
+	      this.player.playbackRate(rate);
+	    }
+	  }, {
+	    key: 'getDuration',
+	    value: function getDuration() {
+	      if (!this.isReady || !this.player || !this.player.duration) return;
+	      return this.player.duration();
+	    }
+	  }, {
+	    key: 'getFractionPlayed',
+	    value: function getFractionPlayed() {
+	      if (!this.isReady || !this.player || !this.player.percentWatched) return null;
+	      return this.player.percentWatched();
+	    }
+	  }, {
+	    key: 'getFractionLoaded',
+	    value: function getFractionLoaded() {
+	      return null;
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var id = this.getID(this.props.url);
+	      var className = 'wistia_embed wistia_async_' + id;
+	      var style = {
+	        width: '100%',
+	        height: '100%',
+	        display: this.props.url ? 'block' : 'none'
+	      };
+	      return _react2['default'].createElement('div', { className: className, style: style });
+	    }
+	  }], [{
+	    key: 'canPlay',
+	    value: function canPlay(url) {
+	      return MATCH_URL.test(url);
+	    }
+	  }]);
+
+	  return Wistia;
+	}(_Base3['default']);
+
+	Wistia.displayName = 'Wistia';
+	exports['default'] = Wistia;
+	module.exports = exports['default'];
+
+/***/ }),
+/* 319 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _propTypes = __webpack_require__(184);
+
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var AppMoviesPlayerLoader = function (_React$Component) {
+	    _inherits(AppMoviesPlayerLoader, _React$Component);
+
+	    function AppMoviesPlayerLoader(props) {
+	        _classCallCheck(this, AppMoviesPlayerLoader);
+
+	        return _possibleConstructorReturn(this, (AppMoviesPlayerLoader.__proto__ || Object.getPrototypeOf(AppMoviesPlayerLoader)).call(this, props));
+	    }
+
+	    _createClass(AppMoviesPlayerLoader, [{
+	        key: 'onClose',
+	        value: function onClose(e) {
+	            if (this.props.onClose) {
+	                this.props.onClose(e);
+	            }
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var _this2 = this;
+
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'output-process valign-wrapper full-width full-height' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'center-block valign' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        null,
+	                        _react2.default.createElement(
+	                            'h4',
+	                            { className: 'font-type-titles white-text' },
+	                            this.props.stateText
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'absolute full-width no-left' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: "progress amber lighten-1 width-" + this.props.statePercent + '-p' },
+	                            _react2.default.createElement('div', { className: 'determinate amber darken-4' })
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'relative top-10 text-center' },
+	                        _react2.default.createElement(
+	                            'h1',
+	                            { className: 'font-type-titles white-text' },
+	                            this.props.statePercent,
+	                            '%'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'a',
+	                        { href: 'javascript:void(0);', onClick: function onClick(e) {
+	                                return _this2.onClose(e);
+	                            },
+	                            className: 'btn-close clearfix font-size-45 top-15 right-10' },
+	                        _react2.default.createElement('i', { className: 'icon-cross white-text' })
+	                    )
+	                )
+	            );
+	        }
+	    }], [{
+	        key: 'propTypes',
+	        get: function get() {
+	            return {
+	                stateText: _propTypes2.default.string.isRequired,
+	                statePercent: _propTypes2.default.number.isRequired,
+	                movieInfo: _propTypes2.default.object.isRequired
+	            };
+	        }
+	    }]);
+
+	    return AppMoviesPlayerLoader;
+	}(_react2.default.Component);
+
+	exports.default = AppMoviesPlayerLoader;
 
 /***/ })
 /******/ ]);

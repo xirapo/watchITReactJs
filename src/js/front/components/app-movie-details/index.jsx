@@ -2,8 +2,8 @@
 import React from 'react'
 //Components
 import BoxButton from '../app-buttons/index.jsx'
+import BoxImage from '../app-image/index.jsx'
 import NavBarMenu from '../app-nav-bar-menu/index.jsx'
-import MoviePoster from '../app-movie-poster/index.jsx'
 import AppMovieDetailInfo from '../app-movie-details-info/index.jsx'
 import FlowText from '../util-flow-text/index.jsx'
 import CustomScrollbars from '../util-scroller/index.jsx';
@@ -37,10 +37,8 @@ export default class AppMovieDetail extends React.Component {
         let _to_url_object = {};
 
         _to_url_object['torrent'] = torrent;
-        _to_url_object['id'] = this.props.movie.id;
         _to_url_object['title'] = this.props.movie.title;
         _to_url_object['imdb_code'] = this.props.movie.imdb_code;
-
 
         this.setState({
             torrent: ((
@@ -69,29 +67,13 @@ export default class AppMovieDetail extends React.Component {
                 {/*Aside*/}
                 <aside className="col l4 m4">
                     {/*Poster*/}
-                    <div className="row max-height-750 overflow-hidden fixed-poster-resolution">
-                        <MoviePoster className="full-width" src={this.props.movie.large_cover_image}/>
+                    <div className="row overflow-hidden fixed-poster-resolution">
+                        <BoxImage
+                            className="full-width"
+                            src={this.props.movie.large_cover_image}
+                        />
                     </div>
-                    {/*Controls*/}
-                    <div className="row">
-                        <div className="col l6 m6 padding-left-0">
-                            <a href={"#/movie/play/" + this.state.torrent }>
-                                <BoxButton className="darken-4">
-                                    <span className="z-index-top font-size-small bold capitalize">
-                                        Play
-                                    </span>
-                                </BoxButton>
-                            </a>
-                        </div>
 
-                        <div className="col l6 m6 padding-right-0">
-                            <BoxButton className="darken-4 light-green">
-                                <span className="z-index-top  font-size-small bold capitalize">
-                                    Add
-                                </span>
-                            </BoxButton>
-                        </div>
-                    </div>
                 </aside>
 
                 {/*Main Section*/}
@@ -139,17 +121,29 @@ export default class AppMovieDetail extends React.Component {
 
                     {/*Footer*/}
                     <footer className="row">
-                        <nav className="col s12 l12 m12 transparent z-depth-0">
+                        <nav className="col l8 m8 transparent z-depth-0">
                             <div className="nav-wrapper">
+                                {/*Play*/}
+                                <ul>
+                                    <li className="dropdown">
+                                        <a className="dropdown-button clearfix" href={"#/app/movie/play/" + this.state.torrent }>
+                                            <span className="font-light-gray right">Play</span>
+                                            <i className="icon-controller-play tiny relative top-2 left margin-left-4"/>
+                                        </a>
+                                    </li>
+                                </ul>
+
                                 {/*The resolution menu*/}
                                 <NavBarMenu
                                     btnText="Resolution"
                                     onChange={(torrent) => this.setTorrent(torrent)}
                                     getInitialItem={(t)=>this.setInitialTorrent(t)}
                                     list={this.prepareTorrents(
-                                 this.props.movie.torrents
-                                 )}
+                                        this.props.movie.torrents
+                                    )}
                                 />
+
+                                {/*Watch Trailer*/}
                                 <ul>
                                     <li className="dropdown">
                                         <a className="dropdown-button" href="#modal-trailer">

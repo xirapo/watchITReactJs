@@ -42,13 +42,12 @@ export default class MainMovie extends React.Component {
                 <header className="row">
                     <MainHeader />
                 </header>
-                <section className="row">
+                <section className="row margin-top-20">
                     {/*Main Loader or Movie details*/}
                     {
                         this.state.movies && <MovieDetails movie={this.state.movies}/>
                         || <BoxLoader size="100"/>
                     }
-
                 </section>
 
             </div>

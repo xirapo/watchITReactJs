@@ -10,7 +10,7 @@ import createBrowserHistory from 'history/createBrowserHistory'
 import Login from '../../index/login-view/index.jsx'
 import App from '../../app/main-view/index.jsx'
 import Movie from '../../app/movie-view/index.jsx'
-//import Player from '../app/movie-player-view/index.jsx'
+import Player from '../../app/movie-player-view/index.jsx'
 
 //Require for auth
 import Auth from '../../../../resources/database/auth'
@@ -40,7 +40,8 @@ render(
         <div className="full-height">
             <Route name="login" exact path="/" render={checkOut}/>
             <Route name="app" exact path="/app" render={(n)=>(requireAuth(App,n))}/>
-            <Route name="movie" path="/app/movie/:imdb" render={(n)=>(requireAuth(Movie,n))}/>
+            <Route name="movie" exact path="/app/movie/:imdb" render={(n)=>(requireAuth(Movie,n))}/>
+            <Route name="movie" path="/app/movie/play/:torrent" render={(n)=>(requireAuth(Player,n))}/>
         </div>
     </HashRouter>,
     document.getElementById('main_app')

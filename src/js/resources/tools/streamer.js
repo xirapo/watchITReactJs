@@ -4,8 +4,8 @@
 
     var path = require('path');
     var peerflix = require('peerflix');
-    var parseTorrent = require('parse-torrent');
-    var setting = require(path.resolve() + '/src/js/backend/settings');
+    var parseTorrent = require('read-torrent');
+    var setting = require(path.resolve() + '/src/js/backend/conf');
 
     function TorrentStreamer() {
         this.flix = null;
@@ -57,12 +57,12 @@
 
 
         // There's a minimum size before we start playing the video.
-        var targetLoadedSize = setting.system.MIN_SIZE_LOADED > total ? total : setting.system.MIN_SIZE_LOADED;
-        var targetLoadedPercent = setting.system.MIN_PERCENTAGE_LOADED * total / 100.0;
+        var targetLoadedSize = setting.MIN_SIZE_LOADED > total ? total : setting.MIN_SIZE_LOADED;
+        var targetLoadedPercent = setting.MIN_PERCENTAGE_LOADED * total / 100.0;
         var targetLoaded = Math.max(targetLoadedPercent, targetLoadedSize);
         var percent = downloaded / targetLoaded * 100.0;
 
-        if ((downloaded > setting.system.MIN_SIZE_LOADED || swarm.cachedDownload > setting.system.MIN_SIZE_LOADED)
+        if ((downloaded > setting.MIN_SIZE_LOADED || swarm.cachedDownload > setting.MIN_SIZE_LOADED)
         ) {
             if (typeof callback === 'function') {
                 callback.call(this, flix.href, flix);
@@ -94,7 +94,7 @@
         //Reset stopped on each new play
         this.stopped = false;
         //Handle remote torrent
-        parseTorrent.remote(torrent, function (err, torrent) {
+        parseTorrent(torrent, function (err, torrent) {
             if (err || !torrent) {
                 console.log('Error loading torrent');
                 console.log(torrent);
@@ -116,7 +116,7 @@
 
             tmpFilename = tmpFilename.replace(/([^a-zA-Z0-9-_])/g, '_');
             tmpFile = path.join(ROOT_TMP_FOLDER, tmpFilename);
-            
+
             //Active
             //Starting streaming
             //Streamer!!
@@ -127,11 +127,11 @@
                 tracker: true,
                 verify: true,
                 //port: 554,
-                trackers: setting.system.TORRENT_TRACKERS,
+                trackers: setting.TORRENT_TRACKERS,
                 buffer: (1.5 * 1024 * 1024).toString(),
                 tmp: ROOT_TMP_FOLDER,
                 name: torrent.infoHash,
-                connections: setting.system.MAX_NUM_CONNECTIONS
+                connections: setting.MAX_NUM_CONNECTIONS
             });
 
             this.flix.swarm.piecesGot = 0;
@@ -180,6 +180,5 @@
 
     window.Streamer = new TorrentStreamer;
     window.streamerClass = TorrentStreamer;
-
 
 })(window);

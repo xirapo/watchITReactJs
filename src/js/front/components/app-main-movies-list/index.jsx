@@ -1,7 +1,7 @@
 //Basic
 import React from 'react'
 //Components
-import MoviePoster from '../app-movie-poster/index.jsx'
+import BoxImage from '../app-image/index.jsx'
 import CustomScrollbars from '../util-scroller/index.jsx';
 
 
@@ -27,7 +27,7 @@ export default class AppMoviesList extends React.Component {
                             return (
                                 <div key={k} className="col l2 m2 padding-2">
                                     <a href={"#/app/movie/" + i.imdb_code }>
-                                        <MoviePoster src={i.medium_cover_image }/>
+                                        <BoxImage src={i.medium_cover_image }/>
                                     </a>
                                 </div>
                             )

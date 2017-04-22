@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import PulseLoader from '../../components/util-pulse-loader/index.jsx'
 
-export default class MoviePoster extends React.Component {
+export default class BoxImage extends React.Component {
 
     constructor(props) {
         super(props);
@@ -18,11 +18,22 @@ export default class MoviePoster extends React.Component {
         }
     }
 
+    static get defaultProps() {
+        return {
+            height: 230
+        }
+    }
+
     handleImageLoaded(e) {
         this.setState({
             status: 1,
             loaded: true
         });
+
+        //If need a hook :)
+        if (this.props.handleImageLoaded) {
+            this.props.handleImageLoaded(e)
+        }
     }
 
     handleImageError(e) {
@@ -33,7 +44,7 @@ export default class MoviePoster extends React.Component {
 
     render() {
         return (
-            <div className="clearfix">
+            <figure className="clearfix no-margin">
                 {
                     /*No poster found*/
                     this.state.status < 0 && <img
@@ -51,13 +62,13 @@ export default class MoviePoster extends React.Component {
                 {
                     /*The image*/
                     <img
-                        className={(this.state.loaded && " responsive-img poster-main-view" || " hide")}
+                        className={(this.state.loaded && "responsive-img poster-main-view" || " hide")}
                         src={this.props.src}
                         onLoad={(e)=>this.handleImageLoaded(e)}
                         onError={(e)=>{this.handleImageError(e)}}
                     />
                 }
-            </div>
+            </figure>
 
         )
     }

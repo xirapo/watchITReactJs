@@ -14,7 +14,7 @@ export default class MoviePlayer extends React.Component {
             canPlay: false,
             movieInfo: JSON.parse(
                 (new Buffer(
-                    this.props.params.torrent, 'base64'
+                    this.props.match.params.torrent, 'base64'
                 ).toString())
             )
         };
@@ -44,10 +44,12 @@ export default class MoviePlayer extends React.Component {
                             <AppMoviePlayerLoader
                                 stateText={this.state.state}
                                 statePercent={this.state.percent}
+                                movieInfo={this.state.movieInfo}
                             />
                         </div>
                     )
                 }
+                
                 <section className="absolute full-width full-height clearfix video-stream">
                     <AppMoviePlayer
                         torrent={this.state.movieInfo.torrent}
@@ -59,3 +61,4 @@ export default class MoviePlayer extends React.Component {
         )
     }
 }
+

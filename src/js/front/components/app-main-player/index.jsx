@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactPlayer from 'react-player'
+import PropTypes from 'prop-types'
 
 
 export default class AppMoviesPlayer extends React.Component {
@@ -19,7 +20,7 @@ export default class AppMoviesPlayer extends React.Component {
 
     static get propTypes() {
         return {
-            torrent: React.PropTypes.string.isRequired
+            torrent: PropTypes.string.isRequired
         }
     }
 
@@ -29,16 +30,24 @@ export default class AppMoviesPlayer extends React.Component {
             this.onReady,
             this.onProgress,
             this.onError
-        )
+        );
+
+        this.player = videojs(this.videoNode, {
+            autoplay: true,
+            preload: true,
+            controls:true
+        }, function onPlayerReady() {
+            console.log('onPlayerReady', this)
+        });
+
     }
 
 
     onReady(url, flix) {
 
-        //Change state
         this.setState({
-            canPlay: true,
-            url: url
+            url: url,
+            canPlay: true
         });
 
         //Handle ready
@@ -67,12 +76,13 @@ export default class AppMoviesPlayer extends React.Component {
 
     render() {
         return (
-            this.state.canPlay && (
-                <div className="left relative full-height">
-                    <ReactPlayer
-                        url={this.state.url}
-                        playing width="100%" height="100%"
-                        controls={true}
+            (
+
+                <div className={this.state.canPlay && "left relative full-height full-width" || "invisible"}>
+                    <video
+                        src={this.state.url}
+                        ref={ node => this.videoNode = node }
+                        className=" vjs-matrix video-js full-width full-height"
                     />
                 </div>
             )
