@@ -1,0 +1,30 @@
+/**INPUTS*/
+.input-field-black {
+  @extend .input-field;
+  @include border-radius(5px);
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  padding: 10px;
+
+  i {
+    margin-top: -5px;
+    margin-right: 0 !important;
+    position: relative !important;
+    float: left;
+  }
+
+  input {
+    //@include transform();
+    @include placeholder(#fff);
+    float: left;
+    border: none !important;
+    height: 40px !important;
+    margin: 0 0 2px 0 !important;
+    font-size: 13px;
+
+    &:focus {
+      border: none !important;
+      outline: none !important;
+      box-shadow: none !important;
+    }
+  }
+}

@@ -24,6 +24,10 @@ export default class MainMovie extends React.Component {
         //Default state
         this.state = {};
 
+    }
+
+
+    componentDidMount(){
         //Movie details
         this.movie.get(
             this.props.match.params.imdb //imdb code
@@ -33,7 +37,6 @@ export default class MainMovie extends React.Component {
             })
         }).catch(()=> {
         })
-
     }
 
     render() {

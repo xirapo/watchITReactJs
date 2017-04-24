@@ -10,8 +10,7 @@ export default class AppMoviesPlayerLoader extends React.Component {
     static get propTypes() {
         return {
             stateText: PropTypes.string.isRequired,
-            statePercent: PropTypes.number.isRequired,
-            movieInfo: PropTypes.object.isRequired
+            statePercent: PropTypes.number.isRequired
         }
     }
 
@@ -26,7 +25,7 @@ export default class AppMoviesPlayerLoader extends React.Component {
             <div className="output-process valign-wrapper full-width full-height">
                 <div className="center-block valign">
                     <div>
-                        <h4 className="font-type-titles white-text">
+                        <h4 className="font-type-titles align-center white-text">
                             {this.props.stateText}
                         </h4>
                     </div>
@@ -41,10 +40,10 @@ export default class AppMoviesPlayerLoader extends React.Component {
                         </h1>
                     </div>
                     {/*
-                    <h1 className="white-text font-type-titles absolute clearfix font-size-25 top-15 left-30">
-                        {this.props.movieInfo.title}
-                    </h1>
-                    */}
+                     <h1 className="white-text font-type-titles absolute clearfix font-size-25 top-15 left-30">
+                     {this.props.movieInfo.title}
+                     </h1>
+                     */}
                     <a href="javascript:void(0);" onClick={(e)=>this.onClose(e)}
                        className="btn-close clearfix font-size-45 top-15 right-10">
                         <i className="icon-cross white-text"/>

@@ -15,7 +15,7 @@ export default class AppMenuHeaders extends React.Component {
                 </div>
                 {
                     this.props.action && <div className="col l3 m3 text-center">
-                        <a href="#w" className="tooltip">
+                        <a href="#" className="tooltip">
                             <i className="icon-add-to-list top-2 relative font-light-gray tiny white-hover"/>
                                 <span
                                     className="z-index-top font-size-small bold black-text top-tip grey lighten-1 border-grey-bottom">

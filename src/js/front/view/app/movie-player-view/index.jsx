@@ -11,26 +11,28 @@ import Movie from '../../../../resources/database/movies'
 export default class MoviePlayer extends React.Component {
     constructor(props) {
         super(props);
-
         //Movie
         this.movie = new Movie();
+        //Decode param
+        let _movieInfo = JSON.parse(
+            (
+                new Buffer(
+                    this.props.match.params.torrent,
+                    'base64'
+                ).toString()
+            )
+        );
 
         //Decode string and pass to json object
         this.state = {
             state: 'Connecting',
             percent: 0,
-            canPlay: false,
-            movieSubs: null,
-            movieInfo: JSON.parse(
-                (new Buffer(
-                    this.props.match.params.torrent, 'base64'
-                ).toString())
-            )
+            canPlay: false
         };
 
         //Set subs
         this.movie.get(
-            this.state.movieInfo.imdb_code
+            _movieInfo.imdb_code
         ).then((res)=> {
             //Get better sub
             for (let s in res.subtitles) {
@@ -41,9 +43,10 @@ export default class MoviePlayer extends React.Component {
 
             //Set new subs
             this.setState({
-                movieSubs: res.subtitles
-            })
-            
+                movieSubs: res.subtitles,
+                movieInfo: _movieInfo
+            });
+
         }).catch(()=> {
         })
     }
@@ -57,6 +60,14 @@ export default class MoviePlayer extends React.Component {
     }
 
     onReady(url) {
+        //Change state
+        this.setState({
+            state: 'Ready',
+            percent: 100
+        })
+    }
+
+    onCanPlay(url) {
         this.setState({
             canPlay: true
         })
@@ -67,25 +78,31 @@ export default class MoviePlayer extends React.Component {
         return (
             <div>
                 {
-                    !this.state.canPlay && (
+                    (
+                        !this.state.canPlay &&
                         <div className="absolute full-width full-height player-overlay-loader">
                             <AppMoviePlayerLoader
                                 stateText={this.state.state}
                                 statePercent={this.state.percent}
-                                movieInfo={this.state.movieInfo}
                             />
                         </div>
                     )
                 }
 
-                <section className="absolute full-width full-height clearfix video-stream">
-                    <AppMoviePlayer
-                        torrent={this.state.movieInfo.torrent}
-                        subs={this.state.movieSubs}
-                        onProgress={(p,s)=>{this.onProgress(p,s)}}
-                        onReady={(u)=>{this.onReady(u)}}
-                    />
-                </section>
+                {
+                    (
+                        this.state.movieInfo &&
+                        <section className="absolute full-width full-height clearfix video-stream">
+                            <AppMoviePlayer
+                                torrent={this.state.movieInfo.torrent}
+                                subs={this.state.movieSubs}
+                                onProgress={(p,s)=>{this.onProgress(p,s)}}
+                                onReady={(u)=>{this.onReady(u)}}
+                                onCanPlay={(u)=>{this.onCanPlay(u)}}
+                            />
+                        </section>
+                    )
+                }
             </div>
         )
     }

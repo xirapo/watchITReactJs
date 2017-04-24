@@ -7,8 +7,10 @@ var
     gui = require('nw.gui'),
     fs = require('fs'),
     win = gui.Window.get(),
-    ROOT_TMP_FOLDER = path.join(os.tmpDir(), 'watchIT'), //TMP global folder
+    ROOT_DIR = process.cwd(),
+    ROOT_TMP_FOLDER = path.join(ROOT_DIR, 'tmp'), //TMP global folder
     ENVIRONMENT = 'dev'; // dev or prod
+
 
 // Create the System Temp Folder.
 // This is used to store temporary data like movie files.
@@ -57,6 +59,7 @@ win.on('close', function () {
 
 // Set the app title (for Windows mostly)
 win.title = 'watchIT';
+
 //If dev.. show tools
 if (ENVIRONMENT == 'dev') win.showDevTools();
 

@@ -33,16 +33,14 @@ export default class AppMovieDetail extends React.Component {
     }
 
     prepareDataToPlayer(torrent) {
-        let _to_url_object = {};
-
-        _to_url_object['torrent'] = torrent;
-        _to_url_object['title'] = this.props.movie.title;
-        _to_url_object['imdb_code'] = this.props.movie.imdb_code;
-
         this.setState({
             torrent: ((
                 new Buffer(
-                    JSON.stringify(_to_url_object) || '', 'utf8'
+                    JSON.stringify({
+                        torrent: torrent,
+                        imdb_code: this.props.movie.imdb_code
+
+                    }) || '', 'utf8'
                 )
             ).toString('base64'))
         })
@@ -125,7 +123,8 @@ export default class AppMovieDetail extends React.Component {
                                 {/*Play*/}
                                 <ul>
                                     <li className="dropdown">
-                                        <a className="dropdown-button clearfix" href={"#/app/movie/play/" + this.state.torrent }>
+                                        <a className="dropdown-button clearfix"
+                                           href={"#/app/movie/play/" + this.state.torrent }>
                                             <span className="font-light-gray right">Play</span>
                                             <i className="icon-controller-play tiny relative top-2 left margin-left-4"/>
                                         </a>

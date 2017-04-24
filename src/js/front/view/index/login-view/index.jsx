@@ -29,12 +29,14 @@ export default class LoginForm extends React.Component {
                 type: 'text',
                 placeholder: "e-mail",
                 name: "email",
-                icon: 'icon-email'
+                icon: 'icon-email',
+                size: 'm12 l12'
             }, {
                 type: 'password',
                 placeholder: "password",
                 name: "password",
-                icon: 'icon-dial-pad'
+                icon: 'icon-dial-pad',
+                size: 'm12 l12'
             }],
             //Buttons lists
             buttons: [{

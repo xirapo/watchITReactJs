@@ -60,10 +60,9 @@ export default class FormBox extends React.Component {
                         /* Generate inputs */
                         this.props.input.map((i, k)=> {
                             return (
-                                <BoxInput {...i}
-                                    onChange={(e)=> this.setValue(e) }
-                                    key={k}
-                                />
+                                <div key={k} className={"input-field col " + i.size}>
+                                    <BoxInput {...i} onChange={(e)=> this.setValue(e) }/>
+                                </div>
                             )
                         })
                     }

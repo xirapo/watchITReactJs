@@ -2,13 +2,13 @@
  * Created by gmena on 12-12-15.
  */
 
-
 (function (window) {
     var fs = require('fs');
-    var srt2vtt = require('srt2vtt');
+    var srt2vtt = require('srt-to-vtt');
     var request = require('http');
     var path = require('path');
     var readline = require('readline');
+    var unzip = require('unzip');
     //var setting = require(path.resolve() + '/js/backend/settings');
 
     function Sub() {
@@ -20,35 +20,27 @@
      * @return {Object}
      */
     Sub.add('urlSrt2VttFile', function (url) {
-        if (url) {
-            var _filename = url.split('/').pop();
-            var _srt_dir = path.join(os.tmpDir(), 'watchIT') + '/' + _filename;
-            var _srt_destination = _srt_dir.replace('.srt', '.vtt');
+        var _filename = url.split('/').pop();
+        var _srt_file_dir = ROOT_TMP_FOLDER + '/' + _filename;
 
-
-            //The new dir
-            return new Promise(function (s, e) {
-                //Not srt?
-                if (!(~(_srt_dir.indexOf('.srt')))) {
-                    s(_srt_dir);
-                    return;
-                }
-                //File system result
-                //Exist already subtitle
-                try {
-                    fs.lstatSync(_srt_destination);
-                    //this.srt2vtt(_srt_dir, _srt_destination);
-                    s(_srt_destination);
-                } catch (e) {
-                    //Request sub
-                    this.__request2File(url, _srt_dir).then(function () {
-                        this.srt2vtt(_srt_dir, _srt_destination);
-                        s(_srt_destination);
-                    }.bind(this)).catch(e);
-                }
-
-            }.bind(this));
+        //Append filename
+        if (!(~(_filename.indexOf('.zip')))) {
+            _srt_file_dir += '.zip';
         }
+
+        //The new dir
+        return new Promise(function (s, e) {
+            this.__request2File(url, _srt_file_dir).then(function () {
+                this.unzipSub(_srt_file_dir).then(function (unzipped_srt) {
+                    this.srt2vtt(unzipped_srt)
+                        .then(function (vtt_result_file) {
+                            s(vtt_result_file.replace(ROOT_DIR, ''))
+                        });
+
+                }.bind(this));
+            }.bind(this)).catch(e);
+
+        }.bind(this));
     });
 
     /**
@@ -56,31 +48,67 @@
      * @param {String} file_dir
      * @param {String} desination
      */
-    Sub.add('srt2vtt', function (file_dir, destination) {
-        var srtData = fs.readFileSync(file_dir);
-        srt2vtt(srtData, function (err, vttData) {
-            if (err) throw new Error(err);
-            fs.writeFileSync(destination, vttData);
-        });
+    Sub.add('srt2vtt', function (srt_file_dir) {
+        return (new Promise(function (r, e) {
+            //The new vtt file
+            var _new_vtt_file_dir = srt_file_dir
+                .replace(/\s/g, "_")
+                .replace(/\[/g, '')
+                .replace(/\-/g, '')
+                .replace(/\./g, '_')
+                .replace('_srt', '.vtt');
+
+            //Converting
+            fs.createReadStream(srt_file_dir)
+                .pipe(srt2vtt())
+                .pipe(
+                    fs.createWriteStream(
+                        _new_vtt_file_dir
+                    )
+                );
+            //Good
+            r(_new_vtt_file_dir);
+
+        }));
+    });
+
+    /**
+     * Parsing srt to vtt sub
+     * @param {String} file_dir
+     * @param {String} desination
+     */
+    Sub.add('unzipSub', function (file_dir) {
+
+        return (new Promise(function (r, e) {
+            fs.createReadStream(file_dir)
+                .pipe(unzip.Parse())
+                .on('entry', function (entry) {
+                    if ((~(entry.path.indexOf('.srt')))) {
+                        var _result_file_dir = ROOT_TMP_FOLDER + '/' + entry.path;
+                        entry.pipe(fs.createWriteStream(_result_file_dir));
+                        r(_result_file_dir)
+                    }
+                });
+        }))
     });
 
     /**
      * Request for sub file
      * @param {String} url
-     * @param {String} desination
+     * @param {String} _srt_dir
      */
     Sub.add('__request2File', function (url, _srt_dir) {
-
         return new Promise(function (resolve, error) {
             //Read the file
             var _file = fs.createWriteStream(_srt_dir);
+
             //Read and write file
             request.get(url, function (res) {
                 res.pipe(_file);
                 _file.on('finish', function () {
                     _file.close(resolve);  // close() is async, call cb after close completes.
-                });
-            })
+                }.bind(this));
+            }.bind(this))
         });
 
     });

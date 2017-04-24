@@ -1,7 +1,8 @@
 //Basic
 import React from 'react'
 //Components
-import AppMainMenu from '../../../components/app-main-aside-menu/index.jsx'
+//import AppMainMenu from '../../../components/app-main-aside-menu/index.jsx'
+import Logo from '../../../components/util-header-logo/index.jsx'
 import AppMoviesNav from '../../../components/app-main-movies-nav-bar/index.jsx'
 import AppMoviesList from '../../../components/app-main-movies-list/index.jsx'
 import AppMainTopInput from '../../../components/app-main-movies-top-inputs/index.jsx'
@@ -23,8 +24,10 @@ export default class Main extends React.Component {
         this.auth = new Auth();
         this.user = new User();
         this.movie = new Movie();
+        
         //Default offset
         this.offset = 1;
+
         //Default state
         this.state = {
             loading: true,
@@ -37,6 +40,9 @@ export default class Main extends React.Component {
             order: 'desc'
         };
 
+    }
+
+    componentDidMount() {
         //Start filtering
         this.filterMovies(
             this.sort,
@@ -47,7 +53,6 @@ export default class Main extends React.Component {
             this.auth.authUser.id,
             this.auth.token
         );
-
     }
 
     basicUserData(id, token) {
@@ -133,24 +138,37 @@ export default class Main extends React.Component {
     render() {
         return (
             <div className="relative full-height">
-                {/*The menu aside*/}
-                <aside id="main_menu_aside" className="col l2 m2 full-height padding-top-15">
-                    <AppTinyProfile user={this.state.user}/>
-                    <AppMainMenu />
-                </aside>
-
+                {/*The menu aside
+                 //TODO For future, cuando se implementen las funcionalidad del menu, activarlo
+                 <aside id="main_menu_aside" className="col l2 m2 full-height padding-top-15">
+                 <div className="row">
+                 <AppTinyProfile user={this.state.user}/>
+                 </div>
+                 <AppMainMenu />
+                 </aside>
+                 */}
                 {/*The movies menu*/}
-                <section className="col l10 m10">
+                <section className="row">
                     <div className="clearfix">
-                        <section className="row no-margin">
-                            <AppMainTopInput/>
-                        </section>
 
-                        <nav className="col l12 m12 transparent z-depth-0 margin-bottom-10">
+                        <header className="row no-margin vertical-padding transparent z-depth-1">
+                            <div className="col l2 m2 relative">
+                                <Logo size="35"/>
+                            </div>
+
+                            <div className="col l9 m9">
+                                <AppMainTopInput size="m6 l6"/>
+                            </div>
+                            <div className="col l1 m1">
+                                <AppTinyProfile user={this.state.user}/>
+                            </div>
+                        </header>
+
+                        <nav className="col l12 m12 transparent z-depth-0">
                             <AppMoviesNav onChange={(t,e)=>this.onChange(t,e)}/>
                         </nav>
 
-                        <div className="row full-height">
+                        <section className="row full-height">
                             {
                                 !this.state.loading
                                 && this.state.movies
@@ -158,12 +176,12 @@ export default class Main extends React.Component {
                                     movies={this.state.movies}
                                     onUpdate={(e)=>this.onUpdate(e)}
                                 />
-                                || <BoxLoader/>
+                                || <BoxLoader size={100}/>
                             }
-                            
+
                             {/*Check for new data loading*/}
                             {this.state.scrollUpdate && <BarLoader />}
-                        </div>
+                        </section>
                     </div>
                 </section>
             </div>

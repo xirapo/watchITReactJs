@@ -10,17 +10,14 @@ export default class BoxInput extends React.Component {
 
     static get defaultProps() {
         return {
-            required: true,
             type: 'text',
-            autoComplete: 'off',
-            size: 'm12 l12'
+            autoComplete: 'off'
         }
     }
 
     static get propTypes() {
         return {
-            placeholder: PropTypes.string.isRequired,
-            icon: PropTypes.string.isRequired
+            placeholder: PropTypes.string.isRequired
         }
     }
 
@@ -39,11 +36,13 @@ export default class BoxInput extends React.Component {
 
     render() {
         return (
-            <div className={"input-field col " + this.props.size}>
-                <i className={this.props.icon + " normalize-medium-icon top-10 prefix small white-text"}> </i>
+            <div>
+                {
+                    this.props.icon &&
+                    <i className={this.props.icon + " normalize-medium-icon top-12 prefix small white-text"}> </i>
+                }
                 <input {...this.props}
                     onChange={(e)=> this.handleChange(e) }
-                    required={this.props.required}
                     className="white-text validate browser-default"
                     value={this.state.value}
                 />

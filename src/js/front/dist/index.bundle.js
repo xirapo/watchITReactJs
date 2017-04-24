@@ -68,11 +68,11 @@
 
 	var _index4 = _interopRequireDefault(_index3);
 
-	var _index5 = __webpack_require__(296);
+	var _index5 = __webpack_require__(293);
 
 	var _index6 = _interopRequireDefault(_index5);
 
-	var _index7 = __webpack_require__(302);
+	var _index7 = __webpack_require__(299);
 
 	var _index8 = _interopRequireDefault(_index7);
 
@@ -25396,12 +25396,14 @@
 	                type: 'text',
 	                placeholder: "e-mail",
 	                name: "email",
-	                icon: 'icon-email'
+	                icon: 'icon-email',
+	                size: 'm12 l12'
 	            }, {
 	                type: 'password',
 	                placeholder: "password",
 	                name: "password",
-	                icon: 'icon-dial-pad'
+	                icon: 'icon-dial-pad',
+	                size: 'm12 l12'
 	            }],
 	            //Buttons lists
 	            buttons: [{
@@ -25687,12 +25689,13 @@
 
 	                    /* Generate inputs */
 	                    this.props.input.map(function (i, k) {
-	                        return _react2.default.createElement(_index4.default, _extends({}, i, {
-	                            onChange: function onChange(e) {
-	                                return _this2.setValue(e);
-	                            },
-	                            key: k
-	                        }));
+	                        return _react2.default.createElement(
+	                            'div',
+	                            { key: k, className: "input-field col " + i.size },
+	                            _react2.default.createElement(_index4.default, _extends({}, i, { onChange: function onChange(e) {
+	                                    return _this2.setValue(e);
+	                                } }))
+	                        );
 	                    })
 	                ),
 	                _react2.default.createElement(
@@ -25887,17 +25890,16 @@
 
 	            return _react2.default.createElement(
 	                'div',
-	                { className: "input-field col " + this.props.size },
-	                _react2.default.createElement(
+	                null,
+	                this.props.icon && _react2.default.createElement(
 	                    'i',
-	                    { className: this.props.icon + " normalize-medium-icon top-10 prefix small white-text" },
+	                    { className: this.props.icon + " normalize-medium-icon top-12 prefix small white-text" },
 	                    ' '
 	                ),
 	                _react2.default.createElement('input', _extends({}, this.props, {
 	                    onChange: function onChange(e) {
 	                        return _this2.handleChange(e);
 	                    },
-	                    required: this.props.required,
 	                    className: 'white-text validate browser-default',
 	                    value: this.state.value
 	                }))
@@ -25907,18 +25909,15 @@
 	        key: 'defaultProps',
 	        get: function get() {
 	            return {
-	                required: true,
 	                type: 'text',
-	                autoComplete: 'off',
-	                size: 'm12 l12'
+	                autoComplete: 'off'
 	            };
 	        }
 	    }, {
 	        key: 'propTypes',
 	        get: function get() {
 	            return {
-	                placeholder: _propTypes2.default.string.isRequired,
-	                icon: _propTypes2.default.string.isRequired
+	                placeholder: _propTypes2.default.string.isRequired
 	            };
 	        }
 	    }]);
@@ -30085,27 +30084,27 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _index = __webpack_require__(264);
+	var _index = __webpack_require__(229);
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _index3 = __webpack_require__(267);
+	var _index3 = __webpack_require__(264);
 
 	var _index4 = _interopRequireDefault(_index3);
 
-	var _index5 = __webpack_require__(287);
+	var _index5 = __webpack_require__(284);
 
 	var _index6 = _interopRequireDefault(_index5);
 
-	var _index7 = __webpack_require__(290);
+	var _index7 = __webpack_require__(287);
 
 	var _index8 = _interopRequireDefault(_index7);
 
-	var _index9 = __webpack_require__(291);
+	var _index9 = __webpack_require__(288);
 
 	var _index10 = _interopRequireDefault(_index9);
 
-	var _index11 = __webpack_require__(292);
+	var _index11 = __webpack_require__(289);
 
 	var _index12 = _interopRequireDefault(_index11);
 
@@ -30117,11 +30116,11 @@
 
 	var _auth2 = _interopRequireDefault(_auth);
 
-	var _user = __webpack_require__(293);
+	var _user = __webpack_require__(290);
 
 	var _user2 = _interopRequireDefault(_user);
 
-	var _movies = __webpack_require__(294);
+	var _movies = __webpack_require__(291);
 
 	var _movies2 = _interopRequireDefault(_movies);
 
@@ -30134,6 +30133,7 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //Basic
 
 	//Components
+	//import AppMainMenu from '../../../components/app-main-aside-menu/index.jsx'
 
 	//Require for auth
 	//Database (Api Handler)
@@ -30152,8 +30152,10 @@
 	        _this.auth = new _auth2.default();
 	        _this.user = new _user2.default();
 	        _this.movie = new _movies2.default();
+
 	        //Default offset
 	        _this.offset = 1;
+
 	        //Default state
 	        _this.state = {
 	            loading: true,
@@ -30166,15 +30168,18 @@
 	            order: 'desc'
 	        };
 
-	        //Start filtering
-	        _this.filterMovies(_this.sort, _this.auth.token);
-
-	        _this.basicUserData(_this.auth.authUser.id, _this.auth.token);
-
 	        return _this;
 	    }
 
 	    _createClass(Main, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            //Start filtering
+	            this.filterMovies(this.sort, this.auth.token);
+
+	            this.basicUserData(this.auth.authUser.id, this.auth.token);
+	        }
+	    }, {
 	        key: 'basicUserData',
 	        value: function basicUserData(id, token) {
 	            var _this2 = this;
@@ -30259,38 +30264,46 @@
 	                'div',
 	                { className: 'relative full-height' },
 	                _react2.default.createElement(
-	                    'aside',
-	                    { id: 'main_menu_aside', className: 'col l2 m2 full-height padding-top-15' },
-	                    _react2.default.createElement(_index10.default, { user: this.state.user }),
-	                    _react2.default.createElement(_index2.default, null)
-	                ),
-	                _react2.default.createElement(
 	                    'section',
-	                    { className: 'col l10 m10' },
+	                    { className: 'row' },
 	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'clearfix' },
 	                        _react2.default.createElement(
-	                            'section',
-	                            { className: 'row no-margin' },
-	                            _react2.default.createElement(_index8.default, null)
+	                            'header',
+	                            { className: 'row no-margin vertical-padding transparent z-depth-1' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'col l2 m2 relative' },
+	                                _react2.default.createElement(_index2.default, { size: '35' })
+	                            ),
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'col l9 m9' },
+	                                _react2.default.createElement(_index8.default, { size: 'm6 l6' })
+	                            ),
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'col l1 m1' },
+	                                _react2.default.createElement(_index10.default, { user: this.state.user })
+	                            )
 	                        ),
 	                        _react2.default.createElement(
 	                            'nav',
-	                            { className: 'col l12 m12 transparent z-depth-0 margin-bottom-10' },
+	                            { className: 'col l12 m12 transparent z-depth-0' },
 	                            _react2.default.createElement(_index4.default, { onChange: function onChange(t, e) {
 	                                    return _this4.onChange(t, e);
 	                                } })
 	                        ),
 	                        _react2.default.createElement(
-	                            'div',
+	                            'section',
 	                            { className: 'row full-height' },
 	                            !this.state.loading && this.state.movies && _react2.default.createElement(_index6.default, {
 	                                movies: this.state.movies,
 	                                onUpdate: function onUpdate(e) {
 	                                    return _this4.onUpdate(e);
 	                                }
-	                            }) || _react2.default.createElement(_index12.default, null),
+	                            }) || _react2.default.createElement(_index12.default, { size: 100 }),
 	                            this.state.scrollUpdate && _react2.default.createElement(_index14.default, null)
 	                        )
 	                    )
@@ -30321,261 +30334,6 @@
 	var _react2 = _interopRequireDefault(_react);
 
 	var _index = __webpack_require__(265);
-
-	var _index2 = _interopRequireDefault(_index);
-
-	var _index3 = __webpack_require__(266);
-
-	var _index4 = _interopRequireDefault(_index3);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var AppMainMenu = function (_React$Component) {
-	    _inherits(AppMainMenu, _React$Component);
-
-	    function AppMainMenu(props) {
-	        _classCallCheck(this, AppMainMenu);
-
-	        var _this = _possibleConstructorReturn(this, (AppMainMenu.__proto__ || Object.getPrototypeOf(AppMainMenu)).call(this, props));
-
-	        _this.state = {
-	            menu: {
-	                items: [{
-	                    href: '/',
-	                    textColor: 'white',
-	                    icon: 'icon-globe',
-	                    content: 'Browse'
-	                }, {
-	                    href: '/activity',
-	                    textColor: 'white',
-	                    icon: 'icon-users',
-	                    content: 'Activity'
-	                }, {
-	                    href: '/streaming',
-	                    textColor: 'white',
-	                    icon: 'icon-tv',
-	                    content: 'Streaming'
-	                }]
-	            },
-	            playlist: {
-	                items: []
-	            }
-	        };
-	        return _this;
-	    }
-
-	    _createClass(AppMainMenu, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'section',
-	                { className: 'row vertical-padding' },
-	                _react2.default.createElement(
-	                    'div',
-	                    { id: 'main_menu' },
-	                    _react2.default.createElement(
-	                        _index4.default,
-	                        { className: 'margin-bottom-5' },
-	                        'MAIN'
-	                    ),
-	                    _react2.default.createElement(_index2.default, { items: this.state.menu.items }),
-	                    _react2.default.createElement(
-	                        _index4.default,
-	                        { className: 'margin-top-5', action: 'Add Playlist' },
-	                        'LISTS'
-	                    ),
-	                    _react2.default.createElement(_index2.default, { items: this.state.playlist.items })
-	                )
-	            );
-	        }
-	    }]);
-
-	    return AppMainMenu;
-	}(_react2.default.Component);
-
-	exports.default = AppMainMenu;
-
-/***/ }),
-/* 265 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _propTypes = __webpack_require__(184);
-
-	var _propTypes2 = _interopRequireDefault(_propTypes);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var AppMenuItems = function (_React$Component) {
-	    _inherits(AppMenuItems, _React$Component);
-
-	    function AppMenuItems(props) {
-	        _classCallCheck(this, AppMenuItems);
-
-	        return _possibleConstructorReturn(this, (AppMenuItems.__proto__ || Object.getPrototypeOf(AppMenuItems)).call(this, props));
-	    }
-
-	    _createClass(AppMenuItems, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                { className: 'clearfix' },
-	                this.props.items.map(function (i, k) {
-	                    return _react2.default.createElement(
-	                        'div',
-	                        { className: 'row margin-bottom-5', key: k },
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'col l12 m12' },
-	                            _react2.default.createElement(
-	                                'a',
-	                                { href: "#" + i.href, className: i.textColor + "-text" },
-	                                _react2.default.createElement('i', { className: i.icon + " relative top-2 margin-right-10 tiny" }),
-	                                _react2.default.createElement(
-	                                    'strong',
-	                                    { className: 'bold' },
-	                                    i.content
-	                                )
-	                            )
-	                        )
-	                    );
-	                })
-	            );
-	        }
-	    }], [{
-	        key: 'defaultProps',
-	        get: function get() {
-	            return {
-	                items: []
-	            };
-	        }
-	    }, {
-	        key: 'propTypes',
-	        get: function get() {
-	            return {
-	                items: _propTypes2.default.array.isRequired
-	            };
-	        }
-	    }]);
-
-	    return AppMenuItems;
-	}(_react2.default.Component);
-
-	exports.default = AppMenuItems;
-
-/***/ }),
-/* 266 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var AppMenuHeaders = function (_React$Component) {
-	    _inherits(AppMenuHeaders, _React$Component);
-
-	    function AppMenuHeaders(props) {
-	        _classCallCheck(this, AppMenuHeaders);
-
-	        return _possibleConstructorReturn(this, (AppMenuHeaders.__proto__ || Object.getPrototypeOf(AppMenuHeaders)).call(this, props));
-	    }
-
-	    _createClass(AppMenuHeaders, [{
-	        key: "render",
-	        value: function render() {
-	            return _react2.default.createElement(
-	                "div",
-	                { className: "row " + this.props.className },
-	                _react2.default.createElement(
-	                    "div",
-	                    { className: "col l9 m9" },
-	                    _react2.default.createElement(
-	                        "strong",
-	                        { className: "font-light-gray bold" },
-	                        this.props.children
-	                    )
-	                ),
-	                this.props.action && _react2.default.createElement(
-	                    "div",
-	                    { className: "col l3 m3 text-center" },
-	                    _react2.default.createElement(
-	                        "a",
-	                        { href: "#w", className: "tooltip" },
-	                        _react2.default.createElement("i", { className: "icon-add-to-list top-2 relative font-light-gray tiny white-hover" }),
-	                        _react2.default.createElement(
-	                            "span",
-	                            {
-	                                className: "z-index-top font-size-small bold black-text top-tip grey lighten-1 border-grey-bottom" },
-	                            this.props.action
-	                        )
-	                    )
-	                )
-	            );
-	        }
-	    }]);
-
-	    return AppMenuHeaders;
-	}(_react2.default.Component);
-
-	exports.default = AppMenuHeaders;
-
-/***/ }),
-/* 267 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _index = __webpack_require__(268);
 
 	var _index2 = _interopRequireDefault(_index);
 
@@ -30725,7 +30483,7 @@
 	exports.default = AppMoviesNavBar;
 
 /***/ }),
-/* 268 */
+/* 265 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30744,7 +30502,7 @@
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	var _index = __webpack_require__(269);
+	var _index = __webpack_require__(266);
 
 	var _index2 = _interopRequireDefault(_index);
 
@@ -30897,7 +30655,7 @@
 	exports.default = NavBarMenu;
 
 /***/ }),
-/* 269 */
+/* 266 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30914,7 +30672,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactCustomScrollbars = __webpack_require__(270);
+	var _reactCustomScrollbars = __webpack_require__(267);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31006,7 +30764,7 @@
 	exports.default = CustomScrollbars;
 
 /***/ }),
-/* 270 */
+/* 267 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31016,7 +30774,7 @@
 	});
 	exports.Scrollbars = undefined;
 
-	var _Scrollbars = __webpack_require__(271);
+	var _Scrollbars = __webpack_require__(268);
 
 	var _Scrollbars2 = _interopRequireDefault(_Scrollbars);
 
@@ -31026,7 +30784,7 @@
 	exports.Scrollbars = _Scrollbars2["default"];
 
 /***/ }),
-/* 271 */
+/* 268 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31039,11 +30797,11 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _raf2 = __webpack_require__(272);
+	var _raf2 = __webpack_require__(269);
 
 	var _raf3 = _interopRequireDefault(_raf2);
 
-	var _domCss = __webpack_require__(274);
+	var _domCss = __webpack_require__(271);
 
 	var _domCss2 = _interopRequireDefault(_domCss);
 
@@ -31053,29 +30811,29 @@
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	var _isString = __webpack_require__(280);
+	var _isString = __webpack_require__(277);
 
 	var _isString2 = _interopRequireDefault(_isString);
 
-	var _getScrollbarWidth = __webpack_require__(281);
+	var _getScrollbarWidth = __webpack_require__(278);
 
 	var _getScrollbarWidth2 = _interopRequireDefault(_getScrollbarWidth);
 
-	var _returnFalse = __webpack_require__(282);
+	var _returnFalse = __webpack_require__(279);
 
 	var _returnFalse2 = _interopRequireDefault(_returnFalse);
 
-	var _getInnerWidth = __webpack_require__(283);
+	var _getInnerWidth = __webpack_require__(280);
 
 	var _getInnerWidth2 = _interopRequireDefault(_getInnerWidth);
 
-	var _getInnerHeight = __webpack_require__(284);
+	var _getInnerHeight = __webpack_require__(281);
 
 	var _getInnerHeight2 = _interopRequireDefault(_getInnerHeight);
 
-	var _styles = __webpack_require__(285);
+	var _styles = __webpack_require__(282);
 
-	var _defaultRenderElements = __webpack_require__(286);
+	var _defaultRenderElements = __webpack_require__(283);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -31824,10 +31582,10 @@
 	};
 
 /***/ }),
-/* 272 */
+/* 269 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(global) {var now = __webpack_require__(273)
+	/* WEBPACK VAR INJECTION */(function(global) {var now = __webpack_require__(270)
 	  , root = typeof window === 'undefined' ? global : window
 	  , vendors = ['moz', 'webkit']
 	  , suffix = 'AnimationFrame'
@@ -31903,7 +31661,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 273 */
+/* 270 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {// Generated by CoffeeScript 1.7.1
@@ -31942,13 +31700,13 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 274 */
+/* 271 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var prefix = __webpack_require__(275)
-	var toCamelCase = __webpack_require__(276)
+	var prefix = __webpack_require__(272)
+	var toCamelCase = __webpack_require__(273)
 	var cache = { 'float': 'cssFloat' }
-	var addPxToStyle = __webpack_require__(279)
+	var addPxToStyle = __webpack_require__(276)
 
 	function style (element, property, value) {
 	  var camel = cache[property]
@@ -32009,7 +31767,7 @@
 
 
 /***/ }),
-/* 275 */
+/* 272 */
 /***/ (function(module, exports) {
 
 	var div = null
@@ -32045,11 +31803,11 @@
 
 
 /***/ }),
-/* 276 */
+/* 273 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	
-	var space = __webpack_require__(277)
+	var space = __webpack_require__(274)
 
 	/**
 	 * Export.
@@ -32072,11 +31830,11 @@
 
 
 /***/ }),
-/* 277 */
+/* 274 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	
-	var clean = __webpack_require__(278)
+	var clean = __webpack_require__(275)
 
 	/**
 	 * Export.
@@ -32099,7 +31857,7 @@
 
 
 /***/ }),
-/* 278 */
+/* 275 */
 /***/ (function(module, exports) {
 
 	
@@ -32172,7 +31930,7 @@
 
 
 /***/ }),
-/* 279 */
+/* 276 */
 /***/ (function(module, exports) {
 
 	/* The following list is defined in React's core */
@@ -32218,7 +31976,7 @@
 	};
 
 /***/ }),
-/* 280 */
+/* 277 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -32232,7 +31990,7 @@
 	}
 
 /***/ }),
-/* 281 */
+/* 278 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32242,7 +32000,7 @@
 	});
 	exports["default"] = getScrollbarWidth;
 
-	var _domCss = __webpack_require__(274);
+	var _domCss = __webpack_require__(271);
 
 	var _domCss2 = _interopRequireDefault(_domCss);
 
@@ -32273,7 +32031,7 @@
 	}
 
 /***/ }),
-/* 282 */
+/* 279 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -32287,7 +32045,7 @@
 	}
 
 /***/ }),
-/* 283 */
+/* 280 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -32307,7 +32065,7 @@
 	}
 
 /***/ }),
-/* 284 */
+/* 281 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -32327,7 +32085,7 @@
 	}
 
 /***/ }),
-/* 285 */
+/* 282 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -32403,7 +32161,7 @@
 	};
 
 /***/ }),
-/* 286 */
+/* 283 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32485,7 +32243,7 @@
 	}
 
 /***/ }),
-/* 287 */
+/* 284 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32500,11 +32258,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _index = __webpack_require__(288);
+	var _index = __webpack_require__(285);
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _index3 = __webpack_require__(269);
+	var _index3 = __webpack_require__(266);
 
 	var _index4 = _interopRequireDefault(_index3);
 
@@ -32538,7 +32296,7 @@
 	                    autoHideTimeout: 1000,
 	                    autoHideDuration: 200,
 	                    autoHeight: true,
-	                    autoHeightMin: 500,
+	                    autoHeightMin: 530,
 	                    thumbMinSize: 30,
 	                    universal: true,
 	                    onScrollFrame: this.props.onUpdate },
@@ -32548,7 +32306,7 @@
 	                    this.props.movies.map(function (i, k) {
 	                        return _react2.default.createElement(
 	                            'div',
-	                            { key: k, className: 'col l2 m2 padding-2' },
+	                            { key: k, className: 'col l2 m2 padding-left-2 padding-right-2' },
 	                            _react2.default.createElement(
 	                                'a',
 	                                { href: "#/app/movie/" + i.imdb_code },
@@ -32567,7 +32325,7 @@
 	exports.default = AppMoviesList;
 
 /***/ }),
-/* 288 */
+/* 285 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32586,7 +32344,7 @@
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	var _index = __webpack_require__(289);
+	var _index = __webpack_require__(286);
 
 	var _index2 = _interopRequireDefault(_index);
 
@@ -32686,7 +32444,7 @@
 	exports.default = BoxImage;
 
 /***/ }),
-/* 289 */
+/* 286 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -32734,7 +32492,7 @@
 	exports.default = PulseLoader;
 
 /***/ }),
-/* 290 */
+/* 287 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32779,32 +32537,26 @@
 	                _react2.default.createElement(
 	                    'form',
 	                    { action: 'javascript:void(0);' },
-	                    _react2.default.createElement(_index2.default, {
-	                        type: 'text',
-	                        icon: 'icon-open-book',
-	                        size: 'l5 m5',
-	                        placeholder: 'Search...',
-	                        name: 'search'
-	                    })
-	                ),
-	                _react2.default.createElement(
-	                    'form',
-	                    { action: 'javascript:void(0);' },
-	                    _react2.default.createElement(_index2.default, {
-	                        type: 'text',
-	                        icon: 'icon-signal',
-	                        size: 'l5 m5',
-	                        placeholder: 'Seek torrent...',
-	                        name: 'torrent'
-	                    })
-	                ),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'col l2 m2 input-field' },
-	                    _react2.default.createElement('i', { className: 'icon-cog right small white-text margin-top-10' }),
-	                    _react2.default.createElement('i', { className: 'icon-bell right small white-text margin-top-10' })
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: "input-field-black margin-top-0 col " + this.props.size },
+	                        _react2.default.createElement(_index2.default, {
+	                            required: true,
+	                            icon: 'icon-typing',
+	                            autoComplete: 'off',
+	                            type: 'text',
+	                            placeholder: 'Search...',
+	                            name: 'search' })
+	                    )
 	                )
 	            );
+	        }
+	    }], [{
+	        key: 'defaultProps',
+	        get: function get() {
+	            return {
+	                size: 'm6 l6'
+	            };
 	        }
 	    }]);
 
@@ -32814,7 +32566,7 @@
 	exports.default = AppMainTopInputs;
 
 /***/ }),
-/* 291 */
+/* 288 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32856,43 +32608,17 @@
 	        value: function render() {
 	            return this.props.user && _react2.default.createElement(
 	                'div',
-	                { className: 'row' },
+	                { className: 'clearfix' },
 	                _react2.default.createElement(
 	                    'div',
-	                    { className: 'row' },
+	                    { className: 'col l3 m3 relative small-picture' },
 	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'clearfix' },
+	                        'a',
+	                        { href: '#' },
 	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'col l3 m4 relative top-5 small-picture' },
-	                            _react2.default.createElement(
-	                                'figure',
-	                                null,
-	                                _react2.default.createElement('img', { src: this.props.user.profile_pic_small, alt: '' })
-	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'col l9 m8' },
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'col l12 m12 truncate white-text' },
-	                                _react2.default.createElement(
-	                                    'strong',
-	                                    { className: 'bold no-margin' },
-	                                    this.props.user.fullname
-	                                )
-	                            ),
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'col l12 m12 ' },
-	                                _react2.default.createElement(
-	                                    'a',
-	                                    { href: '#logout', className: 'font-size-tiny font-light-gray bold white-text' },
-	                                    'Log out'
-	                                )
-	                            )
+	                            'figure',
+	                            null,
+	                            _react2.default.createElement('img', { src: this.props.user.profile_pic_small, alt: '' })
 	                        )
 	                    )
 	                )
@@ -32906,7 +32632,7 @@
 	exports.default = AppTinyProfile;
 
 /***/ }),
-/* 292 */
+/* 289 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -32990,7 +32716,7 @@
 	exports.default = BoxLoader;
 
 /***/ }),
-/* 293 */
+/* 290 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33053,7 +32779,7 @@
 	exports.default = User;
 
 /***/ }),
-/* 294 */
+/* 291 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33072,7 +32798,7 @@
 
 	var _settings2 = _interopRequireDefault(_settings);
 
-	var _requestHelper = __webpack_require__(295);
+	var _requestHelper = __webpack_require__(292);
 
 	var _requestHelper2 = _interopRequireDefault(_requestHelper);
 
@@ -33146,7 +32872,7 @@
 	exports.default = Movies;
 
 /***/ }),
-/* 295 */
+/* 292 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -33169,7 +32895,7 @@
 	};
 
 /***/ }),
-/* 296 */
+/* 293 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33184,15 +32910,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _index = __webpack_require__(292);
+	var _index = __webpack_require__(289);
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _index3 = __webpack_require__(297);
+	var _index3 = __webpack_require__(294);
 
 	var _index4 = _interopRequireDefault(_index3);
 
-	var _index5 = __webpack_require__(298);
+	var _index5 = __webpack_require__(295);
 
 	var _index6 = _interopRequireDefault(_index5);
 
@@ -33200,11 +32926,11 @@
 
 	var _auth2 = _interopRequireDefault(_auth);
 
-	var _user = __webpack_require__(293);
+	var _user = __webpack_require__(290);
 
 	var _user2 = _interopRequireDefault(_user);
 
-	var _movies = __webpack_require__(294);
+	var _movies = __webpack_require__(291);
 
 	var _movies2 = _interopRequireDefault(_movies);
 
@@ -33240,18 +32966,23 @@
 	        //Default state
 	        _this.state = {};
 
-	        //Movie details
-	        _this.movie.get(_this.props.match.params.imdb //imdb code
-	        ).then(function (r) {
-	            _this.setState({
-	                movies: r
-	            });
-	        }).catch(function () {});
-
 	        return _this;
 	    }
 
 	    _createClass(MainMovie, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            var _this2 = this;
+
+	            //Movie details
+	            this.movie.get(this.props.match.params.imdb //imdb code
+	            ).then(function (r) {
+	                _this2.setState({
+	                    movies: r
+	                });
+	            }).catch(function () {});
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
@@ -33277,7 +33008,7 @@
 	exports.default = MainMovie;
 
 /***/ }),
-/* 297 */
+/* 294 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33350,7 +33081,7 @@
 	exports.default = MainHeader;
 
 /***/ }),
-/* 298 */
+/* 295 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {'use strict';
@@ -33365,27 +33096,27 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _index = __webpack_require__(288);
+	var _index = __webpack_require__(285);
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _index3 = __webpack_require__(268);
+	var _index3 = __webpack_require__(265);
 
 	var _index4 = _interopRequireDefault(_index3);
 
-	var _index5 = __webpack_require__(299);
+	var _index5 = __webpack_require__(296);
 
 	var _index6 = _interopRequireDefault(_index5);
 
-	var _index7 = __webpack_require__(300);
+	var _index7 = __webpack_require__(297);
 
 	var _index8 = _interopRequireDefault(_index7);
 
-	var _index9 = __webpack_require__(269);
+	var _index9 = __webpack_require__(266);
 
 	var _index10 = _interopRequireDefault(_index9);
 
-	var _index11 = __webpack_require__(301);
+	var _index11 = __webpack_require__(298);
 
 	var _index12 = _interopRequireDefault(_index11);
 
@@ -33428,14 +33159,12 @@
 	    }, {
 	        key: 'prepareDataToPlayer',
 	        value: function prepareDataToPlayer(torrent) {
-	            var _to_url_object = {};
-
-	            _to_url_object['torrent'] = torrent;
-	            _to_url_object['title'] = this.props.movie.title;
-	            _to_url_object['imdb_code'] = this.props.movie.imdb_code;
-
 	            this.setState({
-	                torrent: new Buffer(JSON.stringify(_to_url_object) || '', 'utf8').toString('base64')
+	                torrent: new Buffer(JSON.stringify({
+	                    torrent: torrent,
+	                    imdb_code: this.props.movie.imdb_code
+
+	                }) || '', 'utf8').toString('base64')
 	            });
 	        }
 	    }, {
@@ -33534,7 +33263,8 @@
 	                                        { className: 'dropdown' },
 	                                        _react2.default.createElement(
 	                                            'a',
-	                                            { className: 'dropdown-button clearfix', href: "#/app/movie/play/" + this.state.torrent },
+	                                            { className: 'dropdown-button clearfix',
+	                                                href: "#/app/movie/play/" + this.state.torrent },
 	                                            _react2.default.createElement(
 	                                                'span',
 	                                                { className: 'font-light-gray right' },
@@ -33587,7 +33317,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(237).Buffer))
 
 /***/ }),
-/* 299 */
+/* 296 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33673,7 +33403,7 @@
 	exports.default = AppMovieDetailInfo;
 
 /***/ }),
-/* 300 */
+/* 297 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33744,7 +33474,7 @@
 	exports.default = FlowText;
 
 /***/ }),
-/* 301 */
+/* 298 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33810,7 +33540,7 @@
 	exports.default = ListCommaSplit;
 
 /***/ }),
-/* 302 */
+/* 299 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {'use strict';
@@ -33825,15 +33555,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _index = __webpack_require__(303);
+	var _index = __webpack_require__(300);
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _index3 = __webpack_require__(304);
+	var _index3 = __webpack_require__(301);
 
 	var _index4 = _interopRequireDefault(_index3);
 
-	var _movies = __webpack_require__(294);
+	var _movies = __webpack_require__(291);
 
 	var _movies2 = _interopRequireDefault(_movies);
 
@@ -33861,18 +33591,18 @@
 	        var _this = _possibleConstructorReturn(this, (MoviePlayer.__proto__ || Object.getPrototypeOf(MoviePlayer)).call(this, props));
 
 	        _this.movie = new _movies2.default();
+	        //Decode param
+	        var _movieInfo = JSON.parse(new Buffer(_this.props.match.params.torrent, 'base64').toString());
 
 	        //Decode string and pass to json object
 	        _this.state = {
 	            state: 'Connecting',
 	            percent: 0,
-	            canPlay: false,
-	            movieSubs: null,
-	            movieInfo: JSON.parse(new Buffer(_this.props.match.params.torrent, 'base64').toString())
+	            canPlay: false
 	        };
 
 	        //Set subs
-	        _this.movie.get(_this.state.movieInfo.imdb_code).then(function (res) {
+	        _this.movie.get(_movieInfo.imdb_code).then(function (res) {
 	            //Get better sub
 	            for (var s in res.subtitles) {
 	                res.subtitles[s] = res.subtitles[s].reduce(function (pre, act, i, arr) {
@@ -33882,7 +33612,8 @@
 
 	            //Set new subs
 	            _this.setState({
-	                movieSubs: res.subtitles
+	                movieSubs: res.subtitles,
+	                movieInfo: _movieInfo
 	            });
 	        }).catch(function () {});
 	        return _this;
@@ -33900,6 +33631,15 @@
 	    }, {
 	        key: 'onReady',
 	        value: function onReady(url) {
+	            //Change state
+	            this.setState({
+	                state: 'Ready',
+	                percent: 100
+	            });
+	        }
+	    }, {
+	        key: 'onCanPlay',
+	        value: function onCanPlay(url) {
 	            this.setState({
 	                canPlay: true
 	            });
@@ -33917,11 +33657,10 @@
 	                    { className: 'absolute full-width full-height player-overlay-loader' },
 	                    _react2.default.createElement(_index4.default, {
 	                        stateText: this.state.state,
-	                        statePercent: this.state.percent,
-	                        movieInfo: this.state.movieInfo
+	                        statePercent: this.state.percent
 	                    })
 	                ),
-	                _react2.default.createElement(
+	                this.state.movieInfo && _react2.default.createElement(
 	                    'section',
 	                    { className: 'absolute full-width full-height clearfix video-stream' },
 	                    _react2.default.createElement(_index2.default, {
@@ -33932,6 +33671,9 @@
 	                        },
 	                        onReady: function onReady(u) {
 	                            _this2.onReady(u);
+	                        },
+	                        onCanPlay: function onCanPlay(u) {
+	                            _this2.onCanPlay(u);
 	                        }
 	                    })
 	                )
@@ -33946,7 +33688,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(237).Buffer))
 
 /***/ }),
-/* 303 */
+/* 300 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33998,16 +33740,42 @@
 	        value: function componentDidMount() {
 	            var _this2 = this;
 
-	            //The player
-	            this.player = videojs('my-video', {
+	            //Videojs
+	            this.player = videojs(this.videoNode, {
 	                autoplay: true,
 	                preload: true,
-	                controls: false
+	                controls: false,
+	                html5: {
+	                    nativeTextTracks: false
+	                }
 	            }, function () {
+
+	                //When player load
+	                _this2.player.one('loadedmetadata', function () {
+	                    //If has subs
+	                    if (_this2.props.subs) {
+	                        // for (let sub in this.props.subs) {
+	                        if ('spanish' in _this2.props.subs) {
+	                            //Convert to vtt
+	                            Sub.urlSrt2VttFile(_this2.props.subs['spanish'].link).then(function (vtt) {
+	                                console.log('Adding remote ' + vtt);
+	                                var _elem = document.createElement('track');
+	                                _elem.src = vtt;
+	                                _elem.kind = "captions";
+	                                _elem.srclang = 'es';
+	                                _elem.label = 'Spanish';
+	                                _elem.mode = 'showing';
+	                                _elem.default = true;
+	                                _this2.videoNode.appendChild(_elem);
+	                            });
+	                        }
+	                    }
+	                });
+
+	                //When get ready to play;;
 	                _this2.player.on('canplay', function () {
 	                    //Set controls true
 	                    _this2.player.controls(true);
-	                    console.log(_this2.props.subs);
 
 	                    //Set canPlay
 	                    _this2.setState({
@@ -34068,11 +33836,15 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
+	            var _this3 = this;
+
 	            return _react2.default.createElement(
 	                'div',
 	                { className: this.state.canPlay && "left relative full-height full-width" || "invisible" },
-	                _react2.default.createElement('video', { id: 'my-video',
-	                    src: this.state.url,
+	                _react2.default.createElement('video', { ref: function ref(node) {
+	                        return _this3.videoNode = node;
+	                    },
+	                    src: this.state.url, autoPlay: true, controls: true,
 	                    className: ' vjs-matrix video-js full-width full-height'
 	                })
 	            );
@@ -34099,7 +33871,7 @@
 	exports.default = AppMoviesPlayer;
 
 /***/ }),
-/* 304 */
+/* 301 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34158,7 +33930,7 @@
 	                        null,
 	                        _react2.default.createElement(
 	                            'h4',
-	                            { className: 'font-type-titles white-text' },
+	                            { className: 'font-type-titles align-center white-text' },
 	                            this.props.stateText
 	                        )
 	                    ),
@@ -34197,8 +33969,7 @@
 	        get: function get() {
 	            return {
 	                stateText: _propTypes2.default.string.isRequired,
-	                statePercent: _propTypes2.default.number.isRequired,
-	                movieInfo: _propTypes2.default.object.isRequired
+	                statePercent: _propTypes2.default.number.isRequired
 	            };
 	        }
 	    }]);

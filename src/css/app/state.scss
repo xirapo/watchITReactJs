@@ -244,50 +244,7 @@ https://smacss.com/book/type-state
   }
 }
 
-//Modal box
-.modal-box {
-  @include clearfix();
-  @include border-radius(5px 5px);
-  position: relative;
-  background-color: rgba(0, 0, 0, 0.9);
-  width: 300px;
-  height: auto;
-  min-height: 60px;
-
-  .close-modal {
-    position: absolute;
-    right: -10px;
-    top: -10px;
-  }
-}
-
-.modal-trailer-box {
-  @extend .modal-box;
-  width: 800px;
-  height: 500px;
-  iframe {
-    //border: 3px solid #fff;
-    overflow: hidden;
-    position: relative;
-    width: 800px;
-    height: 500px;
-  }
-}
-
-.modal-fb {
-  @extend .modal-box;
-  width: 800px;
-  height: 450px;
-  iframe {
-    //border: 3px solid #fff;
-    position: relative;
-    width: 800px;
-    height: 450px;
-  }
-}
-
 /**OTHERS*/
-
 .normalize-small-icon {
   margin-right: 4px;
   position: relative;
@@ -354,131 +311,17 @@ https://smacss.com/book/type-state
 /* No media query since this is the default in Bootstrap */
 
 /* Small devices (tablets, 768px and up) */
-
-@include media-small {
-
-}
-
-/* Medium devices (desktops, 992px and up) */
-@include media-middle {
-
-}
-
-/* Large devices (large desktops, 1200px and up) */
-@include media-large {
-
-}
-
-//MEDIA QUERIES
-
-//FIXED width
-//Laptops
-@media only screen and (max-width: 1024px) {
-  //User data
-  [sp-recipe="top_main_menu"] {
-    .user-data {
-      .l4 {
-        width: 50%
-      }
-      .hide-on-md {
-        display: none;
-      }
-    }
-  }
-
-  //Search result
-  .search-result-list {
-    //Search result picture
-    .search-result-poster-picture {
-      display: none;
-    }
-
-    .search-result-title, .search-result-genres {
-      max-width: 200px;
-    }
-  }
-}
-
-@media only screen and (min-width: 1024px) {
-  //Search result
-  .search-result-list {
-    .search-result-title, .search-result-genres {
-      max-width: 200px;
-    }
-  }
-}
-
-@media only screen and (min-width: 1150px) {
-  //Search result
-  .search-result-list {
-    .search-result-title, .search-result-genres {
-      max-width: 220px;
-    }
-  }
-}
-
-@media only screen and (min-width: 1280px) {
-  //Search result
-  .search-result-list {
-    .search-result-title, .search-result-genres {
-      max-width: 250px;
-    }
-  }
-}
-
-@media only screen and (min-width: 1440px) {
-  //Search result
-  .search-result-list {
-    .search-result-title, .search-result-genres {
-      max-width: 300px;
-    }
-  }
-}
-
-@media only screen and (min-width: 1600px) {
-  //Search result
-  .search-result-list {
-    .search-result-title, .search-result-genres {
-      max-width: 385px;
-    }
-  }
-}
-
-@media only screen and (min-width: 1610px) {
-  //Search result
-  .search-result-list {
-    .search-result-title, .search-result-genres {
-      max-width: 100%;
-    }
-  }
-}
-
-///////////////FIXED HEIGHT
-
-@media only screen and (min-height: 700px) {
-  .fixed-poster-resolution {
-    min-height: 400px;
-  }
-}
-
-@media only screen and (min-height: 769px) {
-  //.fixed-poster-resolution {
-  //  min-height: 400px;
-  //}
-}
-
-@media only screen and (min-height: 801px) {
-
-}
-
-@media only screen and (min-height: 1000px) {
-
-}
-
-@media only screen and (min-height: 1150px) {
-
-}
-
-@media only screen and (min-height: 1400px) {
-
-}
+//
+//@include media-small {
+//
+//}
+//
+///* Medium devices (desktops, 992px and up) */
+//@include media-middle {
+//
+//}
+//
+///* Large devices (large desktops, 1200px and up) */
+//@include media-large {
+//
+//}

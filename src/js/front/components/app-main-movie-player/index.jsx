@@ -30,17 +30,47 @@ export default class AppMoviesPlayer extends React.Component {
     }
 
     componentDidMount() {
-        //The player
+
+        //Videojs
         this.player = videojs(
-            'my-video', {
+            this.videoNode, {
                 autoplay: true,
                 preload: true,
-                controls: false
+                controls: false,
+                html5: {
+                    nativeTextTracks: false
+                }
             }, () => {
+
+                //When player load
+                this.player.one('loadedmetadata', ()=> {
+                    //If has subs
+                    if (this.props.subs) {
+                        // for (let sub in this.props.subs) {
+                        if ('spanish' in this.props.subs) {
+                            //Convert to vtt
+                            Sub.urlSrt2VttFile(
+                                this.props.subs['spanish'].link
+                            ).then((vtt)=> {
+                                console.log('Adding remote ' + vtt);
+                                let _elem = document.createElement('track');
+                                _elem.src = vtt;
+                                _elem.kind = "captions";
+                                _elem.srclang = 'es';
+                                _elem.label = 'Spanish';
+                                _elem.mode = 'showing';
+                                _elem.default = true;
+                                this.videoNode.appendChild(_elem);
+                            })
+                        }
+                    }
+                });
+
+
+                //When get ready to play;;
                 this.player.on('canplay', ()=> {
                     //Set controls true
                     this.player.controls(true);
-                    console.log(this.props.subs);
 
                     //Set canPlay
                     this.setState({
@@ -114,8 +144,8 @@ export default class AppMoviesPlayer extends React.Component {
             (
 
                 <div className={this.state.canPlay && "left relative full-height full-width" || "invisible"}>
-                    <video id="my-video"
-                           src={this.state.url}
+                    <video ref={ node => this.videoNode = node }
+                           src={this.state.url} autoPlay={true} controls={true}
                            className=" vjs-matrix video-js full-width full-height"
                     />
                 </div>
