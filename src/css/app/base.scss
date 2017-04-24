@@ -71,7 +71,7 @@ input[type=file] {
 ::cue {
   color: #fff;
   font-family: $font-family-base;
-  // font: 30px $font-family-content;
+  font-size: 1em;
   font-style: normal !important;
   font-weight: bold !important;
   line-height: 0 !important;
@@ -80,9 +80,6 @@ input[type=file] {
   pointer-events: auto !important;
   background-color: transparent !important;
   position: absolute !important;
-  bottom: 40px !important;
-  left: 1em !important;
-  right: 1em !important;
 }
 
 

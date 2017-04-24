@@ -142,7 +142,6 @@ export default class AppMoviesPlayer extends React.Component {
     render() {
         return (
             (
-
                 <div className={this.state.canPlay && "left relative full-height full-width" || "invisible"}>
                     <video ref={ node => this.videoNode = node }
                            src={this.state.url} autoPlay={true} controls={true}

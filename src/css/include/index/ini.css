@@ -49499,6 +49499,7 @@ input[type=file] {
 ::cue {
   color: #fff;
   font-family: "Open Sans", Arial, sans-serif;
+  font-size: 1em;
   font-style: normal !important;
   font-weight: bold !important;
   line-height: 0 !important;
@@ -49506,10 +49507,7 @@ input[type=file] {
   text-shadow: 0px 0px 10px #000, -2px -2px 1px #000, 2px -2px 1px #000, -2px 2px 1px #000, 2px 2px 1px #000;
   pointer-events: auto !important;
   background-color: transparent !important;
-  position: absolute !important;
-  bottom: 40px !important;
-  left: 1em !important;
-  right: 1em !important; }
+  position: absolute !important; }
 
 #main_menu_aside {
   background-color: rgba(0, 0, 0, 0.7); }

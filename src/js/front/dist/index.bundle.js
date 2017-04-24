@@ -33563,6 +33563,10 @@
 
 	var _index4 = _interopRequireDefault(_index3);
 
+	var _index5 = __webpack_require__(223);
+
+	var _index6 = _interopRequireDefault(_index5);
+
 	var _movies = __webpack_require__(291);
 
 	var _movies2 = _interopRequireDefault(_movies);
@@ -33598,7 +33602,8 @@
 	        _this.state = {
 	            state: 'Connecting',
 	            percent: 0,
-	            canPlay: false
+	            canPlay: false,
+	            stopped: false
 	        };
 
 	        //Set subs
@@ -33645,9 +33650,27 @@
 	            });
 	        }
 	    }, {
+	        key: 'onClose',
+	        value: function onClose() {
+	            var _this2 = this;
+
+	            //Stop Torrent
+	            Streamer.stopTorrent();
+
+	            //Stopped
+	            this.setState({
+	                stopped: true
+	            });
+
+	            //Redirect
+	            setTimeout(function () {
+	                location.href = '#/app/movie/' + _this2.state.movieInfo.imdb_code;
+	            }, 1000);
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var _this2 = this;
+	            var _this3 = this;
 
 	            return _react2.default.createElement(
 	                'div',
@@ -33657,26 +33680,30 @@
 	                    { className: 'absolute full-width full-height player-overlay-loader' },
 	                    _react2.default.createElement(_index4.default, {
 	                        stateText: this.state.state,
-	                        statePercent: this.state.percent
+	                        statePercent: this.state.percent,
+	                        onClose: function onClose(e) {
+	                            _this3.onClose(e);
+	                        }
 	                    })
 	                ),
-	                this.state.movieInfo && _react2.default.createElement(
+	                this.state.movieInfo && this.state.canPlay && _react2.default.createElement(
 	                    'section',
 	                    { className: 'absolute full-width full-height clearfix video-stream' },
 	                    _react2.default.createElement(_index2.default, {
 	                        torrent: this.state.movieInfo.torrent,
 	                        subs: this.state.movieSubs,
 	                        onProgress: function onProgress(p, s) {
-	                            _this2.onProgress(p, s);
+	                            _this3.onProgress(p, s);
 	                        },
 	                        onReady: function onReady(u) {
-	                            _this2.onReady(u);
+	                            _this3.onReady(u);
 	                        },
 	                        onCanPlay: function onCanPlay(u) {
-	                            _this2.onCanPlay(u);
+	                            _this3.onCanPlay(u);
 	                        }
 	                    })
-	                )
+	                ),
+	                this.state.stopped && _react2.default.createElement(_index6.default, null)
 	            );
 	        }
 	    }]);

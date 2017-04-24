@@ -3,6 +3,7 @@ import React from 'react'
 //Components
 import AppMoviePlayer from '../../../components/app-main-movie-player/index.jsx'
 import AppMoviePlayerLoader from '../../../components/app-main-movie-player-loader/index.jsx'
+import MainLoader from '../../../components/util-main-loader/index.jsx'
 //Data
 import Movie from '../../../../resources/database/movies'
 
@@ -27,7 +28,8 @@ export default class MoviePlayer extends React.Component {
         this.state = {
             state: 'Connecting',
             percent: 0,
-            canPlay: false
+            canPlay: false,
+            stopped: false
         };
 
         //Set subs
@@ -73,10 +75,28 @@ export default class MoviePlayer extends React.Component {
         })
     }
 
+    onClose() {
+
+        //Stop Torrent
+        Streamer.stopTorrent();
+
+        //Stopped
+        this.setState({
+            stopped: true
+        });
+
+        //Redirect
+        setTimeout(()=> {
+            location.href = '#/app/movie/' + this.state.movieInfo.imdb_code
+        }, 1000);
+
+    }
+
 
     render() {
         return (
             <div>
+
                 {
                     (
                         !this.state.canPlay &&
@@ -84,6 +104,7 @@ export default class MoviePlayer extends React.Component {
                             <AppMoviePlayerLoader
                                 stateText={this.state.state}
                                 statePercent={this.state.percent}
+                                onClose={(e)=>{this.onClose(e)}}
                             />
                         </div>
                     )
@@ -91,7 +112,7 @@ export default class MoviePlayer extends React.Component {
 
                 {
                     (
-                        this.state.movieInfo &&
+                        this.state.movieInfo && this.state.canPlay &&
                         <section className="absolute full-width full-height clearfix video-stream">
                             <AppMoviePlayer
                                 torrent={this.state.movieInfo.torrent}
@@ -103,6 +124,8 @@ export default class MoviePlayer extends React.Component {
                         </section>
                     )
                 }
+
+                { this.state.stopped && <MainLoader />}
             </div>
         )
     }
