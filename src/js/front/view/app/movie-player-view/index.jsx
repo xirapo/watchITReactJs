@@ -14,6 +14,18 @@ export default class MoviePlayer extends React.Component {
         super(props);
         //Movie
         this.movie = new Movie();
+
+        //Decode string and pass to json object
+        this.state = {
+            state: 'Connecting',
+            percent: 0,
+            canPlay: false,
+            stopped: false
+        };
+
+    }
+
+    componentDidMount() {
         //Decode param
         let _movieInfo = JSON.parse(
             (
@@ -23,14 +35,6 @@ export default class MoviePlayer extends React.Component {
                 ).toString()
             )
         );
-
-        //Decode string and pass to json object
-        this.state = {
-            state: 'Connecting',
-            percent: 0,
-            canPlay: false,
-            stopped: false
-        };
 
         //Set subs
         this.movie.get(
@@ -112,7 +116,7 @@ export default class MoviePlayer extends React.Component {
 
                 {
                     (
-                        this.state.movieInfo && this.state.canPlay &&
+                        this.state.movieInfo &&
                         <section className="absolute full-width full-height clearfix video-stream">
                             <AppMoviePlayer
                                 torrent={this.state.movieInfo.torrent}

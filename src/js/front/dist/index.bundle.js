@@ -33595,8 +33595,6 @@
 	        var _this = _possibleConstructorReturn(this, (MoviePlayer.__proto__ || Object.getPrototypeOf(MoviePlayer)).call(this, props));
 
 	        _this.movie = new _movies2.default();
-	        //Decode param
-	        var _movieInfo = JSON.parse(new Buffer(_this.props.match.params.torrent, 'base64').toString());
 
 	        //Decode string and pass to json object
 	        _this.state = {
@@ -33606,25 +33604,34 @@
 	            stopped: false
 	        };
 
-	        //Set subs
-	        _this.movie.get(_movieInfo.imdb_code).then(function (res) {
-	            //Get better sub
-	            for (var s in res.subtitles) {
-	                res.subtitles[s] = res.subtitles[s].reduce(function (pre, act, i, arr) {
-	                    return pre.rating > act.rating ? pre : act;
-	                }, {});
-	            }
-
-	            //Set new subs
-	            _this.setState({
-	                movieSubs: res.subtitles,
-	                movieInfo: _movieInfo
-	            });
-	        }).catch(function () {});
 	        return _this;
 	    }
 
 	    _createClass(MoviePlayer, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            var _this2 = this;
+
+	            //Decode param
+	            var _movieInfo = JSON.parse(new Buffer(this.props.match.params.torrent, 'base64').toString());
+
+	            //Set subs
+	            this.movie.get(_movieInfo.imdb_code).then(function (res) {
+	                //Get better sub
+	                for (var s in res.subtitles) {
+	                    res.subtitles[s] = res.subtitles[s].reduce(function (pre, act, i, arr) {
+	                        return pre.rating > act.rating ? pre : act;
+	                    }, {});
+	                }
+
+	                //Set new subs
+	                _this2.setState({
+	                    movieSubs: res.subtitles,
+	                    movieInfo: _movieInfo
+	                });
+	            }).catch(function () {});
+	        }
+	    }, {
 	        key: 'onProgress',
 	        value: function onProgress(percent, state) {
 	            //Change state
@@ -33652,7 +33659,7 @@
 	    }, {
 	        key: 'onClose',
 	        value: function onClose() {
-	            var _this2 = this;
+	            var _this3 = this;
 
 	            //Stop Torrent
 	            Streamer.stopTorrent();
@@ -33664,13 +33671,13 @@
 
 	            //Redirect
 	            setTimeout(function () {
-	                location.href = '#/app/movie/' + _this2.state.movieInfo.imdb_code;
+	                location.href = '#/app/movie/' + _this3.state.movieInfo.imdb_code;
 	            }, 1000);
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var _this3 = this;
+	            var _this4 = this;
 
 	            return _react2.default.createElement(
 	                'div',
@@ -33682,24 +33689,24 @@
 	                        stateText: this.state.state,
 	                        statePercent: this.state.percent,
 	                        onClose: function onClose(e) {
-	                            _this3.onClose(e);
+	                            _this4.onClose(e);
 	                        }
 	                    })
 	                ),
-	                this.state.movieInfo && this.state.canPlay && _react2.default.createElement(
+	                this.state.movieInfo && _react2.default.createElement(
 	                    'section',
 	                    { className: 'absolute full-width full-height clearfix video-stream' },
 	                    _react2.default.createElement(_index2.default, {
 	                        torrent: this.state.movieInfo.torrent,
 	                        subs: this.state.movieSubs,
 	                        onProgress: function onProgress(p, s) {
-	                            _this3.onProgress(p, s);
+	                            _this4.onProgress(p, s);
 	                        },
 	                        onReady: function onReady(u) {
-	                            _this3.onReady(u);
+	                            _this4.onReady(u);
 	                        },
 	                        onCanPlay: function onCanPlay(u) {
-	                            _this3.onCanPlay(u);
+	                            _this4.onCanPlay(u);
 	                        }
 	                    })
 	                ),
