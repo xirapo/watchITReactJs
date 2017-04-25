@@ -61497,7 +61497,7 @@ https://smacss.com/book/type-state
 
   .movie-details-description {
     height: 26vh; } }
-@media (min-height: 599px) {
+@media (min-height: 699px) {
   .movies-box {
     height: 76vh; }
 
