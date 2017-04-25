@@ -61,7 +61,7 @@ export default class NavBarMenu extends React.Component {
                 {/*Drop down main container*/}
                 <li className="dropdown">
                     <a className="dropdown-button" href="javascript:void(0)">
-                        <i className="icon-triangle-down normalize-small-icon left margin-right-4"/>
+                        <i className="icon-triangle-down nav-var-icon normalize-small-icon left margin-right-4"/>
                         <span className="font-light-gray">{this.props.btnText}</span>
                         {
                             /*The main button*/

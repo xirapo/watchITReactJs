@@ -246,20 +246,23 @@ https://smacss.com/book/type-state
 
 /**OTHERS*/
 .normalize-small-icon {
-  top: 0.2vh;
+  top: 0.1vh;
   position: relative;
-  font-size: 2vh;
 }
 
 .normalize-medium-icon {
   top: 0.5vh;
   position: relative;
-  font-size: 3vh;
 }
 
 .border-dashed-bottom-white {
   border-bottom: 1px dashed #fff;
 }
+
+.btn-play {
+  background-color: rgba(57, 174, 0, 0.5);
+}
+
 
 .btn-close {
   position: absolute;

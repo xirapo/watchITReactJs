@@ -61253,7 +61253,10 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 .flow-text, .nav-bar-movie-details .dropdown a {
   font-size: 2.8vh; }
 
-i.small {
+.nav-bar-movie-details .dropdown a i {
+  font-size: 2.5vh !important; }
+
+.main-nav-filter-movies .dropdown i {
   font-size: 2vh !important; }
 
 /**
@@ -61426,17 +61429,18 @@ https://smacss.com/book/type-state
 
 /**OTHERS*/
 .normalize-small-icon {
-  top: 0.2vh;
-  position: relative;
-  font-size: 2vh; }
+  top: 0.1vh;
+  position: relative; }
 
 .normalize-medium-icon {
   top: 0.5vh;
-  position: relative;
-  font-size: 3vh; }
+  position: relative; }
 
 .border-dashed-bottom-white {
   border-bottom: 1px dashed #fff; }
+
+.btn-play {
+  background-color: rgba(57, 174, 0, 0.5); }
 
 .btn-close {
   position: absolute;

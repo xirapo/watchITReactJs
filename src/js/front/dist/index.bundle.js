@@ -30571,7 +30571,7 @@
 	                    _react2.default.createElement(
 	                        'a',
 	                        { className: 'dropdown-button', href: 'javascript:void(0)' },
-	                        _react2.default.createElement('i', { className: 'icon-triangle-down normalize-small-icon left margin-right-4' }),
+	                        _react2.default.createElement('i', { className: 'icon-triangle-down nav-var-icon normalize-small-icon left margin-right-4' }),
 	                        _react2.default.createElement(
 	                            'span',
 	                            { className: 'font-light-gray' },
