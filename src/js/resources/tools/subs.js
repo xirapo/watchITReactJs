@@ -4,6 +4,8 @@
 
 (function (window) {
     var fs = require('fs');
+    //var srt2vtt = require('srt-to-vtt');
+    //var srt2vtt = require('srt2vtt');
     var srt2vtt = require('srt-to-vtt');
     var request = require('http');
     var path = require('path');
@@ -52,11 +54,14 @@
         return (new Promise(function (r, e) {
             //The new vtt file
             var _new_vtt_file_dir = srt_file_dir
-                .replace(/\s/g, "_")
-                .replace(/\[/g, '')
-                .replace(/\-/g, '')
-                .replace(/\./g, '_')
-                .replace('_srt', '.vtt');
+                .replace('.srt', '.vtt');
+
+            // var srtData = fs.readFileSync(srt_file_dir);
+            // srt2vtt(srtData, function (err, vttData) {
+            //     if (err) throw new Error(err);
+            //     fs.writeFileSync(_new_vtt_file_dir, vttData);
+            //     r(_new_vtt_file_dir);
+            // });
 
             //Converting
             fs.createReadStream(srt_file_dir)
@@ -66,6 +71,7 @@
                         _new_vtt_file_dir
                     )
                 );
+
             //Good
             r(_new_vtt_file_dir);
 
@@ -84,8 +90,22 @@
                 .pipe(unzip.Parse())
                 .on('entry', function (entry) {
                     if ((~(entry.path.indexOf('.srt')))) {
-                        var _result_file_dir = ROOT_TMP_FOLDER + '/' + entry.path;
-                        entry.pipe(fs.createWriteStream(_result_file_dir));
+                        var _result_file_dir = ROOT_TMP_FOLDER + '/' + entry.path.replace(/\s/g, "_")
+                                .replace(/\[/g, '')
+                                .replace(/\-/g, '')
+                                .replace(/\./g, '_')
+                                .replace('_srt', '.srt');
+
+                        //Write
+                        entry.pipe(
+                            fs.createWriteStream(_result_file_dir,
+                                {
+                                    defaultEncoding: 'iso-8859-1'
+                                }
+                            )
+                        );
+
+                        //Written
                         r(_result_file_dir)
                     }
                 });

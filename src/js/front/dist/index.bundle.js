@@ -30101,7 +30101,7 @@
 
 	var _index12 = _interopRequireDefault(_index11);
 
-	var _index13 = __webpack_require__(228);
+	var _index13 = __webpack_require__(286);
 
 	var _index14 = _interopRequireDefault(_index13);
 
@@ -30296,7 +30296,7 @@
 	                                    return _this4.onUpdate(e);
 	                                }
 	                            }) || _react2.default.createElement(_index12.default, { size: 100 }),
-	                            this.state.scrollUpdate && _react2.default.createElement(_index14.default, null)
+	                            this.state.scrollUpdate && _react2.default.createElement(_index14.default, { className: 'center-block width-30-p responsive-img' })
 	                        )
 	                    )
 	                )

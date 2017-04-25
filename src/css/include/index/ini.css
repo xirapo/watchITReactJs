@@ -61493,7 +61493,7 @@ https://smacss.com/book/type-state
     font-size: 1.8vh; } }
 @media (min-height: 599px) {
   .movies-box {
-    height: 74vh; }
+    height: 70vh; }
 
   .movie-details-description {
     height: 26vh; } }

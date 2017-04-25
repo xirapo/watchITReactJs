@@ -8,7 +8,7 @@ import AppMoviesList from '../../../components/app-main-movies-list/index.jsx'
 import AppMainTopInput from '../../../components/app-main-movies-top-inputs/index.jsx'
 import AppTinyProfile from '../../../components/app-tiny-box-profile/index.jsx'
 import BoxLoader from '../../../components/util-box-loader/index.jsx'
-import BarLoader from '../../../components/util-bar-loader/index.jsx'
+import PulseLoader from '../../../components/util-pulse-loader/index.jsx'
 //Require for auth
 //Database (Api Handler)
 import Auth from '../../../../resources/database/auth'
@@ -179,7 +179,10 @@ export default class Main extends React.Component {
                                 || <BoxLoader size={100}/>
                             }
                             {/*Check for new data loading*/}
-                            {this.state.scrollUpdate && <BarLoader />}
+                            {
+                                this.state.scrollUpdate
+                                && <PulseLoader className="center-block width-30-p responsive-img"/>
+                            }
                         </section>
                     </div>
                 </section>
