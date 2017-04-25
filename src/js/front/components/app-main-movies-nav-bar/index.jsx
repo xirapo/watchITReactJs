@@ -105,7 +105,7 @@ export default class AppMoviesNavBar extends React.Component {
 
     render() {
         return (
-            <div className="nav-wrapper">
+            <div className="nav-wrapper main-nav-filter-movies">
                 <NavBarMenu
                     btnText="Sort By" list={this.state.sort}
                     onChange={(e)=>this.onChange('sort_by',e)}

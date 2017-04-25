@@ -14,16 +14,14 @@ export default class MainHeader extends React.Component {
 
     render() {
         return (
-            <nav className="col s12 l12 m12 transparent z-depth-1">
-                <div className="nav-wrapper vertical-padding">
-                    <div className="col l2 m2 s3">
-                        <Logo size="35"/>
-                    </div>
-                    <a href={this.props.action} className="btn-close btn-close-video clearfix">
-                        <i className="icon-cross font-size-45 white-text"/>
-                    </a>
+            <header className="row vertical-padding transparent z-depth-1 clearfix">
+                <div className="col l2 m2 s3">
+                    <Logo/>
                 </div>
-            </nav>
+                <a href={this.props.action} className="btn-close btn-close-video clearfix">
+                    <i className="icon-cross font-size-45 white-text"/>
+                </a>
+            </header>
         )
     }
 }

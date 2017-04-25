@@ -64,13 +64,10 @@ export default class AppMovieDetail extends React.Component {
                 {/*Aside*/}
                 <aside className="col l4 m4">
                     {/*Poster*/}
-                    <div className="row overflow-hidden fixed-poster-resolution">
-                        <BoxImage
-                            className="full-width"
-                            src={this.props.movie.large_cover_image}
-                        />
-                    </div>
-
+                    <BoxImage
+                        className="full-width"
+                        src={this.props.movie.large_cover_image}
+                    />
                 </aside>
 
                 {/*Main Section*/}
@@ -78,9 +75,9 @@ export default class AppMovieDetail extends React.Component {
                     <header className="row">
                         {/*Title*/}
                         <div className="col l12 m12 s12">
-                            <h3 className="white-text margin-top-0 font-type-titles font-size-50 padding-bottom-5 truncate">
+                            <h1 className="white-text margin-top-0 font-type-titles truncate">
                                 {this.props.movie.title}
-                            </h3>
+                            </h1>
                         </div>
 
                         {/*Movie Info*/}
@@ -102,31 +99,31 @@ export default class AppMovieDetail extends React.Component {
                     </section>
 
                     {/*Description*/}
-                    <section className="row">
+                    <section className="row movie-details-description">
                         <CustomScrollbars
                             autoHide
                             autoHideTimeout={1000}
                             autoHideDuration={200}
-                            autoHeight
-                            autoHeightMin={200}
                             thumbMinSize={30}
                             universal={true}>
-                            <FlowText content={this.props.movie.description_full}/>
+                            <FlowText>
+                                <span>{this.props.movie.description_full}</span>
+                            </FlowText>
                         </CustomScrollbars>
 
                     </section>
 
                     {/*Footer*/}
-                    <footer className="row">
-                        <nav className="col l8 m8 transparent z-depth-0">
+                    <footer className="row nav-bar-movie-details">
+                        <nav className="col l12 m12 transparent z-depth-0">
                             <div className="nav-wrapper">
                                 {/*Play*/}
                                 <ul>
                                     <li className="dropdown">
-                                        <a className="dropdown-button clearfix"
+                                        <a className="dropdown-button flow-text clearfix"
                                            href={"#/app/movie/play/" + this.state.torrent }>
                                             <span className="font-light-gray right">Play</span>
-                                            <i className="icon-controller-play tiny relative top-2 left margin-left-4"/>
+                                            <i className="icon-controller-play relative top-2 left margin-left-4"/>
                                         </a>
                                     </li>
                                 </ul>
@@ -141,15 +138,15 @@ export default class AppMovieDetail extends React.Component {
                                     )}
                                 />
 
-                                {/*Watch Trailer*/}
-                                <ul>
-                                    <li className="dropdown">
-                                        <a className="dropdown-button" href="#modal-trailer">
-                                            <span className="font-light-gray right">Trailer</span>
-                                            <i className="icon-video tiny relative top-2 left margin-left-4"/>
-                                        </a>
-                                    </li>
-                                </ul>
+                                {/*Watch Trailer
+                                 <ul>
+                                 <li className="dropdown">
+                                 <a className="dropdown-button flow-text" href="#modal-trailer">
+                                 <span className="font-light-gray right">Trailer</span>
+                                 <i className="icon-video relative top-2 left margin-left-4"/>
+                                 </a>
+                                 </li>
+                                 </ul>*/}
                             </div>
                         </nav>
                     </footer>

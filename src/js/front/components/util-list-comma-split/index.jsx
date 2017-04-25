@@ -18,7 +18,7 @@ export default class ListCommaSplit extends React.Component {
                 {
                     this.props.list.map((i, k)=> {
                         return (
-                            <span className="separated-comma flow-text font-size-22 blue-grey-text" key={k}>
+                            <span className="separated-comma flow-text blue-grey-text" key={k}>
                                 {i}
                             </span>
                         )

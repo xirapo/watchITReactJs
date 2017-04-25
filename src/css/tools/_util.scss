@@ -83,6 +83,16 @@ $m-width_height: max-height max-width min-height min-width;
       #{$l}: 0% + $i !important;
     }
   }
+
+  @each $l in $width_height {
+    .#{$l}-#{$i}-#{"vh"} {
+      #{$l}: (0 + $i)#{"vh"} !important;
+    }
+
+    .#{$l}-#{$i}-#{"vw"} {
+      #{$l}: (0 + $i)#{"vw"} !important;
+    }
+  }
 }
 
 //Generate size

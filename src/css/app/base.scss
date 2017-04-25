@@ -12,7 +12,13 @@ ul {
   margin: 0;
 }
 
+h1 {
+  line-height: 130%;
+
+}
+
 body {
+  font-size: 100%;
   overflow: hidden;
   margin: 0;
   //background-size: cover;
@@ -81,5 +87,3 @@ input[type=file] {
   background-color: transparent !important;
   position: absolute !important;
 }
-
-

@@ -112,11 +112,11 @@ https://smacss.com/book/type-state
 .tiny-picture {
   @extend .picture;
   figure {
-    width: 30px;
-    height: 30px;
+    width: 2rem;
+    height: 2rem;
     img {
-      width: 30px;
-      height: 30px;
+      width: 100%;
+      height: 100%;
     }
   }
 }
@@ -124,11 +124,11 @@ https://smacss.com/book/type-state
 .small-picture {
   @extend .picture;
   figure {
-    width: 40px;
-    height: 40px;
+    width: 3rem;
+    height: 3rem;
     img {
-      width: 40px;
-      height: 40px;
+      width: 100%;
+      height: 100%;
     }
   }
 }
@@ -261,7 +261,7 @@ https://smacss.com/book/type-state
 
 .btn-close {
   position: absolute;
-  top: 3px;
+  top: 1.2rem;
   right: 0;
   z-index: 100;
 }
@@ -312,16 +312,81 @@ https://smacss.com/book/type-state
 
 /* Small devices (tablets, 768px and up) */
 //
-//@include media-small {
-//
-//}
-//
+@include media-small {
+
+}
+
 ///* Medium devices (desktops, 992px and up) */
-//@include media-middle {
-//
-//}
-//
-///* Large devices (large desktops, 1200px and up) */
-//@include media-large {
-//
-//}
+@include media-middle {
+
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@include media-large {
+  .img-media-large {
+    width: 7.66667% !important;
+  }
+
+  .logo-media-large {
+    width: 12% !important;
+  }
+
+  .main-nav-filter-movies {
+    .dropdown a {
+      font-size: 1.8vh;
+    }
+  }
+
+}
+
+//MEDIA QUERIES
+
+///////////////FIXED HEIGHT
+
+@media (max-height: 700px) {
+  .movies-box {
+    height: 76vh;
+  }
+
+  .movie-details-description {
+    height: 26vh;
+  }
+}
+
+@media (min-height: 769px) {
+  .movies-box {
+    height: 78vh;
+  }
+
+  .movie-details-description {
+    height: 28vh;
+  }
+}
+
+@media (min-height: 801px) {
+  .movies-box {
+    height: 80vh;
+  }
+
+  .movie-details-description {
+    height: 30vh;
+  }
+}
+
+@media (min-height: 1000px) {
+  .movies-box {
+    height: 82vh;
+  }
+
+  .movie-details-description {
+    height: 32vh;
+  }
+}
+
+@media only screen and (min-height: 1150px) {
+
+}
+
+@media only screen and (min-height: 1400px) {
+
+}

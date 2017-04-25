@@ -26051,7 +26051,7 @@
 /* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -26081,29 +26081,22 @@
 	    }
 
 	    _createClass(Logo, [{
-	        key: 'render',
+	        key: "render",
 	        value: function render() {
 	            return _react2.default.createElement(
-	                'h2',
-	                { className: "no-margin font-type-titles font-size-" + this.props.size },
+	                "h3",
+	                { className: "no-margin font-type-titles" },
 	                _react2.default.createElement(
-	                    'span',
-	                    { className: 'white-text' },
-	                    'watch'
+	                    "span",
+	                    { className: "white-text" },
+	                    "watch"
 	                ),
 	                _react2.default.createElement(
-	                    'strong',
-	                    { className: 'loader-text' },
-	                    'IT'
+	                    "strong",
+	                    { className: "loader-text" },
+	                    "IT"
 	                )
 	            );
-	        }
-	    }], [{
-	        key: 'defaultProps',
-	        get: function get() {
-	            return {
-	                size: '50'
-	            };
 	        }
 	    }]);
 
@@ -30152,7 +30145,6 @@
 	        _this.auth = new _auth2.default();
 	        _this.user = new _user2.default();
 	        _this.movie = new _movies2.default();
-
 	        //Default offset
 	        _this.offset = 1;
 
@@ -30163,7 +30155,7 @@
 	        };
 
 	        _this.sort = {
-	            limit: 30,
+	            limit: 100,
 	            sort_by: 'date_uploaded',
 	            order: 'desc'
 	        };
@@ -30215,14 +30207,14 @@
 	        key: 'resetLimit',
 	        value: function resetLimit() {
 	            this.offset = 1;
-	            this.sort.limit = 30;
+	            this.sort.limit = 100;
 	        }
 	    }, {
 	        key: 'onUpdate',
 	        value: function onUpdate(e) {
 	            //On Scroll down
 	            if (e.top == 1) {
-	                this.sort.limit = ++this.offset * 30;
+	                this.sort.limit = ++this.offset * 100;
 	                this.setState({
 	                    scrollUpdate: true
 	                });
@@ -30274,8 +30266,8 @@
 	                            { className: 'row no-margin vertical-padding transparent z-depth-1' },
 	                            _react2.default.createElement(
 	                                'div',
-	                                { className: 'col l2 m2 relative' },
-	                                _react2.default.createElement(_index2.default, { size: '35' })
+	                                { className: 'col l2 m2 logo-media-large' },
+	                                _react2.default.createElement(_index2.default, null)
 	                            ),
 	                            _react2.default.createElement(
 	                                'div',
@@ -30284,7 +30276,7 @@
 	                            ),
 	                            _react2.default.createElement(
 	                                'div',
-	                                { className: 'col l1 m1' },
+	                                { className: 'col l1 m1 float-right' },
 	                                _react2.default.createElement(_index10.default, { user: this.state.user })
 	                            )
 	                        ),
@@ -30297,7 +30289,7 @@
 	                        ),
 	                        _react2.default.createElement(
 	                            'section',
-	                            { className: 'row full-height' },
+	                            { className: 'row movies-box' },
 	                            !this.state.loading && this.state.movies && _react2.default.createElement(_index6.default, {
 	                                movies: this.state.movies,
 	                                onUpdate: function onUpdate(e) {
@@ -30460,7 +30452,7 @@
 
 	            return _react2.default.createElement(
 	                'div',
-	                { className: 'nav-wrapper' },
+	                { className: 'nav-wrapper main-nav-filter-movies' },
 	                _react2.default.createElement(_index2.default, {
 	                    btnText: 'Sort By', list: this.state.sort,
 	                    onChange: function onChange(e) {
@@ -30588,20 +30580,20 @@
 	                        /*The main button*/
 	                        //Set personalized label
 	                        this.state.label && _react2.default.createElement(
-	                            'strong',
-	                            { className: 'dropdown-result blue-text' },
+	                            'span',
+	                            { className: "dropdown-result blue-text" },
 	                            this.state.label
 	                        )
 
 	                        //Or get default
 	                        || this.props.list.map(function (i, k) {
 	                            return i.default && _react2.default.createElement(
-	                                'strong',
+	                                'span',
 	                                { className: 'dropdown-result blue-text', key: k },
 	                                i.label
 	                            );
 	                        }),
-	                        _react2.default.createElement('i', { className: 'icon-triangle-down tiny relative top-2 right margin-left-4' })
+	                        _react2.default.createElement('i', { className: 'icon-triangle-down tiny relative top-1 right margin-left-4' })
 	                    ),
 	                    _react2.default.createElement(
 	                        'ul',
@@ -30703,7 +30695,6 @@
 	                marginRight: '-16px'
 	            };
 	            return _react2.default.createElement('div', _extends({
-	                className: 'box',
 	                style: _extends({}, style, viewStyle)
 	            }, props));
 	        }
@@ -30752,8 +30743,7 @@
 	                renderThumbHorizontal: this.renderThumbHorizontal,
 	                autoHide: true,
 	                autoHideTimeout: 1000,
-	                autoHideDuration: 200,
-	                universal: true
+	                autoHideDuration: 200
 	            }, this.props));
 	        }
 	    }]);
@@ -32295,8 +32285,6 @@
 	                    autoHide: true,
 	                    autoHideTimeout: 1000,
 	                    autoHideDuration: 200,
-	                    autoHeight: true,
-	                    autoHeightMin: 530,
 	                    thumbMinSize: 30,
 	                    universal: true,
 	                    onScrollFrame: this.props.onUpdate },
@@ -32306,7 +32294,7 @@
 	                    this.props.movies.map(function (i, k) {
 	                        return _react2.default.createElement(
 	                            'div',
-	                            { key: k, className: 'col l2 m2 padding-left-2 padding-right-2' },
+	                            { key: k, className: 'col l2 m2 img-media-large padding-left-2 padding-right-2' },
 	                            _react2.default.createElement(
 	                                'a',
 	                                { href: "#/app/movie/" + i.imdb_code },
@@ -32398,7 +32386,7 @@
 
 	            return _react2.default.createElement(
 	                'figure',
-	                { className: 'clearfix no-margin' },
+	                { className: 'image-container no-margin' },
 
 	                /*No poster found*/
 	                this.state.status < 0 && _react2.default.createElement('img', {
@@ -32407,11 +32395,11 @@
 	                }),
 
 	                /*Spinner loader*/
-	                this.state.status == 0 && _react2.default.createElement(_index2.default, { className: 'center-block margin-top-52-p responsive-img' }),
+	                this.state.status == 0 && _react2.default.createElement(_index2.default, { className: 'center-block margin-top-50-p width-30-p responsive-img' }),
 
 	                /*The image*/
 	                _react2.default.createElement('img', {
-	                    className: this.state.loaded && "responsive-img poster-main-view" || " hide",
+	                    className: this.state.loaded && "responsive-img" || " hide",
 	                    src: this.props.src,
 	                    onLoad: function onLoad(e) {
 	                        return _this2.handleImageLoaded(e);
@@ -32611,7 +32599,7 @@
 	                { className: 'clearfix' },
 	                _react2.default.createElement(
 	                    'div',
-	                    { className: 'col l3 m3 relative small-picture' },
+	                    { className: 'col l12 m12 float-right small-picture' },
 	                    _react2.default.createElement(
 	                        'a',
 	                        { href: '#' },
@@ -32988,14 +32976,10 @@
 	            return _react2.default.createElement(
 	                'div',
 	                { className: 'relative full-height' },
-	                _react2.default.createElement(
-	                    'header',
-	                    { className: 'row' },
-	                    _react2.default.createElement(_index4.default, null)
-	                ),
+	                _react2.default.createElement(_index4.default, null),
 	                _react2.default.createElement(
 	                    'section',
-	                    { className: 'row margin-top-20' },
+	                    { className: 'row' },
 	                    this.state.movies && _react2.default.createElement(_index6.default, { movie: this.state.movies }) || _react2.default.createElement(_index2.default, { size: '100' })
 	                )
 	            );
@@ -33048,21 +33032,17 @@
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
-	                'nav',
-	                { className: 'col s12 l12 m12 transparent z-depth-1' },
+	                'header',
+	                { className: 'row vertical-padding transparent z-depth-1 clearfix' },
 	                _react2.default.createElement(
 	                    'div',
-	                    { className: 'nav-wrapper vertical-padding' },
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'col l2 m2 s3' },
-	                        _react2.default.createElement(_index2.default, { size: '35' })
-	                    ),
-	                    _react2.default.createElement(
-	                        'a',
-	                        { href: this.props.action, className: 'btn-close btn-close-video clearfix' },
-	                        _react2.default.createElement('i', { className: 'icon-cross font-size-45 white-text' })
-	                    )
+	                    { className: 'col l2 m2 s3' },
+	                    _react2.default.createElement(_index2.default, null)
+	                ),
+	                _react2.default.createElement(
+	                    'a',
+	                    { href: this.props.action, className: 'btn-close btn-close-video clearfix' },
+	                    _react2.default.createElement('i', { className: 'icon-cross font-size-45 white-text' })
 	                )
 	            );
 	        }
@@ -33190,14 +33170,10 @@
 	                _react2.default.createElement(
 	                    'aside',
 	                    { className: 'col l4 m4' },
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'row overflow-hidden fixed-poster-resolution' },
-	                        _react2.default.createElement(_index2.default, {
-	                            className: 'full-width',
-	                            src: this.props.movie.large_cover_image
-	                        })
-	                    )
+	                    _react2.default.createElement(_index2.default, {
+	                        className: 'full-width',
+	                        src: this.props.movie.large_cover_image
+	                    })
 	                ),
 	                _react2.default.createElement(
 	                    'section',
@@ -33209,8 +33185,8 @@
 	                            'div',
 	                            { className: 'col l12 m12 s12' },
 	                            _react2.default.createElement(
-	                                'h3',
-	                                { className: 'white-text margin-top-0 font-type-titles font-size-50 padding-bottom-5 truncate' },
+	                                'h1',
+	                                { className: 'white-text margin-top-0 font-type-titles truncate' },
 	                                this.props.movie.title
 	                            )
 	                        ),
@@ -33232,26 +33208,32 @@
 	                    ),
 	                    _react2.default.createElement(
 	                        'section',
-	                        { className: 'row' },
+	                        { className: 'row movie-details-description' },
 	                        _react2.default.createElement(
 	                            _index10.default,
 	                            {
 	                                autoHide: true,
 	                                autoHideTimeout: 1000,
 	                                autoHideDuration: 200,
-	                                autoHeight: true,
-	                                autoHeightMin: 200,
 	                                thumbMinSize: 30,
 	                                universal: true },
-	                            _react2.default.createElement(_index8.default, { content: this.props.movie.description_full })
+	                            _react2.default.createElement(
+	                                _index8.default,
+	                                null,
+	                                _react2.default.createElement(
+	                                    'span',
+	                                    null,
+	                                    this.props.movie.description_full
+	                                )
+	                            )
 	                        )
 	                    ),
 	                    _react2.default.createElement(
 	                        'footer',
-	                        { className: 'row' },
+	                        { className: 'row nav-bar-movie-details' },
 	                        _react2.default.createElement(
 	                            'nav',
-	                            { className: 'col l8 m8 transparent z-depth-0' },
+	                            { className: 'col l12 m12 transparent z-depth-0' },
 	                            _react2.default.createElement(
 	                                'div',
 	                                { className: 'nav-wrapper' },
@@ -33263,14 +33245,14 @@
 	                                        { className: 'dropdown' },
 	                                        _react2.default.createElement(
 	                                            'a',
-	                                            { className: 'dropdown-button clearfix',
+	                                            { className: 'dropdown-button flow-text clearfix',
 	                                                href: "#/app/movie/play/" + this.state.torrent },
 	                                            _react2.default.createElement(
 	                                                'span',
 	                                                { className: 'font-light-gray right' },
 	                                                'Play'
 	                                            ),
-	                                            _react2.default.createElement('i', { className: 'icon-controller-play tiny relative top-2 left margin-left-4' })
+	                                            _react2.default.createElement('i', { className: 'icon-controller-play relative top-2 left margin-left-4' })
 	                                        )
 	                                    )
 	                                ),
@@ -33283,25 +33265,7 @@
 	                                        return _this2.setInitialTorrent(t);
 	                                    },
 	                                    list: this.prepareTorrents(this.props.movie.torrents)
-	                                }),
-	                                _react2.default.createElement(
-	                                    'ul',
-	                                    null,
-	                                    _react2.default.createElement(
-	                                        'li',
-	                                        { className: 'dropdown' },
-	                                        _react2.default.createElement(
-	                                            'a',
-	                                            { className: 'dropdown-button', href: '#modal-trailer' },
-	                                            _react2.default.createElement(
-	                                                'span',
-	                                                { className: 'font-light-gray right' },
-	                                                'Trailer'
-	                                            ),
-	                                            _react2.default.createElement('i', { className: 'icon-video tiny relative top-2 left margin-left-4' })
-	                                        )
-	                                    )
-	                                )
+	                                })
 	                            )
 	                        )
 	                    )
@@ -33447,8 +33411,8 @@
 	                { className: 'col l12 s12 m12' },
 	                _react2.default.createElement(
 	                    'p',
-	                    { className: "flow-text font-size-" + this.props.size + " font-light-gray" },
-	                    this.props.content
+	                    { className: "flow-text font-light-gray" },
+	                    this.props.children
 	                )
 	            );
 	        }
@@ -33519,7 +33483,7 @@
 	                this.props.list.map(function (i, k) {
 	                    return _react2.default.createElement(
 	                        'span',
-	                        { className: 'separated-comma flow-text font-size-22 blue-grey-text', key: k },
+	                        { className: 'separated-comma flow-text blue-grey-text', key: k },
 	                        i
 	                    );
 	                })
@@ -33963,7 +33927,7 @@
 	                        'div',
 	                        null,
 	                        _react2.default.createElement(
-	                            'h4',
+	                            'h3',
 	                            { className: 'font-type-titles align-center white-text' },
 	                            this.props.stateText
 	                        )

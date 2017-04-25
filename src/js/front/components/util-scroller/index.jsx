@@ -10,7 +10,6 @@ export default class CustomScrollbars extends React.Component {
         };
         return (
             <div
-                className="box"
                 style={{ ...style, ...viewStyle }}
                 {...props}
             ></div>
@@ -62,7 +61,6 @@ export default class CustomScrollbars extends React.Component {
                 autoHide
                 autoHideTimeout={1000}
                 autoHideDuration={200}
-                universal={true}
                 {...this.props} />
         );
     }

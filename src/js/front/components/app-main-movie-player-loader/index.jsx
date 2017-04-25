@@ -25,9 +25,9 @@ export default class AppMoviesPlayerLoader extends React.Component {
             <div className="output-process valign-wrapper full-width full-height">
                 <div className="center-block valign">
                     <div>
-                        <h4 className="font-type-titles align-center white-text">
+                        <h3 className="font-type-titles align-center white-text">
                             {this.props.stateText}
-                        </h4>
+                        </h3>
                     </div>
                     <div className="absolute full-width no-left">
                         <div className={"progress amber lighten-1 width-" + this.props.statePercent + '-p'}>

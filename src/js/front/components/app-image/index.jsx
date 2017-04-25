@@ -44,7 +44,7 @@ export default class BoxImage extends React.Component {
 
     render() {
         return (
-            <figure className="clearfix no-margin">
+            <figure className="image-container no-margin">
                 {
                     /*No poster found*/
                     this.state.status < 0 && <img
@@ -56,13 +56,13 @@ export default class BoxImage extends React.Component {
                 {
                     /*Spinner loader*/
                     this.state.status == 0
-                    && <PulseLoader className="center-block margin-top-52-p responsive-img"/>
+                    && <PulseLoader className="center-block margin-top-50-p width-30-p responsive-img"/>
                 }
 
                 {
                     /*The image*/
                     <img
-                        className={(this.state.loaded && "responsive-img poster-main-view" || " hide")}
+                        className={(this.state.loaded && "responsive-img" || " hide")}
                         src={this.props.src}
                         onLoad={(e)=>this.handleImageLoaded(e)}
                         onError={(e)=>{this.handleImageError(e)}}

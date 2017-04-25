@@ -1,0 +1,12 @@
+
+.flow-text {
+  @extend .flow-text;
+  font-size: 2.8vh;
+}
+
+
+.nav-bar-movie-details {
+  .dropdown a {
+    @extend .flow-text;
+  }
+}

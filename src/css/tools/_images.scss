@@ -1,4 +1,4 @@
-.image-background-cover{
+.image-background-cover {
   background-size: cover !important;
 }
 
@@ -7,9 +7,9 @@
   height: auto;
 }
 
-.image-responsive {
+.responsive-img {
+  @extend .responsive-img;
   width: 100%;
   max-width: 100%;
-  height: auto;
   position: relative;
 }

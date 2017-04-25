@@ -24,7 +24,6 @@ export default class Main extends React.Component {
         this.auth = new Auth();
         this.user = new User();
         this.movie = new Movie();
-        
         //Default offset
         this.offset = 1;
 
@@ -35,7 +34,7 @@ export default class Main extends React.Component {
         };
 
         this.sort = {
-            limit: 30,
+            limit: 100,
             sort_by: 'date_uploaded',
             order: 'desc'
         };
@@ -86,13 +85,13 @@ export default class Main extends React.Component {
 
     resetLimit() {
         this.offset = 1;
-        this.sort.limit = 30
+        this.sort.limit = 100
     }
 
     onUpdate(e) {
         //On Scroll down
         if (e.top == 1) {
-            this.sort.limit = (++this.offset * 30);
+            this.sort.limit = (++this.offset * 100);
             this.setState({
                 scrollUpdate: true
             });
@@ -152,14 +151,15 @@ export default class Main extends React.Component {
                     <div className="clearfix">
 
                         <header className="row no-margin vertical-padding transparent z-depth-1">
-                            <div className="col l2 m2 relative">
-                                <Logo size="35"/>
+                            <div className="col l2 m2 logo-media-large">
+                                <Logo/>
                             </div>
 
                             <div className="col l9 m9">
                                 <AppMainTopInput size="m6 l6"/>
                             </div>
-                            <div className="col l1 m1">
+
+                            <div className="col l1 m1 float-right">
                                 <AppTinyProfile user={this.state.user}/>
                             </div>
                         </header>
@@ -168,7 +168,7 @@ export default class Main extends React.Component {
                             <AppMoviesNav onChange={(t,e)=>this.onChange(t,e)}/>
                         </nav>
 
-                        <section className="row full-height">
+                        <section className="row movies-box">
                             {
                                 !this.state.loading
                                 && this.state.movies
@@ -178,7 +178,6 @@ export default class Main extends React.Component {
                                 />
                                 || <BoxLoader size={100}/>
                             }
-
                             {/*Check for new data loading*/}
                             {this.state.scrollUpdate && <BarLoader />}
                         </section>

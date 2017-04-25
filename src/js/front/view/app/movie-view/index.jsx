@@ -27,7 +27,7 @@ export default class MainMovie extends React.Component {
     }
 
 
-    componentDidMount(){
+    componentDidMount() {
         //Movie details
         this.movie.get(
             this.props.match.params.imdb //imdb code
@@ -42,10 +42,8 @@ export default class MainMovie extends React.Component {
     render() {
         return (
             <div className="relative full-height">
-                <header className="row">
-                    <MainHeader />
-                </header>
-                <section className="row margin-top-20">
+                <MainHeader />
+                <section className="row">
                     {/*Main Loader or Movie details*/}
                     {
                         this.state.movies && <MovieDetails movie={this.state.movies}/>
