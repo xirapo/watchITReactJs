@@ -61,12 +61,13 @@ export default class NavBarMenu extends React.Component {
                 {/*Drop down main container*/}
                 <li className="dropdown">
                     <a className="dropdown-button" href="javascript:void(0)">
+                        <i className="icon-triangle-down normalize-small-icon left margin-right-4"/>
                         <span className="font-light-gray">{this.props.btnText}</span>
                         {
                             /*The main button*/
                             //Set personalized label
                             this.state.label
-                            && <span className={"dropdown-result blue-text"}>
+                            && <span className={"dropdown-result no-bold blue-text"}>
                                 {this.state.label}
                             </span>
 
@@ -74,13 +75,12 @@ export default class NavBarMenu extends React.Component {
                             || this.props.list.map((i, k)=> {
                                 return (
                                     i.default
-                                    && <span className="dropdown-result blue-text" key={k}>
+                                    && <span className="dropdown-result no-bold blue-text" key={k}>
                                         {i.label}
                                     </span>
                                 )
                             })
                         }
-                        <i className="icon-triangle-down tiny relative top-1 right margin-left-4"/>
                     </a>
 
                     {/*Menu List*/}

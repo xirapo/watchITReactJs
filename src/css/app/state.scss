@@ -246,13 +246,15 @@ https://smacss.com/book/type-state
 
 /**OTHERS*/
 .normalize-small-icon {
-  margin-right: 4px;
+  top: 0.2vh;
   position: relative;
+  font-size: 2vh;
 }
 
 .normalize-medium-icon {
-  margin-right: 4px;
+  top: 0.5vh;
   position: relative;
+  font-size: 3vh;
 }
 
 .border-dashed-bottom-white {

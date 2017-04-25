@@ -61253,6 +61253,9 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 .flow-text, .nav-bar-movie-details .dropdown a {
   font-size: 2.8vh; }
 
+i.small {
+  font-size: 2vh !important; }
+
 /**
 https://smacss.com/book/type-state
 */
@@ -61423,12 +61426,14 @@ https://smacss.com/book/type-state
 
 /**OTHERS*/
 .normalize-small-icon {
-  margin-right: 4px;
-  position: relative; }
+  top: 0.2vh;
+  position: relative;
+  font-size: 2vh; }
 
 .normalize-medium-icon {
-  margin-right: 4px;
-  position: relative; }
+  top: 0.5vh;
+  position: relative;
+  font-size: 3vh; }
 
 .border-dashed-bottom-white {
   border-bottom: 1px dashed #fff; }

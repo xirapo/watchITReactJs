@@ -30571,6 +30571,7 @@
 	                    _react2.default.createElement(
 	                        'a',
 	                        { className: 'dropdown-button', href: 'javascript:void(0)' },
+	                        _react2.default.createElement('i', { className: 'icon-triangle-down normalize-small-icon left margin-right-4' }),
 	                        _react2.default.createElement(
 	                            'span',
 	                            { className: 'font-light-gray' },
@@ -30581,7 +30582,7 @@
 	                        //Set personalized label
 	                        this.state.label && _react2.default.createElement(
 	                            'span',
-	                            { className: "dropdown-result blue-text" },
+	                            { className: "dropdown-result no-bold blue-text" },
 	                            this.state.label
 	                        )
 
@@ -30589,11 +30590,10 @@
 	                        || this.props.list.map(function (i, k) {
 	                            return i.default && _react2.default.createElement(
 	                                'span',
-	                                { className: 'dropdown-result blue-text', key: k },
+	                                { className: 'dropdown-result no-bold blue-text', key: k },
 	                                i.label
 	                            );
-	                        }),
-	                        _react2.default.createElement('i', { className: 'icon-triangle-down tiny relative top-1 right margin-left-4' })
+	                        })
 	                    ),
 	                    _react2.default.createElement(
 	                        'ul',
@@ -33252,7 +33252,7 @@
 	                                                { className: 'font-light-gray right' },
 	                                                'Play'
 	                                            ),
-	                                            _react2.default.createElement('i', { className: 'icon-controller-play relative top-2 left margin-left-4' })
+	                                            _react2.default.createElement('i', { className: 'icon-controller-play normalize-small-icon left margin-left-4' })
 	                                        )
 	                                    )
 	                                ),
@@ -33352,7 +33352,7 @@
 	                        _react2.default.createElement(
 	                            'strong',
 	                            { className: _this2.state[char]['color'] + "-text flow-text " + _this2.state[char]['align'] + "-align" },
-	                            _react2.default.createElement('i', { className: "top-3 normalize-medium-icon small left margin-right-10 icon-" + _this2.state[char]['icon'] }),
+	                            _react2.default.createElement('i', { className: "normalize-medium-icon left margin-right-10 icon-" + _this2.state[char]['icon'] }),
 	                            _this2.props.info[char]
 	                        )
 	                    );

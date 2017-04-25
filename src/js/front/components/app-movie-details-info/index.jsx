@@ -35,7 +35,7 @@ export default class AppMovieDetailInfo extends React.Component {
                         return (
                             <div className={"col " + (idx == 0 && 'padding-left-0')} key={idx}>
                                 <strong className={this.state[char]['color'] + "-text flow-text " + this.state[char]['align'] + "-align"}>
-                                    <i className={"top-3 normalize-medium-icon small left margin-right-10 icon-" + this.state[char]['icon']}/>
+                                    <i className={"normalize-medium-icon left margin-right-10 icon-" + this.state[char]['icon']}/>
                                     {this.props.info[char]}
                                 </strong>
                             </div>
