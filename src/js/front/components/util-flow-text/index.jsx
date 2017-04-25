@@ -12,11 +12,6 @@ export default class FlowText extends React.Component {
         }
     }
 
-    static get propTypes() {
-        return {
-            content: PropTypes.string.isRequired
-        }
-    }
 
     render() {
         return (
