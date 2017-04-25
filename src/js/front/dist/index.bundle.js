@@ -33423,13 +33423,6 @@
 	                size: 20
 	            };
 	        }
-	    }, {
-	        key: 'propTypes',
-	        get: function get() {
-	            return {
-	                content: _propTypes2.default.string.isRequired
-	            };
-	        }
 	    }]);
 
 	    return FlowText;
