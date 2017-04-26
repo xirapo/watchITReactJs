@@ -33624,7 +33624,7 @@
 
 	            //Change state
 	            this.setState({
-	                state: 'Ready',
+	                state: 'Fetching Subtitles',
 	                percent: 100
 	            });
 	        }

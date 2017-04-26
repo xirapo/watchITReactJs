@@ -91,7 +91,7 @@ export default class MoviePlayer extends React.Component {
 
         //Change state
         this.setState({
-            state: 'Ready',
+            state: 'Fetching Subtitles',
             percent: 100
         })
     }
