@@ -36,10 +36,7 @@ export default class AppMoviesPlayer extends React.Component {
             this.videoNode, {
                 autoplay: true,
                 preload: true,
-                controls: false,
-                html5: {
-                    nativeTextTracks: false
-                }
+                controls: false
             }, () => {
 
                 //When player load
@@ -48,6 +45,7 @@ export default class AppMoviesPlayer extends React.Component {
                     if (this.props.subs) {
                         // for (let sub in this.props.subs) {
                         if ('spanish' in this.props.subs) {
+                            console.log(this.props.subs['spanish'].link);
                             //Convert to vtt
                             Sub.urlSrt2VttFile(
                                 this.props.subs['spanish'].link
@@ -62,6 +60,8 @@ export default class AppMoviesPlayer extends React.Component {
                                 _elem.default = true;
                                 this.videoNode.appendChild(_elem);
                             })
+                        } else {
+                            console.log('no spanish sub');
                         }
                     }
                 });

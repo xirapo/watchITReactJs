@@ -11,6 +11,7 @@
     var request = require('http');
     var path = require('path');
     var readline = require('readline');
+    var charsetDetect = require('jschardet');
     var unzip = require('unzip');
     //var setting = require(path.resolve() + '/js/backend/settings');
 
@@ -53,16 +54,22 @@
      */
     Sub.add('srt2vtt', function (srt_file_dir) {
         return (new Promise(function (r, e) {
-            //Convert to
-            var targetEncodingCharset = 'ISO-8859-1';
+
 
             //The new vtt file
             var _new_vtt_file_dir = srt_file_dir
                 .replace('.srt', '.vtt');
+            //Convert to
+            var dataBuff = fs.readFileSync(srt_file_dir);
+            var targetEncodingCharset = 'ISO-8859-1';
+            
+            //Check for encoding
+            var charset = charsetDetect.detect(dataBuff);
+            var detectedEncoding = charset.encoding;
 
             //The srt to ISO-8859-1
-            var _srt_buffer = iconv.decode(
-                fs.readFileSync(srt_file_dir),
+            var _srt_buffer = iconv.encode(
+                iconv.decode(dataBuff, detectedEncoding),
                 targetEncodingCharset
             );
 
@@ -72,7 +79,7 @@
                 fs.writeFileSync(_new_vtt_file_dir, vttData);
                 r(_new_vtt_file_dir);
             });
-            
+
         }));
     });
 

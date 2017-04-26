@@ -33735,10 +33735,7 @@
 	            this.player = videojs(this.videoNode, {
 	                autoplay: true,
 	                preload: true,
-	                controls: false,
-	                html5: {
-	                    nativeTextTracks: false
-	                }
+	                controls: false
 	            }, function () {
 
 	                //When player load
@@ -33747,6 +33744,7 @@
 	                    if (_this2.props.subs) {
 	                        // for (let sub in this.props.subs) {
 	                        if ('spanish' in _this2.props.subs) {
+	                            console.log(_this2.props.subs['spanish'].link);
 	                            //Convert to vtt
 	                            Sub.urlSrt2VttFile(_this2.props.subs['spanish'].link).then(function (vtt) {
 	                                console.log('Adding remote ' + vtt);
@@ -33759,6 +33757,8 @@
 	                                _elem.default = true;
 	                                _this2.videoNode.appendChild(_elem);
 	                            });
+	                        } else {
+	                            console.log('no spanish sub');
 	                        }
 	                    }
 	                });
