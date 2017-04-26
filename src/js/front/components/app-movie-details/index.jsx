@@ -38,7 +38,8 @@ export default class AppMovieDetail extends React.Component {
                 new Buffer(
                     JSON.stringify({
                         torrent: torrent,
-                        imdb_code: this.props.movie.imdb_code
+                        imdb_code: this.props.movie.imdb_code,
+                        title: this.props.movie.title
 
                     }) || '', 'utf8'
                 )

@@ -60,13 +60,23 @@ $m-width_height: max-height max-width min-height min-width;
   }
 }
 
-
 //Generate positions
-@for $i from 0 through 50 {
+@for $i from 0 through 100 {
   @each $l in $position_list {
     .#{$l}-#{$i} {
       #{$l}: 0px + $i !important;
     }
+
+    .#{$l}-#{$i}-#{"p"} {
+      #{$l}: 0% + $i !important;
+    }
+  }
+}
+
+//z-index
+@for $i from 0 through 1000 {
+  .z-index-#{$i} {
+    z-index: 0 + $i !important;
   }
 }
 
@@ -130,17 +140,6 @@ $m-width_height: max-height max-width min-height min-width;
 }
 
 /****** Position ******/
-.z-index-base {
-  z-index: 100;
-}
-
-.z-index-middle {
-  z-index: 200;
-}
-
-.z-index-top {
-  z-index: 500;
-}
 
 .no-left {
   left: 0;

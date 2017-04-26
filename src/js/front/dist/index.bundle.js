@@ -33142,7 +33142,8 @@
 	            this.setState({
 	                torrent: new Buffer(JSON.stringify({
 	                    torrent: torrent,
-	                    imdb_code: this.props.movie.imdb_code
+	                    imdb_code: this.props.movie.imdb_code,
+	                    title: this.props.movie.title
 
 	                }) || '', 'utf8').toString('base64')
 	            });
@@ -33552,6 +33553,7 @@
 	        var _this = _possibleConstructorReturn(this, (MoviePlayer.__proto__ || Object.getPrototypeOf(MoviePlayer)).call(this, props));
 
 	        _this.movie = new _movies2.default();
+	        _this.timeout = null;
 
 	        //Decode string and pass to json object
 	        _this.state = {
@@ -33599,7 +33601,23 @@
 	        }
 	    }, {
 	        key: 'onReady',
-	        value: function onReady(url) {
+	        value: function onReady(url, flix) {
+	            var _this3 = this;
+
+	            this.timeout = setInterval(function () {
+	                _this3.setState({
+	                    movieStat: {
+	                        dSpeed: (flix.swarm.downloadSpeed() / 1024).toFixed(2) + ' kb/s',
+	                        uSpeed: (flix.swarm.uploadSpeed() / 1024).toFixed(2) + ' kb/s',
+	                        dLoaded: parseInt((flix.swarm.cachedDownload + flix.swarm.downloaded) / 1024 / 1024) + ' mb',
+	                        fSize: parseInt(flix.fileSize / 1024 / 1024, 10) + ' mb',
+	                        aPeers: flix.swarm.wires.filter(function (w) {
+	                            return !w.peerChoking;
+	                        }).length.toString()
+	                    }
+	                });
+	            }, 1000);
+
 	            //Change state
 	            this.setState({
 	                state: 'Ready',
@@ -33608,7 +33626,7 @@
 	        }
 	    }, {
 	        key: 'onCanPlay',
-	        value: function onCanPlay(url) {
+	        value: function onCanPlay(url, flix) {
 	            this.setState({
 	                canPlay: true
 	            });
@@ -33616,25 +33634,26 @@
 	    }, {
 	        key: 'onClose',
 	        value: function onClose() {
-	            var _this3 = this;
+	            var _this4 = this;
 
 	            //Stop Torrent
 	            Streamer.stopTorrent();
-
 	            //Stopped
 	            this.setState({
 	                stopped: true
 	            });
-
 	            //Redirect
 	            setTimeout(function () {
-	                location.href = '#/app/movie/' + _this3.state.movieInfo.imdb_code;
+	                location.href = '#/app/movie/' + _this4.state.movieInfo.imdb_code;
 	            }, 1000);
+
+	            //Stop watching for flix
+	            clearTimeout(this.timeout);
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var _this4 = this;
+	            var _this5 = this;
 
 	            return _react2.default.createElement(
 	                'div',
@@ -33646,24 +33665,123 @@
 	                        stateText: this.state.state,
 	                        statePercent: this.state.percent,
 	                        onClose: function onClose(e) {
-	                            _this4.onClose(e);
+	                            _this5.onClose(e);
 	                        }
 	                    })
 	                ),
 	                this.state.movieInfo && _react2.default.createElement(
 	                    'section',
 	                    { className: 'absolute full-width full-height clearfix video-stream' },
+	                    _react2.default.createElement(
+	                        'a',
+	                        { href: 'javascript:void(0);', onClick: function onClick(e) {
+	                                return _this5.onClose(e);
+	                            },
+	                            className: 'btn-close clearfix font-size-45 top-15 right-10' },
+	                        _react2.default.createElement('i', { className: 'icon-cross white-text' })
+	                    ),
+	                    _react2.default.createElement(
+	                        'header',
+	                        { className: 'row absolute z-index-100 top-2-p left-2-p clearfix' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            null,
+	                            _react2.default.createElement(
+	                                'h4',
+	                                { className: 'white-text bold font-type-titles' },
+	                                this.state.movieInfo.title
+	                            )
+	                        ),
+	                        this.state.movieStat && _react2.default.createElement(
+	                            'div',
+	                            null,
+	                            _react2.default.createElement(
+	                                'ul',
+	                                null,
+	                                _react2.default.createElement(
+	                                    'li',
+	                                    { className: 'white-text' },
+	                                    _react2.default.createElement(
+	                                        'span',
+	                                        { className: 'bold' },
+	                                        'Peers: '
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'span',
+	                                        null,
+	                                        this.state.movieStat.aPeers
+	                                    )
+	                                ),
+	                                _react2.default.createElement(
+	                                    'li',
+	                                    { className: 'white-text' },
+	                                    _react2.default.createElement(
+	                                        'span',
+	                                        { className: 'bold' },
+	                                        'D/Speed: '
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'span',
+	                                        null,
+	                                        this.state.movieStat.dSpeed
+	                                    )
+	                                ),
+	                                _react2.default.createElement(
+	                                    'li',
+	                                    { className: 'white-text' },
+	                                    _react2.default.createElement(
+	                                        'span',
+	                                        { className: 'bold' },
+	                                        'U/Speed: '
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'span',
+	                                        null,
+	                                        this.state.movieStat.uSpeed
+	                                    )
+	                                ),
+	                                _react2.default.createElement(
+	                                    'li',
+	                                    { className: 'white-text' },
+	                                    _react2.default.createElement(
+	                                        'span',
+	                                        { className: 'bold' },
+	                                        'File Size: '
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'span',
+	                                        null,
+	                                        this.state.movieStat.fSize
+	                                    )
+	                                ),
+	                                _react2.default.createElement(
+	                                    'li',
+	                                    { className: 'white-text' },
+	                                    _react2.default.createElement(
+	                                        'span',
+	                                        { className: 'bold' },
+	                                        'Downloaded: '
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'span',
+	                                        null,
+	                                        this.state.movieStat.dLoaded
+	                                    )
+	                                )
+	                            )
+	                        )
+	                    ),
 	                    _react2.default.createElement(_index2.default, {
 	                        torrent: this.state.movieInfo.torrent,
 	                        subs: this.state.movieSubs,
 	                        onProgress: function onProgress(p, s) {
-	                            _this4.onProgress(p, s);
+	                            _this5.onProgress(p, s);
 	                        },
-	                        onReady: function onReady(u) {
-	                            _this4.onReady(u);
+	                        onReady: function onReady(u, flix) {
+	                            _this5.onReady(u, flix);
 	                        },
 	                        onCanPlay: function onCanPlay(u) {
-	                            _this4.onCanPlay(u);
+	                            _this5.onCanPlay(u);
 	                        }
 	                    })
 	                ),
@@ -33899,17 +34017,8 @@
 	    }
 
 	    _createClass(AppMoviesPlayerLoader, [{
-	        key: 'onClose',
-	        value: function onClose(e) {
-	            if (this.props.onClose) {
-	                this.props.onClose(e);
-	            }
-	        }
-	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var _this2 = this;
-
 	            return _react2.default.createElement(
 	                'div',
 	                { className: 'output-process valign-wrapper full-width full-height' },
@@ -33943,14 +34052,6 @@
 	                            this.props.statePercent,
 	                            '%'
 	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        'a',
-	                        { href: 'javascript:void(0);', onClick: function onClick(e) {
-	                                return _this2.onClose(e);
-	                            },
-	                            className: 'btn-close clearfix font-size-45 top-15 right-10' },
-	                        _react2.default.createElement('i', { className: 'icon-cross white-text' })
 	                    )
 	                )
 	            );

@@ -84,11 +84,11 @@ video::-webkit-media-text-track-background {
 
 video::-webkit-media-text-track-display, video::cue {
   color: #fff;
-  font-family: $font-family-titles;
+  //font-family: $font-family-titles;
   font-size: 3.2vw !important;
   font-style: normal !important;
   font-weight: bold !important;
-  line-height: 1.2 !important;
+  //line-height: 1.2 !important;
   text-align: center;
   text-shadow: 0px 0px 10px #000, -2px -2px 1px #000, 2px -2px 1px #000, -2px 2px 1px #000, 2px 2px 1px #000;
   pointer-events: auto !important;

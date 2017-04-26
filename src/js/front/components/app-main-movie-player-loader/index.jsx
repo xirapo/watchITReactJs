@@ -13,12 +13,7 @@ export default class AppMoviesPlayerLoader extends React.Component {
             statePercent: PropTypes.number.isRequired
         }
     }
-
-    onClose(e) {
-        if (this.props.onClose) {
-            this.props.onClose(e);
-        }
-    }
+    
 
     render() {
         return (
@@ -44,10 +39,7 @@ export default class AppMoviesPlayerLoader extends React.Component {
                      {this.props.movieInfo.title}
                      </h1>
                      */}
-                    <a href="javascript:void(0);" onClick={(e)=>this.onClose(e)}
-                       className="btn-close clearfix font-size-45 top-15 right-10">
-                        <i className="icon-cross white-text"/>
-                    </a>
+                   
                 </div>
             </div>
         )
