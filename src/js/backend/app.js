@@ -9,7 +9,7 @@ var
     win = gui.Window.get(),
     ROOT_DIR = process.cwd(),
     ROOT_TMP_FOLDER = path.join(ROOT_DIR, 'tmp'), //TMP global folder
-    ENVIRONMENT = 'dev'; // dev or prod
+    ENVIRONMENT = 'prod'; // dev or prod
 
 
 // Create the System Temp Folder.

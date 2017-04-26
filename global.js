@@ -10,6 +10,7 @@ module.exports = {
         './media/**',
         './js/**',
         '!./assets/**',
+        '!./tmp/**',
         '!./cache/**',
         '!./build/**',
         './language/**',
