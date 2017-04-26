@@ -42,7 +42,6 @@ export default class MoviePlayer extends React.Component {
         this.movie.get(
             _movieInfo.imdb_code
         ).then((res)=> {
-            console.log(res.subtitles);
 
             //Get better sub
             for (let s in res.subtitles) {

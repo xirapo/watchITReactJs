@@ -33576,7 +33576,6 @@
 
 	            //Set subs
 	            this.movie.get(_movieInfo.imdb_code).then(function (res) {
-	                console.log(res.subtitles);
 
 	                //Get better sub
 	                for (var s in res.subtitles) {
