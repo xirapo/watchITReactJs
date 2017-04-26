@@ -72,6 +72,7 @@
     "axios": "^0.16.1",
     "babel-plugin-transform-object-assign": "^6.8.0",
     "babel-plugin-transform-object-rest-spread": "^6.16.0",
+    "iconv-lite": "0.4.16",
     "peerflix": "0.30.0",
     "react": "^15.5.4",
     "react-custom-scrollbars": "^4.1.1",

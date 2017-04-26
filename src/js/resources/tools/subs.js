@@ -5,8 +5,9 @@
 (function (window) {
     var fs = require('fs');
     //var srt2vtt = require('srt-to-vtt');
-    //var srt2vtt = require('srt2vtt');
-    var srt2vtt = require('srt-to-vtt');
+    var srt2vtt = require('srt2vtt');
+    //var srt2vtt = require('srttovtt');
+    var iconv = require('iconv-lite');
     var request = require('http');
     var path = require('path');
     var readline = require('readline');
@@ -52,29 +53,26 @@
      */
     Sub.add('srt2vtt', function (srt_file_dir) {
         return (new Promise(function (r, e) {
+            //Convert to
+            var targetEncodingCharset = 'ISO-8859-1';
+
             //The new vtt file
             var _new_vtt_file_dir = srt_file_dir
                 .replace('.srt', '.vtt');
 
-            // var srtData = fs.readFileSync(srt_file_dir);
-            // srt2vtt(srtData, function (err, vttData) {
-            //     if (err) throw new Error(err);
-            //     fs.writeFileSync(_new_vtt_file_dir, vttData);
-            //     r(_new_vtt_file_dir);
-            // });
+            //The srt to ISO-8859-1
+            var _srt_buffer = iconv.decode(
+                fs.readFileSync(srt_file_dir),
+                targetEncodingCharset
+            );
 
-            //Converting
-            fs.createReadStream(srt_file_dir)
-                .pipe(srt2vtt())
-                .pipe(
-                    fs.createWriteStream(
-                        _new_vtt_file_dir
-                    )
-                );
-
-            //Good
-            r(_new_vtt_file_dir);
-
+            //Converting SRT to VTT
+            srt2vtt(_srt_buffer, function (err, vttData) {
+                if (err) throw new Error(err);
+                fs.writeFileSync(_new_vtt_file_dir, vttData);
+                r(_new_vtt_file_dir);
+            });
+            
         }));
     });
 
@@ -96,17 +94,23 @@
                                 .replace(/\./g, '_')
                                 .replace('_srt', '.srt');
 
-                        //Write
-                        entry.pipe(
-                            fs.createWriteStream(_result_file_dir,
-                                {
-                                    defaultEncoding: 'iso-8859-1'
-                                }
-                            )
+
+                        var _file = fs.createWriteStream(
+                            _result_file_dir
                         );
 
-                        //Written
-                        r(_result_file_dir)
+                        //Write
+                        entry.pipe(
+                            _file
+                        );
+
+                        //Finish to write
+                        _file.on('finish', function () {
+                            //Written
+                            r(_result_file_dir);
+                            _file.close();  // close() is async, call cb after close completes.
+                        }.bind(this));
+
                     }
                 });
         }))
