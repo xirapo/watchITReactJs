@@ -69,6 +69,7 @@ export default class MoviePlayer extends React.Component {
 
     onReady(url, flix) {
 
+        //Interval to check for swarm info
         this.timeout = setInterval(()=> {
             this.setState({
                 movieStat: {
@@ -78,7 +79,7 @@ export default class MoviePlayer extends React.Component {
                     fSize: parseInt((flix.fileSize / 1024) / 1024, 10) + ' mb',
                     aPeers: (flix.swarm.wires.filter(function (w) {
                         return !w.peerChoking
-                    }).length).toString(),
+                    }).length).toString()
                 }
             })
         }, 1000);
