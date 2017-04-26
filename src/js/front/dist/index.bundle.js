@@ -33576,9 +33576,13 @@
 
 	            //Set subs
 	            this.movie.get(_movieInfo.imdb_code).then(function (res) {
+	                console.log(res.subtitles);
+
 	                //Get better sub
 	                for (var s in res.subtitles) {
 	                    res.subtitles[s] = res.subtitles[s].reduce(function (pre, act, i, arr) {
+	                        pre.rating = +pre.rating;
+	                        act.rating = +act.rating;
 	                        return pre.rating > act.rating ? pre : act;
 	                    }, {});
 	                }
@@ -33604,6 +33608,7 @@
 	        value: function onReady(url, flix) {
 	            var _this3 = this;
 
+	            //Interval to check for swarm info
 	            this.timeout = setInterval(function () {
 	                _this3.setState({
 	                    movieStat: {
@@ -33642,13 +33647,14 @@
 	            this.setState({
 	                stopped: true
 	            });
+
+	            //Stop watching for flix
+	            clearTimeout(this.timeout);
+
 	            //Redirect
 	            setTimeout(function () {
 	                location.href = '#/app/movie/' + _this4.state.movieInfo.imdb_code;
 	            }, 1000);
-
-	            //Stop watching for flix
-	            clearTimeout(this.timeout);
 	        }
 	    }, {
 	        key: 'render',
@@ -33680,7 +33686,7 @@
 	                            className: 'btn-close clearfix font-size-45 top-15 right-10' },
 	                        _react2.default.createElement('i', { className: 'icon-cross white-text' })
 	                    ),
-	                    _react2.default.createElement(
+	                    this.state.movieStat && _react2.default.createElement(
 	                        'header',
 	                        { className: 'row absolute z-index-100 top-2-p left-2-p clearfix' },
 	                        _react2.default.createElement(
@@ -33692,7 +33698,7 @@
 	                                this.state.movieInfo.title
 	                            )
 	                        ),
-	                        this.state.movieStat && _react2.default.createElement(
+	                        _react2.default.createElement(
 	                            'div',
 	                            null,
 	                            _react2.default.createElement(

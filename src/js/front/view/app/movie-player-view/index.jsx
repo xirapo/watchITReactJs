@@ -42,10 +42,15 @@ export default class MoviePlayer extends React.Component {
         this.movie.get(
             _movieInfo.imdb_code
         ).then((res)=> {
+            console.log(res.subtitles);
+
             //Get better sub
             for (let s in res.subtitles) {
                 res.subtitles[s] = res.subtitles[s].reduce((pre, act, i, arr)=> {
-                    return pre.rating > act.rating ? pre : act
+                    pre.rating = +pre.rating;
+                    act.rating = +act.rating;
+                    return pre.rating > act.rating
+                        ? pre : act
                 }, {});
             }
 
@@ -105,13 +110,15 @@ export default class MoviePlayer extends React.Component {
         this.setState({
             stopped: true
         });
+
+        //Stop watching for flix
+        clearTimeout(this.timeout);
+
         //Redirect
         setTimeout(()=> {
             location.href = '#/app/movie/' + this.state.movieInfo.imdb_code
         }, 1000);
 
-        //Stop watching for flix
-        clearTimeout(this.timeout)
 
     }
 
@@ -143,39 +150,44 @@ export default class MoviePlayer extends React.Component {
                                 <i className="icon-cross white-text"/>
                             </a>
 
-                            {/*Title info*/}
-                            <header className="row absolute z-index-100 top-2-p left-2-p clearfix">
-                                <div>
-                                    <h4 className="white-text bold font-type-titles">{this.state.movieInfo.title}</h4>
-                                </div>
-                                {
+                            {/*Movie torrent info*/}
+                            {
+                                (
                                     this.state.movieStat &&
-                                    <div>
-                                        <ul>
-                                            <li className="white-text">
-                                                <span className="bold">Peers: </span>
-                                                <span>{this.state.movieStat.aPeers}</span>
-                                            </li>
-                                            <li className="white-text">
-                                                <span className="bold">D/Speed: </span>
-                                                <span>{this.state.movieStat.dSpeed}</span>
-                                            </li>
-                                            <li className="white-text">
-                                                <span className="bold">U/Speed: </span>
-                                                <span>{this.state.movieStat.uSpeed}</span>
-                                            </li>
-                                            <li className="white-text">
-                                                <span className="bold">File Size: </span>
-                                                <span>{this.state.movieStat.fSize}</span>
-                                            </li>
-                                            <li className="white-text">
-                                                <span className="bold">Downloaded: </span>
-                                                <span>{this.state.movieStat.dLoaded}</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                }
-                            </header>
+                                    <header className="row absolute z-index-100 top-2-p left-2-p clearfix">
+                                        <div>
+                                            <h4 className="white-text bold font-type-titles">
+                                                {this.state.movieInfo.title}
+                                            </h4>
+                                        </div>
+                                        <div>
+                                            <ul>
+                                                <li className="white-text">
+                                                    <span className="bold">Peers: </span>
+                                                    <span>{this.state.movieStat.aPeers}</span>
+                                                </li>
+                                                <li className="white-text">
+                                                    <span className="bold">D/Speed: </span>
+                                                    <span>{this.state.movieStat.dSpeed}</span>
+                                                </li>
+                                                <li className="white-text">
+                                                    <span className="bold">U/Speed: </span>
+                                                    <span>{this.state.movieStat.uSpeed}</span>
+                                                </li>
+                                                <li className="white-text">
+                                                    <span className="bold">File Size: </span>
+                                                    <span>{this.state.movieStat.fSize}</span>
+                                                </li>
+                                                <li className="white-text">
+                                                    <span className="bold">Downloaded: </span>
+                                                    <span>{this.state.movieStat.dLoaded}</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                    </header>
+                                )
+                            }
 
                             {/*Main player*/}
                             <AppMoviePlayer
