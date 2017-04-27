@@ -4,7 +4,9 @@ import React from 'react'
 import AppMoviePlayer from '../../../components/app-main-movie-player/index.jsx'
 import AppMoviePlayerLoader from '../../../components/app-main-movie-player-loader/index.jsx'
 import MainLoader from '../../../components/util-main-loader/index.jsx'
-//Data
+
+//Database (Api Handler)
+import Auth from '../../../../resources/database/auth'
 import Movie from '../../../../resources/database/movies'
 
 
@@ -15,6 +17,7 @@ export default class MoviePlayer extends React.Component {
 
         //Movie
         this.movie = new Movie();
+        this.auth = new Auth();
         this.timeout = null;
 
         //Decode string and pass to json object
@@ -40,7 +43,8 @@ export default class MoviePlayer extends React.Component {
 
         //Set subs
         this.movie.get(
-            _movieInfo.imdb_code
+            _movieInfo.imdb_code,
+            this.auth.token
         ).then((res)=> {
 
             //Get better sub
@@ -143,7 +147,7 @@ export default class MoviePlayer extends React.Component {
 
                 {
                     (
-                        this.state.movieInfo &&
+                        this.state.movieInfo && 
                         <section className="absolute full-width full-height clearfix video-stream">
                             {/*Close button*/}
                             <a href="javascript:void(0);" onClick={(e)=>this.onClose(e)}
@@ -154,7 +158,7 @@ export default class MoviePlayer extends React.Component {
                             {/*Movie torrent info*/}
                             {
                                 (
-                                    this.state.movieStat &&
+                                    this.state.movieStat && this.state.canPlay &&
                                     <header className="row absolute z-index-100 top-2-p left-2-p clearfix">
                                         <div>
                                             <h4 className="white-text bold font-type-titles">
@@ -185,7 +189,6 @@ export default class MoviePlayer extends React.Component {
                                                 </li>
                                             </ul>
                                         </div>
-
                                     </header>
                                 )
                             }

@@ -33739,6 +33739,10 @@
 
 	var _index6 = _interopRequireDefault(_index5);
 
+	var _auth = __webpack_require__(230);
+
+	var _auth2 = _interopRequireDefault(_auth);
+
 	var _movies = __webpack_require__(292);
 
 	var _movies2 = _interopRequireDefault(_movies);
@@ -33753,7 +33757,8 @@
 
 	//Components
 
-	//Data
+
+	//Database (Api Handler)
 
 
 	//Login view class
@@ -33767,6 +33772,7 @@
 	        var _this = _possibleConstructorReturn(this, (MoviePlayer.__proto__ || Object.getPrototypeOf(MoviePlayer)).call(this, props));
 
 	        _this.movie = new _movies2.default();
+	        _this.auth = new _auth2.default();
 	        _this.timeout = null;
 
 	        //Decode string and pass to json object
@@ -33789,7 +33795,7 @@
 	            var _movieInfo = JSON.parse(new Buffer(this.props.match.params.torrent, 'base64').toString());
 
 	            //Set subs
-	            this.movie.get(_movieInfo.imdb_code).then(function (res) {
+	            this.movie.get(_movieInfo.imdb_code, this.auth.token).then(function (res) {
 
 	                //Get better sub
 	                for (var s in res.subtitles) {
@@ -33901,7 +33907,7 @@
 	                            className: 'btn-close clearfix font-size-45 top-15 right-10' },
 	                        _react2.default.createElement('i', { className: 'icon-cross white-text' })
 	                    ),
-	                    this.state.movieStat && _react2.default.createElement(
+	                    this.state.movieStat && this.state.canPlay && _react2.default.createElement(
 	                        'header',
 	                        { className: 'row absolute z-index-100 top-2-p left-2-p clearfix' },
 	                        _react2.default.createElement(
