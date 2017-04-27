@@ -3,6 +3,7 @@ import React from 'react'
 //Components
 import AppMoviePlayer from '../../../components/app-main-movie-player/index.jsx'
 import AppMoviePlayerLoader from '../../../components/app-main-movie-player-loader/index.jsx'
+import AppMoviesPlayerSwarm from '../../../components/app-main-movie-player-swarm/index.jsx'
 import MainLoader from '../../../components/util-main-loader/index.jsx'
 
 //Database (Api Handler)
@@ -147,7 +148,7 @@ export default class MoviePlayer extends React.Component {
 
                 {
                     (
-                        this.state.movieInfo && 
+                        this.state.movieInfo &&
                         <section className="absolute full-width full-height clearfix video-stream">
                             {/*Close button*/}
                             <a href="javascript:void(0);" onClick={(e)=>this.onClose(e)}
@@ -166,28 +167,9 @@ export default class MoviePlayer extends React.Component {
                                             </h4>
                                         </div>
                                         <div>
-                                            <ul>
-                                                <li className="white-text">
-                                                    <span className="bold">Peers: </span>
-                                                    <span>{this.state.movieStat.aPeers}</span>
-                                                </li>
-                                                <li className="white-text">
-                                                    <span className="bold">D/Speed: </span>
-                                                    <span>{this.state.movieStat.dSpeed}</span>
-                                                </li>
-                                                <li className="white-text">
-                                                    <span className="bold">U/Speed: </span>
-                                                    <span>{this.state.movieStat.uSpeed}</span>
-                                                </li>
-                                                <li className="white-text">
-                                                    <span className="bold">File Size: </span>
-                                                    <span>{this.state.movieStat.fSize}</span>
-                                                </li>
-                                                <li className="white-text">
-                                                    <span className="bold">Downloaded: </span>
-                                                    <span>{this.state.movieStat.dLoaded}</span>
-                                                </li>
-                                            </ul>
+                                            <AppMoviesPlayerSwarm
+                                                swarm={this.state.movieStat}
+                                            />
                                         </div>
                                     </header>
                                 )

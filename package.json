@@ -98,6 +98,8 @@
     "grunt-mkdir": "^1.0.0",
     "grunt-nw-builder": "^2.0.0",
     "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-compress": "0.0.9",
     "gulp-util": "^3.0.7",
     "nw-builder": "^2.2.7",
     "prop-types": "^15.5.8",

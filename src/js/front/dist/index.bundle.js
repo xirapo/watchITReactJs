@@ -33784,9 +33784,13 @@
 
 	var _index4 = _interopRequireDefault(_index3);
 
-	var _index5 = __webpack_require__(223);
+	var _index5 = __webpack_require__(304);
 
 	var _index6 = _interopRequireDefault(_index5);
+
+	var _index7 = __webpack_require__(223);
+
+	var _index8 = _interopRequireDefault(_index7);
 
 	var _auth = __webpack_require__(230);
 
@@ -33971,80 +33975,9 @@
 	                        _react2.default.createElement(
 	                            'div',
 	                            null,
-	                            _react2.default.createElement(
-	                                'ul',
-	                                null,
-	                                _react2.default.createElement(
-	                                    'li',
-	                                    { className: 'white-text' },
-	                                    _react2.default.createElement(
-	                                        'span',
-	                                        { className: 'bold' },
-	                                        'Peers: '
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'span',
-	                                        null,
-	                                        this.state.movieStat.aPeers
-	                                    )
-	                                ),
-	                                _react2.default.createElement(
-	                                    'li',
-	                                    { className: 'white-text' },
-	                                    _react2.default.createElement(
-	                                        'span',
-	                                        { className: 'bold' },
-	                                        'D/Speed: '
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'span',
-	                                        null,
-	                                        this.state.movieStat.dSpeed
-	                                    )
-	                                ),
-	                                _react2.default.createElement(
-	                                    'li',
-	                                    { className: 'white-text' },
-	                                    _react2.default.createElement(
-	                                        'span',
-	                                        { className: 'bold' },
-	                                        'U/Speed: '
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'span',
-	                                        null,
-	                                        this.state.movieStat.uSpeed
-	                                    )
-	                                ),
-	                                _react2.default.createElement(
-	                                    'li',
-	                                    { className: 'white-text' },
-	                                    _react2.default.createElement(
-	                                        'span',
-	                                        { className: 'bold' },
-	                                        'File Size: '
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'span',
-	                                        null,
-	                                        this.state.movieStat.fSize
-	                                    )
-	                                ),
-	                                _react2.default.createElement(
-	                                    'li',
-	                                    { className: 'white-text' },
-	                                    _react2.default.createElement(
-	                                        'span',
-	                                        { className: 'bold' },
-	                                        'Downloaded: '
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'span',
-	                                        null,
-	                                        this.state.movieStat.dLoaded
-	                                    )
-	                                )
-	                            )
+	                            _react2.default.createElement(_index6.default, {
+	                                swarm: this.state.movieStat
+	                            })
 	                        )
 	                    ),
 	                    _react2.default.createElement(_index2.default, {
@@ -34061,7 +33994,7 @@
 	                        }
 	                    })
 	                ),
-	                this.state.stopped && _react2.default.createElement(_index6.default, null)
+	                this.state.stopped && _react2.default.createElement(_index8.default, null)
 	            );
 	        }
 	    }]);
@@ -34346,6 +34279,135 @@
 	}(_react2.default.Component);
 
 	exports.default = AppMoviesPlayerLoader;
+
+/***/ }),
+/* 304 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _propTypes = __webpack_require__(184);
+
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var AppMoviesPlayerSwarm = function (_React$Component) {
+	    _inherits(AppMoviesPlayerSwarm, _React$Component);
+
+	    function AppMoviesPlayerSwarm() {
+	        _classCallCheck(this, AppMoviesPlayerSwarm);
+
+	        return _possibleConstructorReturn(this, (AppMoviesPlayerSwarm.__proto__ || Object.getPrototypeOf(AppMoviesPlayerSwarm)).apply(this, arguments));
+	    }
+
+	    _createClass(AppMoviesPlayerSwarm, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'ul',
+	                null,
+	                _react2.default.createElement(
+	                    'li',
+	                    { className: 'white-text' },
+	                    _react2.default.createElement(
+	                        'span',
+	                        { className: 'bold' },
+	                        'Peers: '
+	                    ),
+	                    _react2.default.createElement(
+	                        'span',
+	                        null,
+	                        this.props.swarm.aPeers
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'li',
+	                    { className: 'white-text' },
+	                    _react2.default.createElement(
+	                        'span',
+	                        { className: 'bold' },
+	                        'D/Speed: '
+	                    ),
+	                    _react2.default.createElement(
+	                        'span',
+	                        null,
+	                        this.props.swarm.dSpeed
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'li',
+	                    { className: 'white-text' },
+	                    _react2.default.createElement(
+	                        'span',
+	                        { className: 'bold' },
+	                        'U/Speed: '
+	                    ),
+	                    _react2.default.createElement(
+	                        'span',
+	                        null,
+	                        this.props.swarm.uSpeed
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'li',
+	                    { className: 'white-text' },
+	                    _react2.default.createElement(
+	                        'span',
+	                        { className: 'bold' },
+	                        'File Size: '
+	                    ),
+	                    _react2.default.createElement(
+	                        'span',
+	                        null,
+	                        this.props.swarm.fSize
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'li',
+	                    { className: 'white-text' },
+	                    _react2.default.createElement(
+	                        'span',
+	                        { className: 'bold' },
+	                        'Downloaded: '
+	                    ),
+	                    _react2.default.createElement(
+	                        'span',
+	                        null,
+	                        this.props.swarm.dLoaded
+	                    )
+	                )
+	            );
+	        }
+	    }], [{
+	        key: 'propTypes',
+	        get: function get() {
+	            return {
+	                swarm: _propTypes2.default.object.isRequired
+	            };
+	        }
+	    }]);
+
+	    return AppMoviesPlayerSwarm;
+	}(_react2.default.Component);
+
+	exports.default = AppMoviesPlayerSwarm;
 
 /***/ })
 /******/ ]);
