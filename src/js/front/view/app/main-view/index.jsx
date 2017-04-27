@@ -9,7 +9,6 @@ import AppMainTopInput from '../../../components/app-main-movies-top-inputs/inde
 import AppMainSearchResult from '../../../components/app-main-search-result/index.jsx'
 import AppTinyProfile from '../../../components/app-tiny-box-profile/index.jsx'
 import BoxLoader from '../../../components/util-box-loader/index.jsx'
-import BarLoader from '../../../components/util-bar-loader/index.jsx'
 import CustomScrollbars from '../../../components/util-scroller/index.jsx';
 
 import PulseLoader from '../../../components/util-pulse-loader/index.jsx'
@@ -216,7 +215,7 @@ export default class Main extends React.Component {
                                                     <AppMainSearchResult
                                                         result={this.state.searchResult}
                                                     />
-                                                </CustomScrollbars> || <BarLoader/>
+                                                </CustomScrollbars>
                                             }
                                         </div>
                                     </section>
