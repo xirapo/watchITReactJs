@@ -30098,17 +30098,13 @@
 
 	var _index14 = _interopRequireDefault(_index13);
 
-	var _index15 = __webpack_require__(228);
+	var _index15 = __webpack_require__(266);
 
 	var _index16 = _interopRequireDefault(_index15);
 
-	var _index17 = __webpack_require__(266);
+	var _index17 = __webpack_require__(286);
 
 	var _index18 = _interopRequireDefault(_index17);
-
-	var _index19 = __webpack_require__(286);
-
-	var _index20 = _interopRequireDefault(_index19);
 
 	var _auth = __webpack_require__(230);
 
@@ -30325,7 +30321,7 @@
 	                                        'div',
 	                                        { className: 'col l12 m12' },
 	                                        _react2.default.createElement(
-	                                            _index18.default,
+	                                            _index16.default,
 	                                            {
 	                                                autoHide: true,
 	                                                autoHeight: true,
@@ -30337,7 +30333,7 @@
 	                                            _react2.default.createElement(_index10.default, {
 	                                                result: this.state.searchResult
 	                                            })
-	                                        ) || _react2.default.createElement(_index16.default, null)
+	                                        )
 	                                    )
 	                                )
 	                            ),
@@ -30363,7 +30359,7 @@
 	                                    return _this5.onUpdate(e);
 	                                }
 	                            }) || _react2.default.createElement(_index14.default, { size: 100 }),
-	                            this.state.scrollUpdate && _react2.default.createElement(_index20.default, { className: 'center-block width-30-p responsive-img' })
+	                            this.state.scrollUpdate && _react2.default.createElement(_index18.default, { className: 'center-block width-30-p responsive-img' })
 	                        )
 	                    )
 	                )
@@ -33904,7 +33900,7 @@
 	                        { href: 'javascript:void(0);', onClick: function onClick(e) {
 	                                return _this5.onClose(e);
 	                            },
-	                            className: 'btn-close clearfix font-size-45 top-15 right-10' },
+	                            className: 'btn-close clearfix font-size-45 top-2-p right-2-p' },
 	                        _react2.default.createElement('i', { className: 'icon-cross white-text' })
 	                    ),
 	                    this.state.movieStat && this.state.canPlay && _react2.default.createElement(

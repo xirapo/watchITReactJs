@@ -151,7 +151,7 @@ export default class MoviePlayer extends React.Component {
                         <section className="absolute full-width full-height clearfix video-stream">
                             {/*Close button*/}
                             <a href="javascript:void(0);" onClick={(e)=>this.onClose(e)}
-                               className="btn-close clearfix font-size-45 top-15 right-10">
+                               className="btn-close clearfix font-size-45 top-2-p right-2-p">
                                 <i className="icon-cross white-text"/>
                             </a>
 
