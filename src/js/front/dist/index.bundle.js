@@ -68,11 +68,11 @@
 
 	var _index4 = _interopRequireDefault(_index3);
 
-	var _index5 = __webpack_require__(294);
+	var _index5 = __webpack_require__(295);
 
 	var _index6 = _interopRequireDefault(_index5);
 
-	var _index7 = __webpack_require__(300);
+	var _index7 = __webpack_require__(301);
 
 	var _index8 = _interopRequireDefault(_index7);
 
@@ -26242,7 +26242,8 @@
 	    root: 'http://127.0.0.1:8000/api/v1/',
 	    auth: 'http://127.0.0.1:8000/api/v1/auth/',
 	    user: 'http://127.0.0.1:8000/api/v1/user/',
-	    movies: 'http://127.0.0.1:8000/api/v1/movies/'
+	    movies: 'http://127.0.0.1:8000/api/v1/movies/',
+	    search: 'http://127.0.0.1:8000/api/v1/search/'
 	};
 
 	exports.default = Settings;
@@ -30118,6 +30119,10 @@
 
 	var _movies2 = _interopRequireDefault(_movies);
 
+	var _search = __webpack_require__(294);
+
+	var _search2 = _interopRequireDefault(_search);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -30146,6 +30151,8 @@
 	        _this.auth = new _auth2.default();
 	        _this.user = new _user2.default();
 	        _this.movie = new _movies2.default();
+	        _this.search = new _search2.default();
+
 	        //Default offset
 	        _this.offset = 1;
 	        _this.search_timeout = null;
@@ -30272,7 +30279,7 @@
 	            //Set time out
 	            this.search_timeout = setTimeout(function () {
 	                //Get movies by search
-	                _this4.movie.search(_target_value, _this4.auth.token).then(function (res) {
+	                _this4.search.find(_target_value, 'movies', _this4.auth.token).then(function (res) {
 	                    _this4.setState({
 	                        searchResult: res
 	                    });
@@ -32994,28 +33001,6 @@
 	    }
 
 	    _createClass(Movies, [{
-	        key: 'search',
-	        value: function search(q, token) {
-	            /**
-	             * Return search movies
-	             * @param q
-	             * @param token
-	             */
-	            return new Promise(function (resolve, err) {
-	                //Request to auth endpoint
-	                (0, _axios2.default)({
-	                    url: _settings2.default.api.movies + 'search/?q=' + q,
-	                    method: 'get',
-	                    timeout: _settings2.default.api.timeout,
-	                    headers: { 'Authorization': 'Bearer ' + token }
-	                }).then(function (res) {
-	                    resolve(res.data.data);
-	                }).catch(function (e) {
-	                    err(e.response);
-	                });
-	            });
-	        }
-	    }, {
 	        key: 'filter',
 	        value: function filter() {
 	            var filters = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
@@ -33102,6 +33087,74 @@
 	    value: true
 	});
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * Created by gmena on 04-19-17.
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+	//Tools
+
+
+	var _settings = __webpack_require__(231);
+
+	var _settings2 = _interopRequireDefault(_settings);
+
+	var _requestHelper = __webpack_require__(293);
+
+	var _requestHelper2 = _interopRequireDefault(_requestHelper);
+
+	var _axios = __webpack_require__(234);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	//var is_js = require('is_js');
+
+	var Search = function () {
+	    function Search() {
+	        _classCallCheck(this, Search);
+	    }
+
+	    _createClass(Search, [{
+	        key: 'find',
+	        value: function find(q, type, token) {
+	            /**
+	             * Return search movies
+	             * @param q
+	             * @param token
+	             */
+	            return new Promise(function (resolve, err) {
+	                //Request to auth endpoint
+	                (0, _axios2.default)({
+	                    url: _settings2.default.api.search + _requestHelper2.default.jsonToQString({ 'q': q, 'type': type }),
+	                    method: 'get',
+	                    timeout: _settings2.default.api.timeout,
+	                    headers: { 'Authorization': 'Bearer ' + token }
+	                }).then(function (res) {
+	                    resolve(res.data.data);
+	                }).catch(function (e) {
+	                    err(e.response);
+	                });
+	            });
+	        }
+	    }]);
+
+	    return Search;
+	}();
+
+	exports.default = Search;
+
+/***/ }),
+/* 295 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(1);
@@ -33112,11 +33165,11 @@
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _index3 = __webpack_require__(295);
+	var _index3 = __webpack_require__(296);
 
 	var _index4 = _interopRequireDefault(_index3);
 
-	var _index5 = __webpack_require__(296);
+	var _index5 = __webpack_require__(297);
 
 	var _index6 = _interopRequireDefault(_index5);
 
@@ -33202,7 +33255,7 @@
 	exports.default = MainMovie;
 
 /***/ }),
-/* 295 */
+/* 296 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33271,7 +33324,7 @@
 	exports.default = MainHeader;
 
 /***/ }),
-/* 296 */
+/* 297 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {'use strict';
@@ -33294,11 +33347,11 @@
 
 	var _index4 = _interopRequireDefault(_index3);
 
-	var _index5 = __webpack_require__(297);
+	var _index5 = __webpack_require__(298);
 
 	var _index6 = _interopRequireDefault(_index5);
 
-	var _index7 = __webpack_require__(298);
+	var _index7 = __webpack_require__(299);
 
 	var _index8 = _interopRequireDefault(_index7);
 
@@ -33306,7 +33359,7 @@
 
 	var _index10 = _interopRequireDefault(_index9);
 
-	var _index11 = __webpack_require__(299);
+	var _index11 = __webpack_require__(300);
 
 	var _index12 = _interopRequireDefault(_index11);
 
@@ -33492,7 +33545,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(237).Buffer))
 
 /***/ }),
-/* 297 */
+/* 298 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33578,7 +33631,7 @@
 	exports.default = AppMovieDetailInfo;
 
 /***/ }),
-/* 298 */
+/* 299 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33642,7 +33695,7 @@
 	exports.default = FlowText;
 
 /***/ }),
-/* 299 */
+/* 300 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33708,7 +33761,7 @@
 	exports.default = ListCommaSplit;
 
 /***/ }),
-/* 300 */
+/* 301 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {'use strict';
@@ -33723,11 +33776,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _index = __webpack_require__(301);
+	var _index = __webpack_require__(302);
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _index3 = __webpack_require__(302);
+	var _index3 = __webpack_require__(303);
 
 	var _index4 = _interopRequireDefault(_index3);
 
@@ -34020,7 +34073,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(237).Buffer))
 
 /***/ }),
-/* 301 */
+/* 302 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34203,7 +34256,7 @@
 	exports.default = AppMoviesPlayer;
 
 /***/ }),
-/* 302 */
+/* 303 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';

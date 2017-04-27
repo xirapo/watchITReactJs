@@ -17,6 +17,7 @@ import PulseLoader from '../../../components/util-pulse-loader/index.jsx'
 import Auth from '../../../../resources/database/auth'
 import User from '../../../../resources/database/user'
 import Movie from '../../../../resources/database/movies'
+import Search from '../../../../resources/database/search'
 
 
 //Login view class
@@ -27,6 +28,8 @@ export default class Main extends React.Component {
         this.auth = new Auth();
         this.user = new User();
         this.movie = new Movie();
+        this.search = new Search();
+
         //Default offset
         this.offset = 1;
         this.search_timeout = null;
@@ -156,8 +159,8 @@ export default class Main extends React.Component {
         //Set time out
         this.search_timeout = setTimeout(()=> {
             //Get movies by search
-            this.movie.search(
-                _target_value,
+            this.search.find(
+                _target_value, 'movies',
                 this.auth.token
             ).then((res)=> {
                 this.setState({
