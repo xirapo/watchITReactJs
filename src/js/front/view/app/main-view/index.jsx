@@ -6,8 +6,12 @@ import Logo from '../../../components/util-header-logo/index.jsx'
 import AppMoviesNav from '../../../components/app-main-movies-nav-bar/index.jsx'
 import AppMoviesList from '../../../components/app-main-movies-list/index.jsx'
 import AppMainTopInput from '../../../components/app-main-movies-top-inputs/index.jsx'
+import AppMainSearchResult from '../../../components/app-main-search-result/index.jsx'
 import AppTinyProfile from '../../../components/app-tiny-box-profile/index.jsx'
 import BoxLoader from '../../../components/util-box-loader/index.jsx'
+import BarLoader from '../../../components/util-bar-loader/index.jsx'
+import CustomScrollbars from '../../../components/util-scroller/index.jsx';
+
 import PulseLoader from '../../../components/util-pulse-loader/index.jsx'
 //Require for auth
 //Database (Api Handler)
@@ -26,6 +30,7 @@ export default class Main extends React.Component {
         this.movie = new Movie();
         //Default offset
         this.offset = 1;
+        this.search_timeout = null;
 
         //Default state
         this.state = {
@@ -133,6 +138,40 @@ export default class Main extends React.Component {
         );
     }
 
+    onSearch(e) {
+        //The incoming value;
+        let _target_value = e.target.value;
+
+        //Empty write
+        if (_target_value.length == 0) {
+            this.setState({
+                searchResult: null
+            })
+        }
+
+        //Remove old timeout
+        if (this.search_timeout) {
+            clearTimeout(this.search_timeout);
+        }
+
+        //Set time out
+        this.search_timeout = setTimeout(()=> {
+            //Get movies by search
+            this.movie.search(
+                _target_value,
+                this.auth.token
+            ).then((res)=> {
+                this.setState({
+                    searchResult: res
+                })
+            }).catch((e)=> {
+                this.setState({
+                    searchResult: []
+                })
+            });
+        }, 1000)
+    }
+
 
     render() {
         return (
@@ -155,8 +194,33 @@ export default class Main extends React.Component {
                                 <Logo/>
                             </div>
 
-                            <div className="col l9 m9">
-                                <AppMainTopInput size="m6 l6"/>
+                            <div className="col l5 m5 relative">
+                                <AppMainTopInput
+                                    onInput={(e)=>{this.onSearch(e)}}
+                                    size="m12 l12"
+                                />
+
+                                {
+                                    this.state.searchResult &&
+                                    <section className="absolute full-width left-0 top-100-p z-index-100">
+                                        <div className="col l12 m12">
+                                            {
+                                                <CustomScrollbars
+                                                    autoHide
+                                                    autoHeight
+                                                    autoHeightMax={500}
+                                                    autoHideTimeout={1000}
+                                                    autoHideDuration={200}
+                                                    thumbMinSize={30}
+                                                    universal={true}>
+                                                    <AppMainSearchResult
+                                                        result={this.state.searchResult}
+                                                    />
+                                                </CustomScrollbars> || <BarLoader/>
+                                            }
+                                        </div>
+                                    </section>
+                                }
                             </div>
 
                             <div className="col l1 m1 float-right">
@@ -175,8 +239,7 @@ export default class Main extends React.Component {
                                 && <AppMoviesList
                                     movies={this.state.movies}
                                     onUpdate={(e)=>this.onUpdate(e)}
-                                />
-                                || <BoxLoader size={100}/>
+                                /> || <BoxLoader size={100}/>
                             }
                             {/*Check for new data loading*/}
                             {

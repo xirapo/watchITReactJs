@@ -20,3 +20,26 @@
     }
   }
 }
+
+.result-search-box {
+  @include border-radius(5px);
+  background-color: rgba(0, 0, 0, 0.9);
+
+  i {
+    font-size: 1.8vh !important;
+    margin-right: 2px;
+  }
+
+  figure {
+    width: 3rem;
+    height: auto;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .collection-item:hover {
+    background-color: rgba(0, 0, 0, 1);
+  }
+}

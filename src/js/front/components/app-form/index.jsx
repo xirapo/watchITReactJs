@@ -89,7 +89,9 @@ export default class FormBox extends React.Component {
 
                 {/*Alert*/}
                 <div className="row">
-                    {this.props.error && <BoxAlert content={this.props.error}/>}
+                    {this.props.error && <BoxAlert>
+                        {this.props.error}
+                    </BoxAlert>}
                 </div>
             </form>
         )

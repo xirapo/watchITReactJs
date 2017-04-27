@@ -9,6 +9,28 @@ import axios from 'axios'
 
 export default class Movies {
 
+    search(q, token) {
+        /**
+         * Return search movies
+         * @param q
+         * @param token
+         */
+        return (new Promise((resolve, err) => {
+            //Request to auth endpoint
+            axios({
+                url: setting.api.movies + 'search/?q=' + q,
+                method: 'get',
+                timeout: setting.api.timeout,
+                headers: {'Authorization': 'Bearer ' + token}
+            }).then((res)=> {
+                resolve(res.data.data);
+            }).catch((e)=> {
+                err(e.response)
+            })
+        }));
+
+    }
+
     filter(filters = {}, token) {
         /**
          * Return movies

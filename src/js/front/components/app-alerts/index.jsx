@@ -12,19 +12,13 @@ export default class BoxAlert extends React.Component {
             label: 'error-label'
         }
     }
-
-    static get propTypes() {
-        return {
-            content: PropTypes.string.isRequired
-        }
-    }
-
+    
 
     render() {
         return (
             <div className={"col " + this.props.size}>
                 <div className={"bold z-depth-1 lighten-2 text-center " + this.props.label}>
-                    {this.props.content}
+                    {this.props.children}
                 </div>
             </div>
         )

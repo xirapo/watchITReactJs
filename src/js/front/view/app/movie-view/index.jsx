@@ -30,7 +30,8 @@ export default class MainMovie extends React.Component {
     componentDidMount() {
         //Movie details
         this.movie.get(
-            this.props.match.params.imdb //imdb code
+            this.props.match.params.imdb, //imdb code
+            this.auth.token
         ).then((r)=> {
             this.setState({
                 movies: r
@@ -46,7 +47,8 @@ export default class MainMovie extends React.Component {
                 <section className="row">
                     {/*Main Loader or Movie details*/}
                     {
-                        this.state.movies && <MovieDetails movie={this.state.movies}/>
+                        this.state.movies
+                        && <MovieDetails movie={this.state.movies}/>
                         || <BoxLoader size="100"/>
                     }
                 </section>

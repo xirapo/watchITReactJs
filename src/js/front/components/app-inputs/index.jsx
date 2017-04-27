@@ -21,15 +21,15 @@ export default class BoxInput extends React.Component {
         }
     }
 
-    handleChange(e) {
+    onInput(e) {
         //Set value to input
         this.setState({
             value: e.target.value
         });
 
         //If handler
-        if (this.props.onChange) {
-            this.props.onChange(e);
+        if (this.props.onInput) {
+            this.props.onInput(e);
         }
 
     }
@@ -42,7 +42,7 @@ export default class BoxInput extends React.Component {
                     <i className={this.props.icon + " normalize-medium-icon top-12 prefix small white-text"}> </i>
                 }
                 <input {...this.props}
-                    onChange={(e)=> this.handleChange(e) }
+                    onInput={(e)=> this.onInput(e) }
                     className="white-text validate browser-default"
                     value={this.state.value}
                 />

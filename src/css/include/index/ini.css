@@ -66065,6 +66065,23 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 .main-nav-filter-movies .dropdown i {
   font-size: 2vh !important; }
 
+.result-search-box {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.9); }
+  .result-search-box i {
+    font-size: 1.8vh !important;
+    margin-right: 2px; }
+  .result-search-box figure {
+    width: 3rem;
+    height: auto; }
+    .result-search-box figure img {
+      width: 100%;
+      height: 100%; }
+  .result-search-box .collection-item:hover {
+    background-color: black; }
+
 /**
 https://smacss.com/book/type-state
 */
@@ -66239,7 +66256,7 @@ https://smacss.com/book/type-state
   position: relative; }
 
 .normalize-medium-icon {
-  top: 0.5vh;
+  top: 0.8vh;
   position: relative; }
 
 .border-dashed-bottom-white {

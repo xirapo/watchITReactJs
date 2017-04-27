@@ -111,7 +111,9 @@ export default class MoviePlayer extends React.Component {
         });
 
         //Stop watching for flix
-        clearTimeout(this.timeout);
+        if (this.timeout) {
+            clearTimeout(this.timeout);
+        }
 
         //Redirect
         setTimeout(()=> {
