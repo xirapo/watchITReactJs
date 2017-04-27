@@ -27,7 +27,6 @@ export default class AppMainTopInputs extends React.Component {
                         <BoxInput
                             onInput={(e)=>{this.onInput(e)}}
                             required={true}
-                            icon="icon-typing"
                             autoComplete="off"
                             type="text"
                             placeholder="Search..."

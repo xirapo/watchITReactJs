@@ -66070,9 +66070,11 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   -moz-border-radius: 5px;
   border-radius: 5px;
   background-color: rgba(0, 0, 0, 0.9); }
-  .result-search-box i {
-    font-size: 1.8vh !important;
-    margin-right: 2px; }
+  .result-search-box i, .result-search-box span {
+    font-size: 1.9vh !important; }
+  .result-search-box strong {
+    font-style: normal !important;
+    font-size: 2.1vh; }
   .result-search-box figure {
     width: 3rem;
     height: auto; }

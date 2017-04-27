@@ -25888,11 +25888,7 @@
 	            return _react2.default.createElement(
 	                'div',
 	                null,
-	                this.props.icon && _react2.default.createElement(
-	                    'i',
-	                    { className: this.props.icon + " normalize-medium-icon top-12 prefix small white-text" },
-	                    ' '
-	                ),
+	                this.props.icon && _react2.default.createElement('i', { className: this.props.icon + " normalize-medium-icon top-12 prefix small white-text" }),
 	                _react2.default.createElement('input', _extends({}, this.props, {
 	                    onInput: function onInput(e) {
 	                        return _this2.onInput(e);
@@ -32613,7 +32609,6 @@
 	                                _this2.onInput(e);
 	                            },
 	                            required: true,
-	                            icon: 'icon-typing',
 	                            autoComplete: 'off',
 	                            type: 'text',
 	                            placeholder: 'Search...',
@@ -32696,36 +32691,35 @@
 	                                ),
 	                                _react2.default.createElement(
 	                                    "div",
-	                                    { className: "float-left padding-left-10" },
+	                                    { className: "float-left margin-left-3-p" },
 	                                    _react2.default.createElement(
 	                                        "div",
 	                                        null,
 	                                        _react2.default.createElement(
 	                                            "strong",
-	                                            {
-	                                                className: "bold white-text truncate" },
+	                                            { className: "white-text truncate" },
 	                                            i.title
 	                                        )
 	                                    ),
 	                                    _react2.default.createElement(
 	                                        "div",
-	                                        null,
+	                                        { className: "margin-top-4-p" },
 	                                        _react2.default.createElement(
 	                                            "span",
 	                                            { className: "green-text" },
-	                                            _react2.default.createElement("i", { className: "icon-calendar" }),
+	                                            _react2.default.createElement("i", { className: "icon-calendar margin-right-3-p" }),
 	                                            i.year
 	                                        ),
 	                                        _react2.default.createElement(
 	                                            "span",
-	                                            { className: "orange-text margin-left-8" },
-	                                            _react2.default.createElement("i", { className: "icon-star" }),
+	                                            { className: "orange-text margin-left-8-p" },
+	                                            _react2.default.createElement("i", { className: "icon-star margin-right-3-p" }),
 	                                            i.rating
 	                                        ),
 	                                        _react2.default.createElement(
 	                                            "span",
-	                                            { className: "red-text margin-left-8" },
-	                                            _react2.default.createElement("i", { className: "icon-back-in-time" }),
+	                                            { className: "red-text margin-left-8-p" },
+	                                            _react2.default.createElement("i", { className: "icon-back-in-time margin-right-3-p" }),
 	                                            i.runtime
 	                                        )
 	                                    )

@@ -22,22 +22,23 @@ export default class AppMainSearchResult extends React.Component {
                                             </figure>
                                         </div>
 
-                                        <div className="float-left padding-left-10">
+                                        <div className="float-left margin-left-3-p">
                                             <div>
-                                                <strong
-                                                    className="bold white-text truncate">{i.title}</strong>
+                                                <strong className="white-text truncate">
+                                                    {i.title}
+                                                </strong>
                                             </div>
-                                            <div>
+                                            <div className="margin-top-4-p">
                                                 <span className="green-text">
-                                                    <i className="icon-calendar"/>
+                                                    <i className="icon-calendar margin-right-3-p"/>
                                                     {i.year}
                                                 </span>
-                                                <span className="orange-text margin-left-8">
-                                                    <i className="icon-star"/>
+                                                <span className="orange-text margin-left-8-p">
+                                                    <i className="icon-star margin-right-3-p"/>
                                                     {i.rating}
                                                 </span>
-                                                <span className="red-text margin-left-8">
-                                                    <i className="icon-back-in-time"/>
+                                                <span className="red-text margin-left-8-p">
+                                                    <i className="icon-back-in-time margin-right-3-p"/>
                                                     {i.runtime}
                                                 </span>
 

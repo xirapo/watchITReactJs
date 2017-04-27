@@ -39,7 +39,7 @@ export default class BoxInput extends React.Component {
             <div>
                 {
                     this.props.icon &&
-                    <i className={this.props.icon + " normalize-medium-icon top-12 prefix small white-text"}> </i>
+                    <i className={this.props.icon + " normalize-medium-icon top-12 prefix small white-text"} />
                 }
                 <input {...this.props}
                     onInput={(e)=> this.onInput(e) }
