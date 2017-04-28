@@ -12,7 +12,7 @@
     "title": "watchIT",
     "frame": true,
     "fullscreen": false,
-    "icon": "./media/img/layout/logo.png",
+    "icon": "/src/media/img/layout/logo.png",
     "width": 962,
     "height": 600,
     "min_width": 800,
@@ -61,12 +61,6 @@
         "toolbar": false
       }
     }
-  },
-  "scripts": {
-    "start": "nw"
-  },
-  "engines": {
-    "npm": "^3.0"
   },
   "dependencies": {
     "axios": "^0.16.1",

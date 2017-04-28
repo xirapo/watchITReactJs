@@ -1,6 +1,7 @@
 module.exports = function (grunt) {
 //var buildPlatforms = parseBuildPlatforms(grunt.option('platforms'));
     var version = '0.5.0-alpha';
+    var nwVersion = '0.12.3';
     var projectName = 'watchIT';
     var platforms = ['linux32', 'linux64', 'osx64', 'win32', 'win64'];
 
@@ -26,7 +27,7 @@ module.exports = function (grunt) {
                 var _os = _os_arch.slice(0, -2);
 
                 _result.push({
-                    src: './assets/' + _os_arch + '/' + _src[_os],
+                    src: './assets/' + nwVersion + '/' + _os_arch + '/' + _src[_os],
                     dest: './build/' + projectName + '/' + _os_arch + '/' + _dest[_os],
                     flatten: true
                 })
@@ -35,13 +36,13 @@ module.exports = function (grunt) {
         }
 
         _result.push({
-            src: 'cache/0.12.3/win32/icudtl.dat',
+            src: 'cache/' + nwVersion + '/win32/icudtl.dat',
             dest: 'build/' + projectName + '/win32/icudtl.dat',
             flatten: true
         });
 
         _result.push({
-            src: 'cache/0.12.3/win64/icudtl.dat',
+            src: 'cache/' + nwVersion + '/win64/icudtl.dat',
             dest: 'build/' + projectName + '/win64/icudtl.dat',
             flatten: true
         });

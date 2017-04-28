@@ -32461,7 +32461,7 @@
 	                /*No poster found*/
 	                this.state.status < 0 && _react2.default.createElement('img', {
 	                    alt: '', className: 'center-block margin-top-1 responsive-img',
-	                    src: 'app://host/src/media/img/layout/default_poster.jpg'
+	                    src: '/src/media/img/layout/default_poster.jpg'
 	                }),
 
 	                /*Spinner loader*/
@@ -32539,7 +32539,7 @@
 	    _createClass(PulseLoader, [{
 	        key: "render",
 	        value: function render() {
-	            return _react2.default.createElement("img", _extends({ alt: "", src: "app://host/src/media/img/spinner/puff.svg"
+	            return _react2.default.createElement("img", _extends({ alt: "", src: "/src/media/img/spinner/puff.svg"
 	            }, this.props));
 	        }
 	    }]);
