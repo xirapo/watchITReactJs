@@ -9,13 +9,13 @@ module.exports = function (grunt) {
 
         //THe complete directory to replace file
         var _dest = {
-            osx: 'watchIT.app/Contents/Frameworks/nwjs Framework.framework/Libraries/ffmpegsumo.so',
-            win: 'ffmpegsumo.dll',
-            linux: 'libffmpegsumo.so'
+            osx: 'watchit/cache/' + nwVersion + '/osx64/nwjs.app/Contents/Versions/58.0.3029.81/nwjs Framework.framework/libffmpeg.dylib',
+            win: 'ffmpeg.dll',
+            linux: 'libffmpeg.so'
         }, _src = {
-            osx: 'ffmpegsumo.so',
-            win: 'ffmpegsumo.dll',
-            linux: 'libffmpegsumo.so'
+            osx: 'libffmpeg.dylib',
+            win: 'ffmpeg.dll',
+            linux: 'lib/libffmpeg.so'
         }, _result = [];
 
 
