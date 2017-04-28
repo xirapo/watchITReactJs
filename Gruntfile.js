@@ -1,7 +1,7 @@
 module.exports = function (grunt) {
 //var buildPlatforms = parseBuildPlatforms(grunt.option('platforms'));
     var version = '0.5.0-alpha';
-    var nwVersion = '0.12.3';
+    var nwVersion = '0.22.0';
     var projectName = 'watchIT';
     var platforms = ['linux32', 'linux64', 'osx64', 'win32', 'win64'];
 

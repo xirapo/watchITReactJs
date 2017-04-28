@@ -7,7 +7,7 @@
     "type": "git",
     "url": ""
   },
-  "main": "app://host/index.html",
+  "main": "index.html",
   "window": {
     "title": "watchIT",
     "frame": true,
