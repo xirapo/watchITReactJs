@@ -5,6 +5,8 @@ import {Route, Redirect} from 'react-router'
 import {HashRouter} from 'react-router-dom'
 import createBrowserHistory from 'history/createBrowserHistory'
 
+//Drag Bar
+import DragBar from '../drag-bar/index.jsx'
 
 //Components
 import Login from '../../index/login-view/index.jsx'
@@ -23,26 +25,30 @@ const history = createBrowserHistory();
 
 //Check Auth for logged
 function checkOut() {
-    return !auth.isAuth
-        ? (<Login/>)
-        : (<Redirect to={Setting.appView}/>)
+    return !auth.isAuth ? (
+        <DragBar>
+            <Login/>
+        </DragBar>
+    ) : (<Redirect to={Setting.appView}/>)
 }
 
 //Require logged
 function requireAuth(Component, navigate) {
-    return auth.isAuth
-        ? (<Component {...navigate}/>)
-        : (<Redirect to={Setting.loginView}/>)
+    return auth.isAuth ? (
+        <DragBar>
+            <Component {...navigate}/>
+        </DragBar>
+    ) : (<Redirect to={Setting.loginView}/>)
 }
 
 render(
     <HashRouter history={history}>
-        <div className="full-height">
+        <section id="screen" className="full-height full-width absolute">
             <Route name="login" exact path="/" render={checkOut}/>
             <Route name="app" exact path="/app" render={(n)=>(requireAuth(App,n))}/>
             <Route name="movie" exact path="/app/movie/:imdb" render={(n)=>(requireAuth(Movie,n))}/>
             <Route name="movie" path="/app/movie/play/:torrent" render={(n)=>(requireAuth(Player,n))}/>
-        </div>
+        </section>
     </HashRouter>,
     document.getElementById('main_app')
 );

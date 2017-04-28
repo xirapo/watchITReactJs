@@ -1,6 +1,8 @@
+
 html, body {
   font-family: $font-family-base;
   box-sizing: border-box;
+  -webkit-user-select: none;
 }
 
 a {

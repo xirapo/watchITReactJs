@@ -10,9 +10,9 @@
   "main": "index.html",
   "window": {
     "title": "watchIT",
-    "frame": true,
+    "frame": false,
     "fullscreen": false,
-    "icon": "/src/media/img/layout/logo.png",
+    "icon": "src/media/img/layout/logo.png",
     "width": 962,
     "height": 600,
     "min_width": 800,

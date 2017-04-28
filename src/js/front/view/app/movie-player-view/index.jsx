@@ -5,6 +5,7 @@ import AppMoviePlayer from '../../../components/app-main-movie-player/index.jsx'
 import AppMoviePlayerLoader from '../../../components/app-main-movie-player-loader/index.jsx'
 import AppMoviesPlayerSwarm from '../../../components/app-main-movie-player-swarm/index.jsx'
 import MainLoader from '../../../components/util-main-loader/index.jsx'
+import BtnClose from '../../../components/util-btn-close/index.jsx'
 
 //Database (Api Handler)
 import Auth from '../../../../resources/database/auth'
@@ -151,10 +152,7 @@ export default class MoviePlayer extends React.Component {
                         this.state.movieInfo &&
                         <section className="absolute full-width full-height clearfix video-stream">
                             {/*Close button*/}
-                            <a href="javascript:void(0);" onClick={(e)=>this.onClose(e)}
-                               className="btn-close clearfix font-size-45 top-2-p right-2-p">
-                                <i className="icon-cross white-text"/>
-                            </a>
+                            <BtnClose onClose={(e)=>{this.onClose(e)}}/>
 
                             {/*Movie torrent info*/}
                             {

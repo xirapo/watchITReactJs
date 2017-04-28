@@ -263,10 +263,8 @@ https://smacss.com/book/type-state
   background-color: rgba(57, 174, 0, 0.5);
 }
 
-
 .btn-close {
   position: absolute;
-  top: 1.2rem;
   right: 0;
   z-index: 100;
 }
@@ -332,16 +330,15 @@ https://smacss.com/book/type-state
     width: 7.66667% !important;
   }
 
-  .logo-media-large {
-    width: 12% !important;
-  }
-
   .main-nav-filter-movies {
     .dropdown a {
       font-size: 1.8vh;
     }
   }
 
+  .logo-media-large {
+    width: 13vw !important;
+  }
 }
 
 //MEDIA QUERIES
@@ -349,27 +346,7 @@ https://smacss.com/book/type-state
 ///////////////FIXED HEIGHT
 @media (min-height: 599px) {
   .movies-box {
-    height: 73vh;
-  }
-
-  .movie-details-description {
-    height: 26vh;
-  }
-}
-
-@media (min-height: 699px) {
-  .movies-box {
-    height: 76vh;
-  }
-
-  .movie-details-description {
-    height: 26vh;
-  }
-}
-
-@media (min-height: 769px) {
-  .movies-box {
-    height: 78vh;
+    height: 70vh;
   }
 
   .movie-details-description {
@@ -377,23 +354,43 @@ https://smacss.com/book/type-state
   }
 }
 
-@media (min-height: 799px) {
+@media (min-height: 699px) {
   .movies-box {
-    height: 80vh;
+    height: 71vh;
   }
 
   .movie-details-description {
-    height: 30vh;
+    height: 25vh;
+  }
+}
+
+@media (min-height: 769px) {
+  .movies-box {
+    height: 70vh;
+  }
+
+  .movie-details-description {
+    height: 20vh;
+  }
+}
+
+@media (min-height: 799px) {
+  .movies-box {
+    height: 75vh;
+  }
+
+  .movie-details-description {
+    height: 15vh;
   }
 }
 
 @media (min-height: 1000px) {
   .movies-box {
-    height: 82vh;
+    height: 79vh;
   }
 
   .movie-details-description {
-    height: 32vh;
+    height: 27vh;
   }
 }
 

@@ -8,7 +8,7 @@ export default class PulseLoader extends React.Component {
     render() {
         return (
             <img alt="" src="/src/media/img/spinner/puff.svg"
-                {...this.props}            />
+                {...this.props}/>
         )
     }
 }

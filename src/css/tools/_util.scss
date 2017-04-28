@@ -57,6 +57,18 @@ $m-width_height: max-height max-width min-height min-width;
         #{$m_p}-#{$l}: (0% + $i) !important;
       }
     }
+
+    @each $m_p in $margin_padding {
+      .#{$m_p}-#{$l}-#{$i}-#{"vh"} {
+        #{$m_p}-#{$l}: (0 + $i)#{"vh"} !important;
+      }
+    }
+
+    @each $m_p in $margin_padding {
+      .#{$m_p}-#{$l}-#{$i}-#{"vw"} {
+        #{$m_p}-#{$l}: (0 + $i)#{"vw"} !important;
+      }
+    }
   }
 }
 
@@ -69,6 +81,14 @@ $m-width_height: max-height max-width min-height min-width;
 
     .#{$l}-#{$i}-#{"p"} {
       #{$l}: 0% + $i !important;
+    }
+
+    .#{$l}-#{$i}-#{"vh"} {
+      #{$l}: (0 + $i)#{"vh"} !important;
+    }
+
+    .#{$l}-#{$i}-#{"vw"} {
+      #{$l}: (0 + $i)#{"vw"} !important;
     }
   }
 }

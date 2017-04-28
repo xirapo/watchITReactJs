@@ -2,7 +2,6 @@
 import React from 'react'
 //Components
 //import AppMainMenu from '../../../components/app-main-aside-menu/index.jsx'
-import Logo from '../../../components/util-header-logo/index.jsx'
 import AppMoviesNav from '../../../components/app-main-movies-nav-bar/index.jsx'
 import AppMoviesList from '../../../components/app-main-movies-list/index.jsx'
 import AppMainTopInput from '../../../components/app-main-movies-top-inputs/index.jsx'
@@ -11,7 +10,6 @@ import AppTinyProfile from '../../../components/app-tiny-box-profile/index.jsx'
 import BoxLoader from '../../../components/util-box-loader/index.jsx'
 import CustomScrollbars from '../../../components/util-scroller/index.jsx';
 
-import PulseLoader from '../../../components/util-pulse-loader/index.jsx'
 //Require for auth
 //Database (Api Handler)
 import Auth from '../../../../resources/database/auth'
@@ -192,11 +190,11 @@ export default class Main extends React.Component {
                     <div className="clearfix">
 
                         <header className="row no-margin vertical-padding transparent z-depth-1">
-                            <div className="col l2 m2 logo-media-large">
-                                <Logo/>
+                            <div className="col l3 m3 logo-media-large">
+                                <AppTinyProfile user={this.state.user}/>
                             </div>
 
-                            <div className="col l5 m5 relative">
+                            <div className="col l5 m5 relative float-right">
                                 <AppMainTopInput
                                     onInput={(e)=>{this.onSearch(e)}}
                                     size="m12 l12"
@@ -224,10 +222,6 @@ export default class Main extends React.Component {
                                     </section>
                                 }
                             </div>
-
-                            <div className="col l1 m1 float-right">
-                                <AppTinyProfile user={this.state.user}/>
-                            </div>
                         </header>
 
                         <nav className="col l12 m12 transparent z-depth-0">
@@ -242,11 +236,6 @@ export default class Main extends React.Component {
                                     movies={this.state.movies}
                                     onUpdate={(e)=>this.onUpdate(e)}
                                 /> || <BoxLoader size={100}/>
-                            }
-                            {/*Check for new data loading*/}
-                            {
-                                this.state.scrollUpdate
-                                && <PulseLoader className="center-block width-30-p responsive-img"/>
                             }
                         </section>
                     </div>

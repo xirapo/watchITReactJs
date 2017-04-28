@@ -3,5 +3,40 @@
   background-color: rgba(0, 0, 0, 0.7);
 }
 
-[sp-recipe="browse_movie_list"] {
+#drag-bar {
+  -webkit-app-region: drag;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8) !important;
+  padding: 0.8vw 1vw 1vw 1vw;
+  height: 7vh;
+
+  h5 {
+    font-size: 3.5vh !important;
+    -webkit-app-region: no-drag;
+  }
+
+  ul {
+    top: 0.9vh;
+    -webkit-app-region: no-drag;
+    i {
+      font-size: 2.5vh !important;
+    }
+
+    li:hover {
+      cursor: pointer;
+    }
+  }
+
+}
+
+#screen {
+  -webkit-app-region: no-drag;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }

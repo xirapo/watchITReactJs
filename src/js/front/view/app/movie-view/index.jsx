@@ -3,7 +3,7 @@ import React from 'react'
 
 //Components
 import BoxLoader from '../../../components/util-box-loader/index.jsx'
-import MainHeader from '../../../components/util-header/index.jsx'
+import BtnClose from '../../../components/util-btn-close/index.jsx'
 import MovieDetails from '../../../components/app-movie-details/index.jsx'
 
 //Require for auth
@@ -43,8 +43,9 @@ export default class MainMovie extends React.Component {
     render() {
         return (
             <div className="relative full-height">
-                <MainHeader />
-                <section className="row">
+                {/*Close button*/}
+                <BtnClose />
+                <section className="row margin-top-5-vh padding-left-2-vw">
                     {/*Main Loader or Movie details*/}
                     {
                         this.state.movies
