@@ -190,11 +190,11 @@ export default class Main extends React.Component {
                     <div className="clearfix">
 
                         <header className="row no-margin vertical-padding transparent z-depth-1">
-                            <div className="col l3 m3 logo-media-large">
+                            <div className="col l3 m4 profile-media">
                                 <AppTinyProfile user={this.state.user}/>
                             </div>
 
-                            <div className="col l5 m5 relative float-right">
+                            <div className="col l5 m6 relative search-main-box">
                                 <AppMainTopInput
                                     onInput={(e)=>{this.onSearch(e)}}
                                     size="m12 l12"
@@ -202,13 +202,11 @@ export default class Main extends React.Component {
 
                                 {
                                     this.state.searchResult &&
-                                    <section className="absolute full-width left-0 top-100-p z-index-100">
+                                    <section className="absolute full-width search-result-box left-0 top-100-p z-index-100">
                                         <div className="col l12 m12">
                                             {
                                                 <CustomScrollbars
                                                     autoHide
-                                                    autoHeight
-                                                    autoHeightMax={500}
                                                     autoHideTimeout={1000}
                                                     autoHideDuration={200}
                                                     thumbMinSize={30}

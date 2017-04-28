@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 //Components
 import MainLoader from '../../../components/util-main-loader/index.jsx'
 import FormBox from '../../../components/app-form/index.jsx'
-import Logo from '../../../components/util-header-logo/index.jsx'
 //Require for auth
 //Default settings
 import Auth from '../../../../resources/database/auth'
@@ -103,7 +102,9 @@ export default class LoginForm extends React.Component {
                 <section className="valign center-block col l4 m6">
                     <header className="row">
                         <div className="center-block text-center col l6 m6">
-                            <Logo size="60"/>
+                            <h2 className="no-margin font-type-titles">
+                                <span className="white-text">Login</span>
+                            </h2>
                         </div>
                     </header>
 

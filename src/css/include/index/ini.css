@@ -73329,24 +73329,38 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   position: relative; }
 
 .flow-text, .nav-bar-movie-details .dropdown a {
-  font-size: 2.8vh; }
+  font-size: 2rem !important; }
 
 .nav-bar-movie-details .dropdown a i {
   font-size: 2.5vh !important; }
 
-.main-nav-filter-movies .dropdown i {
-  font-size: 2vh !important; }
+.search-main-box input {
+  font-size: 1.2rem; }
+
+.profile-media .small-picture figure {
+  width: 4rem !important;
+  height: 4rem !important; }
+.profile-media .small-user-data strong {
+  font-size: 1.2rem; }
+.profile-media .small-user-data a {
+  font-size: 1rem; }
+
+.main-nav-filter-movies .dropdown i, .main-nav-filter-movies .dropdown span, .main-nav-filter-movies .dropdown a {
+  font-size: 1.2rem !important; }
 
 .result-search-box {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
+  height: 75vh;
   background-color: rgba(0, 0, 0, 0.9); }
   .result-search-box i, .result-search-box span {
-    font-size: 1.9vh !important; }
+    font-size: 1.2rem;
+    position: relative;
+    top: 0.1rem; }
   .result-search-box strong {
     font-style: normal !important;
-    font-size: 2.1vh; }
+    font-size: 1.2rem; }
   .result-search-box figure {
     width: 3rem;
     height: auto; }
@@ -73442,11 +73456,11 @@ https://smacss.com/book/type-state
     height: 100%; }
 
 .middle-picture figure {
-  width: 80px;
-  height: 80px; }
+  width: 5rem;
+  height: 5rem; }
   .middle-picture figure img {
-    width: 80px;
-    height: 80px; }
+    width: 100%;
+    height: 100%; }
 
 /**COMPONENTS*/
 .dropdown .dropdown-result {
@@ -73585,26 +73599,26 @@ https://smacss.com/book/type-state
   .main-nav-filter-movies .dropdown a {
     font-size: 1.8vh; }
 
-  .logo-media-large {
-    width: 13vw !important; } }
+  .profile-media {
+    width: 16vw !important; } }
 @media (max-height: 600px) {
   .movies-box {
-    height: 68vh; }
+    height: 66vh; }
 
   .movie-details-description {
-    height: 28vh; } }
+    height: 22vh; } }
 @media (min-height: 601px) {
   .movies-box {
     height: 70vh; }
 
   .movie-details-description {
-    height: 28vh; } }
+    height: 20vh; } }
 @media (min-height: 701px) {
   .movies-box {
     height: 71vh; }
 
   .movie-details-description {
-    height: 25vh; } }
+    height: 24vh; } }
 @media (min-height: 769px) {
   .movies-box {
     height: 70vh; }
@@ -73619,7 +73633,7 @@ https://smacss.com/book/type-state
     height: 15vh; } }
 @media (min-height: 1000px) {
   .movies-box {
-    height: 79vh; }
+    height: 78vh; }
 
   .movie-details-description {
     height: 27vh; } }

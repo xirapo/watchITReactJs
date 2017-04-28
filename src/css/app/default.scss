@@ -1,9 +1,10 @@
 
 .flow-text {
   @extend .flow-text;
-  font-size: 2.8vh;
+  font-size: 2rem !important;
 }
 
+//Nav bar movie details (resolution)
 .nav-bar-movie-details {
   .dropdown a {
     @extend .flow-text;
@@ -13,26 +14,55 @@
   }
 }
 
-.main-nav-filter-movies {
-  .dropdown {
-    i {
-      font-size: 2vh !important;
+//Top search box
+.search-main-box {
+  //float: right;
+  input {
+    font-size: 1.2rem;
+  }
+}
+
+.profile-media {
+  .small-picture {
+    figure {
+      width: 4rem !important;
+      height: 4rem !important;
+    }
+  }
+  .small-user-data {
+    strong {
+      font-size: 1.2rem;
+    }
+    a {
+      font-size: 1rem;
     }
   }
 }
 
+// Main filter bar
+.main-nav-filter-movies {
+  .dropdown {
+    i, span, a {
+      font-size: 1.2rem !important;
+    }
+  }
+}
 
+//Result search
 .result-search-box {
   @include border-radius(5px);
+  height: 75vh;
   background-color: rgba(0, 0, 0, 0.9);
 
   i, span {
-    font-size: 1.9vh !important;
+    font-size: 1.2rem;
+    position: relative;
+    top: 0.1rem;
   }
 
-  strong{
+  strong {
     font-style: normal !important;
-    font-size: 2.1vh;
+    font-size: 1.2rem;
   }
 
   figure {

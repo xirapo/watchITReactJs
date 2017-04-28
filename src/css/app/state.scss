@@ -136,11 +136,11 @@ https://smacss.com/book/type-state
 .middle-picture {
   @extend .picture;
   figure {
-    width: 80px;
-    height: 80px;
+    width: 5rem;
+    height: 5rem;
     img {
-      width: 80px;
-      height: 80px;
+      width: 100%;
+      height: 100%;
     }
   }
 }
@@ -336,23 +336,22 @@ https://smacss.com/book/type-state
     }
   }
 
-  .logo-media-large {
-    width: 13vw !important;
+  .profile-media {
+    width: 16vw !important;
   }
 }
 
 //MEDIA QUERIES
 
-
 ///////////////FIXED HEIGHT
 //IN 600 ranges
 @media (max-height: 600px) {
   .movies-box {
-    height: 68vh;
+    height: 66vh;
   }
 
   .movie-details-description {
-    height: 28vh;
+    height: 22vh;
   }
 }
 
@@ -362,7 +361,7 @@ https://smacss.com/book/type-state
   }
 
   .movie-details-description {
-    height: 28vh;
+    height: 20vh;
   }
 }
 
@@ -373,7 +372,7 @@ https://smacss.com/book/type-state
   }
 
   .movie-details-description {
-    height: 25vh;
+    height: 24vh;
   }
 }
 
@@ -399,7 +398,7 @@ https://smacss.com/book/type-state
 
 @media (min-height: 1000px) {
   .movies-box {
-    height: 79vh;
+    height: 78vh;
   }
 
   .movie-details-description {
