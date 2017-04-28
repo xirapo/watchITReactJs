@@ -73352,12 +73352,15 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  height: 75vh;
   background-color: rgba(0, 0, 0, 0.9); }
-  .result-search-box i, .result-search-box span {
-    font-size: 1.2rem;
+  .result-search-box .search-result-box-details span {
+    font-size: 1rem; }
+  .result-search-box .search-result-box-details i {
+    font-size: 1rem;
     position: relative;
     top: 0.1rem; }
+  .result-search-box .search-result-box-title span {
+    font-size: 1.2rem; }
   .result-search-box strong {
     font-style: normal !important;
     font-size: 1.2rem; }
@@ -73618,7 +73621,7 @@ https://smacss.com/book/type-state
     height: 71vh; }
 
   .movie-details-description {
-    height: 24vh; } }
+    height: 23vh; } }
 @media (min-height: 769px) {
   .movies-box {
     height: 70vh; }

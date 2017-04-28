@@ -23,12 +23,12 @@ export default class AppMainSearchResult extends React.Component {
                                         </div>
 
                                         <div className="float-left margin-left-3-p">
-                                            <div>
+                                            <div className="search-result-box-title">
                                                 <strong className="white-text truncate">
                                                     {i.title}
                                                 </strong>
                                             </div>
-                                            <div className="margin-top-4-p">
+                                            <div className="margin-top-4-p search-result-box-details">
                                                 <span className="green-text">
                                                     <i className="icon-calendar margin-right-3-p"/>
                                                     {i.year}

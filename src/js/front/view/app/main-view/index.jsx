@@ -207,6 +207,8 @@ export default class Main extends React.Component {
                                             {
                                                 <CustomScrollbars
                                                     autoHide
+                                                    autoHeight
+                                                    autoHeightMax={500}
                                                     autoHideTimeout={1000}
                                                     autoHideDuration={200}
                                                     thumbMinSize={30}

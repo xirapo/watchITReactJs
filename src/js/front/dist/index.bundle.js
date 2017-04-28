@@ -30357,6 +30357,8 @@
 	                                            _index14.default,
 	                                            {
 	                                                autoHide: true,
+	                                                autoHeight: true,
+	                                                autoHeightMax: 500,
 	                                                autoHideTimeout: 1000,
 	                                                autoHideDuration: 200,
 	                                                thumbMinSize: 30,
@@ -32715,7 +32717,7 @@
 	                                    { className: "float-left margin-left-3-p" },
 	                                    _react2.default.createElement(
 	                                        "div",
-	                                        null,
+	                                        { className: "search-result-box-title" },
 	                                        _react2.default.createElement(
 	                                            "strong",
 	                                            { className: "white-text truncate" },
@@ -32724,7 +32726,7 @@
 	                                    ),
 	                                    _react2.default.createElement(
 	                                        "div",
-	                                        { className: "margin-top-4-p" },
+	                                        { className: "margin-top-4-p search-result-box-details" },
 	                                        _react2.default.createElement(
 	                                            "span",
 	                                            { className: "green-text" },
