@@ -10,55 +10,9 @@ var webpack = require('webpack');
 var webpackConf = require('./webpack.config');
 
 //Builder
-var NwBuilder = require('nw-builder');
+var nwBuilder = require('nw-builder');
 var projectName = 'watchIT';
-var platforms = ['linux32', 'linux64', 'osx64', 'win32', 'win64'];
-
-//Handle directories
-var getCopyDirectories = function (platforms) {
-
-    //THe complete directory to replace file
-    var _dest = {
-        osx: 'watchIT.app/Contents/Frameworks/nwjs Framework.framework/Libraries/ffmpegsumo.so',
-        win: 'ffmpegsumo.dll',
-        linux: 'libffmpegsumo.so'
-    }, _src = {
-        osx: 'ffmpegsumo.so',
-        win: 'ffmpegsumo.dll',
-        linux: 'libffmpegsumo.so'
-    }, _result = [];
-
-
-    //For each platform!!
-    for (var os in platforms) {
-        //Check for property!!
-        if (platforms.hasOwnProperty(os)) {
-            var _os_arch = platforms[os];
-            var _os = _os_arch.slice(0, -2);
-
-            _result.push({
-                src: './assets/' + _os_arch + '/' + _src[_os],
-                dest: './build/' + projectName + '/' + _os_arch + '/' + _dest[_os],
-                flatten: true
-            })
-        }
-
-    }
-
-    _result.push({
-        src: 'cache/0.12.3/win32/icudtl.dat',
-        dest: 'build/' + projectName + '/win32/icudtl.dat',
-        flatten: true
-    });
-
-    _result.push({
-        src: 'cache/0.12.3/win64/icudtl.dat',
-        dest: 'build/' + projectName + '/win64/icudtl.dat',
-        flatten: true
-    });
-
-    return _result;
-};
+var platforms = ['linux32', 'linux64', 'osx64', 'win32'];
 
 //WEBPACK
 gulp.task("nw:webpack", function (callback) {
@@ -84,7 +38,7 @@ gulp.task('nw:clean', function () {
 
 //MAKE
 gulp.task('nw:mkdir', function () {
-   fs.mkdir('./release')
+    fs.mkdir('./release')
 });
 
 
@@ -92,22 +46,21 @@ gulp.task('nw:compress', function () {
     compress(gulp, options)
 });
 
-
+var nw = (new nwBuilder({
+    appName: projectName,
+    buildDir: './build',
+    //macIcns: './media/img/layout/logo.icns',
+    files: dirs.build_dirs,
+    platforms: platforms,
+    //version: '0.12.3',
+    version: '0.22.0',
+    zip: false
+})).on('log', gutil.log)
+    .on('error', gutil.log);
 
 //BUILD
 gulp.task('nw:build', function () {
-    (new NwBuilder({
-        appName: projectName,
-        buildDir: './build',
-        //macIcns: './media/img/layout/logo.icns',
-        files: dirs.build_dirs,
-        platforms: platforms,
-        //version: '0.12.3',
-        version: '0.14.6',
-        zip: false
-    })).on('log', gutil.log)
-        .on('error', gutil.log)
-        .build()
+    nw.build()
         .catch(gutil.log);
 });
 
@@ -118,6 +71,7 @@ gulp.task("webpack-watch", ["nw:webpack"], function () {
     gulp.watch(["src/js/**/*"], ["nw:webpack"]);
 });
 
+//Sequence runner
 gulp.task('build', [
     'nw:clean',
     'nw:build',

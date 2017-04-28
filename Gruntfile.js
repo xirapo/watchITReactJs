@@ -2,7 +2,7 @@ module.exports = function (grunt) {
 //var buildPlatforms = parseBuildPlatforms(grunt.option('platforms'));
     var version = '1.0.0-alpha';
     var projectName = 'watchIT';
-    var platforms = ['linux32', 'linux64', 'osx32', 'osx64', 'win32', 'win64'];
+    var platforms = ['linux32', 'linux64', 'osx64', 'win32', 'win64'];
 
     var getCopyDirectories = function (platforms) {
 
@@ -98,16 +98,6 @@ module.exports = function (grunt) {
                 },
                 expand: true,
                 cwd: './build/' + projectName + '/osx64',
-                src: '**',
-                dest: projectName
-            },
-            osx32: {
-                options: {
-                    mode: 'tgz',
-                    archive: './release/' + projectName + '/osx32/wit_osx32-V' + version + '.tar.gz'
-                },
-                expand: true,
-                cwd: './build/' + projectName + '/osx32',
                 src: '**',
                 dest: projectName
             },
