@@ -3,12 +3,12 @@
  */
 module.exports = {
     build_dirs: [
-        './css/**',
-        '!./css/**/*.scss',
-        '!./css/app/**',
-        '!./css/tools/**',
-        './media/**',
-        './js/**',
+        './src/css/**',
+        '!./src/css/**/*.scss',
+        '!./src/css/app/**',
+        '!./src/css/tools/**',
+        './src/media/**',
+        './src/js/**',
         '!./assets/**',
         '!./tmp/**',
         '!./cache/**',

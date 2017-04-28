@@ -18,11 +18,8 @@
     "min_width": 800,
     "min_height": 600,
     "show": false,
-    "toolbar": false,
     "position": "center",
-    "page-cache": true,
     "resizable": true,
-    "single-instance": true,
     "node-remote": "localhost",
     "maintainers": [
       {
@@ -41,26 +38,6 @@
         "web": ""
       }
     ]
-  },
-  "platformOverrides": {
-    "win": {
-      "window": {
-        "frame": true,
-        "toolbar": false
-      }
-    },
-    "osx": {
-      "window": {
-        "frame": true,
-        "toolbar": false
-      }
-    },
-    "linux": {
-      "window": {
-        "frame": true,
-        "toolbar": false
-      }
-    }
   },
   "dependencies": {
     "axios": "^0.16.1",
