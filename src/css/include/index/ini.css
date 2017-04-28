@@ -73589,7 +73589,7 @@ https://smacss.com/book/type-state
     width: 13vw !important; } }
 @media (min-height: 599px) {
   .movies-box {
-    height: 68vh; }
+    height: 70vh; }
 
   .movie-details-description {
     height: 28vh; } }
