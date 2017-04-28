@@ -343,8 +343,20 @@ https://smacss.com/book/type-state
 
 //MEDIA QUERIES
 
+
 ///////////////FIXED HEIGHT
-@media (min-height: 599px) {
+//IN 600 ranges
+@media (max-height: 600px) {
+  .movies-box {
+    height: 68vh;
+  }
+
+  .movie-details-description {
+    height: 28vh;
+  }
+}
+
+@media (min-height: 601px) {
   .movies-box {
     height: 70vh;
   }
@@ -354,7 +366,8 @@ https://smacss.com/book/type-state
   }
 }
 
-@media (min-height: 699px) {
+//IN 700 ranges
+@media (min-height: 701px) {
   .movies-box {
     height: 71vh;
   }

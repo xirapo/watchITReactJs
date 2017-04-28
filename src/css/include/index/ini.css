@@ -73587,13 +73587,19 @@ https://smacss.com/book/type-state
 
   .logo-media-large {
     width: 13vw !important; } }
-@media (min-height: 599px) {
+@media (max-height: 600px) {
+  .movies-box {
+    height: 68vh; }
+
+  .movie-details-description {
+    height: 28vh; } }
+@media (min-height: 601px) {
   .movies-box {
     height: 70vh; }
 
   .movie-details-description {
     height: 28vh; } }
-@media (min-height: 699px) {
+@media (min-height: 701px) {
   .movies-box {
     height: 71vh; }
 
