@@ -14,9 +14,9 @@ export default class User {
          */
 
         return (new Promise((resolve, err) => {
-            //Request to auth endpoint
+            //Request to details endpoint
             axios({
-                url: setting.api.user + id,
+                url: setting.api.user + '?id=' + id,
                 method: 'get',
                 timeout: setting.api.timeout,
                 headers: {'Authorization': 'Bearer ' + token}

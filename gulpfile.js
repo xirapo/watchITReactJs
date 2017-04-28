@@ -53,7 +53,7 @@ var nw = (new nwBuilder({
     files: dirs.build_dirs,
     platforms: platforms,
     //version: '0.12.3',
-    version: '0.22.0',
+    version: '0.13.0',
     zip: false
 })).on('log', gutil.log)
     .on('error', gutil.log);

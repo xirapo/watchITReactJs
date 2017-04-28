@@ -8,7 +8,7 @@ import axios from 'axios'
 //var is_js = require('is_js');
 
 export default class Movies {
-    
+
     filter(filters = {}, token) {
         /**
          * Return movies
@@ -16,9 +16,9 @@ export default class Movies {
          * @param token
          */
         return (new Promise((resolve, err) => {
-            //Request to auth endpoint
+            //Request to list endpoint
             axios({
-                url: setting.api.movies + util.jsonToQString(filters),
+                url: setting.api.movies + 'list/' + util.jsonToQString(filters),
                 method: 'get',
                 timeout: setting.api.timeout,
                 headers: {'Authorization': 'Bearer ' + token}
@@ -38,9 +38,9 @@ export default class Movies {
          * @param token
          */
         return (new Promise((resolve, err) => {
-            //Request to auth endpoint
+            //Request to details endpoint
             axios({
-                url: setting.api.movies + imdb,
+                url: setting.api.movies + '?imdb=' + imdb,
                 method: 'get',
                 timeout: setting.api.timeout,
                 headers: {'Authorization': 'Bearer ' + token}

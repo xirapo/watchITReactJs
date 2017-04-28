@@ -16,7 +16,7 @@ export default class Search {
          * @param token
          */
         return (new Promise((resolve, err) => {
-            //Request to auth endpoint
+            //Request to search endpoint
             axios({
                 url: setting.api.search + util.jsonToQString({'q': q, 'type': type}),
                 method: 'get',

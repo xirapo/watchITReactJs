@@ -32941,9 +32941,9 @@
 	             */
 
 	            return new Promise(function (resolve, err) {
-	                //Request to auth endpoint
+	                //Request to details endpoint
 	                (0, _axios2.default)({
-	                    url: _settings2.default.api.user + id,
+	                    url: _settings2.default.api.user + '?id=' + id,
 	                    method: 'get',
 	                    timeout: _settings2.default.api.timeout,
 	                    headers: { 'Authorization': 'Bearer ' + token }
@@ -33012,9 +33012,9 @@
 	             * @param token
 	             */
 	            return new Promise(function (resolve, err) {
-	                //Request to auth endpoint
+	                //Request to list endpoint
 	                (0, _axios2.default)({
-	                    url: _settings2.default.api.movies + _requestHelper2.default.jsonToQString(filters),
+	                    url: _settings2.default.api.movies + 'list/' + _requestHelper2.default.jsonToQString(filters),
 	                    method: 'get',
 	                    timeout: _settings2.default.api.timeout,
 	                    headers: { 'Authorization': 'Bearer ' + token }
@@ -33034,9 +33034,9 @@
 	             * @param token
 	             */
 	            return new Promise(function (resolve, err) {
-	                //Request to auth endpoint
+	                //Request to details endpoint
 	                (0, _axios2.default)({
-	                    url: _settings2.default.api.movies + imdb,
+	                    url: _settings2.default.api.movies + '?imdb=' + imdb,
 	                    method: 'get',
 	                    timeout: _settings2.default.api.timeout,
 	                    headers: { 'Authorization': 'Bearer ' + token }
@@ -33125,7 +33125,7 @@
 	             * @param token
 	             */
 	            return new Promise(function (resolve, err) {
-	                //Request to auth endpoint
+	                //Request to search endpoint
 	                (0, _axios2.default)({
 	                    url: _settings2.default.api.search + _requestHelper2.default.jsonToQString({ 'q': q, 'type': type }),
 	                    method: 'get',

@@ -1,6 +1,6 @@
 module.exports = function (grunt) {
 //var buildPlatforms = parseBuildPlatforms(grunt.option('platforms'));
-    var version = '1.0.0-alpha';
+    var version = '0.5.0-alpha';
     var projectName = 'watchIT';
     var platforms = ['linux32', 'linux64', 'osx64', 'win32', 'win64'];
 
@@ -73,8 +73,8 @@ module.exports = function (grunt) {
         compress: {
             linux32: {
                 options: {
-                    mode: 'tgz',
-                    archive: './release/' + projectName + '/linux32/wit_linux32-V' + version + '.tar.gz'
+                    mode: 'zip',
+                    archive: './release/' + projectName + '/linux32/wit_linux32-V' + version + '.zip'
                 },
                 expand: true,
                 cwd: './build/' + projectName + '/linux32',
@@ -83,8 +83,8 @@ module.exports = function (grunt) {
             },
             linux64: {
                 options: {
-                    mode: 'tgz',
-                    archive: './release/' + projectName + '/linux64/wit_linux64-V' + version + '.tar.gz'
+                    mode: 'zip',
+                    archive: './release/' + projectName + '/linux64/wit_linux64-V' + version + '.zip'
                 },
                 expand: true,
                 cwd: './build/' + projectName + '/linux64',
@@ -93,8 +93,8 @@ module.exports = function (grunt) {
             },
             osx64: {
                 options: {
-                    mode: 'tgz',
-                    archive: './release/' + projectName + '/osx64/wit_osx64-V' + version + '.tar.gz'
+                    mode: 'zip',
+                    archive: './release/' + projectName + '/osx64/wit_osx64-V' + version + '.zip'
                 },
                 expand: true,
                 cwd: './build/' + projectName + '/osx64',
@@ -103,8 +103,8 @@ module.exports = function (grunt) {
             },
             win: {
                 options: {
-                    mode: 'tgz',
-                    archive: './release/' + projectName + '/win/wit_win-V' + version + '.tar.gz'
+                    mode: 'zip',
+                    archive: './release/' + projectName + '/win/wit_win-V' + version + '.zip'
                 },
                 expand: true,
                 cwd: './build/' + projectName + '/win32',
