@@ -25,7 +25,11 @@ var loopFileDir = function (dir, cb) {
     wipeTmpFolder = function () {
         //Recursive remove
         loopFileDir(ROOT_TMP_FOLDER + '/', function (file) {
-            fs_extra.removeSync(ROOT_TMP_FOLDER + '/' + file)
+            if (fs.existsSync(ROOT_TMP_FOLDER + '/' + file)) {
+                if (fs.lstatSync(ROOT_TMP_FOLDER + '/' + file).isDirectory()) {
+                    fs_extra.removeSync(ROOT_TMP_FOLDER + '/' + file)
+                }
+            }
         });
 
     }, wipeTmpSubs = function () {
