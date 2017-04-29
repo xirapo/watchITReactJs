@@ -58,7 +58,8 @@ win.title = 'watchIT';
 // Focus the window when the app opens
 win.focus();
 //If dev.. show tools
-if (ENVIRONMENT == 'dev') win.showDevTools();
+if (ENVIRONMENT == 'dev')
+    win.showDevTools();
 
 //EVENTS
 // Wipe the tmpFolder when closing the app (this frees up disk space)
