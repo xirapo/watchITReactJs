@@ -158,7 +158,7 @@ export default class MoviePlayer extends React.Component {
                             {
                                 (
                                     this.state.movieStat && this.state.canPlay &&
-                                    <header className="row absolute z-index-100 top-2-p left-2-p clearfix">
+                                    <header className="row absolute z-index-100 top-2-vh left-2-vw clearfix">
                                         <div>
                                             <h4 className="white-text bold font-type-titles">
                                                 {this.state.movieInfo.title}

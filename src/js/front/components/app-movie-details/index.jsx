@@ -124,7 +124,7 @@ export default class AppMovieDetail extends React.Component {
                                         <a className="dropdown-button flow-text clearfix"
                                            href={"#/app/movie/play/" + this.state.torrent }>
                                             <span className="font-light-gray right">Play</span>
-                                            <i className="icon-controller-play normalize-small-icon left margin-left-4"/>
+                                            <i className="icon-controller-play normalize-small-icon float-left margin-right-5"/>
                                         </a>
                                     </li>
                                 </ul>

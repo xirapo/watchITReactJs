@@ -33550,7 +33550,7 @@
 	                                                { className: 'font-light-gray right' },
 	                                                'Play'
 	                                            ),
-	                                            _react2.default.createElement('i', { className: 'icon-controller-play normalize-small-icon left margin-left-4' })
+	                                            _react2.default.createElement('i', { className: 'icon-controller-play normalize-small-icon float-left margin-right-5' })
 	                                        )
 	                                    )
 	                                ),
@@ -33995,7 +33995,7 @@
 	                        } }),
 	                    this.state.movieStat && this.state.canPlay && _react2.default.createElement(
 	                        'header',
-	                        { className: 'row absolute z-index-100 top-2-p left-2-p clearfix' },
+	                        { className: 'row absolute z-index-100 top-2-vh left-2-vw clearfix' },
 	                        _react2.default.createElement(
 	                            'div',
 	                            null,
