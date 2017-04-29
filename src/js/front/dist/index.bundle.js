@@ -25982,7 +25982,7 @@
 	            return _react2.default.createElement(
 	                'div',
 	                null,
-	                this.props.icon && _react2.default.createElement('i', { className: this.props.icon + " normalize-medium-icon top-12 prefix small white-text" }),
+	                this.props.icon && _react2.default.createElement('i', { className: this.props.icon + " gray-text" }),
 	                _react2.default.createElement('input', _extends({}, this.props, {
 	                    onInput: function onInput(e) {
 	                        return _this2.onInput(e);
@@ -32619,6 +32619,7 @@
 	                        'div',
 	                        { className: "input-field-black margin-top-0 col " + this.props.size },
 	                        _react2.default.createElement(_index2.default, {
+	                            icon: 'icon-tv',
 	                            onInput: function onInput(e) {
 	                                _this2.onInput(e);
 	                            },

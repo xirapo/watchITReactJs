@@ -73242,12 +73242,7 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   -moz-border-radius: 5px;
   border-radius: 5px;
   background-color: rgba(0, 0, 0, 0.5) !important;
-  padding: 10px; }
-  .input-field-black i {
-    margin-top: -5px;
-    margin-right: 0 !important;
-    position: relative !important;
-    float: left; }
+  padding-left: 1.3rem !important; }
   .input-field-black input {
     float: left;
     border: none !important;
@@ -73341,7 +73336,30 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 
 .search-main-box {
   top: 1vh; }
-  .search-main-box input {
+  .search-main-box input::-webkit-input-placeholder {
+    color: #555555;
+    font-style: normal;
+    font-family: "Open Sans", sans-serif; }
+  .search-main-box input:-moz-placeholder {
+    /* Firefox 18- */
+    color: #555555;
+    font-style: normal;
+    font-family: "Open Sans", sans-serif; }
+  .search-main-box input::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #555555;
+    font-style: normal;
+    font-family: "Open Sans", sans-serif; }
+  .search-main-box input:-ms-input-placeholder {
+    color: #555555;
+    font-style: normal;
+    font-family: "Open Sans", sans-serif; }
+  .search-main-box i {
+    position: absolute !important;
+    top: 1rem;
+    right: 1.3rem;
+    color: #555555; }
+  .search-main-box input, .search-main-box i {
     font-size: 1.2rem; }
 
 .profile-media .small-picture figure {

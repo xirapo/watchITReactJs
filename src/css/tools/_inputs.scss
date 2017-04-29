@@ -3,14 +3,7 @@
   @extend .input-field;
   @include border-radius(5px);
   background-color: rgba(0, 0, 0, 0.5) !important;
-  padding: 10px;
-
-  i {
-    margin-top: -5px;
-    margin-right: 0 !important;
-    position: relative !important;
-    float: left;
-  }
+  padding-left: 1.3rem !important;
 
   input {
     //@include transform();

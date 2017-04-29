@@ -25,6 +25,7 @@ export default class AppMainTopInputs extends React.Component {
                 <form action="javascript:void(0);">
                     <div className={"input-field-black margin-top-0 col " + this.props.size}>
                         <BoxInput
+                            icon="icon-tv"
                             onInput={(e)=>{this.onInput(e)}}
                             required={true}
                             autoComplete="off"

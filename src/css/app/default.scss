@@ -27,7 +27,19 @@
 .search-main-box {
   //float: right;
   top: 1vh;
+
   input {
+    @include placeholder($gray);
+  }
+
+  i {
+    position: absolute !important;
+    top: 1rem;
+    right: 1.3rem;
+    color: $gray;
+  }
+
+  input, i {
     font-size: 1.2rem;
   }
 }
