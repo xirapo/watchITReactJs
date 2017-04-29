@@ -1,9 +1,9 @@
+var fs = require('fs');
 var dirs = require('./global');
 var gulp = require('gulp');
 var gutil = require('gulp-util');
+var flatten = require('gulp-flatten');
 var clean = require('gulp-clean');
-var fs = require('fs');
-var compress = require('gulp-compress');
 
 //Webpack
 var webpack = require('webpack');
@@ -11,12 +11,13 @@ var webpackConf = require('./webpack.config');
 
 //Builder
 var nwBuilder = require('nw-builder');
+var nwVersion = '0.22.0';
 var projectName = 'watchIT';
-var platforms = ['linux32', 'linux64', 'osx64', 'win32'];
+var platforms = ['linux32', 'linux64', 'osx64', 'win32', 'win64'];
+
 
 //WEBPACK
 gulp.task("nw:webpack", function (callback) {
-
     var myConfig = Object.create(webpackConf);
     // run webpack
     webpack(myConfig, function (err, stats) {
@@ -29,7 +30,6 @@ gulp.task("nw:webpack", function (callback) {
 });
 
 
-//TODO pasar todo a gulp
 //CLEAN
 gulp.task('nw:clean', function () {
     return gulp.src(['./release', './build'], {read: false})
@@ -37,31 +37,58 @@ gulp.task('nw:clean', function () {
 });
 
 //MAKE
-gulp.task('nw:mkdir', function () {
+gulp.task('nw:mkdir', ['nw:clean'], function () {
     fs.mkdir('./release')
 });
 
-
-gulp.task('nw:compress', function () {
-    compress(gulp, options)
-});
-
-var nw = (new nwBuilder({
+//BUILD
+var nw = new nwBuilder({
     appName: projectName,
     buildDir: './build',
-    //macIcns: './media/img/layout/logo.icns',
     files: dirs.build_dirs,
     platforms: platforms,
-    //version: '0.12.3',
-    version: '0.22.0',
-    zip: false
-})).on('log', gutil.log)
-    .on('error', gutil.log);
+    version: nwVersion
+});
 
-//BUILD
-gulp.task('nw:build', function () {
-    nw.build()
-        .catch(gutil.log);
+
+gulp.task('nw:build', ['nw:mkdir'], function () {
+    nw.build().then(function () {
+        console.log('built');
+    }).catch(function (e) {
+        console.log(e);
+    });
+});
+
+//COPY ASSETS
+gulp.task('nw:copy', ['nw:build'], function () {
+    //The complete directory to replace file
+    var _dest = {
+        osx: 'watchIT.app/Contents/Versions/58.0.3029.81/nwjs Framework.framework/',
+        win: '', linux: 'lib/'
+    }, _src = {
+        osx: 'libffmpeg.dylib',
+        win: 'ffmpeg.dll',
+        linux: 'libffmpeg.so'
+    };
+
+    //Reduce
+    return platforms.map(function (os, i, arr) {
+        //From-to
+        var src = './assets/' + nwVersion + '/' + os + '/' + _src[os.slice(0, -2)];
+        var destination = './build/' + projectName + '/' + os + '/' + _dest[os.slice(0, -2)];
+        var filename = _src[os.slice(0, -2)];
+
+        //If file exist. Remove it;
+        if (fs.existsSync(destination + filename)) {
+            fs.unlinkSync(destination + filename);
+        }
+
+        //Remove destination first
+        gulp.src(src)
+            .pipe(flatten({includeParents: 0}))
+            .pipe(gulp.dest(destination));
+    });
+
 });
 
 
@@ -73,9 +100,11 @@ gulp.task("webpack-watch", ["nw:webpack"], function () {
 
 //Sequence runner
 gulp.task('build', [
-    'nw:clean',
-    'nw:build',
-    'nw:mkdir'
-]);
+        'nw:clean',
+        'nw:mkdir',
+        'nw:build',
+        'nw:copy'
+    ]
+);
 
 
