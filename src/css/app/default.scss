@@ -90,3 +90,16 @@
     background-color: rgba(0, 0, 0, 1);
   }
 }
+
+.video-js{
+  outline: none !important;
+}
+
+//Video stream
+.video-stream {
+  height: 93vh;
+}
+
+.player-overlay-loader {
+  height: 93vh !important;
+}

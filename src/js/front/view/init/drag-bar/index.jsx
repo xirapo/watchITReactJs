@@ -22,7 +22,7 @@ export default class DragBar extends React.Component {
     render() {
         return (
             <section className="full-width full-height absolute">
-                <header id="drag-bar" className="clearfix relative transparent z-depth-100">
+                <header id="drag-bar" className="clearfix relative transparent z-depth-100 z-index-1000">
                     <h5 className="no-margin font-type-titles float-left">
                         <span className="white-text">watch</span>
                         <strong className="loader-text">IT</strong>

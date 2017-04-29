@@ -3,6 +3,7 @@ html, body {
   font-family: $font-family-base;
   box-sizing: border-box;
   -webkit-user-select: none;
+
 }
 
 a {
@@ -84,6 +85,22 @@ video::-webkit-media-text-track-background {
   // Style the text background
 }
 
+//video::-webkit-media-text-track-display {
+//  -moz-transform: translateY(-2em);
+//  -ms-transform: translateY(-2em);
+//  -o-transform: translateY(-2em);
+//  -webkit-transform: translateY(-2em);
+//  transform: translateY(-2em);
+//}
+//
+//.video-js.vjs-user-inactive.vjs-playing video::-webkit-media-text-track-display {
+//  -moz-transform: translateY(-2em);
+//  -ms-transform: translateY(-2em);
+//  -o-transform: translateY(-2em);
+//  -webkit-transform: translateY(-2em);
+//  transform: translateY(-2em);
+//}
+
 video::-webkit-media-text-track-display, video::cue {
   color: #fff;
   //font-family: $font-family-titles;
@@ -95,6 +112,11 @@ video::-webkit-media-text-track-display, video::cue {
   text-shadow: 0px 0px 10px #000, -2px -2px 1px #000, 2px -2px 1px #000, -2px 2px 1px #000, 2px 2px 1px #000;
   pointer-events: auto !important;
   background-color: transparent !important;
-  position: absolute !important;
-  bottom: 0 !important;
+
+  -moz-transform: translateY(-3rem) !important;
+  -ms-transform: translateY(-3rem) !important;
+  -o-transform: translateY(-3rem) !important;
+  -webkit-transform: translateY(-3rem) !important;
+  transform: translateY(-3rem) !important;
+
 }

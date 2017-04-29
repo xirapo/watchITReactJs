@@ -152,7 +152,7 @@ export default class MoviePlayer extends React.Component {
                         this.state.movieInfo &&
                         <section className="absolute full-width full-height clearfix video-stream">
                             {/*Close button*/}
-                            <BtnClose onClose={(e)=>{this.onClose(e)}}/>
+                           <BtnClose onClose={()=>{this.onClose()}} />
 
                             {/*Movie torrent info*/}
                             {

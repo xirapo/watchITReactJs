@@ -25392,7 +25392,7 @@
 	                { className: 'full-width full-height absolute' },
 	                _react2.default.createElement(
 	                    'header',
-	                    { id: 'drag-bar', className: 'clearfix relative transparent z-depth-100' },
+	                    { id: 'drag-bar', className: 'clearfix relative transparent z-depth-100 z-index-1000' },
 	                    _react2.default.createElement(
 	                        'h5',
 	                        { className: 'no-margin font-type-titles float-left' },
@@ -33998,8 +33998,8 @@
 	                this.state.movieInfo && _react2.default.createElement(
 	                    'section',
 	                    { className: 'absolute full-width full-height clearfix video-stream' },
-	                    _react2.default.createElement(_index10.default, { onClose: function onClose(e) {
-	                            _this5.onClose(e);
+	                    _react2.default.createElement(_index10.default, { onClose: function onClose() {
+	                            _this5.onClose();
 	                        } }),
 	                    this.state.movieStat && this.state.canPlay && _react2.default.createElement(
 	                        'header',
@@ -34279,7 +34279,7 @@
 	                        'div',
 	                        null,
 	                        _react2.default.createElement(
-	                            'h2',
+	                            'h3',
 	                            { className: 'font-type-titles align-center white-text' },
 	                            this.props.stateText
 	                        )
