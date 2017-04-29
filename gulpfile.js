@@ -9,13 +9,6 @@ var clean = require('gulp-clean');
 var webpack = require('webpack');
 var webpackConf = require('./webpack.config');
 
-//Builder
-var nwBuilder = require('nw-builder');
-var nwVersion = '0.22.0';
-var projectName = 'watchIT';
-var platforms = ['linux32', 'linux64', 'osx64', 'win32', 'win64'];
-
-
 //WEBPACK
 gulp.task("nw:webpack", function (callback) {
     var myConfig = Object.create(webpackConf);
@@ -41,22 +34,25 @@ gulp.task('nw:mkdir', ['nw:clean'], function () {
     fs.mkdir('./release')
 });
 
+
 //BUILD
+//Builder
+var nwBuilder = require('nw-builder');
+var nwVersion = '0.22.0';
+var projectName = 'watchIT';
+var platforms = ['linux32', 'linux64', 'osx64', 'win32'];
 var nw = new nwBuilder({
     appName: projectName,
     buildDir: './build',
     files: dirs.build_dirs,
     platforms: platforms,
-    version: nwVersion
+    version: nwVersion,
+    zip: false
 });
 
 
 gulp.task('nw:build', ['nw:mkdir'], function () {
-    nw.build().then(function () {
-        console.log('built');
-    }).catch(function (e) {
-        console.log(e);
-    });
+    nw.build().catch(gutil.log);
 });
 
 //COPY ASSETS
@@ -100,9 +96,6 @@ gulp.task("webpack-watch", ["nw:webpack"], function () {
 
 //Sequence runner
 gulp.task('build', [
-        'nw:clean',
-        'nw:mkdir',
-        'nw:build',
         'nw:copy'
     ]
 );
