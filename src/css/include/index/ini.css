@@ -6045,73 +6045,73 @@ small {
 .thin {
   font-weight: 200; }
 
-.flow-text, .nav-bar-movie-details .dropdown a {
+.flow-text, .nav-bar-movie-details .dropdown-button {
   font-weight: 300; }
   @media only screen and (min-width: 360px) {
-    .flow-text, .nav-bar-movie-details .dropdown a {
+    .flow-text, .nav-bar-movie-details .dropdown-button {
       font-size: 1.2rem; } }
   @media only screen and (min-width: 390px) {
-    .flow-text, .nav-bar-movie-details .dropdown a {
+    .flow-text, .nav-bar-movie-details .dropdown-button {
       font-size: 1.224rem; } }
   @media only screen and (min-width: 420px) {
-    .flow-text, .nav-bar-movie-details .dropdown a {
+    .flow-text, .nav-bar-movie-details .dropdown-button {
       font-size: 1.248rem; } }
   @media only screen and (min-width: 450px) {
-    .flow-text, .nav-bar-movie-details .dropdown a {
+    .flow-text, .nav-bar-movie-details .dropdown-button {
       font-size: 1.272rem; } }
   @media only screen and (min-width: 480px) {
-    .flow-text, .nav-bar-movie-details .dropdown a {
+    .flow-text, .nav-bar-movie-details .dropdown-button {
       font-size: 1.296rem; } }
   @media only screen and (min-width: 510px) {
-    .flow-text, .nav-bar-movie-details .dropdown a {
+    .flow-text, .nav-bar-movie-details .dropdown-button {
       font-size: 1.32rem; } }
   @media only screen and (min-width: 540px) {
-    .flow-text, .nav-bar-movie-details .dropdown a {
+    .flow-text, .nav-bar-movie-details .dropdown-button {
       font-size: 1.344rem; } }
   @media only screen and (min-width: 570px) {
-    .flow-text, .nav-bar-movie-details .dropdown a {
+    .flow-text, .nav-bar-movie-details .dropdown-button {
       font-size: 1.368rem; } }
   @media only screen and (min-width: 600px) {
-    .flow-text, .nav-bar-movie-details .dropdown a {
+    .flow-text, .nav-bar-movie-details .dropdown-button {
       font-size: 1.392rem; } }
   @media only screen and (min-width: 630px) {
-    .flow-text, .nav-bar-movie-details .dropdown a {
+    .flow-text, .nav-bar-movie-details .dropdown-button {
       font-size: 1.416rem; } }
   @media only screen and (min-width: 660px) {
-    .flow-text, .nav-bar-movie-details .dropdown a {
+    .flow-text, .nav-bar-movie-details .dropdown-button {
       font-size: 1.44rem; } }
   @media only screen and (min-width: 690px) {
-    .flow-text, .nav-bar-movie-details .dropdown a {
+    .flow-text, .nav-bar-movie-details .dropdown-button {
       font-size: 1.464rem; } }
   @media only screen and (min-width: 720px) {
-    .flow-text, .nav-bar-movie-details .dropdown a {
+    .flow-text, .nav-bar-movie-details .dropdown-button {
       font-size: 1.488rem; } }
   @media only screen and (min-width: 750px) {
-    .flow-text, .nav-bar-movie-details .dropdown a {
+    .flow-text, .nav-bar-movie-details .dropdown-button {
       font-size: 1.512rem; } }
   @media only screen and (min-width: 780px) {
-    .flow-text, .nav-bar-movie-details .dropdown a {
+    .flow-text, .nav-bar-movie-details .dropdown-button {
       font-size: 1.536rem; } }
   @media only screen and (min-width: 810px) {
-    .flow-text, .nav-bar-movie-details .dropdown a {
+    .flow-text, .nav-bar-movie-details .dropdown-button {
       font-size: 1.56rem; } }
   @media only screen and (min-width: 840px) {
-    .flow-text, .nav-bar-movie-details .dropdown a {
+    .flow-text, .nav-bar-movie-details .dropdown-button {
       font-size: 1.584rem; } }
   @media only screen and (min-width: 870px) {
-    .flow-text, .nav-bar-movie-details .dropdown a {
+    .flow-text, .nav-bar-movie-details .dropdown-button {
       font-size: 1.608rem; } }
   @media only screen and (min-width: 900px) {
-    .flow-text, .nav-bar-movie-details .dropdown a {
+    .flow-text, .nav-bar-movie-details .dropdown-button {
       font-size: 1.632rem; } }
   @media only screen and (min-width: 930px) {
-    .flow-text, .nav-bar-movie-details .dropdown a {
+    .flow-text, .nav-bar-movie-details .dropdown-button {
       font-size: 1.656rem; } }
   @media only screen and (min-width: 960px) {
-    .flow-text, .nav-bar-movie-details .dropdown a {
+    .flow-text, .nav-bar-movie-details .dropdown-button {
       font-size: 1.68rem; } }
   @media only screen and (max-width: 360px) {
-    .flow-text, .nav-bar-movie-details .dropdown a {
+    .flow-text, .nav-bar-movie-details .dropdown-button {
       font-size: 1.2rem; } }
 
 .card-panel {
@@ -73328,14 +73328,16 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   max-width: 100%;
   position: relative; }
 
-.flow-text, .nav-bar-movie-details .dropdown a {
+.flow-text, .nav-bar-movie-details .dropdown-button {
   font-size: 2rem !important; }
 
-.nav-bar-movie-details .dropdown a i {
-  font-size: 2.5vh !important; }
+.img-media-large {
+  padding: 0.3vh 0.3vw !important; }
 
-.search-main-box input {
-  font-size: 1.2rem; }
+.search-main-box {
+  top: 1vh; }
+  .search-main-box input {
+    font-size: 1.2rem; }
 
 .profile-media .small-picture figure {
   width: 4rem !important;
@@ -73376,10 +73378,7 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 .video-js {
   outline: none !important; }
 
-.video-stream {
-  height: 93vh; }
-
-.player-overlay-loader {
+.video-stream, .player-overlay-loader {
   height: 93vh !important; }
 
 /**
@@ -73601,18 +73600,21 @@ https://smacss.com/book/type-state
 /* Extra small devices (phones, less than 768px) */
 /* No media query since this is the default in Bootstrap */
 /* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .profile-media {
+    width: 35vw !important; } }
 /* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .profile-media {
+    width: 30vw !important; } }
 /* Large devices (large desktops, 1200px and up) */
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
-  .img-media-large {
-    width: 7.66667% !important; }
-
-  .main-nav-filter-movies .dropdown a {
-    font-size: 1.8vh; }
-
   .profile-media {
-    width: 16vw !important; } }
+    width: 19vw !important; }
+
+  .img-media-large {
+    width: 7.66667% !important; } }
 @media (max-height: 600px) {
   .movies-box {
     height: 66vh; }

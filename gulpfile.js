@@ -30,35 +30,19 @@ gulp.task("nw:webpack", function (callback) {
 });
 
 
-//CLEAN
+//CLEAN OLD DIRS
 gulp.task('nw:clean', function () {
     return gulp.src(['./release', './build'], {read: false})
         .pipe(clean());
 });
 
-//MAKE
+//MAKE DIR RELEASES
 gulp.task('nw:mkdir', ['nw:clean'], function () {
     fs.mkdir('./release')
 });
 
-
-//BUILD
-var nw = new nwBuilder({
-    appName: projectName,
-    buildDir: './build',
-    files: dirs.build_dirs,
-    platforms: platforms,
-    version: nwVersion,
-    zip: false
-});
-
-
-gulp.task('nw:build', ['nw:mkdir'], function () {
-    nw.build().catch(gutil.log);
-});
-
 //COPY ASSETS
-gulp.task('nw:copy', ['nw:build'], function () {
+gulp.task('nw:copy', function () {
     //The complete directory to replace file
     var _dest = {
         osx: 'watchIT.app/Contents/Versions/58.0.3029.81/nwjs Framework.framework/',
@@ -90,6 +74,24 @@ gulp.task('nw:copy', ['nw:build'], function () {
 });
 
 
+//BUILD APP
+var nw = new nwBuilder({
+    appName: projectName,
+    buildDir: './build',
+    files: dirs.build_dirs,
+    platforms: platforms,
+    version: nwVersion,
+    zip: false
+});
+
+
+gulp.task('nw:build', ['nw:mkdir'], function () {
+    nw.build().then(function () {
+        gulp.start('nw:copy');
+    }).catch(gutil.log);
+});
+
+
 //TASKS
 //watch
 gulp.task("webpack-watch", ["nw:webpack"], function () {
@@ -98,7 +100,9 @@ gulp.task("webpack-watch", ["nw:webpack"], function () {
 
 //Sequence runner
 gulp.task('build', [
-        'nw:copy'
+        'nw:clean',
+        'nw:mkdir',
+        'nw:build'
     ]
 );
 

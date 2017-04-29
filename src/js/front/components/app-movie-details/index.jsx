@@ -75,7 +75,7 @@ export default class AppMovieDetail extends React.Component {
                 <section className="col l8 m8">
                     <header className="row">
                         {/*Title*/}
-                        <div className="col l12 m12 s12">
+                        <div className="col l12 m12 s12 width-55-vw">
                             <h1 className="white-text margin-top-0 font-type-titles truncate">
                                 {this.props.movie.title}
                             </h1>

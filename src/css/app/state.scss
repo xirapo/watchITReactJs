@@ -316,29 +316,32 @@ https://smacss.com/book/type-state
 /* Small devices (tablets, 768px and up) */
 //
 @include media-small {
-
+  //User profile box
+  .profile-media {
+    width: 35vw !important;
+  }
 }
 
 ///* Medium devices (desktops, 992px and up) */
 @include media-middle {
-
+  //User profile box
+  .profile-media {
+    width: 30vw !important;
+  }
 }
 
 /* Large devices (large desktops, 1200px and up) */
 @include media-large {
+  //User profile box
+  .profile-media {
+    width: 19vw !important;
+  }
+
+  //Main images
   .img-media-large {
     width: 7.66667% !important;
   }
 
-  .main-nav-filter-movies {
-    .dropdown a {
-      font-size: 1.8vh;
-    }
-  }
-
-  .profile-media {
-    width: 16vw !important;
-  }
 }
 
 //MEDIA QUERIES

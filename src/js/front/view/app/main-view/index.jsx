@@ -190,11 +190,11 @@ export default class Main extends React.Component {
                     <div className="clearfix">
 
                         <header className="row no-margin vertical-padding transparent z-depth-1">
-                            <div className="col l3 m4 profile-media">
+                            <div className="col l4 m4 profile-media">
                                 <AppTinyProfile user={this.state.user}/>
                             </div>
 
-                            <div className="col l5 m6 relative search-main-box">
+                            <div className="col l6 m6 relative search-main-box">
                                 <AppMainTopInput
                                     onInput={(e)=>{this.onSearch(e)}}
                                     size="m12 l12"

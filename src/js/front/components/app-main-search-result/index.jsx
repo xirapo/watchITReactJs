@@ -22,7 +22,7 @@ export default class AppMainSearchResult extends React.Component {
                                             </figure>
                                         </div>
 
-                                        <div className="float-left margin-left-3-p">
+                                        <div className="float-left margin-left-3-p width-35-vw">
                                             <div className="search-result-box-title">
                                                 <strong className="white-text truncate">
                                                     {i.title}

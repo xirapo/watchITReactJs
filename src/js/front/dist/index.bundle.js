@@ -30334,12 +30334,12 @@
 	                            { className: 'row no-margin vertical-padding transparent z-depth-1' },
 	                            _react2.default.createElement(
 	                                'div',
-	                                { className: 'col l3 m4 profile-media' },
+	                                { className: 'col l4 m4 profile-media' },
 	                                _react2.default.createElement(_index10.default, { user: this.state.user })
 	                            ),
 	                            _react2.default.createElement(
 	                                'div',
-	                                { className: 'col l5 m6 relative search-main-box' },
+	                                { className: 'col l6 m6 relative search-main-box' },
 	                                _react2.default.createElement(_index6.default, {
 	                                    onInput: function onInput(e) {
 	                                        _this5.onSearch(e);
@@ -32713,7 +32713,7 @@
 	                                ),
 	                                _react2.default.createElement(
 	                                    "div",
-	                                    { className: "float-left margin-left-3-p" },
+	                                    { className: "float-left margin-left-3-p width-35-vw" },
 	                                    _react2.default.createElement(
 	                                        "div",
 	                                        { className: "search-result-box-title" },
@@ -33488,7 +33488,7 @@
 	                        { className: 'row' },
 	                        _react2.default.createElement(
 	                            'div',
-	                            { className: 'col l12 m12 s12' },
+	                            { className: 'col l12 m12 s12 width-55-vw' },
 	                            _react2.default.createElement(
 	                                'h1',
 	                                { className: 'white-text margin-top-0 font-type-titles truncate' },
