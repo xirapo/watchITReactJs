@@ -9,6 +9,13 @@ var clean = require('gulp-clean');
 var webpack = require('webpack');
 var webpackConf = require('./webpack.config');
 
+//Builder
+var nwBuilder = require('nw-builder');
+var nwVersion = '0.22.0';
+var projectName = 'watchIT';
+var platforms = ['linux32', 'linux64', 'osx64', 'win32'];
+
+
 //WEBPACK
 gulp.task("nw:webpack", function (callback) {
     var myConfig = Object.create(webpackConf);
@@ -36,11 +43,6 @@ gulp.task('nw:mkdir', ['nw:clean'], function () {
 
 
 //BUILD
-//Builder
-var nwBuilder = require('nw-builder');
-var nwVersion = '0.22.0';
-var projectName = 'watchIT';
-var platforms = ['linux32', 'linux64', 'osx64', 'win32'];
 var nw = new nwBuilder({
     appName: projectName,
     buildDir: './build',
