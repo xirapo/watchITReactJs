@@ -9,6 +9,7 @@ var
     fs = require('fs'),
     fs_extra = require('fs-extra'),
     win = gui.Window.get(),
+    user_settings = require(path.resolve() + '/src/js/backend/user'),
     ROOT_DIR = process.cwd(), //DEFAULT ROOT DIR
     ROOT_TMP_FOLDER = path.join(ROOT_DIR, 'tmp'), //TMP global folder
     ENVIRONMENT = 'dev'; // dev or prod environment
@@ -69,13 +70,13 @@ if (ENVIRONMENT == 'dev')
 // Wipe the tmpFolder when closing the app (this frees up disk space)
 win.on('close', function () {
     //If user setting clear cache
-    if (userSettings.storage.movies) {
+    if (user_settings.storage.movies) {
         //Remove movies
         wipeTmpFolder();
     }
 
     //If user setting clear cache
-    if (userSettings.storage.subs) {
+    if (user_settings.storage.subs) {
         //Remove subs
         wipeTmpSubs();
     }
