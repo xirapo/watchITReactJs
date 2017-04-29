@@ -73354,13 +73354,13 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
     color: #555555;
     font-style: normal;
     font-family: "Open Sans", sans-serif; }
-  .search-main-box i {
+  .search-main-box input, .search-main-box i {
+    font-size: 1.2rem; }
+  .search-main-box .input-field-black i {
     position: absolute !important;
     top: 1rem;
     right: 1.3rem;
     color: #555555; }
-  .search-main-box input, .search-main-box i {
-    font-size: 1.2rem; }
 
 .profile-media .small-picture figure {
   width: 4rem !important;
