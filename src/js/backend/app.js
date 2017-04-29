@@ -64,10 +64,10 @@ if (ENVIRONMENT == 'dev') win.showDevTools();
 // Wipe the tmpFolder when closing the app (this frees up disk space)
 win.on('close', function () {
     //If user setting clear cache
-    //if (userSettings.storage.movies) {
-    //Remove movies
-    wipeTmpFolder();
-    //}
+    if (userSettings.storage.movies) {
+        //Remove movies
+        wipeTmpFolder();
+    }
 
     //If user setting clear cache
     if (userSettings.storage.subs) {
