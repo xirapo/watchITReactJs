@@ -28,17 +28,17 @@ export default class AppMainSearchResult extends React.Component {
                                                     {i.title}
                                                 </strong>
                                             </div>
-                                            <div className="margin-top-4-p search-result-box-details">
+                                            <div className="margin-top-1-p search-result-box-details">
                                                 <span className="green-text">
-                                                    <i className="icon-calendar margin-right-3-p"/>
+                                                    <i className="icon-calendar margin-right-1-p"/>
                                                     {i.year}
                                                 </span>
-                                                <span className="orange-text margin-left-8-p">
-                                                    <i className="icon-star margin-right-3-p"/>
+                                                <span className="orange-text margin-left-3-p">
+                                                    <i className="icon-star margin-right-1-p"/>
                                                     {i.rating}
                                                 </span>
-                                                <span className="red-text margin-left-8-p">
-                                                    <i className="icon-back-in-time margin-right-3-p"/>
+                                                <span className="red-text margin-left-3-p">
+                                                    <i className="icon-back-in-time margin-right-1-p"/>
                                                     {i.runtime}
                                                 </span>
 

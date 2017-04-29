@@ -25343,7 +25343,7 @@
 /* 222 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -25373,61 +25373,60 @@
 	    }
 
 	    _createClass(DragBar, [{
-	        key: 'closeWin',
+	        key: "closeWin",
 	        value: function closeWin() {
-	            console.log('cloe');
 	            win.close();
 	        }
 	    }, {
-	        key: 'minimizeWin',
+	        key: "minimizeWin",
 	        value: function minimizeWin() {
 	            win.minimize();
 	        }
 	    }, {
-	        key: 'maximizeWin',
+	        key: "maximizeWin",
 	        value: function maximizeWin() {
 	            win.maximize();
 	        }
 	    }, {
-	        key: 'render',
+	        key: "render",
 	        value: function render() {
 	            return _react2.default.createElement(
-	                'section',
-	                { className: 'full-width full-height absolute' },
+	                "section",
+	                { className: "full-width full-height absolute" },
 	                _react2.default.createElement(
-	                    'header',
-	                    { id: 'drag-bar', className: 'clearfix relative transparent z-depth-100 z-index-1000' },
+	                    "header",
+	                    { id: "drag-bar", className: "clearfix relative transparent z-depth-100 z-index-1000" },
 	                    _react2.default.createElement(
-	                        'h5',
-	                        { className: 'no-margin font-type-titles float-left' },
+	                        "h5",
+	                        { className: "no-margin font-type-titles float-left" },
 	                        _react2.default.createElement(
-	                            'span',
-	                            { className: 'white-text' },
-	                            'watch'
+	                            "span",
+	                            { className: "white-text" },
+	                            "watch"
 	                        ),
 	                        _react2.default.createElement(
-	                            'strong',
-	                            { className: 'loader-text' },
-	                            'IT'
+	                            "strong",
+	                            { className: "loader-text" },
+	                            "IT"
 	                        )
 	                    ),
 	                    _react2.default.createElement(
-	                        'ul',
-	                        { className: 'list-unlisted relative float-right' },
+	                        "ul",
+	                        { className: "list-unlisted relative float-right" },
 	                        _react2.default.createElement(
-	                            'li',
-	                            { onClick: this.minimizeWin, className: 'float-left margin-right-2' },
-	                            _react2.default.createElement('i', { className: 'icon-circle-with-minus font-size-2-vh blue-text' })
+	                            "li",
+	                            { onClick: this.minimizeWin, className: "float-left margin-right-2" },
+	                            _react2.default.createElement("i", { className: "icon-circle-with-minus font-size-2-vh blue-text" })
 	                        ),
 	                        _react2.default.createElement(
-	                            'li',
-	                            { onClick: this.maximizeWin, className: 'float-left margin-right-2' },
-	                            _react2.default.createElement('i', { className: 'icon-circle-with-plus font-size-2-vh orange-text ' })
+	                            "li",
+	                            { onClick: this.maximizeWin, className: "float-left margin-right-2" },
+	                            _react2.default.createElement("i", { className: "icon-circle-with-plus font-size-2-vh orange-text " })
 	                        ),
 	                        _react2.default.createElement(
-	                            'li',
-	                            { onClick: this.closeWin, className: 'float-left margin-right-2' },
-	                            _react2.default.createElement('i', { className: 'icon-circle-with-cross font-size-2-vh red-text' })
+	                            "li",
+	                            { onClick: this.closeWin, className: "float-left margin-right-2" },
+	                            _react2.default.createElement("i", { className: "icon-circle-with-cross font-size-2-vh red-text" })
 	                        )
 	                    )
 	                ),
@@ -26254,13 +26253,6 @@
 
 	Settings.loginView = '/';
 	Settings.appView = '/app';
-
-	/////////////////////
-	//Users Settings//
-	/////////////////////
-	Settings.custom = {
-	    clearCache: false
-	};
 
 	/////////////////////
 	//Resource Settings//
@@ -32725,23 +32717,23 @@
 	                                    ),
 	                                    _react2.default.createElement(
 	                                        "div",
-	                                        { className: "margin-top-4-p search-result-box-details" },
+	                                        { className: "margin-top-1-p search-result-box-details" },
 	                                        _react2.default.createElement(
 	                                            "span",
 	                                            { className: "green-text" },
-	                                            _react2.default.createElement("i", { className: "icon-calendar margin-right-3-p" }),
+	                                            _react2.default.createElement("i", { className: "icon-calendar margin-right-1-p" }),
 	                                            i.year
 	                                        ),
 	                                        _react2.default.createElement(
 	                                            "span",
-	                                            { className: "orange-text margin-left-8-p" },
-	                                            _react2.default.createElement("i", { className: "icon-star margin-right-3-p" }),
+	                                            { className: "orange-text margin-left-3-p" },
+	                                            _react2.default.createElement("i", { className: "icon-star margin-right-1-p" }),
 	                                            i.rating
 	                                        ),
 	                                        _react2.default.createElement(
 	                                            "span",
-	                                            { className: "red-text margin-left-8-p" },
-	                                            _react2.default.createElement("i", { className: "icon-back-in-time margin-right-3-p" }),
+	                                            { className: "red-text margin-left-3-p" },
+	                                            _react2.default.createElement("i", { className: "icon-back-in-time margin-right-1-p" }),
 	                                            i.runtime
 	                                        )
 	                                    )

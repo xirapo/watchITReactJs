@@ -73331,6 +73331,11 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 .flow-text, .nav-bar-movie-details .dropdown-button {
   font-size: 2rem !important; }
 
+.loading-box {
+  top: 0;
+  left: 0;
+  z-index: 1000; }
+
 .img-media-large {
   padding: 0.3vh 0.3vw !important; }
 
@@ -73355,12 +73360,8 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   -moz-border-radius: 5px;
   border-radius: 5px;
   background-color: rgba(0, 0, 0, 0.9); }
-  .result-search-box .search-result-box-details span {
+  .result-search-box .search-result-box-details span, .result-search-box .search-result-box-details i {
     font-size: 1rem; }
-  .result-search-box .search-result-box-details i {
-    font-size: 1rem;
-    position: relative;
-    top: 0.1rem; }
   .result-search-box .search-result-box-title span {
     font-size: 1.2rem; }
   .result-search-box strong {
@@ -73551,11 +73552,11 @@ https://smacss.com/book/type-state
 
 /**OTHERS*/
 .normalize-small-icon {
-  top: 0.1vh;
+  top: 0.1rem;
   position: relative; }
 
 .normalize-medium-icon {
-  top: 0.8vh;
+  top: 0.5rem;
   position: relative; }
 
 .border-dashed-bottom-white {

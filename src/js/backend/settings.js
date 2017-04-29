@@ -9,13 +9,6 @@ Settings.loginView = '/';
 Settings.appView = '/app';
 
 /////////////////////
-//Users Settings//
-/////////////////////
-Settings.custom = {
-    clearCache: false
-};
-
-/////////////////////
 //Resource Settings//
 /////////////////////
 

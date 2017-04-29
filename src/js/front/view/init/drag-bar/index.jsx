@@ -6,7 +6,6 @@ export default class DragBar extends React.Component {
     }
 
     closeWin() {
-        console.log('cloe');
         win.close();
     }
 

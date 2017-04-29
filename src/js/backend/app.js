@@ -1,76 +1,90 @@
 //This file run on front...
 //Set here all initial configurations
 
+//Global vars
 var
     os = require('os'),
     path = require('path'),
     gui = require('nw.gui'),
     fs = require('fs'),
+    fs_extra = require('fs-extra'),
     win = gui.Window.get(),
-    ROOT_DIR = process.cwd(),
+    ROOT_DIR = process.cwd(), //DEFAULT ROOT DIR
     ROOT_TMP_FOLDER = path.join(ROOT_DIR, 'tmp'), //TMP global folder
-    ENVIRONMENT = 'dev'; // dev or prod
+    ENVIRONMENT = 'dev'; // dev or prod environment
 
 
+//FUNCTIONS
+var loopFileDir = function (dir, cb) {
+        fs.readdir(dir, function (err, files) {
+            for (var i in files) {
+                cb(files[i])
+            }
+        });
+    },
+    wipeTmpFolder = function () {
+        //Recursive remove
+        loopFileDir(ROOT_TMP_FOLDER + '/', function (file) {
+            fs_extra.removeSync(ROOT_TMP_FOLDER + '/' + file)
+        });
+
+    }, wipeTmpSubs = function () {
+        //Loop over files in dir
+        loopFileDir(ROOT_TMP_FOLDER + '/', function (file) {
+            //Exists?
+            if (fs.existsSync(ROOT_TMP_FOLDER + '/' + file)) {
+                if (fs.lstatSync(ROOT_TMP_FOLDER + '/' + file).isFile()) {
+                    if (/(srt|vtt|zip)$/g.test(file)) {
+                        fs.unlink(ROOT_TMP_FOLDER + '/' + file);
+                    }
+                }
+            }
+        })
+    },
+    preventDefault = function (e) {
+        //Prevent default events
+        e.preventDefault();
+    };
+
+//INITIAL SETTINGS
 // Create the System Temp Folder.
 // This is used to store temporary data like movie files.
 if (!fs.existsSync(ROOT_TMP_FOLDER)) {
     fs.mkdir(ROOT_TMP_FOLDER);
 }
 
-//Remove folder after close
-var wipeTmpFolder = function () {
-        if (typeof ROOT_TMP_FOLDER != 'string') {
-            return;
-        }
-        fs.readdir(ROOT_TMP_FOLDER, function (err, files) {
-            for (var i in files) {
-                fs.unlink(ROOT_TMP_FOLDER + '/' + files[i]);
-            }
-        });
-    }, wipeTmpSubs = function () {
-        //Remove subs after close app
-        if (typeof ROOT_TMP_FOLDER != 'string') {
-            return;
-        }
-        fs.readdir(ROOT_TMP_FOLDER, function (err, files) {
-            for (var i in files) {
-                if (/(.*)\.(srt|vtt)$/g.test(files[i])) {
-                    fs.unlink(ROOT_TMP_FOLDER + '/' + files[i]);
-                }
-            }
-        });
-    },
-    preventDefault = function (e) {
-        e.preventDefault();
-    };
-
-// Wipe the tmpFolder when closing the app (this frees up disk space)
-win.on('close', function () {
-    //If user setting clear cache
-    // if (Settings.custom.clearCache) {
-    //     wipeTmpFolder();
-    // }
-
-    //Remove subs
-    wipeTmpSubs();
-    win.close(true);
-});
-
 // Set the app title (for Windows mostly)
 win.title = 'watchIT';
-
+// Focus the window when the app opens
+win.focus();
 //If dev.. show tools
 if (ENVIRONMENT == 'dev') win.showDevTools();
 
-// Focus the window when the app opens
-win.focus();
+//EVENTS
+// Wipe the tmpFolder when closing the app (this frees up disk space)
+win.on('close', function () {
+    //If user setting clear cache
+    //if (userSettings.storage.movies) {
+    //Remove movies
+    wipeTmpFolder();
+    //}
+
+    //If user setting clear cache
+    if (userSettings.storage.subs) {
+        //Remove subs
+        wipeTmpSubs();
+    }
+
+    //Close win
+    win.close(
+        true
+    );
+});
 
 // Cancel all new windows (Middle clicks / New Tab)
 win.on('new-win-policy', function (frame, url, policy) {
     policy.ignore();
 });
-
 //Show windows on loaded
 win.on('loaded', function (frame, url, policy) {
     win.show()
@@ -81,41 +95,36 @@ win.on('loaded', function (frame, url, policy) {
 //});
 //
 
+//LISTENERS
 // Prevent dropping files into the window
 window.addEventListener("dragover", preventDefault, false);
 window.addEventListener("drop", preventDefault, false);
 // Prevent dragging files outside the window
 window.addEventListener("dragstart", preventDefault, false);
+//Avoid right click
+document.addEventListener('contextmenu', preventDefault, false);
 
 //Prevent default reload, devtools
 document.addEventListener('keydown', function (e) {
-
     var keyCode = (e.which || e.keyCode);
     // not reload
     // not console
-
     //Reload
     if (keyCode == 116 && ENVIRONMENT === 'dev') {
         location.reload();
     } else if (keyCode == 116) {
+        //Not reload
         e.preventDefault()
     }
 
-    if (keyCode == 122) {
-        e.preventDefault()
-    }
-
-    if (keyCode == 123) {
+    if (keyCode == 122 || keyCode == 123) {
+        //Not open console
         e.preventDefault()
     }
 });
 
-//videoJS conf
-//Not help improve
+//OVERRIDE
 //To add prototype functions
 Function.prototype.add = function (name, fn) {
     this.prototype[name.trim()] = fn;
 };
-//videojs.options.flash.swf = "../vendor/video_js/dist/video-js.swf";
-
-//console.log(win);

@@ -4,6 +4,13 @@
   font-size: 2rem !important;
 }
 
+//Main loader
+.loading-box {
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
 //Poster main movies lists
 .img-media-large {
   padding: 0.3vh 0.3vw !important;
@@ -58,14 +65,8 @@
   background-color: rgba(0, 0, 0, 0.9);
 
   .search-result-box-details {
-    span {
+    span, i {
       font-size: 1rem;
-    }
-
-    i {
-      font-size: 1rem;
-      position: relative;
-      top: 0.1rem;
     }
   }
 
