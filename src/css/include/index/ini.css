@@ -73659,7 +73659,7 @@ https://smacss.com/book/type-state
     height: 20vh; } }
 @media (min-height: 701px) {
   .movies-box {
-    height: 71vh; }
+    height: 69vh; }
 
   .movie-details-description {
     height: 22vh; } }
@@ -73675,7 +73675,7 @@ https://smacss.com/book/type-state
 
   .movie-details-description {
     height: 15vh; } }
-@media (min-height: px) {
+@media (min-height: 850px) {
   .movies-box {
     height: 75vh; }
 

@@ -400,7 +400,7 @@ https://smacss.com/book/type-state
 }
 
 
-@media (min-height: 900px) {
+@media (min-height: 850px) {
   .movies-box {
     height: 75vh;
   }
@@ -418,12 +418,4 @@ https://smacss.com/book/type-state
   .movie-details-description {
     height: 27vh;
   }
-}
-
-@media only screen and (min-height: 1150px) {
-
-}
-
-@media only screen and (min-height: 1400px) {
-
 }
