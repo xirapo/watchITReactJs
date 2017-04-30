@@ -27,7 +27,7 @@ export default class LoginForm extends React.Component {
             inputs: [{
                 type: 'text',
                 placeholder: "e-mail",
-                autoComplete: 'nopr',
+                autoComplete: 'nope',
                 name: "email",
                 icon: 'icon-email',
                 size: 'm12 l12'

@@ -25511,7 +25511,7 @@
 	            inputs: [{
 	                type: 'text',
 	                placeholder: "e-mail",
-	                autoComplete: 'nopr',
+	                autoComplete: 'nope',
 	                name: "email",
 	                icon: 'icon-email',
 	                size: 'm12 l12'
@@ -33260,7 +33260,7 @@
 	        value: function render() {
 	            return _react2.default.createElement(
 	                'div',
-	                { className: 'relative full-height' },
+	                { className: 'relative full-height movie-details' },
 	                _react2.default.createElement(_index4.default, null),
 	                _react2.default.createElement(
 	                    'section',

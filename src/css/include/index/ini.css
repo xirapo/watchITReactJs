@@ -6045,73 +6045,73 @@ small {
 .thin {
   font-weight: 200; }
 
-.flow-text, .nav-bar-movie-details .dropdown-button {
+.flow-text, .movie-details .nav-bar-movie-details .dropdown-button {
   font-weight: 300; }
   @media only screen and (min-width: 360px) {
-    .flow-text, .nav-bar-movie-details .dropdown-button {
+    .flow-text, .movie-details .nav-bar-movie-details .dropdown-button {
       font-size: 1.2rem; } }
   @media only screen and (min-width: 390px) {
-    .flow-text, .nav-bar-movie-details .dropdown-button {
+    .flow-text, .movie-details .nav-bar-movie-details .dropdown-button {
       font-size: 1.224rem; } }
   @media only screen and (min-width: 420px) {
-    .flow-text, .nav-bar-movie-details .dropdown-button {
+    .flow-text, .movie-details .nav-bar-movie-details .dropdown-button {
       font-size: 1.248rem; } }
   @media only screen and (min-width: 450px) {
-    .flow-text, .nav-bar-movie-details .dropdown-button {
+    .flow-text, .movie-details .nav-bar-movie-details .dropdown-button {
       font-size: 1.272rem; } }
   @media only screen and (min-width: 480px) {
-    .flow-text, .nav-bar-movie-details .dropdown-button {
+    .flow-text, .movie-details .nav-bar-movie-details .dropdown-button {
       font-size: 1.296rem; } }
   @media only screen and (min-width: 510px) {
-    .flow-text, .nav-bar-movie-details .dropdown-button {
+    .flow-text, .movie-details .nav-bar-movie-details .dropdown-button {
       font-size: 1.32rem; } }
   @media only screen and (min-width: 540px) {
-    .flow-text, .nav-bar-movie-details .dropdown-button {
+    .flow-text, .movie-details .nav-bar-movie-details .dropdown-button {
       font-size: 1.344rem; } }
   @media only screen and (min-width: 570px) {
-    .flow-text, .nav-bar-movie-details .dropdown-button {
+    .flow-text, .movie-details .nav-bar-movie-details .dropdown-button {
       font-size: 1.368rem; } }
   @media only screen and (min-width: 600px) {
-    .flow-text, .nav-bar-movie-details .dropdown-button {
+    .flow-text, .movie-details .nav-bar-movie-details .dropdown-button {
       font-size: 1.392rem; } }
   @media only screen and (min-width: 630px) {
-    .flow-text, .nav-bar-movie-details .dropdown-button {
+    .flow-text, .movie-details .nav-bar-movie-details .dropdown-button {
       font-size: 1.416rem; } }
   @media only screen and (min-width: 660px) {
-    .flow-text, .nav-bar-movie-details .dropdown-button {
+    .flow-text, .movie-details .nav-bar-movie-details .dropdown-button {
       font-size: 1.44rem; } }
   @media only screen and (min-width: 690px) {
-    .flow-text, .nav-bar-movie-details .dropdown-button {
+    .flow-text, .movie-details .nav-bar-movie-details .dropdown-button {
       font-size: 1.464rem; } }
   @media only screen and (min-width: 720px) {
-    .flow-text, .nav-bar-movie-details .dropdown-button {
+    .flow-text, .movie-details .nav-bar-movie-details .dropdown-button {
       font-size: 1.488rem; } }
   @media only screen and (min-width: 750px) {
-    .flow-text, .nav-bar-movie-details .dropdown-button {
+    .flow-text, .movie-details .nav-bar-movie-details .dropdown-button {
       font-size: 1.512rem; } }
   @media only screen and (min-width: 780px) {
-    .flow-text, .nav-bar-movie-details .dropdown-button {
+    .flow-text, .movie-details .nav-bar-movie-details .dropdown-button {
       font-size: 1.536rem; } }
   @media only screen and (min-width: 810px) {
-    .flow-text, .nav-bar-movie-details .dropdown-button {
+    .flow-text, .movie-details .nav-bar-movie-details .dropdown-button {
       font-size: 1.56rem; } }
   @media only screen and (min-width: 840px) {
-    .flow-text, .nav-bar-movie-details .dropdown-button {
+    .flow-text, .movie-details .nav-bar-movie-details .dropdown-button {
       font-size: 1.584rem; } }
   @media only screen and (min-width: 870px) {
-    .flow-text, .nav-bar-movie-details .dropdown-button {
+    .flow-text, .movie-details .nav-bar-movie-details .dropdown-button {
       font-size: 1.608rem; } }
   @media only screen and (min-width: 900px) {
-    .flow-text, .nav-bar-movie-details .dropdown-button {
+    .flow-text, .movie-details .nav-bar-movie-details .dropdown-button {
       font-size: 1.632rem; } }
   @media only screen and (min-width: 930px) {
-    .flow-text, .nav-bar-movie-details .dropdown-button {
+    .flow-text, .movie-details .nav-bar-movie-details .dropdown-button {
       font-size: 1.656rem; } }
   @media only screen and (min-width: 960px) {
-    .flow-text, .nav-bar-movie-details .dropdown-button {
+    .flow-text, .movie-details .nav-bar-movie-details .dropdown-button {
       font-size: 1.68rem; } }
   @media only screen and (max-width: 360px) {
-    .flow-text, .nav-bar-movie-details .dropdown-button {
+    .flow-text, .movie-details .nav-bar-movie-details .dropdown-button {
       font-size: 1.2rem; } }
 
 .card-panel {
@@ -73324,8 +73324,11 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   max-width: 100%;
   position: relative; }
 
-.flow-text, .nav-bar-movie-details .dropdown-button {
+.flow-text, .movie-details .nav-bar-movie-details .dropdown-button {
   font-size: 2rem !important; }
+
+.movie-details .btn-close {
+  top: -2vh !important; }
 
 .loading-box {
   top: 0;
@@ -73403,6 +73406,8 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 
 .video-stream, .player-overlay-loader {
   height: 93vh !important; }
+  .video-stream .btn-close, .player-overlay-loader .btn-close {
+    top: 3vh !important; }
 
 /**
 https://smacss.com/book/type-state

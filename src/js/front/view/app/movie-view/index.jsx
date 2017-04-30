@@ -42,7 +42,7 @@ export default class MainMovie extends React.Component {
 
     render() {
         return (
-            <div className="relative full-height">
+            <div className="relative full-height movie-details">
                 {/*Close button*/}
                 <BtnClose />
                 <section className="row margin-top-5-vh padding-left-2-vw">

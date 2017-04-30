@@ -4,6 +4,18 @@
   font-size: 2rem !important;
 }
 
+.movie-details {
+  //Movie details navbar
+  .nav-bar-movie-details {
+    .dropdown-button {
+      @extend .flow-text;
+    }
+  }
+  .btn-close {
+    top: -2vh !important;
+  }
+}
+
 //Main loader
 .loading-box {
   top: 0;
@@ -14,13 +26,6 @@
 //Poster main movies lists
 .img-media-large {
   padding: 0.3vh 0.3vw !important;
-}
-
-//Movie details navbar
-.nav-bar-movie-details {
-  .dropdown-button {
-    @extend .flow-text;
-  }
 }
 
 //Top search box
@@ -124,4 +129,7 @@
 //Video stream and loader
 .video-stream, .player-overlay-loader {
   height: 93vh !important;
+  .btn-close {
+    top: 3vh !important;
+  }
 }
