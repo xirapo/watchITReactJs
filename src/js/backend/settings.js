@@ -23,13 +23,12 @@ Settings.remote = {
 //Resource Settings//
 /////////////////////
 
+//WatchIt WebSocket
 Settings.ws = {
     ws_url: Settings.remote.ws_host,
-    //ws_url: 'ws://api.witth.me:9600',
     my_channel: 'client_channel',
     movie_channel: 'movies_channel_'
 };
-
 
 //WatchIt API
 Settings.api = {
