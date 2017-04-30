@@ -73330,7 +73330,7 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 .movie-details .btn-close {
   top: -2vh !important; }
 .movie-details .valign-wrapper, .movie-details .valign-wrapper-overlay, .movie-details .valign-wrapper-overlay-deep {
-  top: -5vh !important; }
+  top: -6rem !important; }
 
 .loading-box {
   top: 0;
