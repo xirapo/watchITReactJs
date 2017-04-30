@@ -32,7 +32,7 @@ gulp.task("nw:webpack", function (callback) {
 
 //CLEAN OLD DIRS
 gulp.task('nw:clean', function () {
-    return gulp.src(['./release', './build'], {read: false})
+    return gulp.src(['./build'], {read: false})
         .pipe(clean());
 });
 
@@ -96,7 +96,6 @@ gulp.task("webpack-watch", ["nw:webpack"], function () {
 //Sequence runner
 gulp.task('build', [
         'nw:clean',
-        'nw:mkdir',
         'nw:build'
     ]
 );
