@@ -73336,7 +73336,7 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   padding: 0.3vh 0.3vw !important; }
 
 .input-black-box {
-  top: 1vh; }
+  top: 0.8vh; }
   .input-black-box input::-webkit-input-placeholder {
     color: #555555;
     font-style: normal;
