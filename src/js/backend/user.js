@@ -8,7 +8,7 @@
 module.exports = {
     storage: {
         movies: localStorage.getItem('clean_storage'),
-        subs: true//localStorage.getItem('clean_subs') ? true : false
+        subs: false//localStorage.getItem('clean_subs') ? true : false
     }
 };
 

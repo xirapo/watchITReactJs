@@ -12,7 +12,8 @@ Settings.appView = '/app';
 //Remote host settings
 Settings.remote = {
     ws_host: 'htt://localhost:9600',
-    api_host: 'http://127.0.0.1:8000'
+    //api_host: 'http://127.0.0.1:8000'
+    api_host: 'http://ec2-54-218-54-92.us-west-2.compute.amazonaws.com'
 };
 
 

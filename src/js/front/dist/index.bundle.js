@@ -26249,7 +26249,8 @@
 	//Remote host settings
 	Settings.remote = {
 	    ws_host: 'htt://localhost:9600',
-	    api_host: 'http://127.0.0.1:8000'
+	    //api_host: 'http://127.0.0.1:8000'
+	    api_host: 'http://ec2-54-218-54-92.us-west-2.compute.amazonaws.com'
 	};
 
 	/////////////////////
@@ -33820,7 +33821,6 @@
 	                    if (_this2.props.subs) {
 	                        // for (let sub in this.props.subs) {
 	                        if ('spanish' in _this2.props.subs) {
-	                            console.log(_this2.props.subs['spanish'].link);
 	                            //Convert to vtt
 	                            Sub.urlSrt2VttFile(_this2.props.subs['spanish'].link).then(function (vtt) {
 	                                console.log('Adding remote ' + vtt);

@@ -62,7 +62,7 @@
             //Convert to
             var dataBuff = fs.readFileSync(srt_file_dir);
             var targetEncodingCharset = 'ISO-8859-1';
-            
+
             //Check for encoding
             var charset = charsetDetect.detect(dataBuff);
             var detectedEncoding = charset.encoding;
@@ -94,6 +94,15 @@
             fs.createReadStream(file_dir)
                 .pipe(unzip.Parse())
                 .on('entry', function (entry) {
+
+                    //Make dir if needed
+                    if (entry.type == 'Directory') {
+                        if (!fs.existsSync(ROOT_TMP_FOLDER + '/' + entry.path)) {
+                            fs.mkdirSync(ROOT_TMP_FOLDER + '/' + entry.path)
+                        }
+                    }
+
+                    //Make dir
                     if ((~(entry.path.indexOf('.srt')))) {
                         var _result_file_dir = ROOT_TMP_FOLDER + '/' + entry.path.replace(/\s/g, "_")
                                 .replace(/\[/g, '')
@@ -106,18 +115,23 @@
                             _result_file_dir
                         );
 
-                        //Write
-                        entry.pipe(
-                            _file
-                        );
+                        _file.on('open', function () {
+                            //Write
+                            entry.pipe(
+                                _file
+                            );
+                        }).on('finish', function () {
+                            //Finish to write
 
-                        //Finish to write
-                        _file.on('finish', function () {
+                            _file.close();  // close() is async, call cb after close completes.
                             //Written
                             r(_result_file_dir);
-                            _file.close();  // close() is async, call cb after close completes.
-                        }.bind(this));
+                        }).on('error', function (e) {
+                            console.log(e);
+                        });
 
+                    } else {
+                        entry.autodrain();
                     }
                 });
         }))

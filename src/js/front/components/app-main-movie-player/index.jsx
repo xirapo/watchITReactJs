@@ -45,7 +45,6 @@ export default class AppMoviesPlayer extends React.Component {
                     if (this.props.subs) {
                         // for (let sub in this.props.subs) {
                         if ('spanish' in this.props.subs) {
-                            console.log(this.props.subs['spanish'].link);
                             //Convert to vtt
                             Sub.urlSrt2VttFile(
                                 this.props.subs['spanish'].link
