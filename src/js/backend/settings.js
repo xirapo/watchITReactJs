@@ -2,9 +2,6 @@
  * Handle global settings
  * **/
 var Settings = {};
-var path = require('path');
-var os = require('os');
-
 
 /////////////////////
 //////Uri Conf///////

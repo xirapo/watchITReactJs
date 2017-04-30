@@ -57,6 +57,9 @@ export default class LoginForm extends React.Component {
 
     handleRequest(fields) {
 
+        //Clean global cache
+        cleanFormCache();
+        
         //Set first state
         this.setState({
             error: false,

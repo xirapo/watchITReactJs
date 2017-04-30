@@ -16,7 +16,14 @@ var
     ENVIRONMENT = 'dev'; // dev or prod environment
 
 //FUNCTIONS
-var loopFileDir = function (dir, cb) {
+var
+    cleanFormCache = function () {
+        //Clean old cache
+        window.chrome.browsingData.remove({
+            since: 0
+        }, {passwords: true, formData: true});
+    },
+    loopFileDir = function (dir, cb) {
         fs.readdir(dir, function (err, files) {
             for (var i in files) {
                 cb(files[i])
@@ -67,9 +74,7 @@ if (ENVIRONMENT == 'dev')
     win.showDevTools();
 
 //Clean old cache
-window.chrome.browsingData.remove({
-    since: 0
-}, {passwords: true, formData: true});
+cleanFormCache();
 
 //EVENTS
 // Wipe the tmpFolder when closing the app (this frees up disk space)

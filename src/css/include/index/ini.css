@@ -73329,6 +73329,8 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 
 .movie-details .btn-close {
   top: -2vh !important; }
+.movie-details .valign-wrapper, .movie-details .valign-wrapper-overlay, .movie-details .valign-wrapper-overlay-deep {
+  top: -5vh !important; }
 
 .loading-box {
   top: 0;
@@ -73643,7 +73645,7 @@ https://smacss.com/book/type-state
 
   .img-media-large {
     width: 7.66667% !important; } }
-@media (max-height: 600px) {
+@media (max-height: 599px) {
   .movies-box {
     height: 66vh; }
 
@@ -73657,7 +73659,7 @@ https://smacss.com/book/type-state
     height: 20vh; } }
 @media (min-height: 701px) {
   .movies-box {
-    height: 71vh; }
+    height: 69vh; }
 
   .movie-details-description {
     height: 22vh; } }
@@ -73667,12 +73669,18 @@ https://smacss.com/book/type-state
 
   .movie-details-description {
     height: 20vh; } }
-@media (min-height: 799px) {
+@media (min-height: 800px) {
   .movies-box {
     height: 75vh; }
 
   .movie-details-description {
     height: 15vh; } }
+@media (min-height: 900px) {
+  .movies-box {
+    height: 75vh; }
+
+  .movie-details-description {
+    height: 20vh; } }
 @media (min-height: 1000px) {
   .movies-box {
     height: 78vh; }
