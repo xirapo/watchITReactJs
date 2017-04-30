@@ -36,11 +36,6 @@ gulp.task('nw:clean', function () {
         .pipe(clean());
 });
 
-//MAKE DIR RELEASES
-gulp.task('nw:mkdir', ['nw:clean'], function () {
-    fs.mkdir('./release')
-});
-
 //COPY ASSETS
 gulp.task('nw:copy', function () {
     //The complete directory to replace file
@@ -85,7 +80,7 @@ var nw = new nwBuilder({
 });
 
 
-gulp.task('nw:build', ['nw:mkdir'], function () {
+gulp.task('nw:build', ['nw:clean'], function () {
     nw.build().then(function () {
         gulp.start('nw:copy');
     }).catch(gutil.log);
