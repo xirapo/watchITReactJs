@@ -7,7 +7,6 @@
     "type": "git",
     "url": ""
   },
-  "chromium-args": "--user-data-dir='temp/'",
   "main": "index.html",
   "window": {
     "title": "watchIT",

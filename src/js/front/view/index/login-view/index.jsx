@@ -27,14 +27,14 @@ export default class LoginForm extends React.Component {
             inputs: [{
                 type: 'text',
                 placeholder: "e-mail",
-                autoComplete: 'new-password',
+                autoComplete: 'nopr',
                 name: "email",
                 icon: 'icon-email',
                 size: 'm12 l12'
             }, {
                 type: 'password',
                 placeholder: "password",
-                autoComplete: 'new-password',
+                autoComplete: 'nope',
                 name: "password",
                 icon: 'icon-dial-pad',
                 size: 'm12 l12'

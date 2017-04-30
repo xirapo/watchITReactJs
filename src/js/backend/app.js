@@ -3,17 +3,14 @@
 
 //Global vars
 var
-//Os
     os = require('os'),
     path = require('path'),
-//File sytem
+
     fs = require('fs'),
     fs_extra = require('fs-extra'),
-//Nw
     win = nw.Window.get(),
-    app = nw.App,
     user_settings = require(path.resolve() + '/src/js/backend/user'),
-//Constants
+
     ROOT_DIR = process.cwd(), //DEFAULT ROOT DIR
     ROOT_TMP_FOLDER = path.join(ROOT_DIR, 'tmp'), //TMP global folder
     ENVIRONMENT = 'dev'; // dev or prod environment
@@ -61,8 +58,6 @@ if (!fs.existsSync(ROOT_TMP_FOLDER)) {
     fs.mkdir(ROOT_TMP_FOLDER);
 }
 
-//Clear old cache
-app.clearCache();
 // Set the app title (for Windows mostly)
 win.title = 'watchIT';
 // Focus the window when the app opens
@@ -70,6 +65,11 @@ win.focus();
 //If dev.. show tools
 if (ENVIRONMENT == 'dev')
     win.showDevTools();
+
+//Clean old cache
+window.chrome.browsingData.remove({
+    since: 0
+}, {passwords: true, formData: true});
 
 //EVENTS
 // Wipe the tmpFolder when closing the app (this frees up disk space)
@@ -86,10 +86,8 @@ win.on('close', function () {
         wipeTmpSubs();
     }
 
-    //Close win
-    win.close(
-        true
-    );
+    //Close window
+    win.close(true)
 
 });
 
