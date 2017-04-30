@@ -85,7 +85,7 @@ export default class MoviePlayer extends React.Component {
                 movieStat: {
                     dSpeed: (flix.swarm.downloadSpeed() / 1024).toFixed(2) + ' kb/s',
                     uSpeed: (flix.swarm.uploadSpeed() / 1024).toFixed(2) + ' kb/s',
-                    dLoaded: parseInt(((flix.swarm.cachedDownload + flix.swarm.downloaded) / 1024) / 1024) + ' mb',
+                    dLoaded: parseInt(((flix.swarm.cachedDownload + flix.swarm.downloaded) / 1024) / 1024, 10) + ' mb',
                     fSize: parseInt((flix.fileSize / 1024) / 1024, 10) + ' mb',
                     aPeers: (flix.swarm.wires.filter(function (w) {
                         return !w.peerChoking
@@ -152,7 +152,7 @@ export default class MoviePlayer extends React.Component {
                         this.state.movieInfo &&
                         <section className="absolute full-width full-height clearfix video-stream">
                             {/*Close button*/}
-                           <BtnClose onClose={()=>{this.onClose()}} />
+                            <BtnClose onClose={()=>{this.onClose()}}/>
 
                             {/*Movie torrent info*/}
                             {
