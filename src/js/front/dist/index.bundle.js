@@ -26239,15 +26239,24 @@
 	var path = __webpack_require__(232);
 	var os = __webpack_require__(233);
 
+	/////////////////////
+	//////Uri Conf///////
+	/////////////////////
+
 	Settings.loginView = '/';
 	Settings.appView = '/app';
+	//Remote host settings
+	Settings.remote = {
+	    ws_host: 'htt://localhost:9600',
+	    api_host: 'http://127.0.0.1:8000'
+	};
 
 	/////////////////////
 	//Resource Settings//
 	/////////////////////
 
 	Settings.ws = {
-	    ws_url: 'ws://localhost:9600',
+	    ws_url: Settings.remote.ws_host,
 	    //ws_url: 'ws://api.witth.me:9600',
 	    my_channel: 'client_channel',
 	    movie_channel: 'movies_channel_'
@@ -26256,11 +26265,11 @@
 	//WatchIt API
 	Settings.api = {
 	    timeout: 10000, // Request timeout,
-	    root: 'http://127.0.0.1:8000/api/v1/',
-	    auth: 'http://127.0.0.1:8000/api/v1/auth/',
-	    user: 'http://127.0.0.1:8000/api/v1/user/',
-	    movies: 'http://127.0.0.1:8000/api/v1/movies/',
-	    search: 'http://127.0.0.1:8000/api/v1/search/'
+	    root: Settings.remote.api_host + '/api/v1/',
+	    auth: Settings.remote.api_host + '/api/v1/auth/',
+	    user: Settings.remote.api_host + '/api/v1/user/',
+	    movies: Settings.remote.api_host + '/api/v1/movies/',
+	    search: Settings.remote.api_host + '/api/v1/search/'
 	};
 
 	exports.default = Settings;
