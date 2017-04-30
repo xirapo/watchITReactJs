@@ -194,7 +194,7 @@ export default class Main extends React.Component {
                                 <AppTinyProfile user={this.state.user}/>
                             </div>
 
-                            <div className="col l6 m6 relative search-main-box">
+                            <div className="col l6 m6 relative input-black-box">
                                 <AppMainTopInput
                                     onInput={(e)=>{this.onSearch(e)}}
                                     size="m12 l12"

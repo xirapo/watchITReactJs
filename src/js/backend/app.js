@@ -3,17 +3,20 @@
 
 //Global vars
 var
+//Os
     os = require('os'),
     path = require('path'),
-    gui = require('nw.gui'),
+//File sytem
     fs = require('fs'),
     fs_extra = require('fs-extra'),
-    win = gui.Window.get(),
+//Nw
+    win = nw.Window.get(),
+    app = nw.App,
     user_settings = require(path.resolve() + '/src/js/backend/user'),
+//Constants
     ROOT_DIR = process.cwd(), //DEFAULT ROOT DIR
     ROOT_TMP_FOLDER = path.join(ROOT_DIR, 'tmp'), //TMP global folder
     ENVIRONMENT = 'dev'; // dev or prod environment
-
 
 //FUNCTIONS
 var loopFileDir = function (dir, cb) {
@@ -58,6 +61,8 @@ if (!fs.existsSync(ROOT_TMP_FOLDER)) {
     fs.mkdir(ROOT_TMP_FOLDER);
 }
 
+//Clear old cache
+app.clearCache();
 // Set the app title (for Windows mostly)
 win.title = 'watchIT';
 // Focus the window when the app opens
@@ -85,6 +90,7 @@ win.on('close', function () {
     win.close(
         true
     );
+
 });
 
 // Cancel all new windows (Middle clicks / New Tab)

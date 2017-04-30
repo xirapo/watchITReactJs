@@ -53,14 +53,14 @@ export default class FormBox extends React.Component {
     render() {
         //Render
         return (
-            <form onSubmit={(e)=> this.handleSubmit(e) }>
+            <form onSubmit={(e)=> this.handleSubmit(e) } autoComplete="new-password">
                 {/*Inputs*/}
                 <div className="row">
                     {
                         /* Generate inputs */
                         this.props.input.map((i, k)=> {
                             return (
-                                <div key={k} className={"input-field col " + i.size}>
+                                <div key={k} className={"input-field-black col " + i.size}>
                                     <BoxInput {...i} onChange={(e)=> this.setValue(e) }/>
                                 </div>
                             )
@@ -74,14 +74,12 @@ export default class FormBox extends React.Component {
                         /* Generate buttons */
                         this.props.buttons.map((i, k)=> {
                             return (
-                                <div className={"input-field col " + i.size} key={k}>
-                                    <BoxButton
-                                        clicked={this.props.submitted}
-                                        className={i.color}
-                                        type={i.type}>
-                                        <span>{i.text}</span>
-                                    </BoxButton>
-                                </div>
+                                <BoxButton key={k}
+                                    clicked={this.props.submitted}
+                                    className={i.color}
+                                    type={i.type}>
+                                    <span>{i.text}</span>
+                                </BoxButton>
                             )
                         })
                     }

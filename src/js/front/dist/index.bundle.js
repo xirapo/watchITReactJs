@@ -25511,12 +25511,14 @@
 	            inputs: [{
 	                type: 'text',
 	                placeholder: "e-mail",
+	                autoComplete: 'new-password',
 	                name: "email",
 	                icon: 'icon-email',
 	                size: 'm12 l12'
 	            }, {
 	                type: 'password',
 	                placeholder: "password",
+	                autoComplete: 'new-password',
 	                name: "password",
 	                icon: 'icon-dial-pad',
 	                size: 'm12 l12'
@@ -25525,11 +25527,6 @@
 	            buttons: [{
 	                type: 'submit',
 	                text: 'login',
-	                size: 'm6 l6'
-	            }, {
-	                type: 'reset',
-	                text: 'reset',
-	                color: 'red',
 	                size: 'm6 l6'
 	            }]
 	        };
@@ -25601,7 +25598,7 @@
 	                    ),
 	                    _react2.default.createElement(
 	                        'section',
-	                        { className: 'row' },
+	                        { className: 'row input-black-box' },
 	                        _react2.default.createElement(_index4.default, {
 	                            action: function action(res) {
 	                                return _this3.handleRequest(res);
@@ -25776,7 +25773,7 @@
 	                'form',
 	                { onSubmit: function onSubmit(e) {
 	                        return _this2.handleSubmit(e);
-	                    } },
+	                    }, autoComplete: 'new-password' },
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'row' },
@@ -25785,7 +25782,7 @@
 	                    this.props.input.map(function (i, k) {
 	                        return _react2.default.createElement(
 	                            'div',
-	                            { key: k, className: "input-field col " + i.size },
+	                            { key: k, className: "input-field-black col " + i.size },
 	                            _react2.default.createElement(_index4.default, _extends({}, i, { onChange: function onChange(e) {
 	                                    return _this2.setValue(e);
 	                                } }))
@@ -25799,19 +25796,15 @@
 	                    /* Generate buttons */
 	                    this.props.buttons.map(function (i, k) {
 	                        return _react2.default.createElement(
-	                            'div',
-	                            { className: "input-field col " + i.size, key: k },
+	                            _index6.default,
+	                            { key: k,
+	                                clicked: _this2.props.submitted,
+	                                className: i.color,
+	                                type: i.type },
 	                            _react2.default.createElement(
-	                                _index6.default,
-	                                {
-	                                    clicked: _this2.props.submitted,
-	                                    className: i.color,
-	                                    type: i.type },
-	                                _react2.default.createElement(
-	                                    'span',
-	                                    null,
-	                                    i.text
-	                                )
+	                                'span',
+	                                null,
+	                                i.text
 	                            )
 	                        );
 	                    })
@@ -25895,19 +25888,14 @@
 	        value: function render() {
 	            return _react2.default.createElement(
 	                'div',
-	                { className: "col " + this.props.size },
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: "bold z-depth-1 lighten-2 text-center " + this.props.label },
-	                    this.props.children
-	                )
+	                { className: "bold z-depth-1 lighten-2 text-center " + this.props.label },
+	                this.props.children
 	            );
 	        }
 	    }], [{
 	        key: 'defaultProps',
 	        get: function get() {
 	            return {
-	                size: 'm12 l12',
 	                label: 'error-label'
 	            };
 	        }
@@ -25987,7 +25975,7 @@
 	                    onInput: function onInput(e) {
 	                        return _this2.onInput(e);
 	                    },
-	                    className: 'white-text validate browser-default',
+	                    className: 'white-text validate',
 	                    value: this.state.value
 	                }))
 	            );
@@ -30331,7 +30319,7 @@
 	                            ),
 	                            _react2.default.createElement(
 	                                'div',
-	                                { className: 'col l6 m6 relative search-main-box' },
+	                                { className: 'col l6 m6 relative input-black-box' },
 	                                _react2.default.createElement(_index6.default, {
 	                                    onInput: function onInput(e) {
 	                                        _this5.onSearch(e);

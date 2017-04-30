@@ -8,6 +8,7 @@
   input {
     //@include transform();
     @include placeholder(#fff);
+    background-color: transparent !important;
     float: left;
     border: none !important;
     margin: 0 0 2px 0 !important;

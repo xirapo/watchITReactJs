@@ -27,12 +27,14 @@ export default class LoginForm extends React.Component {
             inputs: [{
                 type: 'text',
                 placeholder: "e-mail",
+                autoComplete: 'new-password',
                 name: "email",
                 icon: 'icon-email',
                 size: 'm12 l12'
             }, {
                 type: 'password',
                 placeholder: "password",
+                autoComplete: 'new-password',
                 name: "password",
                 icon: 'icon-dial-pad',
                 size: 'm12 l12'
@@ -41,11 +43,6 @@ export default class LoginForm extends React.Component {
             buttons: [{
                 type: 'submit',
                 text: 'login',
-                size: 'm6 l6'
-            }, {
-                type: 'reset',
-                text: 'reset',
-                color: 'red',
                 size: 'm6 l6'
             }]
         };
@@ -109,7 +106,7 @@ export default class LoginForm extends React.Component {
                     </header>
 
                     {/* Form Box */}
-                    <section className="row">
+                    <section className="row input-black-box">
                         <FormBox
                             action={(res)=> this.handleRequest(res)}
                             input={this.state.inputs} // Make inputs

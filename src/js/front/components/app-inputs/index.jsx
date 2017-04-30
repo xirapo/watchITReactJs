@@ -33,6 +33,7 @@ export default class BoxInput extends React.Component {
         }
 
     }
+    
 
     render() {
         return (
@@ -40,7 +41,7 @@ export default class BoxInput extends React.Component {
                 {this.props.icon && <i className={this.props.icon + " gray-text"}/>                }
                 <input {...this.props}
                     onInput={(e)=> this.onInput(e) }
-                    className="white-text validate browser-default"
+                    className="white-text validate"
                     value={this.state.value}
                 />
             </div>
