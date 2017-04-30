@@ -3,6 +3,4 @@
 node_modules
 build
 cache
-release
 tmp/
-temp/
