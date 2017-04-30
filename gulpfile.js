@@ -13,7 +13,7 @@ var webpackConf = require('./webpack.config');
 var nwBuilder = require('nw-builder');
 var nwVersion = '0.22.0';
 var projectName = 'watchIT';
-var platforms = ['linux32', 'linux64', 'osx64', 'win32'];
+var platforms = ['linux32', 'linux64', 'osx64', 'win32', 'win64'];
 
 
 //WEBPACK
@@ -70,6 +70,7 @@ gulp.task('nw:copy', function () {
 
 
 //BUILD APP
+//Instance
 var nw = new nwBuilder({
     appName: projectName,
     buildDir: './build',
@@ -78,8 +79,8 @@ var nw = new nwBuilder({
     version: nwVersion,
     zip: false
 });
-
-
+//Logging
+nw.on('log', gutil.log);
 gulp.task('nw:build', ['nw:clean'], function () {
     nw.build().then(function () {
         gulp.start('nw:copy');
