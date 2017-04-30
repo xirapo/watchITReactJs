@@ -102,7 +102,7 @@
                         }
                     }
 
-                    //Make dir
+                    //If srt file
                     if ((~(entry.path.indexOf('.srt')))) {
                         var _result_file_dir = ROOT_TMP_FOLDER + '/' + entry.path.replace(/\s/g, "_")
                                 .replace(/\[/g, '')
