@@ -29997,9 +29997,10 @@
 
 	            //The incoming value;
 	            var _target_value = e.target.value;
+	            var _invalid_input = !_target_value || /^\s*$/.test(_target_value) || _target_value.length == 0;
 
 	            //Empty write
-	            if (_target_value.length == 0) {
+	            if (_invalid_input) {
 	                this.setState({
 	                    searchResult: false,
 	                    searching: false
@@ -30018,18 +30019,20 @@
 
 	            //Set time out
 	            this.search_timeout = setTimeout(function () {
-	                //Get movies by search
-	                _this4.search.find(_target_value, 'movies', _this4.auth.token).then(function (res) {
-	                    _this4.setState({
-	                        searchResult: res,
-	                        searching: false
+	                //Check invalid
+	                if (!_invalid_input)
+	                    //Get movies by search
+	                    _this4.search.find(_target_value, 'movies', _this4.auth.token).then(function (res) {
+	                        _this4.setState({
+	                            searchResult: res,
+	                            searching: false
+	                        });
+	                    }).catch(function (e) {
+	                        _this4.setState({
+	                            searchResult: [],
+	                            searching: false
+	                        });
 	                    });
-	                }).catch(function (e) {
-	                    _this4.setState({
-	                        searchResult: [],
-	                        searching: false
-	                    });
-	                });
 	            }, 1000);
 	        }
 	    }, {
@@ -32441,7 +32444,7 @@
 	                                ),
 	                                _react2.default.createElement(
 	                                    "div",
-	                                    { className: "float-left margin-left-3-p width-35-vw" },
+	                                    { className: "float-left margin-left-1-rem width-22-rem" },
 	                                    _react2.default.createElement(
 	                                        "div",
 	                                        { className: "search-result-box-title" },

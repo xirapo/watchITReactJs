@@ -144,9 +144,10 @@ export default class Main extends React.Component {
 
         //The incoming value;
         let _target_value = e.target.value;
+        let _invalid_input = !_target_value || /^\s*$/.test(_target_value) || _target_value.length == 0;
 
         //Empty write
-        if (_target_value.length == 0) {
+        if (_invalid_input) {
             this.setState({
                 searchResult: false,
                 searching: false
@@ -166,21 +167,23 @@ export default class Main extends React.Component {
 
         //Set time out
         this.search_timeout = setTimeout(()=> {
+            //Check invalid
+            if (!_invalid_input)
             //Get movies by search
-            this.search.find(
-                _target_value, 'movies',
-                this.auth.token
-            ).then((res)=> {
-                this.setState({
-                    searchResult: res,
-                    searching: false
-                })
-            }).catch((e)=> {
-                this.setState({
-                    searchResult: [],
-                    searching: false
-                })
-            });
+                this.search.find(
+                    _target_value, 'movies',
+                    this.auth.token
+                ).then((res)=> {
+                    this.setState({
+                        searchResult: res,
+                        searching: false
+                    })
+                }).catch((e)=> {
+                    this.setState({
+                        searchResult: [],
+                        searching: false
+                    })
+                });
         }, 1000)
     }
 
