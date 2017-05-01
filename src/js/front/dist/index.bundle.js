@@ -25514,14 +25514,16 @@
 	                autoComplete: 'nope',
 	                name: "email",
 	                icon: 'icon-email',
-	                size: 'm12 l12'
+	                size: 'm12 l12',
+	                required: true
 	            }, {
 	                type: 'password',
 	                placeholder: "password",
 	                autoComplete: 'nope',
 	                name: "password",
 	                icon: 'icon-dial-pad',
-	                size: 'm12 l12'
+	                size: 'm12 l12',
+	                required: true
 	            }],
 	            //Buttons lists
 	            buttons: [{
@@ -25763,6 +25765,7 @@
 	        value: function handleSubmit(e) {
 	            //Avoid trigger default event
 	            e.preventDefault();
+
 	            //Reflect events
 	            this.props.action(this.state.fields, e);
 	        }
@@ -26098,27 +26101,27 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var BarLoader = function (_React$Component) {
-	    _inherits(BarLoader, _React$Component);
+	var PointsLoader = function (_React$Component) {
+	    _inherits(PointsLoader, _React$Component);
 
-	    function BarLoader(props) {
-	        _classCallCheck(this, BarLoader);
+	    function PointsLoader(props) {
+	        _classCallCheck(this, PointsLoader);
 
-	        return _possibleConstructorReturn(this, (BarLoader.__proto__ || Object.getPrototypeOf(BarLoader)).call(this, props));
+	        return _possibleConstructorReturn(this, (PointsLoader.__proto__ || Object.getPrototypeOf(PointsLoader)).call(this, props));
 	    }
 
-	    _createClass(BarLoader, [{
+	    _createClass(PointsLoader, [{
 	        key: "render",
 	        value: function render() {
-	            return _react2.default.createElement("img", _extends({ alt: "", className: "bar-loader", src: "/src/media/img/spinner/bars.svg"
+	            return _react2.default.createElement("img", _extends({ alt: "", className: "points-loader", src: "/src/media/img/spinner/three-dots.svg"
 	            }, this.props));
 	        }
 	    }]);
 
-	    return BarLoader;
+	    return PointsLoader;
 	}(_react2.default.Component);
 
-	exports.default = BarLoader;
+	exports.default = PointsLoader;
 
 /***/ }),
 /* 230 */
@@ -29827,11 +29830,11 @@
 
 	var _index10 = _interopRequireDefault(_index9);
 
-	var _index11 = __webpack_require__(288);
+	var _index11 = __webpack_require__(289);
 
 	var _index12 = _interopRequireDefault(_index11);
 
-	var _index13 = __webpack_require__(289);
+	var _index13 = __webpack_require__(229);
 
 	var _index14 = _interopRequireDefault(_index13);
 
@@ -32514,7 +32517,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _index = __webpack_require__(229);
+	var _index = __webpack_require__(288);
 
 	var _index2 = _interopRequireDefault(_index);
 
@@ -32612,6 +32615,54 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+	var BarLoader = function (_React$Component) {
+	    _inherits(BarLoader, _React$Component);
+
+	    function BarLoader(props) {
+	        _classCallCheck(this, BarLoader);
+
+	        return _possibleConstructorReturn(this, (BarLoader.__proto__ || Object.getPrototypeOf(BarLoader)).call(this, props));
+	    }
+
+	    _createClass(BarLoader, [{
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement("img", _extends({ alt: "", className: "bar-loader", src: "/src/media/img/spinner/bars.svg"
+	            }, this.props));
+	        }
+	    }]);
+
+	    return BarLoader;
+	}(_react2.default.Component);
+
+	exports.default = BarLoader;
+
+/***/ }),
+/* 289 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 	var BoxLoader = function (_React$Component) {
 	    _inherits(BoxLoader, _React$Component);
 
@@ -32654,54 +32705,6 @@
 	}(_react2.default.Component);
 
 	exports.default = BoxLoader;
-
-/***/ }),
-/* 289 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var PointsLoader = function (_React$Component) {
-	    _inherits(PointsLoader, _React$Component);
-
-	    function PointsLoader(props) {
-	        _classCallCheck(this, PointsLoader);
-
-	        return _possibleConstructorReturn(this, (PointsLoader.__proto__ || Object.getPrototypeOf(PointsLoader)).call(this, props));
-	    }
-
-	    _createClass(PointsLoader, [{
-	        key: "render",
-	        value: function render() {
-	            return _react2.default.createElement("img", _extends({ alt: "", className: "points-loader", src: "/src/media/img/spinner/three-dots.svg"
-	            }, this.props));
-	        }
-	    }]);
-
-	    return PointsLoader;
-	}(_react2.default.Component);
-
-	exports.default = PointsLoader;
 
 /***/ }),
 /* 290 */
@@ -32966,7 +32969,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _index = __webpack_require__(288);
+	var _index = __webpack_require__(289);
 
 	var _index2 = _interopRequireDefault(_index);
 

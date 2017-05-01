@@ -1,5 +1,5 @@
 import React from 'react'
-import BarLoader from '../util-bar-loader/index.jsx'
+import PointsLoader from '../util-points-loader/index.jsx'
 
 export default class BoxButton extends React.Component {
     constructor(props) {
@@ -23,7 +23,7 @@ export default class BoxButton extends React.Component {
                 {
                     /*If click*/
                     this.props.type == "submit"
-                    && this.props.clicked && <BarLoader />
+                    && this.props.clicked && <PointsLoader />
                     || this.props.children
                 }
             </button>

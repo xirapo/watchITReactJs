@@ -45,6 +45,7 @@ export default class FormBox extends React.Component {
     handleSubmit(e) {
         //Avoid trigger default event
         e.preventDefault();
+        
         //Reflect events
         this.props.action(this.state.fields, e);
     }

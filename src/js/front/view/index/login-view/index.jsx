@@ -30,14 +30,16 @@ export default class LoginForm extends React.Component {
                 autoComplete: 'nope',
                 name: "email",
                 icon: 'icon-email',
-                size: 'm12 l12'
+                size: 'm12 l12',
+                required: true
             }, {
                 type: 'password',
                 placeholder: "password",
                 autoComplete: 'nope',
                 name: "password",
                 icon: 'icon-dial-pad',
-                size: 'm12 l12'
+                size: 'm12 l12',
+                required: true
             }],
             //Buttons lists
             buttons: [{
@@ -59,7 +61,7 @@ export default class LoginForm extends React.Component {
 
         //Clean global cache
         cleanFormCache();
-        
+
         //Set first state
         this.setState({
             error: false,
