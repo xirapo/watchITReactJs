@@ -18,17 +18,8 @@ export default class BoxLoader extends React.Component {
             >
                 <div className="valign center-block">
                     <div className="preloader-wrapper active">
-                        <div className="spinner-layer spinner-blue-only">
-                            <div className="circle-clipper left">
-                                <div className="circle"></div>
-                            </div>
-                            <div className="gap-patch">
-                                <div className="circle"></div>
-                            </div>
-                            <div className="circle-clipper right">
-                                <div className="circle"></div>
-                            </div>
-                        </div>
+                        <img alt="" className="bar-loader" src="/src/media/img/spinner/audio.svg"
+                            {...this.props}/>
                     </div>
                 </div>
             </section>

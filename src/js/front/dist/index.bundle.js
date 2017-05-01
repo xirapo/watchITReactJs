@@ -32596,6 +32596,8 @@
 	    value: true
 	});
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(1);
@@ -32633,25 +32635,8 @@
 	                    _react2.default.createElement(
 	                        "div",
 	                        { className: "preloader-wrapper active" },
-	                        _react2.default.createElement(
-	                            "div",
-	                            { className: "spinner-layer spinner-blue-only" },
-	                            _react2.default.createElement(
-	                                "div",
-	                                { className: "circle-clipper left" },
-	                                _react2.default.createElement("div", { className: "circle" })
-	                            ),
-	                            _react2.default.createElement(
-	                                "div",
-	                                { className: "gap-patch" },
-	                                _react2.default.createElement("div", { className: "circle" })
-	                            ),
-	                            _react2.default.createElement(
-	                                "div",
-	                                { className: "circle-clipper right" },
-	                                _react2.default.createElement("div", { className: "circle" })
-	                            )
-	                        )
+	                        _react2.default.createElement("img", _extends({ alt: "", className: "bar-loader", src: "/src/media/img/spinner/audio.svg"
+	                        }, this.props))
 	                    )
 	                )
 	            );
