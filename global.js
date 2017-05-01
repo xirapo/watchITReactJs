@@ -5,6 +5,7 @@ module.exports = {
     build_dirs: [
         './src/css/**',
         '!./src/css/**/*.scss',
+        '!./src/css/**/*.map',
         '!./src/css/app/**',
         '!./src/css/tools/**',
         './src/media/**',
