@@ -36,7 +36,7 @@
 //Top search box
 .input-black-box {
   //float: right;
-  top: 0.8vh;
+  top: 0.5rem;
 
   input {
     @include placeholder($gray);
@@ -44,6 +44,10 @@
 
   input, i {
     font-size: 1.2rem;
+  }
+
+  .points-loader {
+    width: 2rem !important;
   }
 
   .input-field-black i {
@@ -64,6 +68,15 @@
 
 //Main box media top user
 .profile-media {
+  height: 4rem;
+
+  .bar-loader {
+    width: 4rem;
+    left: 2rem;
+    top: 0;
+    position: relative;
+  }
+
   .small-picture {
     figure {
       width: 4rem !important;

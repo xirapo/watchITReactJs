@@ -90,6 +90,10 @@ $m-width_height: max-height max-width min-height min-width;
     .#{$l}-#{$i}-#{"vw"} {
       #{$l}: (0 + $i)#{"vw"} !important;
     }
+    
+    .#{$l}-#{$i}-#{"rem"} {
+      #{$l}: (0 + $i)#{"rem"} !important;
+    }
   }
 }
 

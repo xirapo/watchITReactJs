@@ -72,11 +72,11 @@
 
 	var _index6 = _interopRequireDefault(_index5);
 
-	var _index7 = __webpack_require__(293);
+	var _index7 = __webpack_require__(294);
 
 	var _index8 = _interopRequireDefault(_index7);
 
-	var _index9 = __webpack_require__(299);
+	var _index9 = __webpack_require__(300);
 
 	var _index10 = _interopRequireDefault(_index9);
 
@@ -26082,6 +26082,8 @@
 	    value: true
 	});
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(1);
@@ -26108,15 +26110,8 @@
 	    _createClass(BarLoader, [{
 	        key: "render",
 	        value: function render() {
-	            return _react2.default.createElement(
-	                "div",
-	                { className: "col l12 m12 center-block margin-top-15" },
-	                _react2.default.createElement(
-	                    "div",
-	                    { className: "progress height-8 blue darken-4 center-block" },
-	                    _react2.default.createElement("div", { className: "indeterminate blue" })
-	                )
-	            );
+	            return _react2.default.createElement("img", _extends({ alt: "", className: "bar-loader", src: "/src/media/img/spinner/bars.svg"
+	            }, this.props));
 	        }
 	    }]);
 
@@ -29836,23 +29831,27 @@
 
 	var _index12 = _interopRequireDefault(_index11);
 
-	var _index13 = __webpack_require__(264);
+	var _index13 = __webpack_require__(289);
 
 	var _index14 = _interopRequireDefault(_index13);
+
+	var _index15 = __webpack_require__(264);
+
+	var _index16 = _interopRequireDefault(_index15);
 
 	var _auth = __webpack_require__(230);
 
 	var _auth2 = _interopRequireDefault(_auth);
 
-	var _user = __webpack_require__(289);
+	var _user = __webpack_require__(290);
 
 	var _user2 = _interopRequireDefault(_user);
 
-	var _movies = __webpack_require__(290);
+	var _movies = __webpack_require__(291);
 
 	var _movies2 = _interopRequireDefault(_movies);
 
-	var _search = __webpack_require__(292);
+	var _search = __webpack_require__(293);
 
 	var _search2 = _interopRequireDefault(_search);
 
@@ -29894,6 +29893,7 @@
 	        //Default state
 	        _this.state = {
 	            loading: true,
+	            searching: false,
 	            scrollUpdate: false
 	        };
 
@@ -30001,7 +30001,13 @@
 	            //Empty write
 	            if (_target_value.length == 0) {
 	                this.setState({
-	                    searchResult: null
+	                    searchResult: false,
+	                    searching: false
+	                });
+	            } else {
+	                //Searching
+	                this.setState({
+	                    searching: true
 	                });
 	            }
 
@@ -30015,11 +30021,13 @@
 	                //Get movies by search
 	                _this4.search.find(_target_value, 'movies', _this4.auth.token).then(function (res) {
 	                    _this4.setState({
-	                        searchResult: res
+	                        searchResult: res,
+	                        searching: false
 	                    });
 	                }).catch(function (e) {
 	                    _this4.setState({
-	                        searchResult: []
+	                        searchResult: [],
+	                        searching: false
 	                    });
 	                });
 	            }, 1000);
@@ -30043,7 +30051,7 @@
 	                            { className: 'row no-margin vertical-padding transparent z-depth-1' },
 	                            _react2.default.createElement(
 	                                'div',
-	                                { className: 'col l4 m4 profile-media' },
+	                                { className: 'col l4 m4 profile-media clearfix' },
 	                                _react2.default.createElement(_index10.default, { user: this.state.user })
 	                            ),
 	                            _react2.default.createElement(
@@ -30055,14 +30063,24 @@
 	                                    },
 	                                    size: 'm12 l12'
 	                                }),
-	                                this.state.searchResult && _react2.default.createElement(
+	                                (this.state.searching || this.state.searchResult) && _react2.default.createElement(
 	                                    'section',
-	                                    { className: 'absolute full-width search-result-box left-0 top-100-p z-index-100' },
-	                                    _react2.default.createElement(
+	                                    {
+	                                        className: 'absolute full-width search-result-box left-0 top-100-p z-index-100'
+	                                    },
+	                                    this.state.searching && _react2.default.createElement(
 	                                        'div',
 	                                        { className: 'col l12 m12' },
 	                                        _react2.default.createElement(
-	                                            _index14.default,
+	                                            'div',
+	                                            { className: 'col l12 m12 result-search-box text-center padding-10' },
+	                                            _react2.default.createElement(_index14.default, null)
+	                                        )
+	                                    ) || _react2.default.createElement(
+	                                        'div',
+	                                        { className: 'col l12 m12' },
+	                                        _react2.default.createElement(
+	                                            _index16.default,
 	                                            {
 	                                                autoHide: true,
 	                                                autoHeight: true,
@@ -32267,7 +32285,7 @@
 	    _createClass(PulseLoader, [{
 	        key: "render",
 	        value: function render() {
-	            return _react2.default.createElement("img", _extends({ alt: "", src: "/src/media/img/spinner/puff.svg"
+	            return _react2.default.createElement("img", _extends({ alt: "", className: "pulse-loader", src: "/src/media/img/spinner/puff.svg"
 	            }, this.props));
 	        }
 	    }]);
@@ -32653,6 +32671,54 @@
 /* 289 */
 /***/ (function(module, exports, __webpack_require__) {
 
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var PointsLoader = function (_React$Component) {
+	    _inherits(PointsLoader, _React$Component);
+
+	    function PointsLoader(props) {
+	        _classCallCheck(this, PointsLoader);
+
+	        return _possibleConstructorReturn(this, (PointsLoader.__proto__ || Object.getPrototypeOf(PointsLoader)).call(this, props));
+	    }
+
+	    _createClass(PointsLoader, [{
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement("img", _extends({ alt: "", className: "points-loader", src: "/src/media/img/spinner/three-dots.svg"
+	            }, this.props));
+	        }
+	    }]);
+
+	    return PointsLoader;
+	}(_react2.default.Component);
+
+	exports.default = PointsLoader;
+
+/***/ }),
+/* 290 */
+/***/ (function(module, exports, __webpack_require__) {
+
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
@@ -32713,7 +32779,7 @@
 	exports.default = User;
 
 /***/ }),
-/* 290 */
+/* 291 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32732,7 +32798,7 @@
 
 	var _settings2 = _interopRequireDefault(_settings);
 
-	var _requestHelper = __webpack_require__(291);
+	var _requestHelper = __webpack_require__(292);
 
 	var _requestHelper2 = _interopRequireDefault(_requestHelper);
 
@@ -32806,7 +32872,7 @@
 	exports.default = Movies;
 
 /***/ }),
-/* 291 */
+/* 292 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -32829,7 +32895,7 @@
 	};
 
 /***/ }),
-/* 292 */
+/* 293 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32848,7 +32914,7 @@
 
 	var _settings2 = _interopRequireDefault(_settings);
 
-	var _requestHelper = __webpack_require__(291);
+	var _requestHelper = __webpack_require__(292);
 
 	var _requestHelper2 = _interopRequireDefault(_requestHelper);
 
@@ -32897,7 +32963,7 @@
 	exports.default = Search;
 
 /***/ }),
-/* 293 */
+/* 294 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32916,11 +32982,11 @@
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _index3 = __webpack_require__(294);
+	var _index3 = __webpack_require__(295);
 
 	var _index4 = _interopRequireDefault(_index3);
 
-	var _index5 = __webpack_require__(295);
+	var _index5 = __webpack_require__(296);
 
 	var _index6 = _interopRequireDefault(_index5);
 
@@ -32928,11 +32994,11 @@
 
 	var _auth2 = _interopRequireDefault(_auth);
 
-	var _user = __webpack_require__(289);
+	var _user = __webpack_require__(290);
 
 	var _user2 = _interopRequireDefault(_user);
 
-	var _movies = __webpack_require__(290);
+	var _movies = __webpack_require__(291);
 
 	var _movies2 = _interopRequireDefault(_movies);
 
@@ -33006,7 +33072,7 @@
 	exports.default = MainMovie;
 
 /***/ }),
-/* 294 */
+/* 295 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33075,7 +33141,7 @@
 	exports.default = BtnClose;
 
 /***/ }),
-/* 295 */
+/* 296 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {'use strict';
@@ -33098,11 +33164,11 @@
 
 	var _index4 = _interopRequireDefault(_index3);
 
-	var _index5 = __webpack_require__(296);
+	var _index5 = __webpack_require__(297);
 
 	var _index6 = _interopRequireDefault(_index5);
 
-	var _index7 = __webpack_require__(297);
+	var _index7 = __webpack_require__(298);
 
 	var _index8 = _interopRequireDefault(_index7);
 
@@ -33110,7 +33176,7 @@
 
 	var _index10 = _interopRequireDefault(_index9);
 
-	var _index11 = __webpack_require__(298);
+	var _index11 = __webpack_require__(299);
 
 	var _index12 = _interopRequireDefault(_index11);
 
@@ -33296,7 +33362,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(235).Buffer))
 
 /***/ }),
-/* 296 */
+/* 297 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33382,7 +33448,7 @@
 	exports.default = AppMovieDetailInfo;
 
 /***/ }),
-/* 297 */
+/* 298 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33446,7 +33512,7 @@
 	exports.default = FlowText;
 
 /***/ }),
-/* 298 */
+/* 299 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33512,7 +33578,7 @@
 	exports.default = ListCommaSplit;
 
 /***/ }),
-/* 299 */
+/* 300 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {'use strict';
@@ -33527,15 +33593,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _index = __webpack_require__(300);
+	var _index = __webpack_require__(301);
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _index3 = __webpack_require__(301);
+	var _index3 = __webpack_require__(302);
 
 	var _index4 = _interopRequireDefault(_index3);
 
-	var _index5 = __webpack_require__(302);
+	var _index5 = __webpack_require__(303);
 
 	var _index6 = _interopRequireDefault(_index5);
 
@@ -33543,7 +33609,7 @@
 
 	var _index8 = _interopRequireDefault(_index7);
 
-	var _index9 = __webpack_require__(294);
+	var _index9 = __webpack_require__(295);
 
 	var _index10 = _interopRequireDefault(_index9);
 
@@ -33551,7 +33617,7 @@
 
 	var _auth2 = _interopRequireDefault(_auth);
 
-	var _movies = __webpack_require__(290);
+	var _movies = __webpack_require__(291);
 
 	var _movies2 = _interopRequireDefault(_movies);
 
@@ -33756,7 +33822,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(235).Buffer))
 
 /***/ }),
-/* 300 */
+/* 301 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33938,7 +34004,7 @@
 	exports.default = AppMoviesPlayer;
 
 /***/ }),
-/* 301 */
+/* 302 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34030,7 +34096,7 @@
 	exports.default = AppMoviesPlayerLoader;
 
 /***/ }),
-/* 302 */
+/* 303 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';

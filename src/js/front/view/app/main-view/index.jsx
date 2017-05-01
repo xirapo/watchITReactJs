@@ -8,6 +8,7 @@ import AppMainTopInput from '../../../components/app-main-movies-top-inputs/inde
 import AppMainSearchResult from '../../../components/app-main-search-result/index.jsx'
 import AppTinyProfile from '../../../components/app-tiny-box-profile/index.jsx'
 import BoxLoader from '../../../components/util-box-loader/index.jsx'
+import PointsLoader from '../../../components/util-points-loader/index.jsx'
 import CustomScrollbars from '../../../components/util-scroller/index.jsx';
 
 //Require for auth
@@ -35,6 +36,7 @@ export default class Main extends React.Component {
         //Default state
         this.state = {
             loading: true,
+            searching: false,
             scrollUpdate: false
         };
 
@@ -139,15 +141,23 @@ export default class Main extends React.Component {
     }
 
     onSearch(e) {
+
         //The incoming value;
         let _target_value = e.target.value;
 
         //Empty write
         if (_target_value.length == 0) {
             this.setState({
-                searchResult: null
-            })
+                searchResult: false,
+                searching: false
+            });
+        } else {
+            //Searching
+            this.setState({
+                searching: true
+            });
         }
+
 
         //Remove old timeout
         if (this.search_timeout) {
@@ -162,11 +172,13 @@ export default class Main extends React.Component {
                 this.auth.token
             ).then((res)=> {
                 this.setState({
-                    searchResult: res
+                    searchResult: res,
+                    searching: false
                 })
             }).catch((e)=> {
                 this.setState({
-                    searchResult: []
+                    searchResult: [],
+                    searching: false
                 })
             });
         }, 1000)
@@ -190,7 +202,7 @@ export default class Main extends React.Component {
                     <div className="clearfix">
 
                         <header className="row no-margin vertical-padding transparent z-depth-1">
-                            <div className="col l4 m4 profile-media">
+                            <div className="col l4 m4 profile-media clearfix">
                                 <AppTinyProfile user={this.state.user}/>
                             </div>
 
@@ -199,27 +211,37 @@ export default class Main extends React.Component {
                                     onInput={(e)=>{this.onSearch(e)}}
                                     size="m12 l12"
                                 />
-
                                 {
-                                    this.state.searchResult &&
-                                    <section className="absolute full-width search-result-box left-0 top-100-p z-index-100">
-                                        <div className="col l12 m12">
-                                            {
-                                                <CustomScrollbars
-                                                    autoHide
-                                                    autoHeight
-                                                    autoHeightMax={500}
-                                                    autoHideTimeout={1000}
-                                                    autoHideDuration={200}
-                                                    thumbMinSize={30}
-                                                    universal={true}>
-                                                    <AppMainSearchResult
-                                                        result={this.state.searchResult}
-                                                    />
-                                                </CustomScrollbars>
-                                            }
-                                        </div>
+                                    (this.state.searching || this.state.searchResult) &&
+                                    <section
+                                        className="absolute full-width search-result-box left-0 top-100-p z-index-100"
+                                    >
+                                        {
+                                            this.state.searching &&
+                                            <div className="col l12 m12">
+                                                <div className="col l12 m12 result-search-box text-center padding-10">
+                                                    <PointsLoader />
+                                                </div>
+                                            </div> ||
+                                            <div className="col l12 m12">
+                                                {
+                                                    <CustomScrollbars
+                                                        autoHide
+                                                        autoHeight
+                                                        autoHeightMax={500}
+                                                        autoHideTimeout={1000}
+                                                        autoHideDuration={200}
+                                                        thumbMinSize={30}
+                                                        universal={true}>
+                                                        <AppMainSearchResult
+                                                            result={this.state.searchResult}
+                                                        />
+                                                    </CustomScrollbars>
+                                                }
+                                            </div>
+                                        }
                                     </section>
+
                                 }
                             </div>
                         </header>
