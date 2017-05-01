@@ -83057,6 +83057,9 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   .video-stream .btn-close, .player-overlay-loader .btn-close {
     top: 3vh !important; }
 
+.points-loader #to_be_colored_rect {
+  fill: rgba(26, 55, 65, 0.9) !important; }
+
 /**
 https://smacss.com/book/type-state
 */
