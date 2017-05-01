@@ -7919,9 +7919,7 @@ select {
  */
 .preloader-wrapper {
   display: inline-block;
-  position: relative;
-  width: 48px;
-  height: 48px; }
+  position: relative; }
   .preloader-wrapper.small {
     width: 36px;
     height: 36px; }
