@@ -1,6 +1,7 @@
 /**
  * Created by gmena on 04-20-17.
  */
+import cryptHelper from '../../resources/helpers/cryptHelper'
 
 export default ({
     jsonToQString: (ob)=> {
@@ -8,6 +9,14 @@ export default ({
         return encodeURI('?' + (_keys.reduce((before, now)=> {
                 return (before += (now + '=' + ob[now] + '&'))
             }, '')).slice(0, -1));
+    },
+    generateCacheToken: (data)=> {
+        //The uri to request
+        return cryptHelper.toBase64(
+            data
+        ).toUpperCase();
+
     }
 
 })
+

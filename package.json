@@ -45,6 +45,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.16.0",
     "iconv-lite": "0.4.16",
     "jschardet": "1.4.2",
+    "lscache": "^1.1.0",
     "peerflix": "0.30.0",
     "prop-types": "15.5.8",
     "react": "15.5.4",

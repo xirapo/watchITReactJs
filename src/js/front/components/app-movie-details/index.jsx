@@ -8,6 +8,8 @@ import FlowText from '../util-flow-text/index.jsx'
 import CustomScrollbars from '../util-scroller/index.jsx';
 import ListCommaSplit from '../util-list-comma-split/index.jsx'
 
+//Helpers
+import cryptHelper from '../../../resources/helpers/cryptHelper'
 
 export default class AppMovieDetail extends React.Component {
     constructor(props) {
@@ -34,16 +36,13 @@ export default class AppMovieDetail extends React.Component {
 
     prepareDataToPlayer(torrent) {
         this.setState({
-            torrent: ((
-                new Buffer(
-                    JSON.stringify({
-                        torrent: torrent,
-                        imdb_code: this.props.movie.imdb_code,
-                        title: this.props.movie.title
-
-                    }) || '', 'utf8'
-                )
-            ).toString('base64'))
+            torrent: cryptHelper.toBase64(
+                JSON.stringify({
+                    torrent: torrent,
+                    imdb_code: this.props.movie.imdb_code,
+                    title: this.props.movie.title
+                })
+            )
         })
     }
 

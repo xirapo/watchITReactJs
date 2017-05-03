@@ -30,7 +30,8 @@ Settings.ws = {
 
 //WatchIt API
 Settings.api = {
-    timeout: 10000, // Request timeout,
+    timeout: 10000, // Request timeout milliseconds,
+    cache_time: 3600, // cache expire seconds
     root: Settings.remote.api_host + '/api/v1/',
     auth: Settings.remote.api_host + '/api/v1/auth/',
     user: Settings.remote.api_host + '/api/v1/user/',

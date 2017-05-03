@@ -11,6 +11,9 @@ import BtnClose from '../../../components/util-btn-close/index.jsx'
 import Auth from '../../../../resources/database/auth'
 import Movie from '../../../../resources/database/movies'
 
+//Helpers
+import cryptHelper from '../../../../resources/helpers/cryptHelper'
+
 
 //Login view class
 export default class MoviePlayer extends React.Component {
@@ -35,11 +38,8 @@ export default class MoviePlayer extends React.Component {
     componentDidMount() {
         //Decode param
         let _movieInfo = JSON.parse(
-            (
-                new Buffer(
-                    this.props.match.params.torrent,
-                    'base64'
-                ).toString()
+            cryptHelper.fromBase64(
+                this.props.match.params.torrent
             )
         );
 
