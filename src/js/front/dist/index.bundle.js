@@ -32856,6 +32856,7 @@
 	                    timeout: _settings2.default.api.timeout,
 	                    headers: { 'Authorization': 'Bearer ' + token }
 	                }).then(function (res) {
+	                    console.log('data from http response ' + _uri);
 	                    //set cache
 	                    _lscache2.default.set(_uri_crypt, res.data.data, _settings2.default.api.cache_time);
 
@@ -32896,6 +32897,7 @@
 	                    timeout: _settings2.default.api.timeout,
 	                    headers: { 'Authorization': 'Bearer ' + token }
 	                }).then(function (res) {
+	                    console.log('data from http response ' + _uri);
 	                    //set cache
 	                    _lscache2.default.set(_uri_crypt, res.data.data, _settings2.default.api.cache_time);
 
@@ -33413,6 +33415,7 @@
 	                    timeout: _settings2.default.api.timeout,
 	                    headers: { 'Authorization': 'Bearer ' + token }
 	                }).then(function (res) {
+	                    console.log('data from http response ' + _uri);
 	                    //set cache
 	                    _lscache2.default.set(_uri_crypt, res.data.data, _settings2.default.api.cache_time);
 

@@ -38,6 +38,7 @@ export default class Search {
                 timeout: setting.api.timeout,
                 headers: {'Authorization': 'Bearer ' + token}
             }).then((res)=> {
+                console.log('data from http response ' + _uri);
                 //set cache
                 cache.set(
                     _uri_crypt,
