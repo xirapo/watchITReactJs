@@ -4,7 +4,34 @@
   font-size: 2rem !important;
 }
 
+//Main movies lists
+.movies-box {
+  img {
+    @include transition(opacity 1s ease-in-out);
+    &.locked-img {
+      opacity: 0;
+    }
+
+    &.loaded-img {
+      opacity: 1;
+    }
+  }
+}
+
+//Main movie details
 .movie-details {
+
+  img {
+    @include transition(opacity 1s ease-in-out);
+    &.locked-img {
+      opacity: 0;
+    }
+
+    &.loaded-img {
+      opacity: 1;
+    }
+  }
+
   //Movie details navbar
   .nav-bar-movie-details {
     .dropdown-button {

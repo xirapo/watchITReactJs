@@ -32234,7 +32234,7 @@
 
 	                /*The image*/
 	                _react2.default.createElement('img', {
-	                    className: this.state.loaded && "responsive-img" || " hide",
+	                    className: this.state.loaded && "loaded-img responsive-img visible" || "locked-img invisible",
 	                    src: this.props.src,
 	                    onLoad: function onLoad(e) {
 	                        return _this2.handleImageLoaded(e);

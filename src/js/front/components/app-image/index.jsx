@@ -62,7 +62,7 @@ export default class BoxImage extends React.Component {
                 {
                     /*The image*/
                     <img
-                        className={(this.state.loaded && "responsive-img" || " hide")}
+                        className={(this.state.loaded && "loaded-img responsive-img visible" || "locked-img invisible")}
                         src={this.props.src}
                         onLoad={(e)=>this.handleImageLoaded(e)}
                         onError={(e)=>{this.handleImageError(e)}}

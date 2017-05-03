@@ -246,11 +246,11 @@ $m-width_height: max-height max-width min-height min-width;
 }
 
 .visible {
-  visibility: visible;
+  visibility: visible !important;
 }
 
 .invisible {
-  visibility: hidden;
+  visibility: hidden !important;
 }
 
 .hidden {

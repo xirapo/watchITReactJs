@@ -79303,10 +79303,10 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   display: block !important; }
 
 .visible {
-  visibility: visible; }
+  visibility: visible !important; }
 
 .invisible {
-  visibility: hidden; }
+  visibility: hidden !important; }
 
 .hidden {
   display: none !important;
@@ -82963,6 +82963,27 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 .flow-text, .movie-details .nav-bar-movie-details .dropdown-button {
   font-size: 2rem !important; }
 
+.movies-box img {
+  -webkit-transition: opacity 1s ease-in-out;
+  -moz-transition: opacity 1s ease-in-out;
+  -o-transition: opacity 1s ease-in-out;
+  -ms-transition: opacity 1s ease-in-out;
+  transition: opacity 1s ease-in-out; }
+.movies-box img.locked-img {
+  opacity: 0; }
+.movies-box img.loaded-img {
+  opacity: 1; }
+
+.movie-details img {
+  -webkit-transition: opacity 1s ease-in-out;
+  -moz-transition: opacity 1s ease-in-out;
+  -o-transition: opacity 1s ease-in-out;
+  -ms-transition: opacity 1s ease-in-out;
+  transition: opacity 1s ease-in-out; }
+  .movie-details img.locked-img {
+    opacity: 0; }
+  .movie-details img.loaded-img {
+    opacity: 1; }
 .movie-details .btn-close {
   top: -2vh !important; }
 .movie-details .valign-wrapper, .movie-details .valign-wrapper-overlay, .movie-details .valign-wrapper-overlay-deep {
