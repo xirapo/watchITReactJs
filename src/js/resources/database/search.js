@@ -27,7 +27,7 @@ export default class Search {
             //If fond cache
             if (cache.get(_uri_crypt)) {
                 console.log('cache found ' + _uri);
-                resolve(
+                return resolve(
                     cache.get(_uri_crypt)
                 )
             }

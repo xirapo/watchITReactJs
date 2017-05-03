@@ -2,7 +2,6 @@
 import React from 'react'
 //Components
 import BoxImage from '../app-image/index.jsx'
-import CustomScrollbars from '../util-scroller/index.jsx';
 
 
 export default class AppMoviesList extends React.Component {
@@ -12,27 +11,21 @@ export default class AppMoviesList extends React.Component {
 
     render() {
         return (
-            <CustomScrollbars
-                autoHide
-                autoHideTimeout={1000}
-                autoHideDuration={200}
-                thumbMinSize={30}
-                universal={true}
-                onScrollFrame={this.props.onUpdate}>
-                <div className="col l12 m12">
-                    {
-                        this.props.movies.map((i, k)=> {
-                            return (
-                                <div key={k} className="col l2 m2 img-media-large padding-left-2 padding-right-2">
-                                    <a href={"#/app/movie/" + i.imdb_code }>
-                                        <BoxImage src={i.medium_cover_image }/>
-                                    </a>
-                                </div>
-                            )
-                        })
-                    }
-                </div>
-            </CustomScrollbars>
+            <div>
+                {
+                    this.props.movies.map((i, k)=> {
+                        return (
+                            <div key={k} className="col l2 m2 img-media-large padding-left-2 padding-right-2">
+                                <a href={"#/app/movie/" + i.imdb_code }>
+                                    <BoxImage src={i.medium_cover_image }/>
+                                </a>
+                            </div>
+                        )
+                    })
+                }
+            </div>
         )
+
     }
+
 }

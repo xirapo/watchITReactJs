@@ -27,7 +27,7 @@ export default class Movies {
             //If fond cache
             if (cache.get(_uri_crypt)) {
                 console.log('cache found ' + _uri);
-                resolve(
+                return resolve(
                     cache.get(_uri_crypt)
                 )
             }
@@ -40,7 +40,6 @@ export default class Movies {
                 timeout: setting.api.timeout,
                 headers: {'Authorization': 'Bearer ' + token}
             }).then((res)=> {
-
                 //set cache
                 cache.set(
                     _uri_crypt,
@@ -77,7 +76,7 @@ export default class Movies {
             //If fond cache
             if (cache.get(_uri_crypt)) {
                 console.log('cache found ' + _uri);
-                resolve(
+                return resolve(
                     cache.get(_uri_crypt)
                 )
             }

@@ -18,6 +18,8 @@ import User from '../../../../resources/database/user'
 import Movie from '../../../../resources/database/movies'
 import Search from '../../../../resources/database/search'
 
+//Pulse loader
+import PulseLoader from '../../../components/util-pulse-loader/index.jsx'
 
 //Login view class
 export default class Main extends React.Component {
@@ -95,7 +97,7 @@ export default class Main extends React.Component {
         this.sort.limit = 100
     }
 
-    onUpdate(e) {
+    onScrollUpdate(e) {
         //On Scroll down
         if (e.top == 1) {
             this.sort.limit = (++this.offset * 100);
@@ -141,7 +143,6 @@ export default class Main extends React.Component {
     }
 
     onSearch(e) {
-
         //The incoming value;
         let _target_value = e.target.value;
         let _invalid_input = !_target_value || /^\s*$/.test(_target_value) || _target_value.length == 0;
@@ -191,16 +192,7 @@ export default class Main extends React.Component {
     render() {
         return (
             <div className="relative full-height">
-                {/*The menu aside
-                 //TODO For future, cuando se implementen las funcionalidad del menu, activarlo
-                 <aside id="main_menu_aside" className="col l2 m2 full-height padding-top-15">
-                 <div className="row">
-                 <AppTinyProfile user={this.state.user}/>
-                 </div>
-                 <AppMainMenu />
-                 </aside>
-                 */}
-                {/*The movies menu*/}
+                {/*Top main nav*/}
                 <section className="row">
                     <div className="clearfix">
 
@@ -244,23 +236,43 @@ export default class Main extends React.Component {
                                             </div>
                                         }
                                     </section>
-
                                 }
                             </div>
                         </header>
 
+                        {/*Top main nav*/}
                         <nav className="col l12 m12 transparent z-depth-0">
                             <AppMoviesNav onChange={(t,e)=>this.onChange(t,e)}/>
                         </nav>
 
+                        {/*Movies section lists*/}
                         <section className="row movies-box">
                             {
-                                !this.state.loading
-                                && this.state.movies
-                                && <AppMoviesList
-                                    movies={this.state.movies}
-                                    onUpdate={(e)=>this.onUpdate(e)}
-                                /> || <BoxLoader size={100}/>
+                                (!this.state.loading
+                                && this.state.movies &&
+                                <CustomScrollbars
+                                    autoHide
+                                    autoHideTimeout={1000}
+                                    autoHideDuration={200}
+                                    thumbMinSize={30}
+                                    universal={true}
+                                    onScrollFrame={(e)=>this.onScrollUpdate(e)}
+                                >
+                                    <div className="col l12 m12">
+                                        {/*The movie list*/}
+                                        <AppMoviesList movies={this.state.movies}/>
+
+                                        {/*Append a loader if loading*/}
+                                        {
+                                            this.state.scrollUpdate &&
+                                            <div className="col l2 m2 img-media-large padding-left-2 padding-right-2">
+                                                <PulseLoader
+                                                    className="center-block margin-top-50-p width-30-p responsive-img"
+                                                />
+                                            </div>
+                                        }
+                                    </div>
+                                </CustomScrollbars>) || <BoxLoader size={100}/>
                             }
                         </section>
                     </div>

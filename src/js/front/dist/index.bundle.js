@@ -29859,6 +29859,10 @@
 
 	var _search2 = _interopRequireDefault(_search);
 
+	var _index17 = __webpack_require__(284);
+
+	var _index18 = _interopRequireDefault(_index17);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -29873,6 +29877,9 @@
 
 	//Require for auth
 	//Database (Api Handler)
+
+
+	//Pulse loader
 
 
 	//Login view class
@@ -29957,8 +29964,8 @@
 	            this.sort.limit = 100;
 	        }
 	    }, {
-	        key: 'onUpdate',
-	        value: function onUpdate(e) {
+	        key: 'onScrollUpdate',
+	        value: function onScrollUpdate(e) {
 	            //On Scroll down
 	            if (e.top == 1) {
 	                this.sort.limit = ++this.offset * 100;
@@ -30114,12 +30121,31 @@
 	                        _react2.default.createElement(
 	                            'section',
 	                            { className: 'row movies-box' },
-	                            !this.state.loading && this.state.movies && _react2.default.createElement(_index4.default, {
-	                                movies: this.state.movies,
-	                                onUpdate: function onUpdate(e) {
-	                                    return _this5.onUpdate(e);
-	                                }
-	                            }) || _react2.default.createElement(_index12.default, { size: 100 })
+	                            !this.state.loading && this.state.movies && _react2.default.createElement(
+	                                _index16.default,
+	                                {
+	                                    autoHide: true,
+	                                    autoHideTimeout: 1000,
+	                                    autoHideDuration: 200,
+	                                    thumbMinSize: 30,
+	                                    universal: true,
+	                                    onScrollFrame: function onScrollFrame(e) {
+	                                        return _this5.onScrollUpdate(e);
+	                                    }
+	                                },
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'col l12 m12' },
+	                                    _react2.default.createElement(_index4.default, { movies: this.state.movies }),
+	                                    this.state.scrollUpdate && _react2.default.createElement(
+	                                        'div',
+	                                        { className: 'col l2 m2 img-media-large padding-left-2 padding-right-2' },
+	                                        _react2.default.createElement(_index18.default, {
+	                                            className: 'center-block margin-top-50-p width-30-p responsive-img'
+	                                        })
+	                                    )
+	                                )
+	                            ) || _react2.default.createElement(_index12.default, { size: 100 })
 	                        )
 	                    )
 	                )
@@ -32075,10 +32101,6 @@
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _index3 = __webpack_require__(264);
-
-	var _index4 = _interopRequireDefault(_index3);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -32103,29 +32125,19 @@
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
-	                _index4.default,
-	                {
-	                    autoHide: true,
-	                    autoHideTimeout: 1000,
-	                    autoHideDuration: 200,
-	                    thumbMinSize: 30,
-	                    universal: true,
-	                    onScrollFrame: this.props.onUpdate },
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'col l12 m12' },
-	                    this.props.movies.map(function (i, k) {
-	                        return _react2.default.createElement(
-	                            'div',
-	                            { key: k, className: 'col l2 m2 img-media-large padding-left-2 padding-right-2' },
-	                            _react2.default.createElement(
-	                                'a',
-	                                { href: "#/app/movie/" + i.imdb_code },
-	                                _react2.default.createElement(_index2.default, { src: i.medium_cover_image })
-	                            )
-	                        );
-	                    })
-	                )
+	                'div',
+	                null,
+	                this.props.movies.map(function (i, k) {
+	                    return _react2.default.createElement(
+	                        'div',
+	                        { key: k, className: 'col l2 m2 img-media-large padding-left-2 padding-right-2' },
+	                        _react2.default.createElement(
+	                            'a',
+	                            { href: "#/app/movie/" + i.imdb_code },
+	                            _react2.default.createElement(_index2.default, { src: i.medium_cover_image })
+	                        )
+	                    );
+	                })
 	            );
 	        }
 	    }]);
@@ -32834,7 +32846,7 @@
 	                //If fond cache
 	                if (_lscache2.default.get(_uri_crypt)) {
 	                    console.log('cache found ' + _uri);
-	                    resolve(_lscache2.default.get(_uri_crypt));
+	                    return resolve(_lscache2.default.get(_uri_crypt));
 	                }
 
 	                //Request to list endpoint
@@ -32844,7 +32856,6 @@
 	                    timeout: _settings2.default.api.timeout,
 	                    headers: { 'Authorization': 'Bearer ' + token }
 	                }).then(function (res) {
-
 	                    //set cache
 	                    _lscache2.default.set(_uri_crypt, res.data.data, _settings2.default.api.cache_time);
 
@@ -32875,7 +32886,7 @@
 	                //If fond cache
 	                if (_lscache2.default.get(_uri_crypt)) {
 	                    console.log('cache found ' + _uri);
-	                    resolve(_lscache2.default.get(_uri_crypt));
+	                    return resolve(_lscache2.default.get(_uri_crypt));
 	                }
 
 	                //Request to details endpoint
@@ -33393,7 +33404,7 @@
 	                //If fond cache
 	                if (_lscache2.default.get(_uri_crypt)) {
 	                    console.log('cache found ' + _uri);
-	                    resolve(_lscache2.default.get(_uri_crypt));
+	                    return resolve(_lscache2.default.get(_uri_crypt));
 	                }
 	                //Request to search endpoint
 	                (0, _axios2.default)({
