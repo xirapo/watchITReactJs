@@ -21,7 +21,6 @@ export default class ListCommaSplit extends React.Component {
                             <span className="separated-comma" key={k}>
                                 {i}
                             </span>
-
                         )
                     })
                 }
