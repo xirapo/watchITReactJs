@@ -266,7 +266,7 @@ export default class Main extends React.Component {
         return (
             <div className="relative full-height">
                 {/*Top main nav*/}
-                <section className="row">
+                <section className="row main-view">
                     <div className="clearfix">
 
                         <header className="row no-margin vertical-padding transparent z-depth-1">

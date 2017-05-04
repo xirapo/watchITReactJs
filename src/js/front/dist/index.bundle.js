@@ -25583,7 +25583,7 @@
 	                { className: 'absolute valign-wrapper full-width full-height' },
 	                _react2.default.createElement(
 	                    'section',
-	                    { className: 'valign center-block col l4 m6' },
+	                    { className: 'valign center-block col l4 m6 main-login-box' },
 	                    _react2.default.createElement(
 	                        'header',
 	                        { className: 'row' },
@@ -26265,7 +26265,7 @@
 	//WatchIt API
 	Settings.api = {
 	    timeout: 10000, // Request timeout milliseconds,
-	    cache_time: 3600, // cache expire seconds
+	    cache_time: 60, // cache expire minutes
 	    root: Settings.remote.api_host + '/api/v1/',
 	    auth: Settings.remote.api_host + '/api/v1/auth/',
 	    user: Settings.remote.api_host + '/api/v1/user/',
@@ -30120,7 +30120,7 @@
 	                { className: 'relative full-height' },
 	                _react2.default.createElement(
 	                    'section',
-	                    { className: 'row' },
+	                    { className: 'row main-view' },
 	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'clearfix' },

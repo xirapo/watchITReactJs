@@ -82969,10 +82969,10 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   -o-transition: opacity 1s ease-in-out;
   -ms-transition: opacity 1s ease-in-out;
   transition: opacity 1s ease-in-out; }
-.movies-box img.locked-img {
-  opacity: 0; }
-.movies-box img.loaded-img {
-  opacity: 1; }
+  .movies-box img.locked-img {
+    opacity: 0; }
+  .movies-box img.loaded-img {
+    opacity: 1; }
 
 .movie-details img {
   -webkit-transition: opacity 1s ease-in-out;
@@ -82997,8 +82997,10 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 .img-media-large {
   padding: 0.3vh 0.3vw !important; }
 
+.main-view .input-black-box {
+  width: 32rem; }
+
 .input-black-box {
-  width: 32rem !important;
   top: 0.5rem; }
   .input-black-box input::-webkit-input-placeholder {
     color: #555555;

@@ -60,9 +60,16 @@
   padding: 0.3vh 0.3vw !important;
 }
 
+//Main view
+.main-view {
+  //Search box
+  .input-black-box {
+    width: 32rem;
+  }
+}
+
 //Top search box
 .input-black-box {
-  width: 32rem !important;
   //float: right;
   top: 0.5rem;
 
