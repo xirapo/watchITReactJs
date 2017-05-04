@@ -42,8 +42,8 @@ export default class Main extends React.Component {
             scrollUpdate: false
         };
 
+        this.limit = 100;
         this.sort = {
-            limit: 100,
             sort_by: 'date_uploaded',
             order: 'desc'
         };
@@ -93,6 +93,9 @@ export default class Main extends React.Component {
             }
         }
 
+        //Renew limit
+        filter['limit'] = this.limit;
+
         //Get movies
         this.movie.filter(
             filter, token
@@ -107,15 +110,10 @@ export default class Main extends React.Component {
         });
     }
 
-    resetLimit() {
-        this.offset = 1;
-        this.sort.limit = 100
-    }
-
     onScrollUpdate(e) {
         //On Scroll down
         if (e.top == 1) {
-            this.sort.limit = (++this.offset * 100);
+            this.limit = (++this.offset * 100);
             this.setState({
                 scrollUpdate: true
             });
@@ -196,8 +194,9 @@ export default class Main extends React.Component {
             }
         }
 
-        //Reset offset
-        this.resetLimit();
+        //Reset limit
+        this.limit = 100;
+        this.offset = 1;
         this.setState({
             loading: true,
             scrollUpdate: false
@@ -264,9 +263,9 @@ export default class Main extends React.Component {
 
     render() {
         return (
-            <div className="relative full-height">
+            <div className="relative full-height main-view">
                 {/*Top main nav*/}
-                <section className="row main-view">
+                <section className="row">
                     <div className="clearfix">
 
                         <header className="row no-margin vertical-padding transparent z-depth-1">

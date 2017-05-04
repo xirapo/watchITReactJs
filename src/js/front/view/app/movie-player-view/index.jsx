@@ -132,8 +132,7 @@ export default class MoviePlayer extends React.Component {
 
     render() {
         return (
-            <div>
-
+            <div className="movie-player">
                 {
                     (
                         !this.state.canPlay &&

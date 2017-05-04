@@ -25580,10 +25580,10 @@
 
 	            return _react2.default.createElement(
 	                'div',
-	                { className: 'absolute valign-wrapper full-width full-height' },
+	                { className: 'absolute valign-wrapper full-width full-height main-login-box' },
 	                _react2.default.createElement(
 	                    'section',
-	                    { className: 'valign center-block col l4 m6 main-login-box' },
+	                    { className: 'valign center-block col l4 m6' },
 	                    _react2.default.createElement(
 	                        'header',
 	                        { className: 'row' },
@@ -29908,8 +29908,8 @@
 	            scrollUpdate: false
 	        };
 
+	        _this.limit = 100;
 	        _this.sort = {
-	            limit: 100,
 	            sort_by: 'date_uploaded',
 	            order: 'desc'
 	        };
@@ -29962,6 +29962,9 @@
 	                }
 	            }
 
+	            //Renew limit
+	            filter['limit'] = this.limit;
+
 	            //Get movies
 	            this.movie.filter(filter, token).then(function (res) {
 	                _this3.setState({
@@ -29973,17 +29976,11 @@
 	            }).catch(function (e) {});
 	        }
 	    }, {
-	        key: 'resetLimit',
-	        value: function resetLimit() {
-	            this.offset = 1;
-	            this.sort.limit = 100;
-	        }
-	    }, {
 	        key: 'onScrollUpdate',
 	        value: function onScrollUpdate(e) {
 	            //On Scroll down
 	            if (e.top == 1) {
-	                this.sort.limit = ++this.offset * 100;
+	                this.limit = ++this.offset * 100;
 	                this.setState({
 	                    scrollUpdate: true
 	                });
@@ -30052,8 +30049,9 @@
 	                }
 	            }
 
-	            //Reset offset
-	            this.resetLimit();
+	            //Reset limit
+	            this.limit = 100;
+	            this.offset = 1;
 	            this.setState({
 	                loading: true,
 	                scrollUpdate: false
@@ -30117,10 +30115,10 @@
 
 	            return _react2.default.createElement(
 	                'div',
-	                { className: 'relative full-height' },
+	                { className: 'relative full-height main-view' },
 	                _react2.default.createElement(
 	                    'section',
-	                    { className: 'row main-view' },
+	                    { className: 'row' },
 	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'clearfix' },
@@ -34311,7 +34309,7 @@
 
 	            return _react2.default.createElement(
 	                'div',
-	                null,
+	                { className: 'movie-player' },
 	                !this.state.canPlay && _react2.default.createElement(
 	                    'div',
 	                    { className: 'absolute full-width full-height player-overlay-loader' },
