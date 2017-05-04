@@ -197,6 +197,8 @@ export default class Main extends React.Component {
         //Reset limit
         this.limit = 100;
         this.offset = 1;
+
+        //Set new state
         this.setState({
             loading: true,
             scrollUpdate: false
