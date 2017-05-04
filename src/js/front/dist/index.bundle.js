@@ -29942,10 +29942,25 @@
 	    }, {
 	        key: 'filterMovies',
 	        value: function filterMovies() {
+	            var filter = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
 	            var _this3 = this;
 
-	            var filter = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 	            var token = arguments[1];
+	            var cached = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+
+
+	            //Get from cache filters
+	            if (localStorage.getItem('filters_cache') && cached) {
+	                filter = JSON.parse(localStorage.getItem('filters_cache'));
+	            }
+
+	            //Clean all.. invalid
+	            if ('genres' in filter) {
+	                if (filter['genres'] == 'All') {
+	                    delete filter['genres'];
+	                }
+	            }
 
 	            //Get movies
 	            this.movie.filter(filter, token).then(function (res) {
@@ -29978,25 +29993,74 @@
 	            }
 	        }
 	    }, {
-	        key: 'onChange',
-	        value: function onChange(sort, by) {
-	            var _sort = {};
+	        key: 'initialNavVar',
+	        value: function initialNavVar(genres, sort) {
+	            //Has sort cache?
+	            if (localStorage.getItem('filters_cache')) {
+	                var _sort_cache = JSON.parse(localStorage.getItem('filters_cache'));
 
-	            //If by?
-	            if (by) {
-	                _sort[sort] = by;
-	                this.sort = _extends({}, this.sort, _sort);
-	            } else {
-	                if (sort in this.sort) {
-	                    delete this.sort[sort];
+	                //Check for genres in cache filter
+	                if ('genres' in _sort_cache) {
+	                    for (var gen in genres) {
+	                        //Clean default
+	                        if ('default' in genres[gen]) delete genres[gen]['default'];
+
+	                        //Set new default
+	                        if (genres[gen].action == _sort_cache['genres']) {
+	                            genres[gen]['default'] = true;
+	                        }
+	                    }
+	                }
+
+	                //Check for sort cache
+	                if ('sort_by' in _sort_cache) {
+	                    for (var sor in sort) {
+	                        //Clean default
+	                        if ('default' in sort[sor]) delete sort[sor]['default'];
+
+	                        //Set new default
+	                        if (sort[sor].action == _sort_cache['sort_by']) {
+	                            sort[sor]['default'] = true;
+	                        }
+	                    }
 	                }
 	            }
+
+	            //Return initial
+	            return {
+	                genres: genres,
+	                sort: sort
+	            };
+	        }
+	    }, {
+	        key: 'onChange',
+	        value: function onChange(sort, by) {
+	            var _sort = {}; // //If by?
+
+	            // //If by?
+	            if (localStorage.getItem('filters_cache')) {
+	                _sort[sort] = by;
+	                this.sort = _extends({}, this.sort, JSON.parse(localStorage.getItem('filters_cache')), _sort);
+	            } else {
+	                if (by) {
+	                    _sort[sort] = by;
+	                    this.sort = _extends({}, this.sort, _sort);
+	                } else {
+	                    if (sort in this.sort) {
+	                        delete this.sort[sort];
+	                    }
+	                }
+	            }
+
 	            //Reset offset
 	            this.resetLimit();
 	            this.setState({
 	                loading: true,
 	                scrollUpdate: false
 	            });
+
+	            //Set cache filters
+	            localStorage.setItem('filters_cache', JSON.stringify(this.sort));
 
 	            //Re set movies
 	            this.filterMovies(this.sort, this.auth.token);
@@ -30114,9 +30178,12 @@
 	                        _react2.default.createElement(
 	                            'nav',
 	                            { className: 'col l12 m12 transparent z-depth-0' },
-	                            _react2.default.createElement(_index2.default, { onChange: function onChange(t, e) {
+	                            _react2.default.createElement(_index2.default, {
+	                                onChange: function onChange(t, e) {
 	                                    return _this5.onChange(t, e);
-	                                } })
+	                                },
+	                                setInitialNavVar: this.initialNavVar
+	                            })
 	                        ),
 	                        _react2.default.createElement(
 	                            'section',
@@ -30192,9 +30259,10 @@
 	    function AppMoviesNavBar(props) {
 	        _classCallCheck(this, AppMoviesNavBar);
 
+	        //Initial state
 	        var _this = _possibleConstructorReturn(this, (AppMoviesNavBar.__proto__ || Object.getPrototypeOf(AppMoviesNavBar)).call(this, props));
 
-	        _this.state = {
+	        _this.prevState = {
 	            sort: [{
 	                'label': 'Year',
 	                'action': 'year'
@@ -30214,6 +30282,7 @@
 	            }],
 	            genres: [{
 	                'label': 'All',
+	                'action': 'All',
 	                'default': true
 	            }, {
 	                'label': 'Action',
@@ -30283,15 +30352,34 @@
 	                'action': 'Western'
 	            }]
 	        };
+
+	        //Set initial state
+	        _this.state = _this.getInitialNavVar();
 	        return _this;
 	    }
 
 	    _createClass(AppMoviesNavBar, [{
+	        key: 'getInitialNavVar',
+	        value: function getInitialNavVar() {
+	            //Return setted state
+	            if (this.props.setInitialNavVar) {
+	                return this.props.setInitialNavVar(this.prevState.genres, this.prevState.sort);
+	            }
+
+	            //Return default
+	            return this.prevState;
+	        }
+	    }, {
 	        key: 'onChange',
 	        value: function onChange(type, e) {
 	            //OnChange
 	            if (this.props.onChange) {
 	                this.props.onChange(type, e);
+	            }
+
+	            //Return setted state
+	            if (this.props.setInitialNavVar) {
+	                this.setState(this.props.setInitialNavVar(this.state.genres, this.state.sort));
 	            }
 	        }
 	    }, {
@@ -30370,24 +30458,6 @@
 	    }
 
 	    _createClass(NavBarMenu, [{
-	        key: 'componentDidMount',
-	        value: function componentDidMount() {
-	            var _this2 = this;
-
-	            //If need for initial item
-	            if (this.props.getInitialItem) {
-	                this.props.list.map(function (i, k) {
-	                    if (i.default) {
-	                        //Call method
-	                        _this2.props.getInitialItem(_this2.props.list[k]);
-
-	                        //Stop loop
-	                        return false;
-	                    }
-	                });
-	            }
-	        }
-	    }, {
 	        key: 'onClick',
 	        value: function onClick(e) {
 	            //On change
@@ -30409,7 +30479,7 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var _this3 = this;
+	            var _this2 = this;
 
 	            return _react2.default.createElement(
 	                'ul',
@@ -30466,7 +30536,7 @@
 	                                    _react2.default.createElement(
 	                                        'a',
 	                                        { href: 'javascript:void(0)', onClick: function onClick(e) {
-	                                                return _this3.onClick(e);
+	                                                return _this2.onClick(e);
 	                                            },
 	                                            className: 'drop-item',
 	                                            'data-action': i.action,

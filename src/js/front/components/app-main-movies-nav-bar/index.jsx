@@ -4,7 +4,8 @@ import NavBarMenu from '../app-nav-bar-menu/index.jsx'
 export default class AppMoviesNavBar extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
+        //Initial state
+        this.prevState = {
             sort: [{
                 'label': 'Year',
                 'action': 'year'
@@ -24,6 +25,7 @@ export default class AppMoviesNavBar extends React.Component {
             }],
             genres: [{
                 'label': 'All',
+                'action': 'All',
                 'default': true
             }, {
                 'label': 'Action',
@@ -76,7 +78,7 @@ export default class AppMoviesNavBar extends React.Component {
             }, {
                 'label': 'Romance',
                 'action': 'Romance'
-            },  {
+            }, {
                 'label': 'Sci-Fi',
                 'action': 'Sci-Fi'
             }, {
@@ -92,7 +94,24 @@ export default class AppMoviesNavBar extends React.Component {
                 'label': 'Western',
                 'action': 'Western'
             }]
+        };
+
+        //Set initial state
+        this.state = this.getInitialNavVar();
+    }
+
+    getInitialNavVar() {
+        //Return setted state
+        if (this.props.setInitialNavVar) {
+            return this.props.setInitialNavVar(
+                this.prevState.genres,
+                this.prevState.sort
+            )
         }
+
+        //Return default
+        return this.prevState
+
     }
 
     onChange(type, e) {
@@ -100,6 +119,17 @@ export default class AppMoviesNavBar extends React.Component {
         if (this.props.onChange) {
             this.props.onChange(type, e);
         }
+
+        //Return setted state
+        if (this.props.setInitialNavVar) {
+            this.setState(
+                this.props.setInitialNavVar(
+                    this.state.genres,
+                    this.state.sort
+                )
+            )
+        }
+
     }
 
 

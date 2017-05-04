@@ -16,24 +16,7 @@ export default class NavBarMenu extends React.Component {
             btnText: PropTypes.string.isRequired
         }
     }
-
-
-    componentDidMount() {
-        //If need for initial item
-        if (this.props.getInitialItem) {
-            this.props.list.map((i, k)=> {
-                if (i.default) {
-                    //Call method
-                    this.props.getInitialItem(
-                        this.props.list[k]
-                    );
-
-                    //Stop loop
-                    return false;
-                }
-            });
-        }
-    }
+    
 
     onClick(e) {
         //On change

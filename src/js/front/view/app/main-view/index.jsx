@@ -77,7 +77,22 @@ export default class Main extends React.Component {
 
     }
 
-    filterMovies(filter = {}, token) {
+    filterMovies(filter = {}, token, cached = true) {
+
+        //Get from cache filters
+        if (localStorage.getItem('filters_cache') && cached) {
+            filter = JSON.parse(
+                localStorage.getItem('filters_cache')
+            );
+        }
+
+        //Clean all.. invalid
+        if ('genres' in filter) {
+            if (filter['genres'] == 'All') {
+                delete filter['genres']
+            }
+        }
+
         //Get movies
         this.movie.filter(
             filter, token
@@ -113,27 +128,85 @@ export default class Main extends React.Component {
         }
     }
 
-
-    onChange(sort, by) {
-        let _sort = {};
-
-        //If by?
-        if (by) {
-            _sort[sort] = by;
-            this.sort = Object.assign(
-                {}, this.sort, _sort
+    initialNavVar(genres, sort) {
+        //Has sort cache?
+        if (localStorage.getItem('filters_cache')) {
+            let _sort_cache = JSON.parse(
+                localStorage.getItem('filters_cache')
             );
-        } else {
-            if (sort in this.sort) {
-                delete this.sort[sort]
+
+            //Check for genres in cache filter
+            if ('genres' in _sort_cache) {
+                for (let gen in genres) {
+                    //Clean default
+                    if ('default' in genres[gen])
+                        delete genres[gen]['default'];
+
+                    //Set new default
+                    if (genres[gen].action == _sort_cache['genres']) {
+                        genres[gen]['default'] = true;
+                    }
+                }
+            }
+
+            //Check for sort cache
+            if ('sort_by' in _sort_cache) {
+                for (let sor in sort) {
+                    //Clean default
+                    if ('default' in sort[sor])
+                        delete sort[sor]['default'];
+
+                    //Set new default
+                    if (sort[sor].action == _sort_cache['sort_by']) {
+                        sort[sor]['default'] = true;
+                    }
+                }
             }
         }
+
+        //Return initial
+        return {
+            genres: genres,
+            sort: sort
+        }
+    }
+
+
+    onChange(sort, by) {
+        let _sort = {};// //If by?
+
+        // //If by?
+        if (localStorage.getItem('filters_cache')) {
+            _sort[sort] = by;
+            this.sort = Object.assign(
+                {}, this.sort, JSON.parse(
+                    localStorage.getItem('filters_cache')
+                ), _sort
+            );
+        } else {
+            if (by) {
+                _sort[sort] = by;
+                this.sort = Object.assign(
+                    {}, this.sort, _sort
+                );
+            } else {
+                if (sort in this.sort) {
+                    delete this.sort[sort]
+                }
+            }
+        }
+
         //Reset offset
         this.resetLimit();
         this.setState({
             loading: true,
             scrollUpdate: false
         });
+
+        //Set cache filters
+        localStorage.setItem('filters_cache',
+            JSON.stringify(this.sort)
+        );
 
         //Re set movies
         this.filterMovies(
@@ -242,7 +315,10 @@ export default class Main extends React.Component {
 
                         {/*Top main nav*/}
                         <nav className="col l12 m12 transparent z-depth-0">
-                            <AppMoviesNav onChange={(t,e)=>this.onChange(t,e)}/>
+                            <AppMoviesNav
+                                onChange={(t,e)=>this.onChange(t,e)}
+                                setInitialNavVar={this.initialNavVar}
+                            />
                         </nav>
 
                         {/*Movies section lists*/}
