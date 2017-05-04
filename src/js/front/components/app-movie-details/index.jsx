@@ -33,7 +33,7 @@ export default class AppMovieDetail extends React.Component {
             torrent
         )
     }
-
+    
     prepareDataToPlayer(torrent) {
         this.setState({
             torrent: cryptHelper.toBase64(

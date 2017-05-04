@@ -30456,6 +30456,24 @@
 	    }
 
 	    _createClass(NavBarMenu, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            var _this2 = this;
+
+	            //If need for initial item
+	            if (this.props.getInitialItem) {
+	                this.props.list.map(function (i, k) {
+	                    if (i.default) {
+	                        //Call method
+	                        _this2.props.getInitialItem(_this2.props.list[k]);
+
+	                        //Stop loop
+	                        return false;
+	                    }
+	                });
+	            }
+	        }
+	    }, {
 	        key: 'onClick',
 	        value: function onClick(e) {
 	            //On change
@@ -30477,7 +30495,7 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var _this2 = this;
+	            var _this3 = this;
 
 	            return _react2.default.createElement(
 	                'ul',
@@ -30534,7 +30552,7 @@
 	                                    _react2.default.createElement(
 	                                        'a',
 	                                        { href: 'javascript:void(0)', onClick: function onClick(e) {
-	                                                return _this2.onClick(e);
+	                                                return _this3.onClick(e);
 	                                            },
 	                                            className: 'drop-item',
 	                                            'data-action': i.action,
@@ -33029,7 +33047,7 @@
 	 */
 	exports.default = {
 	    toBase64: function toBase64(data) {
-	        return new Buffer(data, 'utf8').toString('base64');
+	        return new Buffer(data || '', 'utf8').toString('base64');
 	    },
 	    fromBase64: function fromBase64(data) {
 	        return new Buffer(data, 'base64').toString();

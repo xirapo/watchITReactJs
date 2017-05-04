@@ -4,9 +4,7 @@
 export default ({
     toBase64: (data)=> {
         return ((
-            new Buffer(
-                data, 'utf8'
-            )
+            new Buffer(data || '', 'utf8')
         ).toString('base64'))
     },
     fromBase64: (data)=> {
