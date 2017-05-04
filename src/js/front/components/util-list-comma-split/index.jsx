@@ -14,13 +14,14 @@ export default class ListCommaSplit extends React.Component {
 
     render() {
         return (
-            <div className="col l12 m12 s12 truncate">
+            <div className="col l12 m12 s12 truncate flow-text blue-grey-text">
                 {
                     this.props.list.map((i, k)=> {
                         return (
-                            <span className="separated-comma flow-text blue-grey-text" key={k}>
+                            <span className="separated-comma" key={k}>
                                 {i}
                             </span>
+
                         )
                     })
                 }

@@ -34097,11 +34097,11 @@
 	        value: function render() {
 	            return _react2.default.createElement(
 	                'div',
-	                { className: 'col l12 m12 s12 truncate' },
+	                { className: 'col l12 m12 s12 truncate flow-text blue-grey-text' },
 	                this.props.list.map(function (i, k) {
 	                    return _react2.default.createElement(
 	                        'span',
-	                        { className: 'separated-comma flow-text blue-grey-text', key: k },
+	                        { className: 'separated-comma', key: k },
 	                        i
 	                    );
 	                })
