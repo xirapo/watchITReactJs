@@ -344,7 +344,7 @@ export default class Main extends React.Component {
                                             this.state.scrollUpdate &&
                                             <div className="col l2 m2 img-media-large padding-left-2 padding-right-2">
                                                 <PulseLoader
-                                                    className="center-block margin-top-50-p width-30-p responsive-img"
+                                                    className="center-block margin-top-50-p margin-bottom-50-p width-30-p responsive-img"
                                                 />
                                             </div>
                                         }

@@ -56,7 +56,7 @@ export default class BoxImage extends React.Component {
                 {
                     /*Spinner loader*/
                     this.state.status == 0
-                    && <PulseLoader className="center-block margin-top-50-p width-30-p responsive-img"/>
+                    && <PulseLoader className="center-block margin-top-50-p margin-bottom-50-p width-30-p responsive-img"/>
                 }
 
                 {

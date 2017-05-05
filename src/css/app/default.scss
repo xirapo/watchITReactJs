@@ -4,16 +4,29 @@
   font-size: 2rem !important;
 }
 
-//Main movies lists
-.movies-box {
-  img {
-    @include transition(opacity 1s ease-in-out);
-    &.locked-img {
-      opacity: 0;
-    }
+//Main view
+.main-view {
+  //Search box
+  .input-black-box {
+    width: 32rem !important;
+  }
 
-    &.loaded-img {
-      opacity: 1;
+  //Main movies lists
+  .movies-box {
+    //Pulse loader box
+    //.pulse-loader {
+    //  height: 17rem !important;
+    //}
+
+    img {
+      @include transition(opacity 2s ease-in-out);
+      &.locked-img {
+        opacity: 0;
+      }
+
+      &.loaded-img {
+        opacity: 1;
+      }
     }
   }
 }
@@ -22,7 +35,7 @@
 .movie-details {
 
   img {
-    @include transition(opacity 1s ease-in-out);
+    @include transition(opacity 2s ease-in-out);
     &.locked-img {
       opacity: 0;
     }
@@ -58,14 +71,6 @@
 //Poster main movies lists
 .img-media-large {
   padding: 0.3vh 0.3vw !important;
-}
-
-//Main view
-.main-view {
-  //Search box
-  .input-black-box {
-    width: 32rem;
-  }
 }
 
 //Top search box

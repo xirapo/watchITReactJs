@@ -30208,7 +30208,7 @@
 	                                        'div',
 	                                        { className: 'col l2 m2 img-media-large padding-left-2 padding-right-2' },
 	                                        _react2.default.createElement(_index18.default, {
-	                                            className: 'center-block margin-top-50-p width-30-p responsive-img'
+	                                            className: 'center-block margin-top-50-p margin-bottom-50-p width-30-p responsive-img'
 	                                        })
 	                                    )
 	                                )
@@ -32318,7 +32318,7 @@
 	                }),
 
 	                /*Spinner loader*/
-	                this.state.status == 0 && _react2.default.createElement(_index2.default, { className: 'center-block margin-top-50-p width-30-p responsive-img' }),
+	                this.state.status == 0 && _react2.default.createElement(_index2.default, { className: 'center-block margin-top-50-p margin-bottom-50-p width-30-p responsive-img' }),
 
 	                /*The image*/
 	                _react2.default.createElement('img', {
