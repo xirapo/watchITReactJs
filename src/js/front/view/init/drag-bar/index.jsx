@@ -29,10 +29,10 @@ export default class DragBar extends React.Component {
 
                     <ul className="list-unlisted relative float-right">
                         <li onClick={this.minimizeWin} className="float-left margin-right-2">
-                            <i className="icon-circle-with-minus font-size-2-vh blue-text"/>
+                            <i className="icon-circle-with-minus font-size-2-vh orange-text"/>
                         </li>
                         <li onClick={this.maximizeWin} className="float-left margin-right-2">
-                            <i className="icon-circle-with-plus font-size-2-vh orange-text "/>
+                            <i className="icon-circle-with-plus font-size-2-vh green-text "/>
                         </li>
                         <li onClick={this.closeWin} className="float-left margin-right-2">
                             <i className="icon-circle-with-cross font-size-2-vh red-text"/>

@@ -13,13 +13,9 @@
 
   //Main movies lists
   .movies-box {
-    //Pulse loader box
-    //.pulse-loader {
-    //  height: 17rem !important;
-    //}
-
+    //Transition image
     img {
-      @include transition(opacity 2s ease-in-out);
+      @include transition(opacity 1.5s ease-in-out);
       &.locked-img {
         opacity: 0;
       }
@@ -33,9 +29,9 @@
 
 //Main movie details
 .movie-details {
-
+  //Transition image
   img {
-    @include transition(opacity 2s ease-in-out);
+    @include transition(opacity 1.5s ease-in-out);
     &.locked-img {
       opacity: 0;
     }

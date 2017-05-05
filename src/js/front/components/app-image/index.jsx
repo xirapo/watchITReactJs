@@ -48,7 +48,7 @@ export default class BoxImage extends React.Component {
                 {
                     /*No poster found*/
                     this.state.status < 0 && <img
-                        alt="" className="center-block margin-top-1 responsive-img"
+                        alt="" className="center-block responsive-img"
                         src="/src/media/img/layout/default_poster.jpg"
                     />
                 }

@@ -25416,12 +25416,12 @@
 	                        _react2.default.createElement(
 	                            "li",
 	                            { onClick: this.minimizeWin, className: "float-left margin-right-2" },
-	                            _react2.default.createElement("i", { className: "icon-circle-with-minus font-size-2-vh blue-text" })
+	                            _react2.default.createElement("i", { className: "icon-circle-with-minus font-size-2-vh orange-text" })
 	                        ),
 	                        _react2.default.createElement(
 	                            "li",
 	                            { onClick: this.maximizeWin, className: "float-left margin-right-2" },
-	                            _react2.default.createElement("i", { className: "icon-circle-with-plus font-size-2-vh orange-text " })
+	                            _react2.default.createElement("i", { className: "icon-circle-with-plus font-size-2-vh green-text " })
 	                        ),
 	                        _react2.default.createElement(
 	                            "li",
@@ -32313,7 +32313,7 @@
 
 	                /*No poster found*/
 	                this.state.status < 0 && _react2.default.createElement('img', {
-	                    alt: '', className: 'center-block margin-top-1 responsive-img',
+	                    alt: '', className: 'center-block responsive-img',
 	                    src: '/src/media/img/layout/default_poster.jpg'
 	                }),
 
