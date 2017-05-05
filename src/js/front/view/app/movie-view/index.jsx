@@ -43,7 +43,7 @@ export default class MainMovie extends React.Component {
             <div className="relative full-height movie-details">
                 {/*Close button*/}
                 <BtnClose />
-                <section className="row margin-top-5-vh padding-left-2-vw">
+                <section className="row clearfix full-height margin-top-5-vh padding-left-2-vw">
                     {/*Main Loader or Movie details*/}
                     {
                         this.state.movies

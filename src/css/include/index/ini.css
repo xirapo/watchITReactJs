@@ -83355,18 +83355,18 @@ https://smacss.com/book/type-state
 
   .movie-details-description {
     height: 20vh; } }
-@media (min-height: 1000px) {
-  .movies-box {
-    height: 78vh; }
-
-  .movie-details-description {
-    height: 27vh; } }
 @media (min-height: 1019px) {
   .movies-box {
     height: 76vh; }
 
   .movie-details-description {
     height: 29vh; } }
+@media (min-height: 1050px) {
+  .movies-box {
+    height: 78vh; }
+
+  .movie-details-description {
+    height: 27vh; } }
 html, body {
   font-family: "Open Sans", Arial, sans-serif;
   box-sizing: border-box;

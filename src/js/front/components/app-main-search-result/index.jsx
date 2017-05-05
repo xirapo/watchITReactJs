@@ -1,4 +1,7 @@
+//Basic
 import React from 'react'
+//Components
+import BoxImage from 'front/components/app-image/index.jsx'
 
 export default class AppMainSearchResult extends React.Component {
     constructor(props) {
@@ -17,9 +20,7 @@ export default class AppMainSearchResult extends React.Component {
                                 <li key={k} className="transparent collection-item padding-5 no-border">
                                     <a href={"#/app/movie/" + i.imdb_code } className="clearfix">
                                         <div className="float-left">
-                                            <figure className="no-margin">
-                                                <img src={i.small_cover_image} alt=""/>
-                                            </figure>
+                                            <BoxImage src={i.small_cover_image} placeholder={{w: 60, h: 90}}/>
                                         </div>
 
                                         <div className="float-left margin-left-1-rem width-22-rem">

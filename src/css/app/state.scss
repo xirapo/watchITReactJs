@@ -413,22 +413,24 @@ https://smacss.com/book/type-state
   }
 }
 
-@media (min-height: 1000px) {
-  .movies-box {
-    height: 78vh;
-  }
 
-  .movie-details-description {
-    height: 27vh;
-  }
-}
-
-@media (min-height: 1019px) {
+@media (min-height: 1018px) {
   .movies-box {
     height: 76vh;
   }
 
   .movie-details-description {
     height: 29vh;
+  }
+}
+
+
+@media (min-height: 1050px) {
+  .movies-box {
+    height: 78vh;
+  }
+
+  .movie-details-description {
+    height: 27vh;
   }
 }

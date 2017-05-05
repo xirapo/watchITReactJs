@@ -130,7 +130,7 @@ export default class MoviePlayer extends React.Component {
 
     render() {
         return (
-            <div className="movie-player">
+            <div className="movie-player full-width full height">
                 {
                     (
                         !this.state.canPlay &&

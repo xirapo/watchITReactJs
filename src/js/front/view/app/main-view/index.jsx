@@ -12,6 +12,7 @@ import PointsLoader from 'front/components/util-points-loader/index.jsx'
 import PulseLoader from 'front/components/util-pulse-loader/index.jsx'
 import CustomScrollbars from 'front/components/util-scroller/index.jsx';
 
+
 //Require for auth
 //Database (Api Handler)
 import Auth from 'resources/database/auth'
@@ -201,7 +202,9 @@ export default class Main extends React.Component {
         });
 
         //Set cache filters
-        storageHelper.add(this.sort).to.main_nav_filters();
+        storageHelper.add(
+            this.sort //Save new sort
+        ).to.main_nav_filters();
 
         //Re set movies
         this.filterMovies(
@@ -261,7 +264,7 @@ export default class Main extends React.Component {
         return (
             <div className="relative full-height main-view">
                 {/*Top main nav*/}
-                <section className="row">
+                <section className="row full-height">
                     <div className="clearfix">
 
                         <header className="row no-margin vertical-padding transparent z-depth-1">
@@ -317,7 +320,7 @@ export default class Main extends React.Component {
                         </nav>
 
                         {/*Movies section lists*/}
-                        <section className="row movies-box">
+                        <section className="row movies-box clearfix">
                             {
                                 (!this.state.loading
                                 && this.state.movies &&

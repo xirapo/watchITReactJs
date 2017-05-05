@@ -32,7 +32,7 @@ export default class AppMovieDetail extends React.Component {
             torrent
         )
     }
-    
+
     prepareDataToPlayer(torrent) {
         this.setState({
             torrent: cryptHelper.toBase64(
@@ -66,6 +66,7 @@ export default class AppMovieDetail extends React.Component {
                     <BoxImage
                         className="full-width"
                         src={this.props.movie.large_cover_image}
+                        placeholder={{w: 500, h: 750, c:true}}
                     />
                 </aside>
 
@@ -98,7 +99,7 @@ export default class AppMovieDetail extends React.Component {
                     </section>
 
                     {/*Description*/}
-                    <section className="row movie-details-description">
+                    <section className="row movie-details-description clearfix">
                         <CustomScrollbars
                             autoHide
                             autoHideTimeout={1000}

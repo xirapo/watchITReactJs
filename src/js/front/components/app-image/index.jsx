@@ -20,7 +20,11 @@ export default class BoxImage extends React.Component {
 
     static get defaultProps() {
         return {
-            height: 230
+            placeholder: {
+                w: 161,
+                h: 250,
+                c: false
+            }
         }
     }
 
@@ -28,6 +32,17 @@ export default class BoxImage extends React.Component {
         this.setState({
             status: 1,
             loaded: true
+        });
+
+        //If need a hook :)
+        if (this.props.handleImageLoaded) {
+            this.props.handleImageLoaded(e)
+        }
+    }
+
+    pImageLoaded(e) {
+        this.setState({
+            status: -2
         });
 
         //If need a hook :)
@@ -48,21 +63,22 @@ export default class BoxImage extends React.Component {
                 {
                     /*No poster found*/
                     this.state.status < 0 && <img
-                        alt="" className="center-block responsive-img"
-                        src="/src/media/img/layout/default_poster.jpg"
+                        alt="" className={this.state.status > -2 ? "hidden" : "center-block responsive-img"}
+                        src={ "http://lorempixel.com/" + this.props.placeholder.w + "/" + this.props.placeholder.h + (this.props.placeholder.c && "/abstract/NO IMAGE" ||"/abstract/" )}
+                        onLoad={(e)=>this.pImageLoaded(e)}
                     />
                 }
 
                 {
                     /*Spinner loader*/
-                    this.state.status == 0
-                    && <PulseLoader className="center-block margin-top-50-p margin-bottom-50-p width-30-p responsive-img"/>
+                    (this.state.status == 0 || (this.state.status < 0 && this.state.status > -2)) &&
+                    <PulseLoader className="center-block margin-top-50-p margin-bottom-50-p width-30-p responsive-img"/>
                 }
 
                 {
                     /*The image*/
                     <img
-                        className={(this.state.loaded && "loaded-img responsive-img visible" || "locked-img invisible")}
+                        className={this.state.status < 0 ? "hidden" : (this.state.loaded && "loaded-img responsive-img visible" || "locked-img invisible")}
                         src={this.props.src}
                         onLoad={(e)=>this.handleImageLoaded(e)}
                         onError={(e)=>{this.handleImageError(e)}}
