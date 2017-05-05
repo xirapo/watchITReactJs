@@ -43,8 +43,6 @@ export default class Main extends React.Component {
             scrollUpdate: false
         };
 
-        console.log(storageHelper.add({}));
-
         this.limit = 100;
         this.sort = {
             sort_by: 'date_uploaded',
@@ -84,10 +82,8 @@ export default class Main extends React.Component {
     filterMovies(filter = {}, token, cached = true) {
 
         //Get from cache filters
-        if (localStorage.getItem('filters_cache') && cached) {
-            filter = JSON.parse(
-                localStorage.getItem('filters_cache')
-            );
+        if (storageHelper.get().from.main_nav_filters() && cached) {
+            filter = storageHelper.get().from.main_nav_filters();
         }
 
         //Clean all.. invalid
@@ -132,10 +128,8 @@ export default class Main extends React.Component {
 
     initialNavVar(genres, sort) {
         //Has sort cache?
-        if (localStorage.getItem('filters_cache')) {
-            let _sort_cache = JSON.parse(
-                localStorage.getItem('filters_cache')
-            );
+        if (storageHelper.get().from.main_nav_filters()) {
+            let _sort_cache = storageHelper.get().from.main_nav_filters();
 
             //Check for genres in cache filter
             if ('genres' in _sort_cache) {
@@ -178,12 +172,10 @@ export default class Main extends React.Component {
         let _sort = {};// //If by?
 
         // //If by?
-        if (localStorage.getItem('filters_cache')) {
+        if (storageHelper.get().from.main_nav_filters()) {
             _sort[sort] = by;
             this.sort = Object.assign(
-                {}, this.sort, JSON.parse(
-                    localStorage.getItem('filters_cache')
-                ), _sort
+                {}, this.sort, storageHelper.get().from.main_nav_filters(), _sort
             );
         } else {
             if (by) {
@@ -209,9 +201,7 @@ export default class Main extends React.Component {
         });
 
         //Set cache filters
-        localStorage.setItem('filters_cache',
-            JSON.stringify(this.sort)
-        );
+        storageHelper.add(this.sort).to.main_nav_filters();
 
         //Re set movies
         this.filterMovies(

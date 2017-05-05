@@ -3,6 +3,8 @@
  */
 import setting from '../../backend/settings'
 import axios from 'axios'
+//Helpers
+import storageHelper from 'resources/helpers/storageHelper';
 
 export default class Authentication {
 
@@ -23,8 +25,8 @@ export default class Authentication {
             axios.post(setting.api.auth, _request_params).then((res)=> {
                 if ('data' in res) {
                     //TODO maybe save time of login for expire token
-                    localStorage.setItem('token', res.data.data.token);
-                    localStorage.setItem('user', JSON.stringify(res.data.data.user));
+                    storageHelper.add(res.data.data.token, false).to.user_token();
+                    storageHelper.add(res.data.data.user).to.user();
                     resolve(res.data)
                 } else {
                     //Invalid token from response
@@ -45,8 +47,9 @@ export default class Authentication {
          * @return object|null
          */
 
-        let _user = localStorage.getItem('user');
-        return _user ? JSON.parse(_user) : null
+        return storageHelper.get(
+            //Nothing ;)
+        ).from.user();
     }
 
     get token() {
@@ -54,9 +57,9 @@ export default class Authentication {
          * Return authenticated token
          * @return string|null
          */
-        return localStorage.getItem(
-            'token'
-        )
+        return storageHelper.get(
+            false //No parse
+        ).from.user_token();
     }
 
 
@@ -65,9 +68,9 @@ export default class Authentication {
          * Validate auth state
          * @return boolean
          */
-        return !!localStorage.getItem(
-            'token'
-        )
+        return !!storageHelper.get(
+           false //No parse
+        ).from.user_token();
     }
 
 
