@@ -33815,7 +33815,7 @@
 	                { className: 'row' },
 	                _react2.default.createElement(
 	                    'aside',
-	                    { className: 'col l4 m4' },
+	                    { className: 'col l4 m4 movie-details-poster' },
 	                    _react2.default.createElement(_index2.default, {
 	                        className: 'full-width',
 	                        src: this.props.movie.large_cover_image

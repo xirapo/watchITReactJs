@@ -342,6 +342,10 @@ https://smacss.com/book/type-state
     width: 7.66667% !important;
   }
 
+  .movie-details-poster {
+    width: 58vh !important;
+  }
+
 }
 
 //MEDIA QUERIES
@@ -399,7 +403,6 @@ https://smacss.com/book/type-state
   }
 }
 
-
 @media (min-height: 850px) {
   .movies-box {
     height: 75vh;
@@ -417,5 +420,15 @@ https://smacss.com/book/type-state
 
   .movie-details-description {
     height: 27vh;
+  }
+}
+
+@media (min-height: 1019px) {
+  .movies-box {
+    height: 76vh;
+  }
+
+  .movie-details-description {
+    height: 29vh;
   }
 }

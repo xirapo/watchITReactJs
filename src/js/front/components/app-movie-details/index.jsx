@@ -62,7 +62,7 @@ export default class AppMovieDetail extends React.Component {
         return (
             <div className="row">
                 {/*Aside*/}
-                <aside className="col l4 m4">
+                <aside className="col l4 m4 movie-details-poster">
                     {/*Poster*/}
                     <BoxImage
                         className="full-width"

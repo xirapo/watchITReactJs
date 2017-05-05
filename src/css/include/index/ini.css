@@ -83315,7 +83315,10 @@ https://smacss.com/book/type-state
     width: 19vw !important; }
 
   .img-media-large {
-    width: 7.66667% !important; } }
+    width: 7.66667% !important; }
+
+  .movie-details-poster {
+    width: 58vh !important; } }
 @media (max-height: 600px) {
   .movies-box {
     height: 66vh; }
@@ -83358,6 +83361,12 @@ https://smacss.com/book/type-state
 
   .movie-details-description {
     height: 27vh; } }
+@media (min-height: 1019px) {
+  .movies-box {
+    height: 76vh; }
+
+  .movie-details-description {
+    height: 29vh; } }
 html, body {
   font-family: "Open Sans", Arial, sans-serif;
   box-sizing: border-box;
