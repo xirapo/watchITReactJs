@@ -1,18 +1,16 @@
 //Basic
 import React from 'react'
 //Components
-import AppMoviePlayer from '../../../components/app-main-movie-player/index.jsx'
-import AppMoviePlayerLoader from '../../../components/app-main-movie-player-loader/index.jsx'
-import AppMoviesPlayerSwarm from '../../../components/app-main-movie-player-swarm/index.jsx'
-import MainLoader from '../../../components/util-main-loader/index.jsx'
-import BtnClose from '../../../components/util-btn-close/index.jsx'
-
+import AppMoviePlayer from 'front/components/app-main-movie-player/index.jsx'
+import AppMoviePlayerLoader from 'front/components/app-main-movie-player-loader/index.jsx'
+import AppMoviesPlayerSwarm from 'front/components/app-main-movie-player-swarm/index.jsx'
+import MainLoader from 'front/components/util-main-loader/index.jsx'
+import BtnClose from 'front/components/util-btn-close/index.jsx'
 //Database (Api Handler)
-import Auth from '../../../../resources/database/auth'
-import Movie from '../../../../resources/database/movies'
-
+import Auth from 'resources/database/auth'
+import Movie from 'resources/database/movies'
 //Helpers
-import cryptHelper from '../../../../resources/helpers/cryptHelper'
+import cryptHelper from 'resources/helpers/cryptHelper'
 
 
 //Login view class

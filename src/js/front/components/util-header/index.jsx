@@ -1,5 +1,5 @@
 import React from 'react'
-import Logo from '../util-header-logo/index.jsx'
+import Logo from 'front/components/util-header-logo/index.jsx'
 
 export default class MainHeader extends React.Component {
     constructor(props) {

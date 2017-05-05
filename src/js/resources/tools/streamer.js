@@ -5,7 +5,7 @@
     var path = require('path');
     var peerflix = require('peerflix');
     var parseTorrent = require('read-torrent');
-    var setting = require(path.resolve() + '/src/js/backend/conf');
+    var setting = require(path.resolve() + '/src/js/backend/torrent');
 
     function TorrentStreamer() {
         this.flix = null;

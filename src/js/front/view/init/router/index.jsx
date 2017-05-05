@@ -4,19 +4,16 @@ import {render} from 'react-dom'
 import {Route, Redirect} from 'react-router'
 import {HashRouter} from 'react-router-dom'
 import createBrowserHistory from 'history/createBrowserHistory'
-
 //Drag Bar
-import DragBar from '../drag-bar/index.jsx'
-
+import DragBar from 'front/view/init/drag-bar/index.jsx'
 //Components
-import Login from '../../index/login-view/index.jsx'
-import App from '../../app/main-view/index.jsx'
-import Movie from '../../app/movie-view/index.jsx'
-import Player from '../../app/movie-player-view/index.jsx'
-
+import Login from 'front/view/index/login-view/index.jsx'
+import App from 'front/view/app/main-view/index.jsx'
+import Movie from 'front/view/app/movie-view/index.jsx'
+import Player from 'front/view/app/movie-player-view/index.jsx'
 //Require for auth
-import Auth from '../../../../resources/database/auth'
-import Setting from '../../../../backend/settings'
+import Auth from 'resources/database/auth'
+import Setting from 'backend/settings'
 
 //Check for auth
 const auth = new Auth();

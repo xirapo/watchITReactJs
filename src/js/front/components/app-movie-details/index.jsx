@@ -1,15 +1,14 @@
 //Basic
 import React from 'react'
 //Components
-import BoxImage from '../app-image/index.jsx'
-import NavBarMenu from '../app-nav-bar-menu/index.jsx'
-import AppMovieDetailInfo from '../app-movie-details-info/index.jsx'
-import FlowText from '../util-flow-text/index.jsx'
-import CustomScrollbars from '../util-scroller/index.jsx';
-import ListCommaSplit from '../util-list-comma-split/index.jsx'
-
+import BoxImage from 'front/components/app-image/index.jsx'
+import NavBarMenu from 'front/components/app-nav-bar-menu/index.jsx'
+import AppMovieDetailInfo from 'front/components/app-movie-details-info/index.jsx'
+import FlowText from 'front/components/util-flow-text/index.jsx'
+import CustomScrollbars from 'front/components/util-scroller/index.jsx';
+import ListCommaSplit from 'front/components/util-list-comma-split/index.jsx'
 //Helpers
-import cryptHelper from '../../../resources/helpers/cryptHelper'
+import cryptHelper from 'resources/helpers/cryptHelper'
 
 export default class AppMovieDetail extends React.Component {
     constructor(props) {

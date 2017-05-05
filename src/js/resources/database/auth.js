@@ -3,7 +3,6 @@
  */
 import setting from '../../backend/settings'
 import axios from 'axios'
-//var is_js = require('is_js');
 
 export default class Authentication {
 
@@ -23,7 +22,7 @@ export default class Authentication {
             //Request to auth endpoint
             axios.post(setting.api.auth, _request_params).then((res)=> {
                 if ('data' in res) {
-                    //TODO maybe save time of loggin for expire token
+                    //TODO maybe save time of login for expire token
                     localStorage.setItem('token', res.data.data.token);
                     localStorage.setItem('user', JSON.stringify(res.data.data.user));
                     resolve(res.data)

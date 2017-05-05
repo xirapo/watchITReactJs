@@ -1,5 +1,5 @@
 import React from 'react'
-import BarLoader from '../util-bar-loader/index.jsx'
+import BarLoader from 'front/components/util-bar-loader/index.jsx'
 
 //Class Profile
 export default class AppTinyProfile extends React.Component {

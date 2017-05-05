@@ -1,7 +1,8 @@
 /**
  * Created by gmena on 04-20-17.
  */
-import cryptHelper from '../../resources/helpers/cryptHelper'
+//Crypt helper
+import cryptHelper from './cryptHelper'
 
 export default ({
     jsonToQString: (ob)=> {

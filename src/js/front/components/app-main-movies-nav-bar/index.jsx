@@ -1,5 +1,5 @@
 import React from 'react'
-import NavBarMenu from '../app-nav-bar-menu/index.jsx'
+import NavBarMenu from 'front/components/app-nav-bar-menu/index.jsx'
 
 export default class AppMoviesNavBar extends React.Component {
     constructor(props) {

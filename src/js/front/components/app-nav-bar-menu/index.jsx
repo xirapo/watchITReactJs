@@ -1,6 +1,8 @@
+//Basic
 import React from 'react'
 import PropTypes from 'prop-types'
-import CustomScrollbars from '../util-scroller/index.jsx';
+//Components
+import CustomScrollbars from 'front/components/util-scroller/index.jsx';
 
 export default class NavBarMenu extends React.Component {
     constructor(props) {

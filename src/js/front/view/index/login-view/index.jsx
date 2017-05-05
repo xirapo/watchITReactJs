@@ -2,12 +2,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 //Components
-import MainLoader from '../../../components/util-main-loader/index.jsx'
-import FormBox from '../../../components/app-form/index.jsx'
+import MainLoader from 'front/components/util-main-loader/index.jsx'
+import FormBox from 'front/components/app-form/index.jsx'
 //Require for auth
+import Auth from 'resources/database/auth'
 //Default settings
-import Auth from '../../../../resources/database/auth'
-import Setting from '../../../../backend/settings'
+import Setting from 'backend/settings'
 
 
 //Login view class

@@ -1,7 +1,7 @@
 //Basic
 import React from 'react'
 //Components
-import BoxImage from '../app-image/index.jsx'
+import BoxImage from 'front/components/app-image/index.jsx'
 
 
 export default class AppMoviesList extends React.Component {

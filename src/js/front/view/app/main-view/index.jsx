@@ -1,25 +1,26 @@
 //Basic
 import React from 'react'
 //Components
-//import AppMainMenu from '../../../components/app-main-aside-menu/index.jsx'
-import AppMoviesNav from '../../../components/app-main-movies-nav-bar/index.jsx'
-import AppMoviesList from '../../../components/app-main-movies-list/index.jsx'
-import AppMainTopInput from '../../../components/app-main-movies-top-inputs/index.jsx'
-import AppMainSearchResult from '../../../components/app-main-search-result/index.jsx'
-import AppTinyProfile from '../../../components/app-tiny-box-profile/index.jsx'
-import BoxLoader from '../../../components/util-box-loader/index.jsx'
-import PointsLoader from '../../../components/util-points-loader/index.jsx'
-import CustomScrollbars from '../../../components/util-scroller/index.jsx';
+//import AppMainMenu from 'front/components/app-main-aside-menu/index.jsx'
+import AppMoviesNav from 'front/components/app-main-movies-nav-bar/index.jsx'
+import AppMoviesList from 'front/components/app-main-movies-list/index.jsx'
+import AppMainTopInput from 'front/components/app-main-movies-top-inputs/index.jsx'
+import AppMainSearchResult from 'front/components/app-main-search-result/index.jsx'
+import AppTinyProfile from 'front/components/app-tiny-box-profile/index.jsx'
+import BoxLoader from 'front/components/util-box-loader/index.jsx'
+import PointsLoader from 'front/components/util-points-loader/index.jsx'
+import PulseLoader from 'front/components/util-pulse-loader/index.jsx'
+import CustomScrollbars from 'front/components/util-scroller/index.jsx';
 
 //Require for auth
 //Database (Api Handler)
-import Auth from '../../../../resources/database/auth'
-import User from '../../../../resources/database/user'
-import Movie from '../../../../resources/database/movies'
-import Search from '../../../../resources/database/search'
+import Auth from 'resources/database/auth'
+import User from 'resources/database/user'
+import Movie from 'resources/database/movies'
+import Search from 'resources/database/search'
 
-//Pulse loader
-import PulseLoader from '../../../components/util-pulse-loader/index.jsx'
+//Helpers
+import storageHelper from 'resources/helpers/storageHelper';
 
 //Login view class
 export default class Main extends React.Component {
@@ -42,11 +43,14 @@ export default class Main extends React.Component {
             scrollUpdate: false
         };
 
+        console.log(storageHelper.add({}));
+
         this.limit = 100;
         this.sort = {
             sort_by: 'date_uploaded',
             order: 'desc'
         };
+
 
     }
 

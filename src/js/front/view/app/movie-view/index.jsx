@@ -1,16 +1,14 @@
 //Basic
 import React from 'react'
-
 //Components
-import BoxLoader from '../../../components/util-box-loader/index.jsx'
-import BtnClose from '../../../components/util-btn-close/index.jsx'
-import MovieDetails from '../../../components/app-movie-details/index.jsx'
-
+import BoxLoader from 'front/components/util-box-loader/index.jsx'
+import BtnClose from 'front/components/util-btn-close/index.jsx'
+import MovieDetails from 'front/components/app-movie-details/index.jsx'
 //Require for auth
 //Database (Api Handler)
-import Auth from '../../../../resources/database/auth'
-import User from '../../../../resources/database/user'
-import Movie from '../../../../resources/database/movies'
+import Auth from 'resources/database/auth'
+import User from 'resources/database/user'
+import Movie from 'resources/database/movies'
 
 //Login view class
 export default class MainMovie extends React.Component {

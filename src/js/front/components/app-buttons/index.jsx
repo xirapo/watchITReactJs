@@ -1,5 +1,5 @@
 import React from 'react'
-import PointsLoader from '../util-points-loader/index.jsx'
+import PointsLoader from 'front/components/util-points-loader/index.jsx'
 
 export default class BoxButton extends React.Component {
     constructor(props) {

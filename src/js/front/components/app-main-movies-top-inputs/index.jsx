@@ -1,5 +1,5 @@
 import React from 'react'
-import BoxInput from '../app-inputs/index.jsx'
+import BoxInput from 'front/components/app-inputs/index.jsx'
 
 export default class AppMainTopInputs extends React.Component {
     constructor(props) {

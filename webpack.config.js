@@ -30,8 +30,10 @@ module.exports = {
         ]
     },
     resolve: {
-        modulesDirectories: [
-            'node_modules'
+        extensions: ['.js', '.jsx'],
+        modules: [
+            path.resolve('./src/js'),
+            path.resolve('./node_modules')
         ]
     }
 };
