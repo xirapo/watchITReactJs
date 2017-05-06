@@ -103,14 +103,7 @@ export default class LoginForm extends React.Component {
         return (
             <div className="absolute valign-wrapper full-width full-height main-login-box">
                 <section className="valign center-block col l4 m6">
-                    <header className="row">
-                        <div className="center-block text-center col l6 m6">
-                            <h2 className="no-margin font-type-titles">
-                                <span className="white-text">Login</span>
-                            </h2>
-                        </div>
-                    </header>
-
+                    
                     {/* Form Box */}
                     <section className="row input-black-box">
                         <FormBox

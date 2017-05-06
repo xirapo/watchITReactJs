@@ -16476,23 +16476,6 @@ var LoginForm = function (_React$Component) {
                     'section',
                     { className: 'valign center-block col l4 m6' },
                     _react2.default.createElement(
-                        'header',
-                        { className: 'row' },
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'center-block text-center col l6 m6' },
-                            _react2.default.createElement(
-                                'h2',
-                                { className: 'no-margin font-type-titles' },
-                                _react2.default.createElement(
-                                    'span',
-                                    { className: 'white-text' },
-                                    'Login'
-                                )
-                            )
-                        )
-                    ),
-                    _react2.default.createElement(
                         'section',
                         { className: 'row input-black-box' },
                         _react2.default.createElement(_index4.default, {
