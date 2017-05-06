@@ -9,11 +9,11 @@ var
     fs = require('fs'),
     fs_extra = require('fs-extra'),
     win = nw.Window.get(),
-    user_settings= require(path.resolve() + '/src/js/backend/user'),
+    user_settings = require(path.resolve() + '/src/js/backend/user'),
 
     ROOT_DIR = process.cwd(), //DEFAULT ROOT DIR
     ROOT_TMP_FOLDER = path.join(ROOT_DIR, 'tmp'), //TMP global folder
-    ENVIRONMENT = 'dev'; // dev or prod environment
+    ENVIRONMENT = 'prod'; // dev or prod environment
 
 //FUNCTIONS
 var
