@@ -20,6 +20,7 @@ export default class BoxImage extends React.Component {
 
     static get defaultProps() {
         return {
+            allow_preload: true,
             placeholder: {
                 w: 161,
                 h: 250,
@@ -71,7 +72,7 @@ export default class BoxImage extends React.Component {
 
                 {
                     /*Spinner loader*/
-                    (this.state.status == 0 || (this.state.status < 0 && this.state.status > -2)) &&
+                    (this.props.allow_preload && this.state.status == 0 || (this.state.status < 0 && this.state.status > -2)) &&
                     <PulseLoader className="center-block margin-top-50-p margin-bottom-50-p width-30-p responsive-img"/>
                 }
 
@@ -82,7 +83,8 @@ export default class BoxImage extends React.Component {
                         src={this.props.src}
                         onLoad={(e)=>this.handleImageLoaded(e)}
                         onError={(e)=>{this.handleImageError(e)}}
-                    />
+                    /> 
+                    
                 }
             </figure>
 

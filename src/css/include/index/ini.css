@@ -82975,6 +82975,25 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
     opacity: 0; }
   .main-view .movies-box img.loaded-img {
     opacity: 1; }
+.main-view .img-media-large .hover-poster-box {
+  padding: 0.3vh 0.3vw !important;
+  position: absolute;
+  display: none;
+  top: 0;
+  left: 0; }
+  .main-view .img-media-large .hover-poster-box span, .main-view .img-media-large .hover-poster-box i {
+    font-size: 1rem; }
+  .main-view .img-media-large .hover-poster-box .hover-info {
+    -webkit-border-radius: 0 5px 5px 0;
+    -moz-border-radius: 0 5px 5px 0;
+    border-radius: 0 5px 5px 0;
+    padding: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.8);
+    max-width: 90%;
+    min-width: 90%; }
+.main-view .img-media-large:hover .hover-poster-box {
+  cursor: pointer;
+  display: block !important; }
 
 .movie-details img {
   -webkit-transition: opacity 1.5s ease-in-out;
@@ -83355,7 +83374,7 @@ https://smacss.com/book/type-state
 
   .movie-details-description {
     height: 20vh; } }
-@media (min-height: 1019px) {
+@media (min-height: 1018px) {
   .movies-box {
     height: 76vh; }
 

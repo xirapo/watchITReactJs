@@ -5590,7 +5590,7 @@ var BoxImage = function (_React$Component) {
                 }),
 
                 /*Spinner loader*/
-                (this.state.status == 0 || this.state.status < 0 && this.state.status > -2) && _react2.default.createElement(_index2.default, { className: 'center-block margin-top-50-p margin-bottom-50-p width-30-p responsive-img' }),
+                (this.props.allow_preload && this.state.status == 0 || this.state.status < 0 && this.state.status > -2) && _react2.default.createElement(_index2.default, { className: 'center-block margin-top-50-p margin-bottom-50-p width-30-p responsive-img' }),
 
                 /*The image*/
                 _react2.default.createElement('img', {
@@ -5616,6 +5616,7 @@ var BoxImage = function (_React$Component) {
         key: 'defaultProps',
         get: function get() {
             return {
+                allow_preload: true,
                 placeholder: {
                     w: 161,
                     h: 250,
@@ -18355,11 +18356,40 @@ var AppMoviesList = function (_React$Component) {
                 this.props.movies.map(function (i, k) {
                     return _react2.default.createElement(
                         'div',
-                        { key: k, className: 'col l2 m2 img-media-large padding-left-2 padding-right-2' },
+                        { key: k,
+                            className: 'col l2 m2 relative img-media-large padding-left-2 padding-right-2' },
                         _react2.default.createElement(
                             'a',
                             { href: "#/app/movie/" + i.imdb_code },
-                            _react2.default.createElement(_index2.default, { src: i.medium_cover_image })
+                            _react2.default.createElement(_index2.default, {
+                                src: i.medium_cover_image,
+                                allow_preload: false
+                            }),
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'hover-poster-box full-width full-height' },
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'hover-info absolute bottom-1-rem' },
+                                    _react2.default.createElement(
+                                        'strong',
+                                        { className: 'white-text truncate' },
+                                        i.title
+                                    ),
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'green-text' },
+                                        _react2.default.createElement('i', { className: 'icon-calendar margin-right-3-p' }),
+                                        i.year
+                                    ),
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'orange-text margin-left-5-p' },
+                                        _react2.default.createElement('i', { className: 'icon-star margin-right-2-p' }),
+                                        i.rating
+                                    )
+                                )
+                            )
                         )
                     );
                 })
