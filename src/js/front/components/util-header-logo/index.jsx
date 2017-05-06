@@ -10,7 +10,7 @@ export default class Logo extends React.Component {
         return (
             <h3 className="no-margin font-type-titles">
                 <span className="white-text">watch</span>
-                <strong className="loader-text">IT</strong>
+                <strong className="bold loader-text">IT</strong>
             </h3>
         )
     }

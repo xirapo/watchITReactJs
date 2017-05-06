@@ -16591,7 +16591,7 @@ var DragBar = function (_React$Component) {
                         ),
                         _react2.default.createElement(
                             "strong",
-                            { className: "loader-text" },
+                            { className: "bold loader-text" },
                             "IT"
                         )
                     ),
