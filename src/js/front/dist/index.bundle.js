@@ -19102,8 +19102,7 @@ var AppMovieDetail = function (_React$Component) {
                                     list: this.prepareTorrents(this.props.movie.torrents)
                                 }),
                                 Object.keys(this.props.movie.subtitles).length > 0 && _react2.default.createElement(_index4.default, {
-                                    btnText: 'S',
-                                    onChange: function onChange(s) {
+                                    btnText: '', onChange: function onChange(s) {
                                         return _this2.setSub(s);
                                     },
                                     getInitialItem: function getInitialItem(s) {

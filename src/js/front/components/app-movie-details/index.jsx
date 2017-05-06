@@ -172,8 +172,7 @@ export default class AppMovieDetail extends React.Component {
                                 {/*The resolution menu*/}
                                 {
                                     Object.keys(this.props.movie.subtitles).length > 0 && <NavBarMenu
-                                        btnText="S"
-                                        onChange={(s) => this.setSub(s)}
+                                        btnText="" onChange={(s) => this.setSub(s)}
                                         getInitialItem={(s)=>this.setInitialSub(s)}
                                         list={this.prepareSubs(
                                         this.props.movie.subtitles
