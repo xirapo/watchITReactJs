@@ -60,7 +60,8 @@ export default class MoviePlayer extends React.Component {
             //Set new subs
             this.setState({
                 movieSubs: res.subtitles,
-                movieInfo: _movieInfo
+                movieInfo: _movieInfo,
+                movieSelectedSub: this.props.match.params.sub
             });
 
         }).catch(()=> {
@@ -81,10 +82,10 @@ export default class MoviePlayer extends React.Component {
         this.timeout = setInterval(()=> {
             this.setState({
                 movieStat: {
-                    dSpeed: (flix.swarm.downloadSpeed() / 1024).toFixed(2) + ' kb/s',
-                    uSpeed: (flix.swarm.uploadSpeed() / 1024).toFixed(2) + ' kb/s',
-                    dLoaded: parseInt(((flix.swarm.cachedDownload + flix.swarm.downloaded) / 1024) / 1024, 10) + ' mb',
-                    fSize: parseInt((flix.fileSize / 1024) / 1024, 10) + ' mb',
+                    dSpeed: (flix.swarm.downloadSpeed() / 1024).toFixed(2),
+                    uSpeed: (flix.swarm.uploadSpeed() / 1024).toFixed(2),
+                    dLoaded: parseInt(((flix.swarm.cachedDownload + flix.swarm.downloaded) / 1024) / 1024, 10),
+                    fSize: parseInt((flix.fileSize / 1024) / 1024, 10) ,
                     aPeers: (flix.swarm.wires.filter(function (w) {
                         return !w.peerChoking
                     }).length).toString()
@@ -123,14 +124,11 @@ export default class MoviePlayer extends React.Component {
         setTimeout(()=> {
             location.href = '#/app/movie/' + this.state.movieInfo.imdb_code
         }, 1000);
-
-
     }
-
 
     render() {
         return (
-            <div className="movie-player full-width full height">
+            <div className="movie-player full-width full-height">
                 {
                     (
                         !this.state.canPlay &&
@@ -156,14 +154,16 @@ export default class MoviePlayer extends React.Component {
                                 (
                                     this.state.movieStat && this.state.canPlay &&
                                     <header className="row absolute z-index-100 top-2-vh left-2-vw clearfix">
-                                        <div>
+                                        <div className="row">
                                             <h4 className="white-text bold font-type-titles">
                                                 {this.state.movieInfo.title}
                                             </h4>
                                         </div>
                                         <div>
                                             <AppMoviesPlayerSwarm
-                                                swarm={this.state.movieStat}
+                                                swarm={Object.assign({},
+                                                    this.state.movieStat, {sub:this.state.movieSelectedSub}
+                                                )}
                                             />
                                         </div>
                                     </header>
@@ -174,6 +174,7 @@ export default class MoviePlayer extends React.Component {
                             <AppMoviePlayer
                                 torrent={this.state.movieInfo.torrent}
                                 subs={this.state.movieSubs}
+                                sub_selected={this.state.movieSelectedSub}
                                 onProgress={(p,s)=>{this.onProgress(p,s)}}
                                 onReady={(u, flix)=>{this.onReady(u, flix)}}
                                 onCanPlay={(u)=>{this.onCanPlay(u)}}

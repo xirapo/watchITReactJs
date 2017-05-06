@@ -39,5 +39,12 @@ Settings.api = {
     search: Settings.remote.api_host + '/api/v1/search/'
 };
 
+//Subs conf
+Settings.subs = {
+    available: [
+        'spanish', 'english'
+    ]
+};
+
 export default Settings;
 

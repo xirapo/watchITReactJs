@@ -882,7 +882,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-var _prodInvariant = __webpack_require__(20);
+var _prodInvariant = __webpack_require__(21);
 
 var ReactCurrentOwner = __webpack_require__(15);
 
@@ -1619,7 +1619,7 @@ var _prodInvariant = __webpack_require__(4),
     _assign = __webpack_require__(6);
 
 var CallbackQueue = __webpack_require__(97);
-var PooledClass = __webpack_require__(18);
+var PooledClass = __webpack_require__(19);
 var ReactFeatureFlags = __webpack_require__(102);
 var ReactReconciler = __webpack_require__(24);
 var Transaction = __webpack_require__(38);
@@ -1910,7 +1910,7 @@ module.exports = ReactCurrentOwner;
 
 var _assign = __webpack_require__(6);
 
-var PooledClass = __webpack_require__(18);
+var PooledClass = __webpack_require__(19);
 
 var emptyFunction = __webpack_require__(12);
 var warning = __webpack_require__(3);
@@ -2386,6 +2386,63 @@ module.exports = DOMProperty;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+/**
+ * Handle global settings
+ * **/
+var Settings = {};
+
+/////////////////////
+//////Uri Conf///////
+/////////////////////
+
+Settings.loginView = '/';
+Settings.appView = '/app';
+//Remote host settings
+Settings.remote = {
+    ws_host: 'htt://localhost:9600',
+    //api_host: 'http://127.0.0.1:8000'
+    api_host: 'http://ec2-54-218-54-92.us-west-2.compute.amazonaws.com'
+};
+
+/////////////////////
+//Resource Settings//
+/////////////////////
+
+//WatchIt WebSocket
+Settings.ws = {
+    ws_url: Settings.remote.ws_host,
+    my_channel: 'client_channel',
+    movie_channel: 'movies_channel_'
+};
+
+//WatchIt API
+Settings.api = {
+    timeout: 10000, // Request timeout milliseconds,
+    cache_time: 60, // cache expire minutes
+    root: Settings.remote.api_host + '/api/v1/',
+    auth: Settings.remote.api_host + '/api/v1/auth/',
+    user: Settings.remote.api_host + '/api/v1/user/',
+    movies: Settings.remote.api_host + '/api/v1/movies/',
+    search: Settings.remote.api_host + '/api/v1/search/'
+};
+
+//Subs conf
+Settings.subs = {
+    available: ['spanish', 'english']
+};
+
+exports.default = Settings;
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -2500,7 +2557,7 @@ module.exports = PooledClass;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2847,7 +2904,7 @@ module.exports = ReactElement;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2891,7 +2948,7 @@ function reactProdInvariant(code) {
 module.exports = reactProdInvariant;
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2957,58 +3014,6 @@ if (process.env.NODE_ENV !== 'production') {
 module.exports = warning;
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 22 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-/**
- * Handle global settings
- * **/
-var Settings = {};
-
-/////////////////////
-//////Uri Conf///////
-/////////////////////
-
-Settings.loginView = '/';
-Settings.appView = '/app';
-//Remote host settings
-Settings.remote = {
-    ws_host: 'htt://localhost:9600',
-    //api_host: 'http://127.0.0.1:8000'
-    api_host: 'http://ec2-54-218-54-92.us-west-2.compute.amazonaws.com'
-};
-
-/////////////////////
-//Resource Settings//
-/////////////////////
-
-//WatchIt WebSocket
-Settings.ws = {
-    ws_url: Settings.remote.ws_host,
-    my_channel: 'client_channel',
-    movie_channel: 'movies_channel_'
-};
-
-//WatchIt API
-Settings.api = {
-    timeout: 10000, // Request timeout milliseconds,
-    cache_time: 60, // cache expire minutes
-    root: Settings.remote.api_host + '/api/v1/',
-    auth: Settings.remote.api_host + '/api/v1/auth/',
-    user: Settings.remote.api_host + '/api/v1/user/',
-    movies: Settings.remote.api_host + '/api/v1/movies/',
-    search: Settings.remote.api_host + '/api/v1/search/'
-};
-
-exports.default = Settings;
 
 /***/ }),
 /* 23 */
@@ -3331,7 +3336,7 @@ var ReactComponent = __webpack_require__(67);
 var ReactPureComponent = __webpack_require__(297);
 var ReactClass = __webpack_require__(293);
 var ReactDOMFactories = __webpack_require__(294);
-var ReactElement = __webpack_require__(19);
+var ReactElement = __webpack_require__(20);
 var ReactPropTypes = __webpack_require__(295);
 var ReactVersion = __webpack_require__(298);
 
@@ -3435,7 +3440,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 //Helpers
 
 
-var _settings = __webpack_require__(22);
+var _settings = __webpack_require__(18);
 
 var _settings2 = _interopRequireDefault(_settings);
 
@@ -5750,7 +5755,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 //Tools
 
 
-var _settings = __webpack_require__(22);
+var _settings = __webpack_require__(18);
 
 var _settings2 = _interopRequireDefault(_settings);
 
@@ -6042,7 +6047,7 @@ var locationsAreEqual = exports.locationsAreEqual = function locationsAreEqual(a
 
 exports.__esModule = true;
 
-var _warning = __webpack_require__(21);
+var _warning = __webpack_require__(22);
 
 var _warning2 = _interopRequireDefault(_warning);
 
@@ -7876,7 +7881,7 @@ module.exports = validateDOMNesting;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_warning__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_invariant__);
@@ -8082,7 +8087,7 @@ var matchPath = function matchPath(pathname) {
 
 
 
-var _prodInvariant = __webpack_require__(20);
+var _prodInvariant = __webpack_require__(21);
 
 var ReactNoopUpdateQueue = __webpack_require__(68);
 
@@ -8304,7 +8309,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _warning = __webpack_require__(21);
+var _warning = __webpack_require__(22);
 
 var _warning2 = _interopRequireDefault(_warning);
 
@@ -9460,7 +9465,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       */
 
 
-var _settings = __webpack_require__(22);
+var _settings = __webpack_require__(18);
 
 var _settings2 = _interopRequireDefault(_settings);
 
@@ -12812,7 +12817,7 @@ var _prodInvariant = __webpack_require__(4);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var PooledClass = __webpack_require__(18);
+var PooledClass = __webpack_require__(19);
 
 var invariant = __webpack_require__(2);
 
@@ -15007,7 +15012,7 @@ Link.contextTypes = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_warning__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
@@ -15197,7 +15202,7 @@ module.exports = REACT_ELEMENT_TYPE;
 
 var ReactCurrentOwner = __webpack_require__(15);
 var ReactComponentTreeHook = __webpack_require__(10);
-var ReactElement = __webpack_require__(19);
+var ReactElement = __webpack_require__(20);
 
 var checkReactTypeSpec = __webpack_require__(299);
 
@@ -15983,6 +15988,8 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(1);
@@ -16084,7 +16091,8 @@ var MoviePlayer = function (_React$Component) {
                 //Set new subs
                 _this2.setState({
                     movieSubs: res.subtitles,
-                    movieInfo: _movieInfo
+                    movieInfo: _movieInfo,
+                    movieSelectedSub: _this2.props.match.params.sub
                 });
             }).catch(function () {});
         }
@@ -16106,10 +16114,10 @@ var MoviePlayer = function (_React$Component) {
             this.timeout = setInterval(function () {
                 _this3.setState({
                     movieStat: {
-                        dSpeed: (flix.swarm.downloadSpeed() / 1024).toFixed(2) + ' kb/s',
-                        uSpeed: (flix.swarm.uploadSpeed() / 1024).toFixed(2) + ' kb/s',
-                        dLoaded: parseInt((flix.swarm.cachedDownload + flix.swarm.downloaded) / 1024 / 1024, 10) + ' mb',
-                        fSize: parseInt(flix.fileSize / 1024 / 1024, 10) + ' mb',
+                        dSpeed: (flix.swarm.downloadSpeed() / 1024).toFixed(2),
+                        uSpeed: (flix.swarm.uploadSpeed() / 1024).toFixed(2),
+                        dLoaded: parseInt((flix.swarm.cachedDownload + flix.swarm.downloaded) / 1024 / 1024, 10),
+                        fSize: parseInt(flix.fileSize / 1024 / 1024, 10),
                         aPeers: flix.swarm.wires.filter(function (w) {
                             return !w.peerChoking;
                         }).length.toString()
@@ -16159,7 +16167,7 @@ var MoviePlayer = function (_React$Component) {
 
             return _react2.default.createElement(
                 'div',
-                { className: 'movie-player full-width full height' },
+                { className: 'movie-player full-width full-height' },
                 !this.state.canPlay && _react2.default.createElement(
                     'div',
                     { className: 'absolute full-width full-height player-overlay-loader' },
@@ -16182,7 +16190,7 @@ var MoviePlayer = function (_React$Component) {
                         { className: 'row absolute z-index-100 top-2-vh left-2-vw clearfix' },
                         _react2.default.createElement(
                             'div',
-                            null,
+                            { className: 'row' },
                             _react2.default.createElement(
                                 'h4',
                                 { className: 'white-text bold font-type-titles' },
@@ -16193,13 +16201,14 @@ var MoviePlayer = function (_React$Component) {
                             'div',
                             null,
                             _react2.default.createElement(_index6.default, {
-                                swarm: this.state.movieStat
+                                swarm: _extends({}, this.state.movieStat, { sub: this.state.movieSelectedSub })
                             })
                         )
                     ),
                     _react2.default.createElement(_index2.default, {
                         torrent: this.state.movieInfo.torrent,
                         subs: this.state.movieSubs,
+                        sub_selected: this.state.movieSelectedSub,
                         onProgress: function onProgress(p, s) {
                             _this5.onProgress(p, s);
                         },
@@ -16362,7 +16371,7 @@ var _auth = __webpack_require__(26);
 
 var _auth2 = _interopRequireDefault(_auth);
 
-var _settings = __webpack_require__(22);
+var _settings = __webpack_require__(18);
 
 var _settings2 = _interopRequireDefault(_settings);
 
@@ -18018,7 +18027,7 @@ var AppMoviesPlayerSwarm = function (_React$Component) {
                     ),
                     _react2.default.createElement(
                         'span',
-                        null,
+                        { className: this.props.swarm.aPeers <= 10 ? "red-text" : this.props.swarm.aPeers < 15 && this.props.swarm.aPeers > 10 ? "orange-text" : "green-text" },
                         this.props.swarm.aPeers
                     )
                 ),
@@ -18032,8 +18041,9 @@ var AppMoviesPlayerSwarm = function (_React$Component) {
                     ),
                     _react2.default.createElement(
                         'span',
-                        null,
-                        this.props.swarm.dSpeed
+                        { className: parseInt(this.props.swarm.dSpeed) <= 100 ? "red-text" : this.props.swarm.dSpeed < 250 && this.props.swarm.dSpeed > 100 ? "orange-text" : "green-text" },
+                        this.props.swarm.dSpeed,
+                        ' kb/s'
                     )
                 ),
                 _react2.default.createElement(
@@ -18046,8 +18056,23 @@ var AppMoviesPlayerSwarm = function (_React$Component) {
                     ),
                     _react2.default.createElement(
                         'span',
+                        { className: this.props.swarm.uSpeed <= 50 ? "red-text" : this.props.swarm.uSpeed < 100 && this.props.swarm.uSpeed > 50 ? "orange-text" : "green-text" },
+                        this.props.swarm.uSpeed,
+                        ' kb/s'
+                    )
+                ),
+                _react2.default.createElement(
+                    'li',
+                    { className: 'white-text' },
+                    _react2.default.createElement(
+                        'span',
+                        { className: 'bold' },
+                        'Subtitles: '
+                    ),
+                    _react2.default.createElement(
+                        'span',
                         null,
-                        this.props.swarm.uSpeed
+                        this.props.swarm.sub[0].toUpperCase() + this.props.swarm.sub.slice(1)
                     )
                 ),
                 _react2.default.createElement(
@@ -18061,7 +18086,8 @@ var AppMoviesPlayerSwarm = function (_React$Component) {
                     _react2.default.createElement(
                         'span',
                         null,
-                        this.props.swarm.fSize
+                        this.props.swarm.fSize,
+                        ' mb'
                     )
                 ),
                 _react2.default.createElement(
@@ -18075,7 +18101,8 @@ var AppMoviesPlayerSwarm = function (_React$Component) {
                     _react2.default.createElement(
                         'span',
                         null,
-                        this.props.swarm.dLoaded
+                        this.props.swarm.dLoaded >= this.props.swarm.fSize && this.props.swarm.fSize || this.props.swarm.dLoaded,
+                        ' mb'
                     )
                 )
             );
@@ -18160,9 +18187,9 @@ var AppMoviesPlayer = function (_React$Component) {
                     //If has subs
                     if (_this2.props.subs) {
                         // for (let sub in this.props.subs) {
-                        if ('spanish' in _this2.props.subs) {
+                        if (_this2.props.sub_selected in _this2.props.subs) {
                             //Convert to vtt
-                            Sub.urlSrt2VttFile(_this2.props.subs['spanish'].link).then(function (vtt) {
+                            Sub.urlSrt2VttFile(_this2.props.subs[_this2.props.sub_selected].link).then(function (vtt) {
                                 console.log('Adding remote ' + vtt);
                                 var _elem = document.createElement('track');
                                 _elem.src = vtt;
@@ -18260,7 +18287,8 @@ var AppMoviesPlayer = function (_React$Component) {
         key: 'defaultProps',
         get: function get() {
             return {
-                subs: {}
+                subs: {},
+                sub_selected: 'spanish'
             };
         }
     }, {
@@ -18868,6 +18896,10 @@ var _cryptHelper = __webpack_require__(46);
 
 var _cryptHelper2 = _interopRequireDefault(_cryptHelper);
 
+var _settings = __webpack_require__(18);
+
+var _settings2 = _interopRequireDefault(_settings);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -18880,6 +18912,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 //Helpers
 
+//Setting
+
 
 var AppMovieDetail = function (_React$Component) {
     _inherits(AppMovieDetail, _React$Component);
@@ -18891,7 +18925,8 @@ var AppMovieDetail = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (AppMovieDetail.__proto__ || Object.getPrototypeOf(AppMovieDetail)).call(this, props));
 
         _this.state = {
-            torrent: null
+            torrent: null,
+            sub: null
         };
         return _this;
     }
@@ -18905,6 +18940,20 @@ var AppMovieDetail = function (_React$Component) {
         key: 'setTorrent',
         value: function setTorrent(torrent) {
             this.prepareDataToPlayer(torrent);
+        }
+    }, {
+        key: 'setInitialSub',
+        value: function setInitialSub(def) {
+            this.setState({
+                sub: def.action
+            });
+        }
+    }, {
+        key: 'setSub',
+        value: function setSub(sub) {
+            this.setState({
+                sub: sub
+            });
         }
     }, {
         key: 'prepareDataToPlayer',
@@ -18927,6 +18976,21 @@ var AppMovieDetail = function (_React$Component) {
                     label: v.quality,
                     action: v.url
                 };
+            });
+        }
+    }, {
+        key: 'prepareSubs',
+        value: function prepareSubs(subs) {
+            //Prepare for menu structure
+            return Object.keys(subs).filter(function (c) {
+                return ~_settings2.default.subs.available.indexOf(c);
+            }).map(function (v, k) {
+                //if (v == 'english' || v == 'spanish') {
+                return {
+                    default: k == 0,
+                    label: v[0].toUpperCase() + v.slice(1), action: v
+                };
+                //}
             });
         }
     }, {
@@ -19017,7 +19081,7 @@ var AppMovieDetail = function (_React$Component) {
                                         _react2.default.createElement(
                                             'a',
                                             { className: 'dropdown-button flow-text clearfix',
-                                                href: "#/app/movie/play/" + this.state.torrent },
+                                                href: "#/app/movie/play/" + this.state.torrent + '/' + this.state.sub },
                                             _react2.default.createElement(
                                                 'span',
                                                 { className: 'font-light-gray right' },
@@ -19028,7 +19092,7 @@ var AppMovieDetail = function (_React$Component) {
                                     )
                                 ),
                                 _react2.default.createElement(_index4.default, {
-                                    btnText: 'Resolution',
+                                    btnText: 'HD',
                                     onChange: function onChange(torrent) {
                                         return _this2.setTorrent(torrent);
                                     },
@@ -19036,7 +19100,16 @@ var AppMovieDetail = function (_React$Component) {
                                         return _this2.setInitialTorrent(t);
                                     },
                                     list: this.prepareTorrents(this.props.movie.torrents)
-                                })
+                                }),
+                                Object.keys(this.props.movie.subtitles).length > 0 && _react2.default.createElement(_index4.default, {
+                                    btnText: 'S',
+                                    onChange: function onChange(s) {
+                                        return _this2.setSub(s);
+                                    },
+                                    getInitialItem: function getInitialItem(s) {
+                                        return _this2.setInitialSub(s);
+                                    },
+                                    list: this.prepareSubs(this.props.movie.subtitles) })
                             )
                         )
                     )
@@ -19361,7 +19434,7 @@ var _auth = __webpack_require__(26);
 
 var _auth2 = _interopRequireDefault(_auth);
 
-var _settings = __webpack_require__(22);
+var _settings = __webpack_require__(18);
 
 var _settings2 = _interopRequireDefault(_settings);
 
@@ -19409,7 +19482,7 @@ function requireAuth(Component, navigate) {
         _react2.default.createElement(_reactRouter.Route, { name: 'movie', exact: true, path: '/app/movie/:imdb', render: function render(n) {
                 return requireAuth(_index8.default, n);
             } }),
-        _react2.default.createElement(_reactRouter.Route, { name: 'movie', path: '/app/movie/play/:torrent', render: function render(n) {
+        _react2.default.createElement(_reactRouter.Route, { name: 'movie', path: '/app/movie/play/:torrent/:sub', render: function render(n) {
                 return requireAuth(_index10.default, n);
             } })
     )
@@ -19432,7 +19505,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 //Tools
 
 
-var _settings = __webpack_require__(22);
+var _settings = __webpack_require__(18);
 
 var _settings2 = _interopRequireDefault(_settings);
 
@@ -20370,7 +20443,7 @@ exports.__esModule = true;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _warning = __webpack_require__(21);
+var _warning = __webpack_require__(22);
 
 var _warning2 = _interopRequireDefault(_warning);
 
@@ -20700,7 +20773,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _warning = __webpack_require__(21);
+var _warning = __webpack_require__(22);
 
 var _warning2 = _interopRequireDefault(_warning);
 
@@ -24093,7 +24166,7 @@ module.exports = EnterLeaveEventPlugin;
 
 var _assign = __webpack_require__(6);
 
-var PooledClass = __webpack_require__(18);
+var PooledClass = __webpack_require__(19);
 
 var getTextContentAccessor = __webpack_require__(112);
 
@@ -28803,7 +28876,7 @@ var _assign = __webpack_require__(6);
 
 var EventListener = __webpack_require__(87);
 var ExecutionEnvironment = __webpack_require__(8);
-var PooledClass = __webpack_require__(18);
+var PooledClass = __webpack_require__(19);
 var ReactDOMComponentTree = __webpack_require__(7);
 var ReactUpdates = __webpack_require__(14);
 
@@ -29725,7 +29798,7 @@ module.exports = ReactPropTypeLocationNames;
 var _assign = __webpack_require__(6);
 
 var CallbackQueue = __webpack_require__(97);
-var PooledClass = __webpack_require__(18);
+var PooledClass = __webpack_require__(19);
 var ReactBrowserEventEmitter = __webpack_require__(36);
 var ReactInputSelection = __webpack_require__(104);
 var ReactInstrumentation = __webpack_require__(13);
@@ -30002,7 +30075,7 @@ module.exports = ReactRef;
 
 var _assign = __webpack_require__(6);
 
-var PooledClass = __webpack_require__(18);
+var PooledClass = __webpack_require__(19);
 var Transaction = __webpack_require__(38);
 var ReactInstrumentation = __webpack_require__(13);
 var ReactServerUpdateQueue = __webpack_require__(246);
@@ -32933,7 +33006,7 @@ StaticRouter.childContextTypes = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_warning__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_warning__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_warning__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__matchPath__ = __webpack_require__(66);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -33137,7 +33210,7 @@ module.exports = KeyEscapeUtils;
 
 
 
-var _prodInvariant = __webpack_require__(20);
+var _prodInvariant = __webpack_require__(21);
 
 var invariant = __webpack_require__(2);
 
@@ -33255,7 +33328,7 @@ module.exports = PooledClass;
 
 
 var PooledClass = __webpack_require__(291);
-var ReactElement = __webpack_require__(19);
+var ReactElement = __webpack_require__(20);
 
 var emptyFunction = __webpack_require__(12);
 var traverseAllChildren = __webpack_require__(302);
@@ -33450,11 +33523,11 @@ module.exports = ReactChildren;
 
 
 
-var _prodInvariant = __webpack_require__(20),
+var _prodInvariant = __webpack_require__(21),
     _assign = __webpack_require__(6);
 
 var ReactComponent = __webpack_require__(67);
-var ReactElement = __webpack_require__(19);
+var ReactElement = __webpack_require__(20);
 var ReactPropTypeLocationNames = __webpack_require__(121);
 var ReactNoopUpdateQueue = __webpack_require__(68);
 
@@ -34179,7 +34252,7 @@ module.exports = ReactClass;
 
 
 
-var ReactElement = __webpack_require__(19);
+var ReactElement = __webpack_require__(20);
 
 /**
  * Create a factory that creates HTML tag elements.
@@ -34355,7 +34428,7 @@ module.exports = ReactDOMFactories;
 
 
 
-var _require = __webpack_require__(19),
+var _require = __webpack_require__(20),
     isValidElement = _require.isValidElement;
 
 var factory = __webpack_require__(93);
@@ -34467,7 +34540,7 @@ module.exports = '15.5.4';
 
 
 
-var _prodInvariant = __webpack_require__(20);
+var _prodInvariant = __webpack_require__(21);
 
 var ReactPropTypeLocationNames = __webpack_require__(121);
 var ReactPropTypesSecret = __webpack_require__(296);
@@ -34585,9 +34658,9 @@ module.exports = getNextDebugID;
  */
 
 
-var _prodInvariant = __webpack_require__(20);
+var _prodInvariant = __webpack_require__(21);
 
-var ReactElement = __webpack_require__(19);
+var ReactElement = __webpack_require__(20);
 
 var invariant = __webpack_require__(2);
 
@@ -34630,7 +34703,7 @@ module.exports = onlyChild;
 
 
 
-var _prodInvariant = __webpack_require__(20);
+var _prodInvariant = __webpack_require__(21);
 
 var ReactCurrentOwner = __webpack_require__(15);
 var REACT_ELEMENT_TYPE = __webpack_require__(119);

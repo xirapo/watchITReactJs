@@ -19,7 +19,8 @@ export default class AppMoviesPlayer extends React.Component {
 
     static get defaultProps() {
         return {
-            subs: {}
+            subs: {},
+            sub_selected: 'spanish'
         }
     }
 
@@ -44,10 +45,10 @@ export default class AppMoviesPlayer extends React.Component {
                     //If has subs
                     if (this.props.subs) {
                         // for (let sub in this.props.subs) {
-                        if ('spanish' in this.props.subs) {
+                        if (this.props.sub_selected in this.props.subs) {
                             //Convert to vtt
                             Sub.urlSrt2VttFile(
-                                this.props.subs['spanish'].link
+                                this.props.subs[this.props.sub_selected].link
                             ).then((vtt)=> {
                                 console.log('Adding remote ' + vtt);
                                 let _elem = document.createElement('track');

@@ -44,7 +44,7 @@ render(
             <Route name="login" exact path="/" render={checkOut}/>
             <Route name="app" exact path="/app" render={(n)=>(requireAuth(App,n))}/>
             <Route name="movie" exact path="/app/movie/:imdb" render={(n)=>(requireAuth(Movie,n))}/>
-            <Route name="movie" path="/app/movie/play/:torrent" render={(n)=>(requireAuth(Player,n))}/>
+            <Route name="movie" path="/app/movie/play/:torrent/:sub" render={(n)=>(requireAuth(Player,n))}/>
         </section>
     </HashRouter>,
     document.getElementById('main_app')

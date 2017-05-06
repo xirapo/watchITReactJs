@@ -9,13 +9,16 @@ import CustomScrollbars from 'front/components/util-scroller/index.jsx';
 import ListCommaSplit from 'front/components/util-list-comma-split/index.jsx'
 //Helpers
 import cryptHelper from 'resources/helpers/cryptHelper'
+//Setting
+import settings from 'backend/settings'
 
 export default class AppMovieDetail extends React.Component {
     constructor(props) {
         super(props);
         //Default state
         this.state = {
-            torrent: null
+            torrent: null,
+            sub: null
         }
     }
 
@@ -31,6 +34,19 @@ export default class AppMovieDetail extends React.Component {
         this.prepareDataToPlayer(
             torrent
         )
+    }
+
+    setInitialSub(def) {
+        this.setState({
+            sub: def.action
+        })
+    }
+
+
+    setSub(sub) {
+        this.setState({
+            sub: sub
+        })
     }
 
     prepareDataToPlayer(torrent) {
@@ -56,6 +72,21 @@ export default class AppMovieDetail extends React.Component {
             };
         });
     }
+
+    prepareSubs(subs) {
+        //Prepare for menu structure
+        return Object.keys(subs).filter((c)=> {
+            return ~(settings.subs.available.indexOf(c));
+        }).map((v, k)=> {
+            //if (v == 'english' || v == 'spanish') {
+            return {
+                default: (k == 0),
+                label: (v[0].toUpperCase() + v.slice(1)), action: v
+            };
+            //}
+        });
+    }
+
 
     render() {
         return (
@@ -121,7 +152,7 @@ export default class AppMovieDetail extends React.Component {
                                 <ul>
                                     <li className="dropdown">
                                         <a className="dropdown-button flow-text clearfix"
-                                           href={"#/app/movie/play/" + this.state.torrent }>
+                                           href={"#/app/movie/play/" + this.state.torrent + '/' + this.state.sub }>
                                             <span className="font-light-gray right">Play</span>
                                             <i className="icon-controller-play normalize-small-icon float-left margin-right-5"/>
                                         </a>
@@ -130,13 +161,24 @@ export default class AppMovieDetail extends React.Component {
 
                                 {/*The resolution menu*/}
                                 <NavBarMenu
-                                    btnText="Resolution"
+                                    btnText="HD"
                                     onChange={(torrent) => this.setTorrent(torrent)}
                                     getInitialItem={(t)=>this.setInitialTorrent(t)}
                                     list={this.prepareTorrents(
                                         this.props.movie.torrents
                                     )}
                                 />
+
+                                {/*The resolution menu*/}
+                                {
+                                    Object.keys(this.props.movie.subtitles).length > 0 && <NavBarMenu
+                                        btnText="S"
+                                        onChange={(s) => this.setSub(s)}
+                                        getInitialItem={(s)=>this.setInitialSub(s)}
+                                        list={this.prepareSubs(
+                                        this.props.movie.subtitles
+                                    )}/>
+                                }
 
                                 {/*Watch Trailer
                                  <ul>
