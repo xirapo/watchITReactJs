@@ -28,11 +28,12 @@ export default class AppMoviesPlayerSwarm extends React.Component {
                     </li>
                     <li className="white-text">
                         <span className="bold">D/Speed: </span>
-                        <span className={parseInt(this.props.swarm.dSpeed) <= 100 ?
+                        <span className={parseInt(this.props.swarm.dSpeed) <= 100 || this.props.swarm.dLoaded > this.props.swarm.fSize ?
                                 "red-text" : this.props.swarm.dSpeed < 250 && this.props.swarm.dSpeed > 100 ?
                                 "orange-text":  "green-text"
                         }>
-                            {this.props.swarm.dSpeed} kb/s
+                            {this.props.swarm.dLoaded > this.props.swarm.fSize
+                            && 0.00 || this.props.swarm.dSpeed} kb/s
                         </span>
                     </li>
                     <li className="white-text">
@@ -59,8 +60,8 @@ export default class AppMoviesPlayerSwarm extends React.Component {
                     <li className="white-text">
                         <span className="bold">Downloaded: </span>
                         <span>
-                            {this.props.swarm.dLoaded >= this.props.swarm.fSize
-                            && this.props.swarm.fSize || this.props.swarm.dLoaded} mb
+                            {this.props.swarm.dLoaded > this.props.swarm.fSize
+                            && this.props.swarm.fSize || this.props.swarm.dLoaded}mb
                         </span>
                     </li>
                 </ul>

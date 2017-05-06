@@ -18041,8 +18041,8 @@ var AppMoviesPlayerSwarm = function (_React$Component) {
                     ),
                     _react2.default.createElement(
                         'span',
-                        { className: parseInt(this.props.swarm.dSpeed) <= 100 ? "red-text" : this.props.swarm.dSpeed < 250 && this.props.swarm.dSpeed > 100 ? "orange-text" : "green-text" },
-                        this.props.swarm.dSpeed,
+                        { className: parseInt(this.props.swarm.dSpeed) <= 100 || this.props.swarm.dLoaded > this.props.swarm.fSize ? "red-text" : this.props.swarm.dSpeed < 250 && this.props.swarm.dSpeed > 100 ? "orange-text" : "green-text" },
+                        this.props.swarm.dLoaded > this.props.swarm.fSize && 0.00 || this.props.swarm.dSpeed,
                         ' kb/s'
                     )
                 ),
@@ -18101,8 +18101,8 @@ var AppMoviesPlayerSwarm = function (_React$Component) {
                     _react2.default.createElement(
                         'span',
                         null,
-                        this.props.swarm.dLoaded >= this.props.swarm.fSize && this.props.swarm.fSize || this.props.swarm.dLoaded,
-                        ' mb'
+                        this.props.swarm.dLoaded > this.props.swarm.fSize && this.props.swarm.fSize || this.props.swarm.dLoaded,
+                        'mb'
                     )
                 )
             );
