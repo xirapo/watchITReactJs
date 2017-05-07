@@ -29,10 +29,10 @@ export default class BoxImage extends React.Component {
         }
     }
 
-    handleImageLoaded(e) {
+    handleImageLoaded(e, status = 1, loaded = true) {
         this.setState({
-            status: 1,
-            loaded: true
+            status: status,
+            loaded: loaded
         });
 
         //If need a hook :)
@@ -41,16 +41,6 @@ export default class BoxImage extends React.Component {
         }
     }
 
-    pImageLoaded(e) {
-        this.setState({
-            status: -2
-        });
-
-        //If need a hook :)
-        if (this.props.handleImageLoaded) {
-            this.props.handleImageLoaded(e)
-        }
-    }
 
     handleImageError(e) {
         this.setState({
@@ -66,7 +56,7 @@ export default class BoxImage extends React.Component {
                     this.state.status < 0 && <img
                         alt="" className={this.state.status > -2 ? "hidden" : "center-block responsive-img"}
                         src={ "http://lorempixel.com/" + this.props.placeholder.w + "/" + this.props.placeholder.h + (this.props.placeholder.c && "/abstract/NO IMAGE" ||"/abstract/" )}
-                        onLoad={(e)=>this.pImageLoaded(e)}
+                        onLoad={(e)=>this.handleImageLoaded(e, -2)}
                     />
                 }
 
@@ -81,10 +71,10 @@ export default class BoxImage extends React.Component {
                     <img
                         className={this.state.status < 0 ? "hidden" : (this.state.loaded && "loaded-img responsive-img visible" || "locked-img invisible")}
                         src={this.props.src}
-                        onLoad={(e)=>this.handleImageLoaded(e)}
+                        onLoad={(e)=>this.handleImageLoaded(e, 1)}
                         onError={(e)=>{this.handleImageError(e)}}
-                    /> 
-                    
+                    />
+
                 }
             </figure>
 

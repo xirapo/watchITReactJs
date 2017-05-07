@@ -22,68 +22,41 @@ export default class AppMovieDetail extends React.Component {
         }
     }
 
-
-    setInitialTorrent(def) {
+    setMenuItem(def, type = 'torrent') {
         this.prepareDataToPlayer(
-            def.action
+            def, type
         )
     }
 
 
-    setTorrent(torrent) {
-        this.prepareDataToPlayer(
-            torrent
-        )
-    }
-
-    setInitialSub(def) {
-        this.setState({
-            sub: def.action
-        })
-    }
-
-
-    setSub(sub) {
-        this.setState({
-            sub: sub
-        })
-    }
-
-    prepareDataToPlayer(torrent) {
-        this.setState({
-            torrent: cryptHelper.toBase64(
-                JSON.stringify({
-                    torrent: torrent,
-                    imdb_code: this.props.movie.imdb_code,
-                    title: this.props.movie.title
-                })
-            )
-        })
+    prepareDataToPlayer(data, type = 'torrent') {
+        //Handle type of menu
+        if (type == 'torrent') {
+            this.setState({
+                torrent: cryptHelper.toBase64(
+                    JSON.stringify({
+                        torrent: data,
+                        imdb_code: this.props.movie.imdb_code,
+                        title: this.props.movie.title
+                    })
+                )
+            })
+        } else {
+            this.setState({
+                sub: data
+            })
+        }
     }
 
 
-    prepareTorrents(torrents) {
+    prepareMenu(items, type = 'torrent') {
         //Prepare for menu structure
-        return torrents.map((v, k)=> {
+        return items.map((v, k)=> {
             return {
                 default: (k == 0),
-                label: v.quality,
-                action: v.url
+                label: type == 'torrent' && v.quality || (v[0].toUpperCase() + v.slice(1)),
+                action: type == 'torrent' && v.url || v
             };
-        });
-    }
-
-    prepareSubs(subs) {
-        //Prepare for menu structure
-        return Object.keys(subs).filter((c)=> {
-            return ~(settings.subs.available.indexOf(c));
-        }).map((v, k)=> {
-            //if (v == 'english' || v == 'spanish') {
-            return {
-                default: (k == 0),
-                label: (v[0].toUpperCase() + v.slice(1)), action: v
-            };
-            //}
         });
     }
 
@@ -162,9 +135,9 @@ export default class AppMovieDetail extends React.Component {
                                 {/*The resolution menu*/}
                                 <NavBarMenu
                                     btnText="HD"
-                                    onChange={(torrent) => this.setTorrent(torrent)}
-                                    getInitialItem={(t)=>this.setInitialTorrent(t)}
-                                    list={this.prepareTorrents(
+                                    onChange={(torrent) => this.setMenuItem(torrent)}
+                                    getInitialItem={(t)=>this.setMenuItem(t.action)}
+                                    list={this.prepareMenu(
                                         this.props.movie.torrents
                                     )}
                                 />
@@ -172,11 +145,14 @@ export default class AppMovieDetail extends React.Component {
                                 {/*The resolution menu*/}
                                 {
                                     Object.keys(this.props.movie.subtitles).length > 0 && <NavBarMenu
-                                        btnText="" onChange={(s) => this.setSub(s)}
-                                        getInitialItem={(s)=>this.setInitialSub(s)}
-                                        list={this.prepareSubs(
-                                        this.props.movie.subtitles
-                                    )}/>
+                                        btnText="" onChange={(s) => this.setMenuItem(s, 'sub')}
+                                        getInitialItem={(s)=>this.setMenuItem(s.action, 'sub')}
+                                        list={this.prepareMenu(
+                                            Object.keys(this.props.movie.subtitles).filter((c)=> {
+                                                return ~(settings.subs.available.indexOf(c));
+                                            }), 'sub'
+                                        )}
+                                    />
                                 }
 
                                 {/*Watch Trailer

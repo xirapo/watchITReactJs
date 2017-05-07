@@ -5542,21 +5542,12 @@ var BoxImage = function (_React$Component) {
     _createClass(BoxImage, [{
         key: 'handleImageLoaded',
         value: function handleImageLoaded(e) {
-            this.setState({
-                status: 1,
-                loaded: true
-            });
+            var status = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+            var loaded = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
 
-            //If need a hook :)
-            if (this.props.handleImageLoaded) {
-                this.props.handleImageLoaded(e);
-            }
-        }
-    }, {
-        key: 'pImageLoaded',
-        value: function pImageLoaded(e) {
             this.setState({
-                status: -2
+                status: status,
+                loaded: loaded
             });
 
             //If need a hook :)
@@ -5585,7 +5576,7 @@ var BoxImage = function (_React$Component) {
                     alt: '', className: this.state.status > -2 ? "hidden" : "center-block responsive-img",
                     src: "http://lorempixel.com/" + this.props.placeholder.w + "/" + this.props.placeholder.h + (this.props.placeholder.c && "/abstract/NO IMAGE" || "/abstract/"),
                     onLoad: function onLoad(e) {
-                        return _this2.pImageLoaded(e);
+                        return _this2.handleImageLoaded(e, -2);
                     }
                 }),
 
@@ -5597,7 +5588,7 @@ var BoxImage = function (_React$Component) {
                     className: this.state.status < 0 ? "hidden" : this.state.loaded && "loaded-img responsive-img visible" || "locked-img invisible",
                     src: this.props.src,
                     onLoad: function onLoad(e) {
-                        return _this2.handleImageLoaded(e);
+                        return _this2.handleImageLoaded(e, 1);
                     },
                     onError: function onError(e) {
                         _this2.handleImageError(e);
@@ -18362,8 +18353,7 @@ var AppMoviesList = function (_React$Component) {
                             'a',
                             { href: "#/app/movie/" + i.imdb_code },
                             _react2.default.createElement(_index2.default, {
-                                src: i.medium_cover_image,
-                                allow_preload: false
+                                src: i.medium_cover_image
                             }),
                             _react2.default.createElement(
                                 'div',
@@ -18962,65 +18952,44 @@ var AppMovieDetail = function (_React$Component) {
     }
 
     _createClass(AppMovieDetail, [{
-        key: 'setInitialTorrent',
-        value: function setInitialTorrent(def) {
-            this.prepareDataToPlayer(def.action);
-        }
-    }, {
-        key: 'setTorrent',
-        value: function setTorrent(torrent) {
-            this.prepareDataToPlayer(torrent);
-        }
-    }, {
-        key: 'setInitialSub',
-        value: function setInitialSub(def) {
-            this.setState({
-                sub: def.action
-            });
-        }
-    }, {
-        key: 'setSub',
-        value: function setSub(sub) {
-            this.setState({
-                sub: sub
-            });
+        key: 'setMenuItem',
+        value: function setMenuItem(def) {
+            var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'torrent';
+
+            this.prepareDataToPlayer(def, type);
         }
     }, {
         key: 'prepareDataToPlayer',
-        value: function prepareDataToPlayer(torrent) {
-            this.setState({
-                torrent: _cryptHelper2.default.toBase64(JSON.stringify({
-                    torrent: torrent,
-                    imdb_code: this.props.movie.imdb_code,
-                    title: this.props.movie.title
-                }))
-            });
+        value: function prepareDataToPlayer(data) {
+            var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'torrent';
+
+            //Handle type of menu
+            if (type == 'torrent') {
+                this.setState({
+                    torrent: _cryptHelper2.default.toBase64(JSON.stringify({
+                        torrent: data,
+                        imdb_code: this.props.movie.imdb_code,
+                        title: this.props.movie.title
+                    }))
+                });
+            } else {
+                this.setState({
+                    sub: data
+                });
+            }
         }
     }, {
-        key: 'prepareTorrents',
-        value: function prepareTorrents(torrents) {
+        key: 'prepareMenu',
+        value: function prepareMenu(items) {
+            var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'torrent';
+
             //Prepare for menu structure
-            return torrents.map(function (v, k) {
+            return items.map(function (v, k) {
                 return {
                     default: k == 0,
-                    label: v.quality,
-                    action: v.url
+                    label: type == 'torrent' && v.quality || v[0].toUpperCase() + v.slice(1),
+                    action: type == 'torrent' && v.url || v
                 };
-            });
-        }
-    }, {
-        key: 'prepareSubs',
-        value: function prepareSubs(subs) {
-            //Prepare for menu structure
-            return Object.keys(subs).filter(function (c) {
-                return ~_settings2.default.subs.available.indexOf(c);
-            }).map(function (v, k) {
-                //if (v == 'english' || v == 'spanish') {
-                return {
-                    default: k == 0,
-                    label: v[0].toUpperCase() + v.slice(1), action: v
-                };
-                //}
             });
         }
     }, {
@@ -19124,21 +19093,24 @@ var AppMovieDetail = function (_React$Component) {
                                 _react2.default.createElement(_index4.default, {
                                     btnText: 'HD',
                                     onChange: function onChange(torrent) {
-                                        return _this2.setTorrent(torrent);
+                                        return _this2.setMenuItem(torrent);
                                     },
                                     getInitialItem: function getInitialItem(t) {
-                                        return _this2.setInitialTorrent(t);
+                                        return _this2.setMenuItem(t.action);
                                     },
-                                    list: this.prepareTorrents(this.props.movie.torrents)
+                                    list: this.prepareMenu(this.props.movie.torrents)
                                 }),
                                 Object.keys(this.props.movie.subtitles).length > 0 && _react2.default.createElement(_index4.default, {
                                     btnText: '', onChange: function onChange(s) {
-                                        return _this2.setSub(s);
+                                        return _this2.setMenuItem(s, 'sub');
                                     },
                                     getInitialItem: function getInitialItem(s) {
-                                        return _this2.setInitialSub(s);
+                                        return _this2.setMenuItem(s.action, 'sub');
                                     },
-                                    list: this.prepareSubs(this.props.movie.subtitles) })
+                                    list: this.prepareMenu(Object.keys(this.props.movie.subtitles).filter(function (c) {
+                                        return ~_settings2.default.subs.available.indexOf(c);
+                                    }), 'sub')
+                                })
                             )
                         )
                     )
