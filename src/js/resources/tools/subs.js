@@ -27,7 +27,7 @@
         var _filename = url.split('/').pop();
         var _srt_file_dir = ROOT_TMP_FOLDER + '/' + _filename;
 
-        //Append filename
+        //Append format
         if (!(~(_filename.indexOf('.zip')))) {
             _srt_file_dir += '.zip';
         }
@@ -43,7 +43,6 @@
 
                 }.bind(this));
             }.bind(this)).catch(e);
-
         }.bind(this));
     });
 
@@ -104,10 +103,8 @@
 
                     //If srt file
                     if ((~(entry.path.indexOf('.srt')))) {
-                        var _result_file_dir = ROOT_TMP_FOLDER + '/' + entry.path.replace(/\s/g, "_")
-                                .replace(/\[/g, '')
-                                .replace(/\-/g, '')
-                                .replace(/\./g, '_')
+                        var _result_file_dir = ROOT_TMP_FOLDER + '/'
+                            + entry.path.replace(/(\[|\]|\-|\.|\+|\s)/g, '_')
                                 .replace('_srt', '.srt');
 
 

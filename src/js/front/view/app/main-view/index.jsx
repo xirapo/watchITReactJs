@@ -9,7 +9,6 @@ import AppMainSearchResult from 'front/components/app-main-search-result/index.j
 import AppTinyProfile from 'front/components/app-tiny-box-profile/index.jsx'
 
 
-
 //Require for auth
 //Database (Api Handler)
 import Auth from 'resources/database/auth'
@@ -275,6 +274,7 @@ export default class Main extends React.Component {
                                     onInput={(e)=>{this.onSearch(e)}}
                                     size="m12 l12"
                                 />
+                                {/*Search result box*/}
                                 <AppMainSearchResult
                                     searching={this.state.searching}
                                     result={this.state.searchResult}

@@ -32,20 +32,18 @@ export default class AppMainSearchResult extends React.Component {
                         </div>
                     </div> ||
                     <div className="col l12 m12">
-                        {
-                            <CustomScrollbars
-                                autoHide
-                                autoHeight
-                                autoHeightMax={500}
-                                autoHideTimeout={1000}
-                                autoHideDuration={200}
-                                thumbMinSize={30}
-                                universal={true}>
-                                <AppMainSearchResultBox
-                                    result={this.props.result}
-                                />
-                            </CustomScrollbars>
-                        }
+                        <CustomScrollbars
+                            autoHide
+                            autoHeight
+                            autoHeightMax={500}
+                            autoHideTimeout={1000}
+                            autoHideDuration={200}
+                            thumbMinSize={30}
+                            universal={true}>
+                            <AppMainSearchResultBox
+                                result={this.props.result}
+                            />
+                        </CustomScrollbars>
                     </div>
                 }
             </section>
