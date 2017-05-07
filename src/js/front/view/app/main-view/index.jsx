@@ -7,10 +7,7 @@ import AppMoviesList from 'front/components/app-main-movies-list/index.jsx'
 import AppMainTopInput from 'front/components/app-main-movies-top-inputs/index.jsx'
 import AppMainSearchResult from 'front/components/app-main-search-result/index.jsx'
 import AppTinyProfile from 'front/components/app-tiny-box-profile/index.jsx'
-import BoxLoader from 'front/components/util-box-loader/index.jsx'
-import PointsLoader from 'front/components/util-points-loader/index.jsx'
-import PulseLoader from 'front/components/util-pulse-loader/index.jsx'
-import CustomScrollbars from 'front/components/util-scroller/index.jsx';
+
 
 
 //Require for auth
@@ -41,6 +38,7 @@ export default class Main extends React.Component {
         this.state = {
             loading: true,
             searching: false,
+            searchResult: false,
             scrollUpdate: false
         };
 
@@ -277,37 +275,10 @@ export default class Main extends React.Component {
                                     onInput={(e)=>{this.onSearch(e)}}
                                     size="m12 l12"
                                 />
-                                {
-                                    (this.state.searching || this.state.searchResult) &&
-                                    <section
-                                        className="absolute full-width search-result-box left-0 top-100-p z-index-100"
-                                    >
-                                        {
-                                            this.state.searching &&
-                                            <div className="col l12 m12">
-                                                <div className="col l12 m12 result-search-box text-center padding-10">
-                                                    <PointsLoader />
-                                                </div>
-                                            </div> ||
-                                            <div className="col l12 m12">
-                                                {
-                                                    <CustomScrollbars
-                                                        autoHide
-                                                        autoHeight
-                                                        autoHeightMax={500}
-                                                        autoHideTimeout={1000}
-                                                        autoHideDuration={200}
-                                                        thumbMinSize={30}
-                                                        universal={true}>
-                                                        <AppMainSearchResult
-                                                            result={this.state.searchResult}
-                                                        />
-                                                    </CustomScrollbars>
-                                                }
-                                            </div>
-                                        }
-                                    </section>
-                                }
+                                <AppMainSearchResult
+                                    searching={this.state.searching}
+                                    result={this.state.searchResult}
+                                />
                             </div>
                         </header>
 
@@ -321,33 +292,12 @@ export default class Main extends React.Component {
 
                         {/*Movies section lists*/}
                         <section className="row movies-box clearfix">
-                            {
-                                (!this.state.loading
-                                && this.state.movies &&
-                                <CustomScrollbars
-                                    autoHide
-                                    autoHideTimeout={1000}
-                                    autoHideDuration={200}
-                                    thumbMinSize={30}
-                                    universal={true}
-                                    onScrollFrame={(e)=>this.onScrollUpdate(e)}
-                                >
-                                    <div className="col l12 m12">
-                                        {/*The movie list*/}
-                                        <AppMoviesList movies={this.state.movies}/>
-
-                                        {/*Append a loader if loading*/}
-                                        {
-                                            this.state.scrollUpdate &&
-                                            <div className="col l2 m2 img-media-large padding-left-2 padding-right-2">
-                                                <PulseLoader
-                                                    className="center-block margin-top-50-p margin-bottom-50-p width-30-p responsive-img"
-                                                />
-                                            </div>
-                                        }
-                                    </div>
-                                </CustomScrollbars>) || <BoxLoader size={100}/>
-                            }
+                            <AppMoviesList
+                                loading={this.state.loading}
+                                movies={this.state.movies}
+                                scroll={this.state.scrollUpdate}
+                                onScroll={(e)=>this.onScrollUpdate(e)}
+                            />
                         </section>
                     </div>
                 </section>
