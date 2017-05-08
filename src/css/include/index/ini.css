@@ -79711,37 +79711,6 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
     .font-size-responsive {
       font-size: 40px; } }
 
-/**Font Colors*/
-.font-white {
-  color: #fff !important; }
-
-.font-teal {
-  color: #009688 !important; }
-
-.font-gray {
-  color: #555555 !important; }
-
-.font-orange {
-  color: #e98b39 !important; }
-
-.font-blue {
-  color: #2980b9 !important; }
-
-.font-yellow {
-  color: #f1c40f !important; }
-
-.font-green {
-  color: #27ae60 !important; }
-
-.font-red {
-  color: #c0392b !important; }
-
-.font-light-gray {
-  color: #999999 !important; }
-
-.font-link {
-  color: #039be5 !important; }
-
 .text-left {
   text-align: left; }
 

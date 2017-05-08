@@ -15708,7 +15708,7 @@ var Main = function (_React$Component) {
         value: function onScrollUpdate(e) {
             //On Scroll down
             if (e.top == 1) {
-                this.limit = ++this.offset * 100;
+                this.limit = ++this.offset * 50;
                 this.setState({
                     scrollUpdate: true
                 });
