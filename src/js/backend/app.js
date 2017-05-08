@@ -13,7 +13,7 @@ var
 
     ROOT_DIR = process.cwd(), //DEFAULT ROOT DIR
     ROOT_TMP_FOLDER = path.join(ROOT_DIR, 'tmp'), //TMP global folder
-    ENVIRONMENT = 'prod'; // dev or prod environment
+    ENVIRONMENT = 'env'; // dev or prod environment
 
 //FUNCTIONS
 var
