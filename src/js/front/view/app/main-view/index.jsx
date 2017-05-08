@@ -111,7 +111,7 @@ export default class Main extends React.Component {
     onScrollUpdate(e) {
         //On Scroll down
         if (e.top == 1) {
-            this.limit = (++this.offset * 100);
+            this.limit = (++this.offset * 50);
             this.setState({
                 scrollUpdate: true
             });
