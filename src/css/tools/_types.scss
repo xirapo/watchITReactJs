@@ -25,8 +25,12 @@
   word-break: break-all;
 }
 
-.downcase {
+.lowercase {
   text-transform: lowercase !important;
+}
+
+.uppercase {
+  text-transform: uppercase !important;
 }
 
 .capitalize {
@@ -184,8 +188,4 @@
 
 .text-justify {
   text-align: justify;
-}
-
-.text-lowercase {
-  text-transform: lowercase !important;
 }

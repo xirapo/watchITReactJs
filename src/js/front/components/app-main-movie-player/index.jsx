@@ -31,7 +31,7 @@ export default class AppMoviesPlayer extends React.Component {
     }
 
     componentDidMount() {
-
+        /// TODO: look for an event that handle pause mode https://www.w3.org/wiki/HTML/Elements/video implementign videojs
         //Videojs
         this.player = videojs(
             this.videoNode, {
