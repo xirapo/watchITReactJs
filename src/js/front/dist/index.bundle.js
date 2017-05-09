@@ -18214,7 +18214,7 @@ var AppMoviesPlayer = function (_React$Component) {
                 //When player load
                 _this2.player.one('loadedmetadata', function () {
                     //Log
-                    _logHelper2.default.info('PLAYER METADATA LOADED');
+                    _logHelper2.default.info('\nPLAYER METADATA LOADED');
 
                     //If has subs
                     if (_this2.props.subs) {
@@ -18223,7 +18223,7 @@ var AppMoviesPlayer = function (_React$Component) {
                             //Convert to vtt
                             Sub.urlSrt2VttFile(_this2.props.subs[_this2.props.sub_selected].link).then(function (vtt) {
                                 //Log
-                                _logHelper2.default.info('ADDING ' + _this2.props.sub_selected.toUpperCase() + ' SUBTITLE: ' + vtt);
+                                _logHelper2.default.info('\nADDING ' + _this2.props.sub_selected.toUpperCase() + ' SUBTITLE: ' + vtt);
                                 //Adding tracks
                                 var _elem = document.createElement('track');
                                 _elem.src = vtt;
@@ -18241,7 +18241,7 @@ var AppMoviesPlayer = function (_React$Component) {
                 //When get ready to play;;
                 _this2.player.on('canplay', function () {
                     //Log
-                    _logHelper2.default.ok('PLAYING MOVIE: ' + _this2.state.url);
+                    _logHelper2.default.ok('\nPLAYING MOVIE: ' + _this2.state.url);
                     //Set controls true
                     _this2.player.controls(true);
                     //Set canPlay
@@ -18256,7 +18256,7 @@ var AppMoviesPlayer = function (_React$Component) {
             });
 
             //Log
-            _logHelper2.default.info('STARTING STREAMING FOR: ' + this.props.torrent);
+            _logHelper2.default.info('\nSTARTING STREAMING FOR: ' + this.props.torrent);
             //Start streamer
             Streamer.playTorrent(this.props.torrent, this.onReady, this.onProgress, this.onError);
         }
@@ -18274,7 +18274,7 @@ var AppMoviesPlayer = function (_React$Component) {
         key: 'onReady',
         value: function onReady(url, flix) {
             //Log
-            _logHelper2.default.info('READY TO PLAY MOVIE: ' + url);
+            _logHelper2.default.info('\nREADY TO PLAY MOVIE: ' + url);
             //Set url
             this.setState({
                 url: url,
@@ -18299,7 +18299,7 @@ var AppMoviesPlayer = function (_React$Component) {
         key: 'onError',
         value: function onError(e) {
             //Log
-            _logHelper2.default.error('ERROR WHILE STREAMING: ' + e);
+            _logHelper2.default.error('\nERROR WHILE STREAMING: ' + e);
             //Handle error
             if (this.props.onError) {
                 this.props.onError(e);
