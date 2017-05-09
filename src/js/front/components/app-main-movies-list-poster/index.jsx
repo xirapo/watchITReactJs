@@ -14,7 +14,7 @@ export default class AppMoviesListPoster extends React.Component {
         return (<div>
             {this.props.movies.map((i, k)=> {
                 return (<div key={k}
-                             className="col l2 m2 relative img-media-large padding-left-2 padding-right-2">
+                             className="col l2 m2 relative movies-poster padding-left-2 padding-right-2">
                     <a href={"#/app/movie/" + i.imdb_code }>
                         <BoxImage
                             src={i.medium_cover_image}

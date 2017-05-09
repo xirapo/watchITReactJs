@@ -1,0 +1,135 @@
+/**MEDIA QUERIES*/
+//FIXED WIDTH
+
+/* Small devices (tablets, 768px and up) */
+//
+@media (min-width: 768px) {
+  //User profile box
+  .profile-media {
+    width: 33vw !important;
+  }
+}
+
+///* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  //User profile box
+  .profile-media {
+    width: 28vw !important;
+  }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  //User profile box
+  .profile-media {
+    width: 19vw !important;
+  }
+}
+
+@media (min-width: 1699px) {
+  //Main images
+  .movies-poster {
+    width: 9.966667% !important;
+  }
+
+  //User profile box
+  .profile-media {
+    width: 17vw !important;
+  }
+}
+
+@media (min-width: 1900px) {
+  .movie-details-poster {
+    width: 58vh !important;
+  }
+
+
+  //Main images
+  .movies-poster {
+    width: 7.66667% !important;
+  }
+}
+
+//MEDIA QUERIES
+//FIXED HEIGHT
+//IN 600 ranges
+@media (max-height: 600px) {
+  .movies-box {
+    height: 66vh;
+  }
+
+  .movie-details-description {
+    height: 22vh;
+  }
+}
+
+@media (min-height: 601px) {
+  .movies-box {
+    height: 70vh;
+  }
+
+  .movie-details-description {
+    height: 20vh;
+  }
+}
+
+//IN 700 ranges
+@media (min-height: 701px) {
+  .movies-box {
+    height: 69vh;
+  }
+
+  .movie-details-description {
+    height: 22vh;
+  }
+}
+
+@media (min-height: 769px) {
+  .movies-box {
+    height: 70vh;
+  }
+
+  .movie-details-description {
+    height: 20vh;
+  }
+}
+
+@media (min-height: 800px) {
+  .movies-box {
+    height: 75vh;
+  }
+
+  .movie-details-description {
+    height: 15vh;
+  }
+}
+
+@media (min-height: 850px) {
+  .movies-box {
+    height: 75vh;
+  }
+
+  .movie-details-description {
+    height: 20vh;
+  }
+}
+
+@media (min-height: 1018px) {
+  .movies-box {
+    height: 76vh;
+  }
+
+  .movie-details-description {
+    height: 29vh;
+  }
+}
+
+@media (min-height: 1050px) {
+  .movies-box {
+    height: 78vh;
+  }
+
+  .movie-details-description {
+    height: 27vh;
+  }
+}

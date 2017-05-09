@@ -15,7 +15,7 @@ export default class FlowText extends React.Component {
     render() {
         return (
             <div className="col l12 s12 m12">
-                <p className={"flow-text font-light-gray"}>
+                <p className={"flow-text grey-text"}>
                     {this.props.children}
                 </p>
             </div>

@@ -18107,6 +18107,7 @@ var AppMoviesPlayer = function (_React$Component) {
         value: function componentDidMount() {
             var _this2 = this;
 
+            /// TODO: look for an event that handle pause mode https://www.w3.org/wiki/HTML/Elements/video implementign videojs
             //Videojs
             this.player = videojs(this.videoNode, {
                 autoplay: true,
@@ -18288,7 +18289,7 @@ var AppMoviesListPoster = function (_React$Component) {
                     return _react2.default.createElement(
                         'div',
                         { key: k,
-                            className: 'col l2 m2 relative img-media-large padding-left-2 padding-right-2' },
+                            className: 'col l2 m2 relative movies-poster padding-left-2 padding-right-2' },
                         _react2.default.createElement(
                             'a',
                             { href: "#/app/movie/" + i.imdb_code },
@@ -18412,7 +18413,7 @@ var AppMoviesList = function (_React$Component) {
                     _react2.default.createElement(_index2.default, { movies: this.props.movies }),
                     this.props.scroll && _react2.default.createElement(
                         'div',
-                        { className: 'col l2 m2 img-media-large padding-left-2 padding-right-2' },
+                        { className: 'col l2 m2 movies-poster padding-left-2 padding-right-2' },
                         _react2.default.createElement(_index6.default, {
                             className: 'center-block margin-top-50-p margin-bottom-50-p width-30-p responsive-img'
                         })
@@ -19321,11 +19322,20 @@ var AppTinyProfile = function (_React$Component) {
                     { className: 'col l3 m3 small-picture' },
                     _react2.default.createElement(
                         'a',
-                        { href: '#' },
+                        { href: '#', className: 'clearfix profile-picture-img' },
                         _react2.default.createElement(
                             'figure',
                             null,
                             _react2.default.createElement('img', { src: this.props.user.profile_pic_small, alt: '' })
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'small-picture-border' },
+                        _react2.default.createElement(
+                            'figure',
+                            null,
+                            _react2.default.createElement('img', { src: '/src/media/img/layout/movie-reel.png', alt: '' })
                         )
                     )
                 ),
@@ -19451,7 +19461,7 @@ var FlowText = function (_React$Component) {
                 { className: "col l12 s12 m12" },
                 _react2.default.createElement(
                     "p",
-                    { className: "flow-text font-light-gray" },
+                    { className: "flow-text grey-text" },
                     this.props.children
                 )
             );

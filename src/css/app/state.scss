@@ -58,7 +58,7 @@ https://smacss.com/book/type-state
 }
 
 .has-main-background {
-  background: url('../../../media/img/layout/background.jpg') no-repeat center center fixed;
+  background: url('/src/media/img/layout/background.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -95,7 +95,6 @@ https://smacss.com/book/type-state
 .picture {
   figure {
     margin: 0;
-    @include border-radius(20px 20px);
     overflow: hidden;
   }
 }
@@ -307,130 +306,4 @@ https://smacss.com/book/type-state
 
 .radius {
   @include border-radius(5px);
-}
-
-/**QUERIES*/
-/* Extra small devices (phones, less than 768px) */
-/* No media query since this is the default in Bootstrap */
-
-/* Small devices (tablets, 768px and up) */
-//
-@include media-small {
-  //User profile box
-  .profile-media {
-    width: 35vw !important;
-  }
-}
-
-///* Medium devices (desktops, 992px and up) */
-@include media-middle {
-  //User profile box
-  .profile-media {
-    width: 30vw !important;
-  }
-}
-
-/* Large devices (large desktops, 1200px and up) */
-@include media-large {
-  //User profile box
-  .profile-media {
-    width: 19vw !important;
-  }
-
-  //Main images
-  .img-media-large {
-    width: 7.66667% !important;
-  }
-
-  .movie-details-poster {
-    width: 58vh !important;
-  }
-
-}
-
-//MEDIA QUERIES
-
-///////////////FIXED HEIGHT
-//IN 600 ranges
-@media (max-height: 600px) {
-  .movies-box {
-    height: 66vh;
-  }
-
-  .movie-details-description {
-    height: 22vh;
-  }
-}
-
-@media (min-height: 601px) {
-  .movies-box {
-    height: 70vh;
-  }
-
-  .movie-details-description {
-    height: 20vh;
-  }
-}
-
-//IN 700 ranges
-@media (min-height: 701px) {
-  .movies-box {
-    height: 69vh;
-  }
-
-  .movie-details-description {
-    height: 22vh;
-  }
-}
-
-@media (min-height: 769px) {
-  .movies-box {
-    height: 70vh;
-  }
-
-  .movie-details-description {
-    height: 20vh;
-  }
-}
-
-@media (min-height: 800px) {
-  .movies-box {
-    height: 75vh;
-  }
-
-  .movie-details-description {
-    height: 15vh;
-  }
-}
-
-@media (min-height: 850px) {
-  .movies-box {
-    height: 75vh;
-  }
-
-  .movie-details-description {
-    height: 20vh;
-  }
-}
-
-
-@media (min-height: 1018px) {
-  .movies-box {
-    height: 76vh;
-  }
-
-  .movie-details-description {
-    height: 29vh;
-  }
-}
-
-
-@media (min-height: 1050px) {
-  .movies-box {
-    height: 78vh;
-  }
-
-  .movie-details-description {
-    height: 27vh;
-  }
 }

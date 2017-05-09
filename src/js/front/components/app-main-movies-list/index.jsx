@@ -41,7 +41,7 @@ export default class AppMoviesList extends React.Component {
                     {/*Append a loader if loading*/}
                     {
                         this.props.scroll &&
-                        <div className="col l2 m2 img-media-large padding-left-2 padding-right-2">
+                        <div className="col l2 m2 movies-poster padding-left-2 padding-right-2">
                             <PulseLoader
                                 className="center-block margin-top-50-p margin-bottom-50-p width-30-p responsive-img"
                             />

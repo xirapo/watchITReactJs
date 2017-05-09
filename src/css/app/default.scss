@@ -26,7 +26,12 @@
     }
   }
 
-  .img-media-large {
+  //Poster main movies lists
+  .movies-poster {
+    padding: 0.3vh 0.3vw !important;
+  }
+
+  .movies-poster {
     .hover-poster-box {
       padding: 0.3vh 0.3vw !important;
       position: absolute;
@@ -91,11 +96,6 @@
   z-index: 1000;
 }
 
-//Poster main movies lists
-.img-media-large {
-  padding: 0.3vh 0.3vw !important;
-}
-
 //Top search box
 .input-black-box {
   //float: right;
@@ -141,11 +141,37 @@
   }
 
   .small-picture {
-    figure {
-      width: 4rem !important;
-      height: 4rem !important;
+    position: relative;
+    .profile-picture-img {
+      figure {
+        width: 4rem !important;
+        height: 2.9rem !important;
+        position: relative;
+        overflow: hidden;
+        left: 0;
+        top: 0.6rem;
+
+        img {
+          position: relative;
+          top: -1rem;
+          height: auto !important;
+        }
+      }
+    }
+
+    .small-picture-border {
+      figure {
+        width: 4rem !important;
+        height: 4rem !important;
+      }
+
+      position: absolute;
+      top: 0;
+      -webkit-filter: grayscale(100%);
+      filter: grayscale(100%);
     }
   }
+
   .small-user-data {
     strong {
       font-size: 1.2rem;
