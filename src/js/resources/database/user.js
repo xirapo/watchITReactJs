@@ -12,7 +12,8 @@ export default class User {
          * Return user details
          * @param id
          */
-
+        //Log
+        logHelper.info('\nLOADING DATA FROM REMOTE FOR USER ID: ' + id);
         return (new Promise((resolve, err) => {
             //Request to details endpoint
             axios({
@@ -22,7 +23,7 @@ export default class User {
                 headers: {'Authorization': 'Bearer ' + token}
             }).then((res)=> {
                 //Log
-                logHelper.info('\nUSER DATA LOADED FROM REMOTE: ' + JSON.stringify(res.data.data));
+                logHelper.ok('USER DATA LOADED FROM REMOTE FOR: ' + res.data.data.fullname.toUpperCase());
                 resolve(res.data.data);
             }).catch((e)=> {
                 err(e.response)

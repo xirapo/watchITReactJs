@@ -32,7 +32,7 @@ export default class Movies {
                 let _cache = cache.get(_uri_crypt);
                 //Log
                 logHelper.info('\nMOVIES LIST CACHE FOUND');
-                logHelper.info(_cache.length + ' MOVIES LOADED FROM CACHE');
+                logHelper.ok(_cache.length + ' MOVIES LOADED FROM CACHE');
                 return resolve(
                     _cache
                 )
@@ -47,7 +47,7 @@ export default class Movies {
             }).then((res)=> {
                 //Log
                 logHelper.info('\nMOVIES LIST FROM REMOTE');
-                logHelper.info(res.data.data.length + ' MOVIES LOADED FROM REMOTE');
+                logHelper.ok(res.data.data.length + ' MOVIES LOADED FROM REMOTE');
                 //set cache
                 cache.set(
                     _uri_crypt,
@@ -83,10 +83,14 @@ export default class Movies {
 
             //If fond cache
             if (cache.get(_uri_crypt)) {
+                //Cache
+                let _cache = cache.get(_uri_crypt);
                 //Log
-                logHelper.info('\nMOVIE CACHE FOUND FOR: ' + imdb);
+                logHelper.info('\nMOVIE DETAILS CACHE FOUND FOR: ' + imdb);
+                logHelper.ok('1 MOVIES DETAILS FROM CACHE');
+
                 return resolve(
-                    cache.get(_uri_crypt)
+                    _cache
                 )
             }
 
@@ -98,7 +102,8 @@ export default class Movies {
                 headers: {'Authorization': 'Bearer ' + token}
             }).then((res)=> {
                 //Log
-                logHelper.info('\nMOVIE FROM REMOTE: ' + imdb);
+                logHelper.info('\nMOVIE DETAILS FROM REMOTE: ' + imdb);
+                logHelper.ok('1 MOVIES DETAILS FROM REMOTE');
                 //set cache
                 cache.set(
                     _uri_crypt,

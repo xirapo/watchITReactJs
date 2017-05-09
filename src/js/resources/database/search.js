@@ -4,6 +4,8 @@
 //Tools
 import setting from 'backend/settings'
 import requestHelper from 'resources/helpers/requestHelper'
+import logHelper from 'resources/helpers/logHelper'
+
 import axios from 'axios'
 import cache from 'lscache'
 
@@ -26,9 +28,13 @@ export default class Search {
 
             //If fond cache
             if (cache.get(_uri_crypt)) {
-                console.log('\nCACHE FOUND FOR SEARCH: ' + q);
+                //Cache
+                let _cache = cache.get(_uri_crypt);
+                //Log
+                logHelper.info('\nCACHE FOUND FOR SEARCH: ' + q);
+                logHelper.ok(_cache.length + ' SEARCH RESULTS FROM CACHE');
                 return resolve(
-                    cache.get(_uri_crypt)
+                    _cache
                 )
             }
             //Request to search endpoint
@@ -38,7 +44,8 @@ export default class Search {
                 timeout: setting.api.timeout,
                 headers: {'Authorization': 'Bearer ' + token}
             }).then((res)=> {
-                console.log('\nSEARCH FROM REMOTE: ' + q);
+                logHelper.log('\nSEARCH FROM REMOTE: ' + q);
+                logHelper.ok(res.data.data.length + ' SEARCH RESULTS FROM REMOTE');
                 //set cache
                 cache.set(
                     _uri_crypt,

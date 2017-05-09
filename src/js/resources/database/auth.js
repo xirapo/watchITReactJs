@@ -27,7 +27,7 @@ export default class Authentication {
                 if ('data' in res) {
                     //TODO maybe save time of login for expire token
                     //Log
-                    logHelper.info('LOGGED IN USER WITH TOKEN: ' + res.data.data.token);
+                    logHelper.ok('LOGGED IN USER WITH TOKEN: ' + res.data.data.token);
                     //Save in storage
                     storageHelper.add(res.data.data.token, false).to.user_token();
                     storageHelper.add(res.data.data.user).to.user();
