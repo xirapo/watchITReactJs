@@ -20,6 +20,11 @@
 
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
+  //Main images
+  .movies-poster {
+    width: 14.26667% !important;
+  }
+
   //User profile box
   .profile-media {
     width: 19vw !important;
@@ -42,7 +47,6 @@
   .movie-details-poster {
     width: 58vh !important;
   }
-
 
   //Main images
   .movies-poster {

@@ -83430,6 +83430,9 @@ video::-webkit-media-text-track-display, video::cue {
     width: 28vw !important; } }
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
+  .movies-poster {
+    width: 14.26667% !important; }
+
   .profile-media {
     width: 19vw !important; } }
 @media (min-width: 1699px) {
