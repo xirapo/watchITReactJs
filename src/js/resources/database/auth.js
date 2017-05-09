@@ -1,10 +1,11 @@
 /**
  * Created by gmena on 04-19-17.
  */
-import setting from '../../backend/settings'
+import setting from 'backend/settings'
 import axios from 'axios'
 //Helpers
 import storageHelper from 'resources/helpers/storageHelper';
+import logHelper from 'resources/helpers/logHelper'
 
 export default class Authentication {
 
@@ -25,6 +26,9 @@ export default class Authentication {
             axios.post(setting.api.auth, _request_params).then((res)=> {
                 if ('data' in res) {
                     //TODO maybe save time of login for expire token
+                    //Log
+                    logHelper.info('LOGGED IN USER WITH TOKEN: ' + res.data.data.token);
+                    //Save in storage
                     storageHelper.add(res.data.data.token, false).to.user_token();
                     storageHelper.add(res.data.data.user).to.user();
                     resolve(res.data)
@@ -69,7 +73,7 @@ export default class Authentication {
          * @return boolean
          */
         return !!storageHelper.get(
-           false //No parse
+            false //No parse
         ).from.user_token();
     }
 

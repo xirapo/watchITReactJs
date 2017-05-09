@@ -2,8 +2,8 @@
  * Created by gmena on 04-19-17.
  */
 //Tools
-import setting from '../../backend/settings'
-import requestHelper from '../../resources/helpers/requestHelper'
+import setting from 'backend/settings'
+import requestHelper from 'resources/helpers/requestHelper'
 import axios from 'axios'
 import cache from 'lscache'
 
@@ -26,7 +26,7 @@ export default class Search {
 
             //If fond cache
             if (cache.get(_uri_crypt)) {
-                console.log('cache found ' + _uri);
+                console.log('\nCACHE FOUND FOR SEARCH: ' + q);
                 return resolve(
                     cache.get(_uri_crypt)
                 )
@@ -38,7 +38,7 @@ export default class Search {
                 timeout: setting.api.timeout,
                 headers: {'Authorization': 'Bearer ' + token}
             }).then((res)=> {
-                console.log('data from http response ' + _uri);
+                console.log('\nSEARCH FROM REMOTE: ' + q);
                 //set cache
                 cache.set(
                     _uri_crypt,

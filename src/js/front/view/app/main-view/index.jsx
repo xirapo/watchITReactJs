@@ -7,8 +7,8 @@ import AppMoviesList from 'front/components/app-main-movies-list/index.jsx'
 import AppMainTopInput from 'front/components/app-main-movies-top-inputs/index.jsx'
 import AppMainSearchResult from 'front/components/app-main-search-result/index.jsx'
 import AppTinyProfile from 'front/components/app-tiny-box-profile/index.jsx'
-
-
+//Helper
+import logHelper from 'resources/helpers/logHelper'
 //Require for auth
 //Database (Api Handler)
 import Auth from 'resources/database/auth'
@@ -41,7 +41,8 @@ export default class Main extends React.Component {
             scrollUpdate: false
         };
 
-        this.limit = 100;
+        //Max movies for initial request
+        this.limit = 50;
         this.sort = {
             sort_by: 'date_uploaded',
             order: 'desc'
@@ -111,7 +112,17 @@ export default class Main extends React.Component {
     onScrollUpdate(e) {
         //On Scroll down
         if (e.top == 1) {
-            this.limit = (++this.offset * 50);
+            //Max to request by step
+            let _step = 50;
+            //Log
+            logHelper.info('\nSCROLLING READY TO UPDATE');
+            logHelper.info('LOADING NEW SET OF MOVIES MAX: ' + _step + ' MOVIES');
+
+            //Load new set of movies
+            this.limit = (++this.offset * _step);
+            logHelper.info('LOADING: ' + this.limit + ' MOVIES');
+
+            //Update scrolling state
             this.setState({
                 scrollUpdate: true
             });

@@ -2,8 +2,10 @@
  * Created by gmena on 04-19-17.
  */
 //Tools
-import setting from '../../backend/settings'
-import requestHelper from '../../resources/helpers/requestHelper'
+import setting from 'backend/settings'
+import requestHelper from 'resources/helpers/requestHelper'
+import logHelper from 'resources/helpers/logHelper'
+
 import axios from 'axios'
 import cache from 'lscache'
 
@@ -26,12 +28,15 @@ export default class Movies {
 
             //If fond cache
             if (cache.get(_uri_crypt)) {
-                console.log('cache found ' + _uri);
+                //Cache
+                let _cache = cache.get(_uri_crypt);
+                //Log
+                logHelper.info('\nMOVIES LIST CACHE FOUND');
+                logHelper.info(_cache.length + ' MOVIES LOADED FROM CACHE');
                 return resolve(
-                    cache.get(_uri_crypt)
+                    _cache
                 )
             }
-
 
             //Request to list endpoint
             axios({
@@ -40,7 +45,9 @@ export default class Movies {
                 timeout: setting.api.timeout,
                 headers: {'Authorization': 'Bearer ' + token}
             }).then((res)=> {
-                console.log('data from http response ' + _uri);
+                //Log
+                logHelper.info('\nMOVIES LIST FROM REMOTE');
+                logHelper.info(res.data.data.length + ' MOVIES LOADED FROM REMOTE');
                 //set cache
                 cache.set(
                     _uri_crypt,
@@ -76,7 +83,8 @@ export default class Movies {
 
             //If fond cache
             if (cache.get(_uri_crypt)) {
-                console.log('cache found ' + _uri);
+                //Log
+                logHelper.info('\nMOVIE CACHE FOUND FOR: ' + imdb);
                 return resolve(
                     cache.get(_uri_crypt)
                 )
@@ -89,7 +97,8 @@ export default class Movies {
                 timeout: setting.api.timeout,
                 headers: {'Authorization': 'Bearer ' + token}
             }).then((res)=> {
-                console.log('data from http response ' + _uri);
+                //Log
+                logHelper.info('\nMOVIE FROM REMOTE: ' + imdb);
                 //set cache
                 cache.set(
                     _uri_crypt,

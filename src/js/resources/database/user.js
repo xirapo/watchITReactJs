@@ -1,9 +1,9 @@
 /**
  * Created by gmena on 04-19-17.
  */
-import setting from '../../backend/settings'
+import setting from 'backend/settings'
+import logHelper from 'resources/helpers/logHelper'
 import axios from 'axios'
-//var is_js = require('is_js');
 
 export default class User {
 
@@ -21,6 +21,8 @@ export default class User {
                 timeout: setting.api.timeout,
                 headers: {'Authorization': 'Bearer ' + token}
             }).then((res)=> {
+                //Log
+                logHelper.info('\nUSER DATA LOADED FROM REMOTE: ' + JSON.stringify(res.data.data));
                 resolve(res.data.data);
             }).catch((e)=> {
                 err(e.response)
