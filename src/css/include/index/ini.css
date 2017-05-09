@@ -83434,16 +83434,19 @@ video::-webkit-media-text-track-display, video::cue {
     width: 14.26667% !important; }
 
   .profile-media {
-    width: 20vw !important; } }
+    width: 22vw !important; } }
 @media (min-width: 1699px) {
   .movies-poster {
     width: 9.966667% !important; }
 
   .profile-media {
-    width: 17vw !important; } }
+    width: 18vw !important; } }
 @media (min-width: 1900px) {
   .movie-details-poster {
     width: 58vh !important; }
+
+  .profile-media {
+    width: 17vw !important; }
 
   .movies-poster {
     width: 7.66667% !important; } }
@@ -83486,6 +83489,12 @@ video::-webkit-media-text-track-display, video::cue {
 @media (min-height: 1018px) {
   .movies-box {
     height: 76vh; }
+
+  .movie-details-description {
+    height: 29vh; } }
+@media (min-height: 1027px) {
+  .movies-box {
+    height: 73vh; }
 
   .movie-details-description {
     height: 29vh; } }

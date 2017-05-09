@@ -27,7 +27,19 @@
 
   //User profile box
   .profile-media {
-    width: 20vw !important;
+    width: 21vw !important;
+  }
+}
+
+@media (min-width: 1300px) {
+  //Main images
+  .movies-poster {
+    width: 32.33333% !important;
+  }
+
+  //User profile box
+  .profile-media {
+    width: 23vw !important;
   }
 }
 
@@ -39,13 +51,19 @@
 
   //User profile box
   .profile-media {
-    width: 17vw !important;
+    width: 18vw !important;
   }
+
 }
 
 @media (min-width: 1900px) {
   .movie-details-poster {
     width: 58vh !important;
+  }
+
+  //User profile box
+  .profile-media {
+    width: 17vw !important;
   }
 
   //Main images
@@ -121,6 +139,16 @@
 @media (min-height: 1018px) {
   .movies-box {
     height: 76vh;
+  }
+
+  .movie-details-description {
+    height: 29vh;
+  }
+}
+
+@media (min-height: 1027px) {
+  .movies-box {
+    height: 73vh;
   }
 
   .movie-details-description {
