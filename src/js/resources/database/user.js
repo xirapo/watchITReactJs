@@ -12,9 +12,9 @@ export default class User {
          * Return user details
          * @param id
          */
-        //Log
-        logHelper.info('\nLOADING DATA FROM REMOTE FOR USER ID: ' + id);
         return (new Promise((resolve, err) => {
+            //Log
+            logHelper.info('\nLOADING DATA FROM REMOTE FOR USER ID: ' + id);
             //Request to details endpoint
             axios({
                 url: setting.api.user + '?id=' + id,

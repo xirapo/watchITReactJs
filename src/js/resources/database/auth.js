@@ -17,6 +17,8 @@ export default class Authentication {
          */
 
         return (new Promise((resolve, err) => {
+            //Log
+            logHelper.info('\nREQUESTING LOGIN WITH CREDENTIALS: ' + email + '-' + password);
             //Set form data
             let _request_params = new FormData();
             _request_params.append('email', email);

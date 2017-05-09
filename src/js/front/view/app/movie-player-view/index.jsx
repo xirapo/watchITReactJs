@@ -11,6 +11,7 @@ import Auth from 'resources/database/auth'
 import Movie from 'resources/database/movies'
 //Helpers
 import cryptHelper from 'resources/helpers/cryptHelper'
+import logHelper from 'resources/helpers/logHelper'
 
 
 //Login view class
@@ -108,6 +109,8 @@ export default class MoviePlayer extends React.Component {
     }
 
     onClose() {
+        //Log
+        logHelper.warn('\nSTREAMING STOPPED');
         //Stop Torrent
         Streamer.stopTorrent();
         //Stopped

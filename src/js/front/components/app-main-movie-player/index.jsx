@@ -1,5 +1,8 @@
+//Basic
 import React from 'react'
 import PropTypes from 'prop-types'
+//Helpers
+import logHelper from 'resources/helpers/logHelper'
 
 
 export default class AppMoviesPlayer extends React.Component {
@@ -42,6 +45,9 @@ export default class AppMoviesPlayer extends React.Component {
 
                 //When player load
                 this.player.one('loadedmetadata', ()=> {
+                    //Log
+                    logHelper.info('PLAYER METADATA LOADED');
+
                     //If has subs
                     if (this.props.subs) {
                         // for (let sub in this.props.subs) {
@@ -50,7 +56,9 @@ export default class AppMoviesPlayer extends React.Component {
                             Sub.urlSrt2VttFile(
                                 this.props.subs[this.props.sub_selected].link
                             ).then((vtt)=> {
-                                console.log('Adding remote ' + vtt);
+                                //Log
+                                logHelper.info('ADDING ' + this.props.sub_selected.toUpperCase() + ' SUBTITLE: ' + vtt);
+                                //Adding tracks
                                 let _elem = document.createElement('track');
                                 _elem.src = vtt;
                                 _elem.kind = "captions";
@@ -60,8 +68,6 @@ export default class AppMoviesPlayer extends React.Component {
                                 _elem.default = true;
                                 this.videoNode.appendChild(_elem);
                             })
-                        } else {
-                            console.log('no spanish sub');
                         }
                     }
                 });
@@ -69,14 +75,14 @@ export default class AppMoviesPlayer extends React.Component {
 
                 //When get ready to play;;
                 this.player.on('canplay', ()=> {
+                    //Log
+                    logHelper.ok('PLAYING MOVIE: ' + this.state.url);
                     //Set controls true
                     this.player.controls(true);
-
                     //Set canPlay
                     this.setState({
                         canPlay: true
                     });
-
                     //Handle ready
                     if (this.props.onCanPlay) {
                         this.props.onCanPlay(
@@ -89,6 +95,8 @@ export default class AppMoviesPlayer extends React.Component {
             }
         );
 
+        //Log
+        logHelper.info('STARTING STREAMING FOR: ' + this.props.torrent);
         //Start streamer
         Streamer.playTorrent(
             this.props.torrent,
@@ -108,6 +116,8 @@ export default class AppMoviesPlayer extends React.Component {
     }
 
     onReady(url, flix) {
+        //Log
+        logHelper.info('READY TO PLAY MOVIE: ' + url);
         //Set url
         this.setState({
             url: url,
@@ -133,6 +143,8 @@ export default class AppMoviesPlayer extends React.Component {
     }
 
     onError(e) {
+        //Log
+        logHelper.error('ERROR WHILE STREAMING: ' + e);
         //Handle error
         if (this.props.onError) {
             this.props.onError(e);
