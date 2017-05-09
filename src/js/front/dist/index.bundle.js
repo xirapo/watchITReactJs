@@ -15780,8 +15780,14 @@ var Main = function (_React$Component) {
     }, {
         key: 'onScrollUpdate',
         value: function onScrollUpdate(e) {
-            //On Scroll down
-            if (e.top == 1) {
+
+            //If not already loading and top
+            if (e.top > 0.9 && !this.state.scrollUpdate) {
+                //Update scrolling state
+                this.setState({
+                    scrollUpdate: true
+                });
+
                 //Log
                 _logHelper2.default.info('\nSCROLLING READY TO UPDATE');
                 _logHelper2.default.info('LOADING NEW SET OF MOVIES MAX: ' + _settings2.default.api.step + ' MOVIES');
@@ -15789,11 +15795,6 @@ var Main = function (_React$Component) {
                 //Load new set of movies
                 this.limit = ++this.offset * _settings2.default.api.step;
                 _logHelper2.default.info('LOADING: ' + this.limit + ' MOVIES');
-
-                //Update scrolling state
-                this.setState({
-                    scrollUpdate: true
-                });
 
                 //Request new movies
                 this.filterMovies(this.sort, this.auth.token);
