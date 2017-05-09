@@ -9,6 +9,7 @@ import AppMainSearchResult from 'front/components/app-main-search-result/index.j
 import AppTinyProfile from 'front/components/app-tiny-box-profile/index.jsx'
 //Helper
 import logHelper from 'resources/helpers/logHelper'
+import setting from 'backend/settings'
 //Require for auth
 //Database (Api Handler)
 import Auth from 'resources/database/auth'
@@ -42,7 +43,7 @@ export default class Main extends React.Component {
         };
 
         //Max movies for initial request
-        this.limit = 50;
+        this.limit = setting.api.step;
         this.sort = {
             sort_by: 'date_uploaded',
             order: 'desc'
@@ -112,14 +113,12 @@ export default class Main extends React.Component {
     onScrollUpdate(e) {
         //On Scroll down
         if (e.top == 1) {
-            //Max to request by step
-            let _step = 50;
             //Log
             logHelper.info('\nSCROLLING READY TO UPDATE');
-            logHelper.info('LOADING NEW SET OF MOVIES MAX: ' + _step + ' MOVIES');
+            logHelper.info('LOADING NEW SET OF MOVIES MAX: ' + setting.api.step + ' MOVIES');
 
             //Load new set of movies
-            this.limit = (++this.offset * _step);
+            this.limit = (++this.offset * setting.api.step);
             logHelper.info('LOADING: ' + this.limit + ' MOVIES');
 
             //Update scrolling state
@@ -200,7 +199,7 @@ export default class Main extends React.Component {
         }
 
         //Reset limit
-        this.limit = 100;
+        this.limit = setting.api.step;
         this.offset = 1;
 
         //Set new state

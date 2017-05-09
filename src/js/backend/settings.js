@@ -32,6 +32,7 @@ Settings.ws = {
 Settings.api = {
     timeout: 10000, // Request timeout milliseconds,
     cache_time: 60, // cache expire minutes
+    step: 50,//Step by scroll load
     root: Settings.remote.api_host + '/api/v1/',
     auth: Settings.remote.api_host + '/api/v1/auth/',
     user: Settings.remote.api_host + '/api/v1/user/',
