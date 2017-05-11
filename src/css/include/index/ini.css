@@ -83425,6 +83425,9 @@ video::-webkit-media-text-track-display, video::cue {
 @media (min-width: 768px) {
   .profile-media {
     width: 33vw !important; } }
+@media (min-width: 900px) {
+  .profile-media {
+    width: 30vw !important; } }
 @media (min-width: 992px) {
   .profile-media {
     width: 28vw !important; } }

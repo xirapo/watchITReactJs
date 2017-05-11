@@ -10,6 +10,14 @@
   }
 }
 
+@media (min-width: 900px) {
+  //User profile box
+  .profile-media {
+    width: 30vw !important;
+  }
+}
+
+
 ///* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {
   //User profile box
