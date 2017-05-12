@@ -83424,7 +83424,7 @@ video::-webkit-media-text-track-display, video::cue {
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   .profile-media {
-    width: 33vw !important; } }
+    width: 34vw !important; } }
 @media (min-width: 900px) {
   .profile-media {
     width: 30vw !important; } }
