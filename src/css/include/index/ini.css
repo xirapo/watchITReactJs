@@ -83437,14 +83437,27 @@ video::-webkit-media-text-track-display, video::cue {
     width: 14.26667% !important; }
 
   .profile-media {
-    width: 21vw !important; } }
+    width: 26vw !important; } }
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1250px) {
+  .movies-poster {
+    width: 14.26667% !important; }
+
+  .profile-media {
+    width: 25vw !important; } }
 @media (min-width: 1300px) {
   .movie-details-poster {
     width: 32.33333% !important; }
 
   .profile-media {
     width: 23vw !important; } }
-@media (min-width: 1699px) {
+@media (min-width: 1500px) {
+  .movie-details-poster {
+    width: 32.33333% !important; }
+
+  .profile-media {
+    width: 20vw !important; } }
+@media (min-width: 1600px) {
   .movies-poster {
     width: 9.966667% !important; }
 
