@@ -4256,7 +4256,8 @@ var CustomScrollbars = function (_React$Component) {
                 props = _objectWithoutProperties(_ref, ['style']);
 
             var viewStyle = {
-                marginRight: '-16px'
+                marginRight: '-16px',
+                marginBottom: '-16px'
             };
             return _react2.default.createElement('div', _extends({
                 style: _extends({}, style, viewStyle)
@@ -4268,11 +4269,13 @@ var CustomScrollbars = function (_React$Component) {
             var style = _ref2.style,
                 props = _objectWithoutProperties(_ref2, ['style']);
 
+            //Modify scroll bar
             var thumbStyle = {
-                marginLeft: '5px',
+                // marginLeft: '5px',
                 backgroundColor: 'rgba(167, 201, 235,0.6)',
-                width: '35px'
+                width: '5px'
             };
+
             return _react2.default.createElement('div', _extends({
                 style: _extends({}, style, thumbStyle)
             }, props));
@@ -4284,9 +4287,9 @@ var CustomScrollbars = function (_React$Component) {
                 props = _objectWithoutProperties(_ref3, ['style']);
 
             var thumbStyle = {
-                marginLeft: '5px',
+                //marginLeft: '5px',
                 backgroundColor: 'rgba(167, 201, 235,0.6)',
-                width: '35px'
+                width: '5px'
             };
 
             //Show if needed

@@ -6,7 +6,8 @@ export default class CustomScrollbars extends React.Component {
 
     renderView({style, ...props}) {
         const viewStyle = {
-            marginRight: '-16px'
+            marginRight: '-16px',
+            marginBottom: '-16px'
         };
         return (
             <div
@@ -18,11 +19,13 @@ export default class CustomScrollbars extends React.Component {
 
 
     renderThumbVertical({style, ...props}) {
+        //Modify scroll bar
         const thumbStyle = {
-            marginLeft: '5px',
+            // marginLeft: '5px',
             backgroundColor: `rgba(167, 201, 235,0.6)`,
-            width: '35px'
+            width: '5px'
         };
+
         return (
             <div
                 style={{ ...style, ...thumbStyle }}
@@ -33,9 +36,9 @@ export default class CustomScrollbars extends React.Component {
 
     renderThumbHorizontal({style, ...props}) {
         let thumbStyle = {
-            marginLeft: '5px',
+            //marginLeft: '5px',
             backgroundColor: `rgba(167, 201, 235,0.6)`,
-            width: '35px'
+            width: '5px'
         };
 
         //Show if needed
