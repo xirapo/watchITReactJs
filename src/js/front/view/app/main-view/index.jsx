@@ -111,7 +111,7 @@ export default class Main extends React.Component {
     }
 
     onScrollUpdate(e) {
-        
+
         //If not already loading and top
         if (e.top > 0.9 && !this.state.scrollUpdate) {
             //Update scrolling state
@@ -267,6 +267,19 @@ export default class Main extends React.Component {
         }, 1000)
     }
 
+    logOut(e) {
+        e.preventDefault();
+        //Clean logged data
+        storageHelper.remove().user_token();
+        storageHelper.remove().user();
+
+        //Redirect
+        setTimeout(()=> {
+            location.href = '#/'
+        }, 1000);
+
+    }
+
 
     render() {
         return (
@@ -277,7 +290,10 @@ export default class Main extends React.Component {
 
                         <header className="row no-margin vertical-padding transparent z-depth-1">
                             <div className="col l4 m4 profile-media clearfix">
-                                <AppTinyProfile user={this.state.user}/>
+                                <AppTinyProfile
+                                    user={this.state.user}
+                                    onLogOut={(e)=>this.logOut(e)}
+                                />
                             </div>
 
                             <div className="col l6 m6 relative input-black-box">

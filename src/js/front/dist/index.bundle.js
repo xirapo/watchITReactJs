@@ -15926,6 +15926,19 @@ var Main = function (_React$Component) {
             }, 1000);
         }
     }, {
+        key: 'logOut',
+        value: function logOut(e) {
+            e.preventDefault();
+            //Clean logged data
+            _storageHelper2.default.remove().user_token();
+            _storageHelper2.default.remove().user();
+
+            //Redirect
+            setTimeout(function () {
+                location.href = '#/';
+            }, 1000);
+        }
+    }, {
         key: 'render',
         value: function render() {
             var _this5 = this;
@@ -15945,7 +15958,12 @@ var Main = function (_React$Component) {
                             _react2.default.createElement(
                                 'div',
                                 { className: 'col l4 m4 profile-media clearfix' },
-                                _react2.default.createElement(_index10.default, { user: this.state.user })
+                                _react2.default.createElement(_index10.default, {
+                                    user: this.state.user,
+                                    onLogOut: function onLogOut(e) {
+                                        return _this5.logOut(e);
+                                    }
+                                })
                             ),
                             _react2.default.createElement(
                                 'div',
@@ -19420,8 +19438,17 @@ var AppTinyProfile = function (_React$Component) {
     }
 
     _createClass(AppTinyProfile, [{
+        key: 'onLogOut',
+        value: function onLogOut(e) {
+            if (this.props.onLogOut) {
+                this.props.onLogOut(e);
+            }
+        }
+    }, {
         key: 'render',
         value: function render() {
+            var _this2 = this;
+
             return this.props.user && _react2.default.createElement(
                 'div',
                 { className: 'clearfix' },
@@ -19461,11 +19488,13 @@ var AppTinyProfile = function (_React$Component) {
                     ),
                     _react2.default.createElement(
                         'div',
-                        { className: 'col l12 m12 ' },
+                        { className: 'col l12 m12' },
                         _react2.default.createElement(
                             'a',
-                            { href: '#logout', className: 'font-light-gray bold white-text' },
-                            'Log out'
+                            { href: '', onClick: function onClick(e) {
+                                    return _this2.onLogOut(e);
+                                }, className: 'grey-text bold' },
+                            'Logout'
                         )
                     )
                 )

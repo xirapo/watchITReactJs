@@ -7,6 +7,12 @@ export default class AppTinyProfile extends React.Component {
         super(props);
     }
 
+    onLogOut(e) {
+        if (this.props.onLogOut) {
+            this.props.onLogOut(e)
+        }
+    }
+
     render() {
         return (
             (
@@ -27,9 +33,10 @@ export default class AppTinyProfile extends React.Component {
                         <div className="col l12 m12 truncate white-text">
                             <strong className="bold no-margin">{this.props.user.fullname}</strong>
                         </div>
-                        <div className="col l12 m12 ">
-                            <a href="#logout" className="font-light-gray bold white-text">Log
-                                out</a>
+                        <div className="col l12 m12">
+                            <a href="" onClick={(e)=> this.onLogOut(e)} className="grey-text bold">
+                                Logout
+                            </a>
                         </div>
                     </div>
 
