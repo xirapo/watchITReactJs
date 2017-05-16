@@ -66,11 +66,12 @@
             var charset = charsetDetect.detect(dataBuff);
             var detectedEncoding = charset.encoding;
 
-            //The srt to ISO-8859-1
-            var _srt_buffer = iconv.encode(
-                iconv.decode(dataBuff, detectedEncoding),
-                targetEncodingCharset
-            );
+            //The srt to latin1 if not windows-* encoding
+            var _srt_buffer = !detectedEncoding.startsWith('win') && iconv.encode(
+                    iconv.decode(dataBuff, detectedEncoding),
+                    targetEncodingCharset
+                ) || dataBuff;
+
 
             //Converting SRT to VTT
             srt2vtt(_srt_buffer, function (err, vttData) {
@@ -109,7 +110,8 @@
 
 
                         var _file = fs.createWriteStream(
-                            _result_file_dir
+                            _result_file_dir, {defaultEncoding: 'ISO-8859-1'}
+                            //_result_file_dir
                         );
 
                         _file.on('open', function () {
