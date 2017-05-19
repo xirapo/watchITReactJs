@@ -19777,7 +19777,7 @@ function requireAuth(Component, navigate) {
         _react2.default.createElement(_reactRouter.Route, { name: 'movie', exact: true, path: '/app/movie/:imdb', render: function render(n) {
                 return requireAuth(_index8.default, n);
             } }),
-        _react2.default.createElement(_reactRouter.Route, { name: 'movie', path: '/app/movie/play/:torrent/:sub', render: function render(n) {
+        _react2.default.createElement(_reactRouter.Route, { name: 'moviePlayer', path: '/app/movie/play/:torrent/:sub', render: function render(n) {
                 return requireAuth(_index10.default, n);
             } })
     )
