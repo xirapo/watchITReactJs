@@ -14,7 +14,7 @@ import cryptHelper from 'resources/helpers/cryptHelper'
 import logHelper from 'resources/helpers/logHelper'
 
 
-//Login view class
+//Movie player view class
 export default class MoviePlayer extends React.Component {
     constructor(props) {
         super(props);

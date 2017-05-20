@@ -16083,7 +16083,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 //Helpers
 
 
-//Login view class
+//Movie player view class
 var MoviePlayer = function (_React$Component) {
     _inherits(MoviePlayer, _React$Component);
 
@@ -16494,17 +16494,10 @@ var LoginForm = function (_React$Component) {
 
             //Try authenticate
             this.auth.authenticate(fields.email, fields.password).then(function (r) {
-                //Set state 
-                _this2.setState({
-                    error: false,
-                    submitted: false,
-                    success: true
-                });
-
                 //Redirect
                 setTimeout(function () {
                     //Redirect to main app
-                    _this2.context.router.history.push(_settings2.default.appView);
+                    location.href = '#' + _settings2.default.appView;
                 }, 1000);
             }).catch(function (e) {
                 if ('data' in e) {
@@ -16538,17 +16531,9 @@ var LoginForm = function (_React$Component) {
                             , error: this.state.error,
                             submitted: this.state.submitted
                         })
-                    ),
-                    this.state.success && _react2.default.createElement(_index2.default, null)
+                    )
                 )
             );
-        }
-    }], [{
-        key: 'contextTypes',
-        get: function get() {
-            return {
-                router: _propTypes2.default.object
-            };
         }
     }]);
 

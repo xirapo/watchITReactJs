@@ -51,12 +51,6 @@ export default class LoginForm extends React.Component {
 
     }
 
-    static get contextTypes() {
-        return {
-            router: PropTypes.object
-        }
-    }
-
     handleRequest(fields) {
 
         //Clean global cache
@@ -73,19 +67,10 @@ export default class LoginForm extends React.Component {
             fields.email,
             fields.password
         ).then((r)=> {
-            //Set state 
-            this.setState({
-                error: false,
-                submitted: false,
-                success: true
-            });
-
             //Redirect
             setTimeout(()=> {
                 //Redirect to main app
-                this.context.router.history.push(
-                    Setting.appView
-                )
+                location.href = '#' + Setting.appView;
             }, 1000)
 
         }).catch((e)=> {
@@ -103,7 +88,6 @@ export default class LoginForm extends React.Component {
         return (
             <div className="absolute valign-wrapper full-width full-height main-login-box">
                 <section className="valign center-block col l4 m6">
-                    
                     {/* Form Box */}
                     <section className="row input-black-box">
                         <FormBox
@@ -114,9 +98,6 @@ export default class LoginForm extends React.Component {
                             submitted={this.state.submitted}
                         />
                     </section>
-
-                    {/*Main Loader*/}
-                    {(this.state.success) && <MainLoader />}
                 </section>
             </div>
         )
