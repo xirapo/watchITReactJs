@@ -12,7 +12,7 @@ Settings.appView = '/app';
 //Remote host settings
 Settings.remote = {
     ws_host: 'ws://localhost:9600',
-    //api_host: 'http://127.0.0.1:8000'
+    //api_host: 'http://127.0.0.1:8000/api'
     api_host: 'http://api.witth.me'
 };
 
@@ -33,11 +33,11 @@ Settings.api = {
     timeout: 10000, // Request timeout milliseconds,
     cache_time: 60, // cache expire minutes
     step: 50,//Step by scroll load
-    root: Settings.remote.api_host + '/api/v1/',
-    auth: Settings.remote.api_host + '/api/v1/auth/',
-    user: Settings.remote.api_host + '/api/v1/user/',
-    movies: Settings.remote.api_host + '/api/v1/movies/',
-    search: Settings.remote.api_host + '/api/v1/search/'
+    root: Settings.remote.api_host + '/v1/',
+    auth: Settings.remote.api_host + '/v1/auth/',
+    user: Settings.remote.api_host + '/v1/user/',
+    movies: Settings.remote.api_host + '/v1/movies/',
+    search: Settings.remote.api_host + '/v1/search/'
 };
 
 //Subs conf
