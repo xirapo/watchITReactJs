@@ -4,9 +4,7 @@
 
 (function (window) {
     var fs = require('fs');
-    //var srt2vtt = require('srt-to-vtt');
     var srt2vtt = require('srt2vtt');
-    //var srt2vtt = require('srttovtt');
     var iconv = require('iconv-lite');
     var request = require('http');
     var path = require('path');
