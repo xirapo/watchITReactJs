@@ -18515,7 +18515,10 @@ var AppMoviesList = function (_React$Component) {
                     thumbMinSize: 30,
                     universal: true,
                     onScrollFrame: function onScrollFrame(e) {
-                        return _this2.props.onScroll(e);
+                        return _this2.props.onScroll && _this2.props.onScroll(e);
+                    },
+                    onUpdate: function onUpdate(e) {
+                        return _this2.props.onUpdateScroll && _this2.props.onUpdateScroll(e);
                     }
                 },
                 _react2.default.createElement(
@@ -18537,8 +18540,7 @@ var AppMoviesList = function (_React$Component) {
         get: function get() {
             return {
                 loading: _propTypes2.default.bool.isRequired,
-                scroll: _propTypes2.default.bool.isRequired,
-                onScroll: _propTypes2.default.func.isRequired
+                scroll: _propTypes2.default.bool.isRequired
             };
         }
     }]);

@@ -16,10 +16,11 @@ export default class AppMoviesList extends React.Component {
     static get propTypes() {
         return {
             loading: PropTypes.bool.isRequired,
-            scroll: PropTypes.bool.isRequired,
-            onScroll: PropTypes.func.isRequired
+            scroll: PropTypes.bool.isRequired
         }
     }
+
+
 
 
     render() {
@@ -32,7 +33,8 @@ export default class AppMoviesList extends React.Component {
                 autoHideDuration={200}
                 thumbMinSize={30}
                 universal={true}
-                onScrollFrame={(e)=>this.props.onScroll(e)}
+                onScrollFrame={(e)=>this.props.onScroll && this.props.onScroll(e)}
+                onUpdate={(e)=>this.props.onUpdateScroll && this.props.onUpdateScroll(e)}
             >
                 <div className="col l12 m12">
                     {/*The movie list*/}
