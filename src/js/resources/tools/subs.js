@@ -11,7 +11,6 @@
     var readline = require('readline');
     var charsetDetect = require('jschardet');
     var unzip = require('unzip');
-    //var setting = require(path.resolve() + '/js/backend/settings');
 
     function Sub() {
     }
