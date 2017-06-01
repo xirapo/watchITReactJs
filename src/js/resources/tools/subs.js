@@ -81,7 +81,7 @@
     });
 
     /**
-     * Parsing srt to vtt sub
+     * Unzip sub file
      * @param {String} file_dir
      * @param {String} desination
      */
