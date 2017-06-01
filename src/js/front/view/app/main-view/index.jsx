@@ -200,9 +200,10 @@ export default class Main extends React.Component {
 
         //Set new state
         //Reset limit
-        logHelper.warn('\nRESET OFFSET AND ENABLED INFINTE SCROLL');
+        //logHelper.warn('\nRESET OFFSET AND ENABLED INFINTE SCROLL');
         this.offset = setting.api.offset;
         this.setState({
+            movies: [],
             loading: true,
             scrollUpdate: false
         });

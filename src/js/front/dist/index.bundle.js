@@ -15868,9 +15868,10 @@ var Main = function (_React$Component) {
 
             //Set new state
             //Reset limit
-            _logHelper2.default.warn('\nRESET OFFSET AND ENABLED INFINTE SCROLL');
+            //logHelper.warn('\nRESET OFFSET AND ENABLED INFINTE SCROLL');
             this.offset = _settings2.default.api.offset;
             this.setState({
+                movies: [],
                 loading: true,
                 scrollUpdate: false
             });
