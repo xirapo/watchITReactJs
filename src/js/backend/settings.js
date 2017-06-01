@@ -33,6 +33,7 @@ Settings.api = {
     timeout: 10000, // Request timeout milliseconds,
     cache_time: 60, // cache expire minutes
     step: 50,//Step by scroll load
+    offset: 1, //Default offset
     root: Settings.remote.api_host + '/v1/',
     auth: Settings.remote.api_host + '/v1/auth/',
     user: Settings.remote.api_host + '/v1/user/',

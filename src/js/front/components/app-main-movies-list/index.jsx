@@ -19,10 +19,7 @@ export default class AppMoviesList extends React.Component {
             scroll: PropTypes.bool.isRequired
         }
     }
-
-
-
-
+    
     render() {
         return (
             (!this.props.loading

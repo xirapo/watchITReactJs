@@ -30,25 +30,24 @@ export default class Main extends React.Component {
         this.movie = new Movie();
         this.search = new Search();
 
-        //Default offset
-        this.offset = 1;
-        this.search_timeout = null;
-
         //Default state
         this.state = {
             loading: true,
             searching: false,
             searchResult: false,
-            scrollUpdate: false
+            scrollUpdate: false,
+            movies: []
         };
 
+        //Default offset
         //Max movies for initial request
+        this.offset = setting.api.offset;
         this.limit = setting.api.step;
+        this.search_timeout = null;
         this.sort = {
             sort_by: 'date_uploaded',
             order: 'desc'
         };
-
 
     }
 
@@ -95,16 +94,17 @@ export default class Main extends React.Component {
 
         //Renew limit
         filter['limit'] = this.limit;
+        filter['offset'] = this.offset;
 
         //Get movies
         this.movie.filter(
             filter, token
         ).then((res)=> {
+            //Concat movies
             this.setState({
-                movies: res,
+                movies: this.state.movies.concat(res),
                 loading: false,
                 scrollUpdate: false
-
             })
         }).catch((e)=> {
         });
@@ -124,8 +124,8 @@ export default class Main extends React.Component {
             logHelper.info('LOADING NEW SET OF MOVIES MAX: ' + setting.api.step + ' MOVIES');
 
             //Load new set of movies
-            this.limit = (++this.offset * setting.api.step);
-            logHelper.info('LOADING: ' + this.limit + ' MOVIES');
+            ++this.offset;
+            logHelper.info('LOADING: ' + (this.offset * setting.api.step) + ' MOVIES');
 
             //Request new movies
             this.filterMovies(
@@ -176,7 +176,6 @@ export default class Main extends React.Component {
         }
     }
 
-
     onChange(sort, by) {
         let _sort = {};// //If by?
 
@@ -199,11 +198,10 @@ export default class Main extends React.Component {
             }
         }
 
-        //Reset limit
-        this.limit = setting.api.step;
-        this.offset = 1;
-
         //Set new state
+        //Reset limit
+        logHelper.warn('\nRESET OFFSET AND ENABLED INFINTE SCROLL');
+        this.offset = setting.api.offset;
         this.setState({
             loading: true,
             scrollUpdate: false

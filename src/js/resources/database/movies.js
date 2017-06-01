@@ -17,11 +17,12 @@ export default class Movies {
          * @param filter
          * @param token
          */
+
         return (new Promise((resolve, err) => {
             //the uri
             //to base64 uri
             let _uri = setting.api.movies + 'list/' + requestHelper.jsonToQString(filters);
-            let _uri_crypt = requestHelper.generateCacheToken(_uri).slice(0, -2);
+            let _uri_crypt = requestHelper.generateCacheToken(_uri);
 
             //Remove old cache
             cache.flushExpired();

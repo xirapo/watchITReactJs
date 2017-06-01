@@ -2209,6 +2209,7 @@ Settings.api = {
     timeout: 10000, // Request timeout milliseconds,
     cache_time: 60, // cache expire minutes
     step: 50, //Step by scroll load
+    offset: 1, //Default offset
     root: Settings.remote.api_host + '/v1/',
     auth: Settings.remote.api_host + '/v1/auth/',
     user: Settings.remote.api_host + '/v1/user/',
@@ -5832,11 +5833,12 @@ var Movies = function () {
              * @param filter
              * @param token
              */
+
             return new Promise(function (resolve, err) {
                 //the uri
                 //to base64 uri
                 var _uri = _settings2.default.api.movies + 'list/' + _requestHelper2.default.jsonToQString(filters);
-                var _uri_crypt = _requestHelper2.default.generateCacheToken(_uri).slice(0, -2);
+                var _uri_crypt = _requestHelper2.default.generateCacheToken(_uri);
 
                 //Remove old cache
                 _lscache2.default.flushExpired();
@@ -15700,20 +15702,20 @@ var Main = function (_React$Component) {
         _this.movie = new _movies2.default();
         _this.search = new _search2.default();
 
-        //Default offset
-        _this.offset = 1;
-        _this.search_timeout = null;
-
         //Default state
         _this.state = {
             loading: true,
             searching: false,
             searchResult: false,
-            scrollUpdate: false
+            scrollUpdate: false,
+            movies: []
         };
 
+        //Default offset
         //Max movies for initial request
+        _this.offset = _settings2.default.api.offset;
         _this.limit = _settings2.default.api.step;
+        _this.search_timeout = null;
         _this.sort = {
             sort_by: 'date_uploaded',
             order: 'desc'
@@ -15769,14 +15771,15 @@ var Main = function (_React$Component) {
 
             //Renew limit
             filter['limit'] = this.limit;
+            filter['offset'] = this.offset;
 
             //Get movies
             this.movie.filter(filter, token).then(function (res) {
+                //Concat movies
                 _this3.setState({
-                    movies: res,
+                    movies: _this3.state.movies.concat(res),
                     loading: false,
                     scrollUpdate: false
-
                 });
             }).catch(function (e) {});
         }
@@ -15796,8 +15799,8 @@ var Main = function (_React$Component) {
                 _logHelper2.default.info('LOADING NEW SET OF MOVIES MAX: ' + _settings2.default.api.step + ' MOVIES');
 
                 //Load new set of movies
-                this.limit = ++this.offset * _settings2.default.api.step;
-                _logHelper2.default.info('LOADING: ' + this.limit + ' MOVIES');
+                ++this.offset;
+                _logHelper2.default.info('LOADING: ' + this.offset * _settings2.default.api.step + ' MOVIES');
 
                 //Request new movies
                 this.filterMovies(this.sort, this.auth.token);
@@ -15863,11 +15866,10 @@ var Main = function (_React$Component) {
                 }
             }
 
-            //Reset limit
-            this.limit = _settings2.default.api.step;
-            this.offset = 1;
-
             //Set new state
+            //Reset limit
+            _logHelper2.default.warn('\nRESET OFFSET AND ENABLED INFINTE SCROLL');
+            this.offset = _settings2.default.api.offset;
             this.setState({
                 loading: true,
                 scrollUpdate: false
