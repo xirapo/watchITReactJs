@@ -56,9 +56,8 @@ module.exports = function (config) {
             // CLI --browsers Chrome,Firefox,Safari
             browsers: [
                 'PhantomJS', //Webckit
-                'SlimerJS' //Gecko
                 // 'Chrome',
-                //  'Firefox'
+                'Firefox'
             ],
             // If browser does not capture in given timeout [ms], kill it
             // CLI --capture-timeout 5000
@@ -76,8 +75,7 @@ module.exports = function (config) {
                 'karma-sourcemap-loader',
                 'karma-junit-reporter',
                 'karma-phantomjs-launcher',
-                'karma-slimerjs-launcher'
-                // 'karma-firefox-launcher'
+                'karma-firefox-launcher'
             ],
             concurrency: 3,
             forceJSONP: true,

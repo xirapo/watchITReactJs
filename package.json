@@ -60,7 +60,6 @@
     "gulp-util": "^3.0.7",
     "jasmine-core": "^2.6.2",
     "karma": "*",
-    "karma-chrome-launcher": "*",
     "karma-firefox-launcher": "*",
     "karma-jasmine": "*",
     "karma-junit-reporter": "*",
