@@ -6,12 +6,14 @@ import settings from 'backend/settings.js'
 
 describe('Global Settings Object', ()=> {
 
-    it('has "loginView" property defined', ()=> {
+    it('has valid "loginView" property defined', ()=> {
         expect('loginView' in settings).toBeTruthy();
+        expect(isjs.string(settings.loginView)).toBe(true, 'string value needed');
     });
 
-    it('has "appView" property defined', ()=> {
+    it('has valid "appView" property defined', ()=> {
         expect('appView' in settings).toBeTruthy();
+        expect(isjs.string(settings.appView)).toBe(true, 'string value needed');
     });
 
     it('has valid "remote" property defined', ()=> {
@@ -53,21 +55,20 @@ describe('Global Settings Object', ()=> {
 
 
     (function (settings) {
-        let _attr = Object.keys(settings);
+        let _attr = ['root', 'auth', 'user', 'movies', 'search'];
         for (let x in _attr) {
-            if ((~['root', 'auth', 'user', 'movies', 'search'].indexOf(_attr[x]))) {
-                it('has valid "api.' + _attr[x] + '" defined', ()=> {
-                    expect(
-                        isjs.url(settings[_attr[x]])
-                    ).toBe(true, 'valid http url "' + _attr[x] + '" needed')
-                });
-            }
+            it('has valid "api.' + _attr[x] + '" defined', ()=> {
+                expect(_attr[x] in settings).toBe(true, 'valid "' + _attr[x] + '" property needed');
+                expect(isjs.url(settings[_attr[x]]))
+                    .toBe(true, 'valid http url "' + _attr[x] + '" needed')
+            });
+
         }
     })(settings.api);
 
 
     it('has valid "subs" property defined', ()=> {
-        expect('subs' in settings).toBeTruthy();
+        expect('subs' in settings).toBe(true, 'valid "subs" property needed');
         expect(Object.keys(settings.subs)).toEqual([
             'available'
         ])
@@ -76,6 +77,6 @@ describe('Global Settings Object', ()=> {
     it('has valid "subs.available" property defined', ()=> {
         expect(
             isjs.array(settings.subs.available)
-        ).toBe(true, 'valid "available" array language property needed')
+        ).toBe(true, 'valid "available" array needed')
     });
 });
