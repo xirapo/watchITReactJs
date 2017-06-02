@@ -87,7 +87,7 @@
      */
     Sub.add('unzipSub', function (file_dir) {
 
-        return (new Promise(function (r, e) {
+        return (new Promise(function (r, err) {
             fs.createReadStream(file_dir)
                 .pipe(unzip.Parse())
                 .on('entry', function (entry) {
@@ -124,6 +124,7 @@
                             r(_result_file_dir);
                         }).on('error', function (e) {
                             console.log(e);
+                            err(e);
                         });
 
                     } else {
