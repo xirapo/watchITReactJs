@@ -27,10 +27,8 @@ describe('Torrents Settings Object', ()=> {
 
     it('has valid "TORRENT_TRACKERS" property defined', ()=> {
         expect('TORRENT_TRACKERS' in settings).toBe(true, 'valid "TORRENT_TRACKERS" property needed');
-        expect(
-            isjs.array(settings.TORRENT_TRACKERS)
-            && settings.TORRENT_TRACKERS.length > 0
-        ).toBe(true, 'valid "TORRENT_TRACKERS" array needed')
+        expect(isjs.array(settings.TORRENT_TRACKERS) && settings.TORRENT_TRACKERS.length > 0)
+            .toBe(true, 'valid "TORRENT_TRACKERS" array needed')
     });
 
 
