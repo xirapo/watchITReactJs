@@ -72,4 +72,10 @@ describe('Global Settings Object', ()=> {
             'available'
         ])
     });
+
+    it('has valid "subs.available" property defined', ()=> {
+        expect(
+            isjs.array(settings.subs.available)
+        ).toBe(true, 'valid "available" array language property needed')
+    });
 });
