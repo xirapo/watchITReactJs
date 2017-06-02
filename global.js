@@ -12,6 +12,7 @@ module.exports = {
         './src/js/**',
         '!./assets/**',
         '!./tmp/**',
+        '!./test/**',
         '!./cache/**',
         '!./build/**',
         './language/**',
