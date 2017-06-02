@@ -57,7 +57,9 @@ describe('Global Settings Object', ()=> {
         for (let x in _attr) {
             if ((~['root', 'auth', 'user', 'movies', 'search'].indexOf(_attr[x]))) {
                 it('has valid "api.' + _attr[x] + '" defined', ()=> {
-                    expect(isjs.url(settings[_attr[x]])).toBe(true, 'valid http url "' + _attr[x] + '" needed')
+                    expect(
+                        isjs.url(settings[_attr[x]])
+                    ).toBe(true, 'valid http url "' + _attr[x] + '" needed')
                 });
             }
         }
