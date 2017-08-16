@@ -83057,7 +83057,7 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 .top-right-small-menu .dropdown i, .top-right-small-menu .dropdown span, .top-right-small-menu .dropdown a {
   font-size: 1.2rem !important; }
 .top-right-small-menu .dropdown .dropdown-content {
-  position: absolute !important; }
+  top: 1rem !important; }
 
 .main-nav-filter-movies .dropdown i, .main-nav-filter-movies .dropdown span, .main-nav-filter-movies .dropdown a {
   font-size: 1.2rem !important; }

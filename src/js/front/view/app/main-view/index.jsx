@@ -59,6 +59,7 @@ export default class Main extends React.Component {
             this.auth.token
         );
 
+        //Get basic user data
         this.basicUserData(
             this.auth.authUser.id,
             this.auth.token
@@ -170,19 +171,17 @@ export default class Main extends React.Component {
     }
 
     onChange(sort, by) {
-        let _sort = {};// //If by?
-
         // //If by?
-        if (storageHelper.get().from.main_nav_filters()) {
-            _sort[sort] = by;
+        if ((storageHelper.get().from.main_nav_filters())) {
             this.sort = Object.assign(
-                {}, this.sort, storageHelper.get().from.main_nav_filters(), _sort
+                {}, this.sort,
+                storageHelper.get().from.main_nav_filters(),
+                {[sort]: by}
             );
         } else {
             if (by) {
-                _sort[sort] = by;
                 this.sort = Object.assign(
-                    {}, this.sort, _sort
+                    {}, this.sort, {[sort]: by}
                 );
             } else {
                 if (sort in this.sort) {
@@ -279,7 +278,6 @@ export default class Main extends React.Component {
                 {/*Top main nav*/}
                 <section className="row full-height">
                     <div className="clearfix">
-
                         <header className="row no-margin vertical-padding transparent z-depth-1">
                             <div className="col l4 m4 profile-media clearfix">
                                 <AppTinyProfile
@@ -300,9 +298,11 @@ export default class Main extends React.Component {
                                 />
                             </div>
 
-                            <div className="col l2 m2 relative top-right-small-menu">
+                            <div className="col l2 m2 relative right top-right-small-menu top-1-rem">
                                 {/*The top right man nav bar menu */}
-                                 <AppTopRightMenu/>
+                                <AppTopRightMenu
+                                    user={this.state.user}
+                                />
                             </div>
                         </header>
 

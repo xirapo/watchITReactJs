@@ -9,22 +9,29 @@ export default class AppTopRightMenu extends React.Component {
             user_menu: [{
                 'label': 'Profile',
                 'action': 'profile'
-            },{
-                'label': 'Invite User',
-                'action': 'invite'
             }]
         }
+    }
+
+    onChange(to, e) {
+        let actions = {
+            'profile': '#/user/' + to + '/' + this.props.user.id
+        };
+
+        //Redirect to
+        location.href = actions[to]
     }
 
 
     render() {
         return (
-            <div className="clearfix">
+            this.props.user && <div className="absolute">
                 <NavBarMenu
                     btnText="Account"
                     list={this.state.user_menu}
+                    onChange={(t,e)=>this.onChange(t,e)}
                 />
-            </div>
+            </div> || <div></div>
         )
     }
 }

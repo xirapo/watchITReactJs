@@ -11,6 +11,8 @@ import Login from 'front/view/index/login-view/index.jsx'
 import App from 'front/view/app/main-view/index.jsx'
 import Movie from 'front/view/app/movie-view/index.jsx'
 import Player from 'front/view/app/movie-player-view/index.jsx'
+import User from 'front/view/app/user-view/index.jsx'
+
 //Require for auth
 import Auth from 'resources/database/auth'
 import Setting from 'backend/settings'
@@ -43,6 +45,7 @@ render(
         <section id="screen" className="full-height full-width absolute">
             <Route name="login" exact path="/" render={checkOut}/>
             <Route name="app" exact path="/app" render={(n)=>(requireAuth(App,n))}/>
+            <Route name="app" exact path="/user/profile/:id" render={(n)=>(requireAuth(User,n))}/>
             <Route name="movie" exact path="/app/movie/:imdb" render={(n)=>(requireAuth(Movie,n))}/>
             <Route name="moviePlayer" path="/app/movie/play/:torrent/:sub" render={(n)=>(requireAuth(Player,n))}/>
         </section>
