@@ -5,10 +5,16 @@ import BarLoader from 'front/components/util-bar-loader/index.jsx'
 export default class AppTinyProfile extends React.Component {
     constructor(props) {
         super(props);
+        //Initial state
+        this.state = {
+            logout: false
+        }
     }
 
     onLogOut(e) {
+        //If valid prop onLogOut set
         if (this.props.onLogOut) {
+            this.setState({logout: true});
             this.props.onLogOut(e)
         }
     }
@@ -16,7 +22,7 @@ export default class AppTinyProfile extends React.Component {
     render() {
         return (
             (
-                this.props.user && <div className="clearfix">
+                !this.state.logout && this.props.user && <div className="clearfix">
                     <div className="col l3 m3 small-picture">
                         <a href="#" className="clearfix profile-picture-img">
                             <figure>

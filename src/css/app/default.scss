@@ -134,9 +134,9 @@
   height: 4rem;
 
   .bar-loader {
-    width: 4rem;
+    width: 3rem;
     left: 2rem;
-    top: 0;
+    top: 0.5rem;
     position: relative;
   }
 
@@ -178,6 +178,22 @@
     }
     a {
       font-size: 1rem;
+    }
+  }
+}
+
+//Small menu on top
+.top-right-small-menu {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  .dropdown {
+    i {
+      top: 0.4rem !important;
+    }
+    i, span, a {
+      font-size: 1.2rem !important;
+    }
+    .dropdown-content {
+      position: absolute !important;
     }
   }
 }

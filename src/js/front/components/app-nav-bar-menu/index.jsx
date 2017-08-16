@@ -61,10 +61,10 @@ export default class NavBarMenu extends React.Component {
             <ul className="dropdown">
 
                 {/*Drop down main container*/}
-                <li className="dropdown">
+                <li >
                     <a className="dropdown-button" href="javascript:void(0)">
-                        <i className="icon-triangle-down nav-var-icon normalize-small-icon left margin-right-4"/>
-                        <span className="font-light-gray">{this.props.btnText}</span>
+                        <i className="icon-triangle-down white-text nav-var-icon normalize-small-icon left margin-right-4"/>
+                        <span className="white-text">{this.props.btnText}</span>
                         {
                             /*The main button*/
                             //Set personalized label

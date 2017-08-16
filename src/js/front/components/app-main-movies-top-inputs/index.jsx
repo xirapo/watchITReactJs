@@ -34,24 +34,6 @@ export default class AppMainTopInputs extends React.Component {
                             name="search"/>
                     </div>
                 </form>
-                {/*
-                 <form action="javascript:void(0);">
-                 <BoxInput
-                 type="text"
-                 icon="icon-signal"
-                 size="l6 m6"
-                 placeholder="Seek torrent..."
-                 name="torrent"
-                 />
-                 </form>
-                 */}
-                {/*
-                 <div className="col l2 m2 input-field">
-                 <i className="icon-cog right small white-text margin-top-10"/>
-                 <i className="icon-bell right small white-text margin-top-10"/>
-                 </div>
-                 */}
-
             </div>
         )
     }

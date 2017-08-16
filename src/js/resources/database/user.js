@@ -7,6 +7,13 @@ import axios from 'axios'
 
 export default class User {
 
+    create(data) {
+        /**
+         * Create a new user
+         * @param data
+         */
+    }
+
     get(id, token) {
         /**
          * Return user details

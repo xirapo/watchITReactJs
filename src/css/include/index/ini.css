@@ -83022,9 +83022,9 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 .profile-media {
   height: 4rem; }
   .profile-media .bar-loader {
-    width: 4rem;
+    width: 3rem;
     left: 2rem;
-    top: 0;
+    top: 0.5rem;
     position: relative; }
   .profile-media .small-picture {
     position: relative; }
@@ -83051,6 +83051,13 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
     font-size: 1.2rem; }
   .profile-media .small-user-data a {
     font-size: 1rem; }
+
+.top-right-small-menu .dropdown i {
+  top: 0.4rem !important; }
+.top-right-small-menu .dropdown i, .top-right-small-menu .dropdown span, .top-right-small-menu .dropdown a {
+  font-size: 1.2rem !important; }
+.top-right-small-menu .dropdown .dropdown-content {
+  position: absolute !important; }
 
 .main-nav-filter-movies .dropdown i, .main-nav-filter-movies .dropdown span, .main-nav-filter-movies .dropdown a {
   font-size: 1.2rem !important; }

@@ -7,6 +7,7 @@ import AppMoviesList from 'front/components/app-main-movies-list/index.jsx'
 import AppMainTopInput from 'front/components/app-main-movies-top-inputs/index.jsx'
 import AppMainSearchResult from 'front/components/app-main-search-result/index.jsx'
 import AppTinyProfile from 'front/components/app-tiny-box-profile/index.jsx'
+import AppTopRightMenu from 'front/components/app-main-movies-top-right-menu/index.jsx'
 //Helper
 import logHelper from 'resources/helpers/logHelper'
 import setting from 'backend/settings'
@@ -138,32 +139,24 @@ export default class Main extends React.Component {
     initialNavVar(genres, sort) {
         //Has sort cache?
         if (storageHelper.get().from.main_nav_filters()) {
+            //Get cache from localStorage
             let _sort_cache = storageHelper.get().from.main_nav_filters();
+            let _hash = {'genres': genres, 'sort_by': sort};
 
-            //Check for genres in cache filter
-            if ('genres' in _sort_cache) {
-                for (let gen in genres) {
-                    //Clean default
-                    if ('default' in genres[gen])
-                        delete genres[gen]['default'];
+            //For each key in cache
+            for (let key_ in _hash) {
+                //Check for genres in cache filter
+                if (key_ in _sort_cache) {
+                    //Iterate over element lists
+                    for (let item in _hash[key_]) {
+                        //Clean default
+                        if ('default' in _hash[key_][item])
+                            delete _hash[key_][item]['default'];
 
-                    //Set new default
-                    if (genres[gen].action == _sort_cache['genres']) {
-                        genres[gen]['default'] = true;
-                    }
-                }
-            }
-
-            //Check for sort cache
-            if ('sort_by' in _sort_cache) {
-                for (let sor in sort) {
-                    //Clean default
-                    if ('default' in sort[sor])
-                        delete sort[sor]['default'];
-
-                    //Set new default
-                    if (sort[sor].action == _sort_cache['sort_by']) {
-                        sort[sor]['default'] = true;
+                        //Set new default
+                        if (_hash[key_][item].action == _sort_cache[key_]) {
+                            _hash[key_][item]['default'] = true;
+                        }
                     }
                 }
             }
@@ -305,6 +298,11 @@ export default class Main extends React.Component {
                                     searching={this.state.searching}
                                     result={this.state.searchResult}
                                 />
+                            </div>
+
+                            <div className="col l2 m2 relative top-right-small-menu">
+                                {/*The top right man nav bar menu */}
+                                 <AppTopRightMenu/>
                             </div>
                         </header>
 
