@@ -1,5 +1,4 @@
 import React from 'react'
-import Logo from 'front/components/util-header-logo/index.jsx'
 
 export default class MainHeader extends React.Component {
     constructor(props) {
@@ -14,11 +13,13 @@ export default class MainHeader extends React.Component {
 
     render() {
         return (
-            <header className="row vertical-padding transparent z-depth-1 clearfix">
-                <div className="col l2 m2 s3">
-                    <Logo/>
+            <header className="row vertical-padding horizontal-padding transparent z-depth-1 clearfix">
+                <div className="col l6 m6">
+                    <h5 className="white-text bold">
+                        {this.props.text}
+                    </h5>
                 </div>
-                <a href={this.props.action} className="btn-close btn-close-video clearfix">
+                <a href={this.props.action} className="top-0 right">
                     <i className="icon-cross font-size-45 white-text"/>
                 </a>
             </header>

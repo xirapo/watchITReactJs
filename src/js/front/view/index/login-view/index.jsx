@@ -1,14 +1,14 @@
 //Basic
 import React from 'react'
-import PropTypes from 'prop-types'
+//import PropTypes from 'prop-types'
 //Components
-import MainLoader from 'front/components/util-main-loader/index.jsx'
+//import MainLoader from 'front/components/util-main-loader/index.jsx'
 import FormBox from 'front/components/app-form/index.jsx'
 //Require for auth
 import Auth from 'resources/database/auth'
 //Default settings
 import Setting from 'backend/settings'
-
+import Forms from './forms.js'
 
 //Login view class
 export default class LoginForm extends React.Component {
@@ -24,29 +24,8 @@ export default class LoginForm extends React.Component {
             success: false,
             submitted: false,
             error: false,
-            inputs: [{
-                type: 'text',
-                placeholder: "e-mail",
-                autoComplete: 'nope',
-                name: "email",
-                icon: 'icon-email',
-                size: 'm12 l12',
-                required: true
-            }, {
-                type: 'password',
-                placeholder: "password",
-                autoComplete: 'nope',
-                name: "password",
-                icon: 'icon-dial-pad',
-                size: 'm12 l12',
-                required: true
-            }],
-            //Buttons lists
-            buttons: [{
-                type: 'submit',
-                text: 'login',
-                size: 'm6 l6'
-            }]
+            inputs: Forms.login_user.inputs,
+            buttons: Forms.login_user.buttons
         };
 
     }

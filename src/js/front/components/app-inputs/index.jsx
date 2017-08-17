@@ -5,7 +5,6 @@ export default class BoxInput extends React.Component {
     constructor(props) {
         super(props);
         this.state = {value: ''};
-        //this.handleChange = this.handleChange.bind(this);
     }
 
     static get defaultProps() {
@@ -21,6 +20,13 @@ export default class BoxInput extends React.Component {
         }
     }
 
+    componentWillMount() {
+        if (this.props.value)
+            this.setState({
+                value: this.props.value
+            })
+    }
+
     onInput(e) {
         //Set value to input
         this.setState({
@@ -33,7 +39,7 @@ export default class BoxInput extends React.Component {
         }
 
     }
-    
+
 
     render() {
         return (

@@ -2,24 +2,25 @@
 import React from 'react'
 //Components
 import BoxLoader from 'front/components/util-box-loader/index.jsx'
-import BtnClose from 'front/components/util-btn-close/index.jsx'
-import MovieDetails from 'front/components/app-movie-details/index.jsx'
+import MainHeader from 'front/components/util-header/index.jsx'
+import FormBox from 'front/components/app-form/index.jsx'
 //Require for auth
 //Database (Api Handler)
 import Auth from 'resources/database/auth'
 import User from 'resources/database/user'
+import Forms from './forms.js'
 
 //Login view class
 export default class MainMovie extends React.Component {
     constructor(props) {
         super(props);
-
         //Auth object
         this.auth = new Auth();
         this.user = new User();
+
         //this.movie = new Movie();
         //Default state
-        this.state = {};
+        this.state = Forms;
 
     }
 
@@ -30,6 +31,15 @@ export default class MainMovie extends React.Component {
             this.props.match.params.id, //imdb code
             this.auth.token
         ).then((r)=> {
+
+            //Set value for inputs in edit form
+            this.state.user_new_or_update.inputs.forEach((i, v)=> {
+                if (i['name'] in r) {
+                    i['value'] = r[i['name']];
+                }
+            });
+
+            //Change state for user
             this.setState({
                 user: r
             })
@@ -39,18 +49,43 @@ export default class MainMovie extends React.Component {
 
     render() {
         return (
-            <div className="relative full-height movie-details">
+            this.state.user
+            && <div className="row relative full-height">
                 {/*Close button*/}
-                <BtnClose />
-                <section className="row clearfix full-height margin-top-5-vh padding-left-2-vw">
+                <MainHeader text="Profile"/>
+                <section className="col l12 m12 clearfix full-height">
                     {/*Main Loader or Movie details*/}
                     {
-                        this.state.user
-                        && <div>yes</div>
-                        || <BoxLoader size="100"/>
+                        <section className="col l6 m6 input-black-box">
+                            <h5 className="white-text">
+                                <i className="icon-edit margin-right-10"/>
+                                Edit Profile
+                            </h5>
+                            <FormBox
+                                action={(res)=> this.handleRequest(res)}
+                                input={this.state.user_new_or_update.inputs} // Make inputs
+                                buttons={this.state.user_new_or_update.buttons} // Make buttons
+                            />
+                        </section>
+
+                    }
+
+                    {
+                        <section className="col l6 m6 input-black-box">
+                            <h5 className="white-text">
+                                <i className="icon-message margin-right-10"/>
+                                Invite a friend
+                            </h5>
+                            <FormBox
+                                action={(res)=> this.handleRequest(res)}
+                                input={this.state.invite_user.inputs} // Make inputs
+                                buttons={this.state.invite_user.buttons} // Make buttons
+                            />
+                        </section>
                     }
                 </section>
-
+            </div> || <div className="row relative full-height">
+                <BoxLoader size="100"/>
             </div>
         )
     }

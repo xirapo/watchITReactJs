@@ -47,7 +47,9 @@ export default class FormBox extends React.Component {
         e.preventDefault();
         
         //Reflect events
-        this.props.action(this.state.fields, e);
+        this.props.action(
+            this.state.fields, e
+        );
     }
 
 
