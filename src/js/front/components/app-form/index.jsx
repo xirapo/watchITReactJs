@@ -43,9 +43,20 @@ export default class FormBox extends React.Component {
     }
 
     handleSubmit(e) {
+        //If setted default values in input collection
+        // Get default values and return it
+        if (!Object.keys(this.state.fields).length) {
+            //Merge default values with input values
+            this.state.fields = Object.assign({}, this.state.fields,
+                this.props.input.reduce((old, v, i)=> {
+                    old[v['name']] = v['value'];
+                    return old
+                }, {}))
+        }
+
         //Avoid trigger default event
         e.preventDefault();
-        
+
         //Reflect events
         this.props.action(
             this.state.fields, e
@@ -78,9 +89,9 @@ export default class FormBox extends React.Component {
                         this.props.buttons.map((i, k)=> {
                             return (
                                 <BoxButton key={k}
-                                    clicked={this.props.submitted}
-                                    className={i.color}
-                                    type={i.type}>
+                                           clicked={this.props.submitted}
+                                           className={i.color}
+                                           type={i.type}>
                                     <span>{i.text}</span>
                                 </BoxButton>
                             )

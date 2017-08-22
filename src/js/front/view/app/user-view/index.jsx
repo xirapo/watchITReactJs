@@ -21,6 +21,7 @@ export default class MainMovie extends React.Component {
         //this.movie = new Movie();
         //Default state
         this.state = Forms;
+        this.state['submitted_update'] = false;
 
     }
 
@@ -47,6 +48,16 @@ export default class MainMovie extends React.Component {
         })
     }
 
+
+    handleRequestUpdate(res) {
+        //Set first state
+        this.setState({
+            error: false,
+            submitted_update: true
+        });
+        console.log(res);
+    }
+
     render() {
         return (
             this.state.user
@@ -62,9 +73,10 @@ export default class MainMovie extends React.Component {
                                 Edit Profile
                             </h5>
                             <FormBox
-                                action={(res)=> this.handleRequest(res)}
+                                action={(res)=> this.handleRequestUpdate(res)}
                                 input={this.state.user_new_or_update.inputs} // Make inputs
                                 buttons={this.state.user_new_or_update.buttons} // Make buttons
+                                submitted={this.state.submitted_update}
                             />
                         </section>
 
@@ -80,6 +92,7 @@ export default class MainMovie extends React.Component {
                                 action={(res)=> this.handleRequest(res)}
                                 input={this.state.invite_user.inputs} // Make inputs
                                 buttons={this.state.invite_user.buttons} // Make buttons
+                                submitted={this.state.submitted_update}
                             />
                         </section>
                     }

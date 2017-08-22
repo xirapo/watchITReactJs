@@ -2189,8 +2189,8 @@ Settings.appView = '/app';
 //Remote host settings
 Settings.remote = {
     ws_host: 'ws://localhost:9600',
-    //api_host: 'http://127.0.0.1:8000/api'
-    api_host: 'http://api.witth.me'
+    api_host: 'http://127.0.0.1:8000/api'
+    //api_host: 'http://api.witth.me'
 };
 
 /////////////////////
@@ -6215,12 +6215,31 @@ var User = function () {
     }
 
     _createClass(User, [{
-        key: 'create',
-        value: function create(data) {
+        key: 'update',
+        value: function update(data, id) {
             /**
              * Create a new user
              * @param data
              */
+
+            return new Promise(function (resolve, err) {
+                //Log
+                _logHelper2.default.info('\nUPDATE USER: ' + id);
+                //Request to details endpoint
+                (0, _axios2.default)({
+                    url: _settings2.default.api.user + '?id=' + id,
+                    method: 'put',
+                    data: data,
+                    timeout: _settings2.default.api.timeout,
+                    headers: { 'Authorization': 'Bearer ' + token }
+                }).then(function (res) {
+                    //Log
+                    _logHelper2.default.ok('USER UPDATE FOR: ' + id);
+                    resolve(res.data.data);
+                }).catch(function (e) {
+                    err(e.response);
+                });
+            });
         }
     }, {
         key: 'get',
@@ -9331,6 +9350,16 @@ var FormBox = function (_React$Component) {
     }, {
         key: 'handleSubmit',
         value: function handleSubmit(e) {
+            //If setted default values in input collection
+            // Get default values and return it
+            if (!Object.keys(this.state.fields).length) {
+                //Merge default values with input values
+                this.state.fields = _extends({}, this.state.fields, this.props.input.reduce(function (old, v, i) {
+                    old[v['name']] = v['value'];
+                    return old;
+                }, {}));
+            }
+
             //Avoid trigger default event
             e.preventDefault();
 
@@ -16574,6 +16603,7 @@ var MainMovie = function (_React$Component) {
         //this.movie = new Movie();
         //Default state
         _this.state = _forms2.default;
+        _this.state['submitted_update'] = false;
 
         return _this;
     }
@@ -16601,6 +16631,16 @@ var MainMovie = function (_React$Component) {
             }).catch(function () {});
         }
     }, {
+        key: 'handleRequestUpdate',
+        value: function handleRequestUpdate(res) {
+            //Set first state
+            this.setState({
+                error: false,
+                submitted_update: true
+            });
+            console.log(res);
+        }
+    }, {
         key: 'render',
         value: function render() {
             var _this3 = this;
@@ -16623,10 +16663,11 @@ var MainMovie = function (_React$Component) {
                         ),
                         _react2.default.createElement(_index6.default, {
                             action: function action(res) {
-                                return _this3.handleRequest(res);
+                                return _this3.handleRequestUpdate(res);
                             },
                             input: this.state.user_new_or_update.inputs // Make inputs
                             , buttons: this.state.user_new_or_update.buttons // Make buttons
+                            , submitted: this.state.submitted_update
                         })
                     ),
                     _react2.default.createElement(
@@ -16644,6 +16685,7 @@ var MainMovie = function (_React$Component) {
                             },
                             input: this.state.invite_user.inputs // Make inputs
                             , buttons: this.state.invite_user.buttons // Make buttons
+                            , submitted: this.state.submitted_update
                         })
                     )
                 )
@@ -20228,7 +20270,7 @@ function requireAuth(Component, navigate) {
         _react2.default.createElement(_reactRouter.Route, { name: 'app', exact: true, path: '/app', render: function render(n) {
                 return requireAuth(_index6.default, n);
             } }),
-        _react2.default.createElement(_reactRouter.Route, { name: 'app', exact: true, path: '/user/profile/:id', render: function render(n) {
+        _react2.default.createElement(_reactRouter.Route, { name: 'user', exact: true, path: '/user/profile/:id', render: function render(n) {
                 return requireAuth(_index12.default, n);
             } }),
         _react2.default.createElement(_reactRouter.Route, { name: 'movie', exact: true, path: '/app/movie/:imdb', render: function render(n) {

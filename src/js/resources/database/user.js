@@ -7,11 +7,30 @@ import axios from 'axios'
 
 export default class User {
 
-    create(data) {
+    update(data, id) {
         /**
          * Create a new user
          * @param data
          */
+
+        return (new Promise((resolve, err) => {
+            //Log
+            logHelper.info('\nUPDATE USER: ' + id);
+            //Request to details endpoint
+            axios({
+                url: setting.api.user + '?id=' + id,
+                method: 'put',
+                data: data,
+                timeout: setting.api.timeout,
+                headers: {'Authorization': 'Bearer ' + token}
+            }).then((res)=> {
+                //Log
+                logHelper.ok('USER UPDATE FOR: ' + id);
+                resolve(res.data.data);
+            }).catch((e)=> {
+                err(e.response)
+            })
+        }));
     }
 
     get(id, token) {
