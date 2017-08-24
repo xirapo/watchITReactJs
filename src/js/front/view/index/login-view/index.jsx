@@ -30,10 +30,12 @@ export default class LoginForm extends React.Component {
 
     }
 
-    handleRequest(fields) {
-
+    componentDidMount() {
         //Clean global cache
         cleanFormCache();
+    }
+
+    handleRequest(fields) {
 
         //Set first state
         this.setState({
@@ -43,8 +45,8 @@ export default class LoginForm extends React.Component {
 
         //Try authenticate
         this.auth.authenticate(
-            fields.email,
-            fields.password
+            fields.get('email'),
+            fields.get('password')
         ).then((r)=> {
             //Redirect
             setTimeout(()=> {
@@ -53,12 +55,10 @@ export default class LoginForm extends React.Component {
             }, 1000)
 
         }).catch((e)=> {
-            if ('data' in e) {
-                this.setState({
-                    error: e.data.status_message,
-                    submitted: false
-                })
-            }
+            this.setState({
+                error: e,
+                submitted: false
+            })
         });
 
     }

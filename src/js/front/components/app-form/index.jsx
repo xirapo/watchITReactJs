@@ -9,10 +9,7 @@ export default class FormBox extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            //Submitted form?
-            fields: {}
-        }
+        this.fields = new FormData();
     }
 
     static get defaultProps() {
@@ -34,32 +31,33 @@ export default class FormBox extends React.Component {
 
     setValue(event) {
         //If the input fields were directly within this
-        //Append to form data
-        this.state.fields[event.target.name] = event.target.value;
-        //Extend obj
-        this.setState({
-            fields: this.state.fields
-        });
+        //Set input in formData
+        this.fields.set(
+            event.target.name,
+            event.target.value
+        );
     }
 
     handleSubmit(e) {
-        //If setted default values in input collection
-        // Get default values and return it
-        if (!Object.keys(this.state.fields).length) {
-            //Merge default values with input values
-            this.state.fields = Object.assign({}, this.state.fields,
-                this.props.input.reduce((old, v, i)=> {
-                    old[v['name']] = v['value'];
-                    return old
-                }, {}))
-        }
+        //Clean global cache
+        cleanFormCache();
 
         //Avoid trigger default event
         e.preventDefault();
 
+        //If setted default values in input collection
+        //Get default values and return it
+        //Merge default values with input values
+        this.props.input.reduce((old, v, i)=> {
+            //If has value declared on inputs list
+            if ('value' in v && !(old.get(v['name'])))
+                old.set(v['name'], v['value']);
+            return old
+        }, this.fields);
+
         //Reflect events
         this.props.action(
-            this.state.fields, e
+            this.fields, e
         );
     }
 
@@ -100,11 +98,26 @@ export default class FormBox extends React.Component {
                 </div>
 
                 {/*Alert*/}
-                <div className="row">
-                    {this.props.error && <BoxAlert>
-                        {this.props.error}
-                    </BoxAlert>}
-                </div>
+                {
+                    this.props.error &&
+                    <div className="row">
+                        {
+                            this.props.error.map((i, k)=> {
+                                return (
+                                    <BoxAlert key={k}>
+                                        {i}
+                                    </BoxAlert>
+                                )
+                            })
+                        }
+                    </div>
+                }
+                
+                {/*Sucess message*/}
+                {this.props.success && <BoxAlert label="success-label">
+                    {this.props.success}
+                </BoxAlert>}
+
             </form>
         )
     }

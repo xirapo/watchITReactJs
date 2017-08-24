@@ -1,13 +1,14 @@
 /**
  * Created by gmena on 04-19-17.
  */
-import setting from 'backend/settings'
-import logHelper from 'resources/helpers/logHelper'
+import setting from 'backend/settings';
+import logHelper from 'resources/helpers/logHelper';
+import responseHelper from 'resources/helpers/responseHelper';
 import axios from 'axios'
 
 export default class User {
 
-    update(data, id) {
+    update(data, id, token) {
         /**
          * Create a new user
          * @param data
@@ -15,7 +16,7 @@ export default class User {
 
         return (new Promise((resolve, err) => {
             //Log
-            logHelper.info('\nUPDATE USER: ' + id);
+            logHelper.info('\nUPDATE USER ID: ' + id);
             //Request to details endpoint
             axios({
                 url: setting.api.user + '?id=' + id,
@@ -25,10 +26,15 @@ export default class User {
                 headers: {'Authorization': 'Bearer ' + token}
             }).then((res)=> {
                 //Log
-                logHelper.ok('USER UPDATE FOR: ' + id);
-                resolve(res.data.data);
+                logHelper.ok('USER UPDATED FOR ID: ' + id);
+                resolve(res.data);
             }).catch((e)=> {
-                err(e.response)
+                //Process error
+                err(
+                    responseHelper.badResponse(
+                        e.response
+                    )
+                )
             })
         }));
     }

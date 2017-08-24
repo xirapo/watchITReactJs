@@ -4,6 +4,7 @@ import React from 'react'
 import BoxLoader from 'front/components/util-box-loader/index.jsx'
 import MainHeader from 'front/components/util-header/index.jsx'
 import FormBox from 'front/components/app-form/index.jsx'
+import BoxAlert from 'front/components/app-alerts/index.jsx'
 //Require for auth
 //Database (Api Handler)
 import Auth from 'resources/database/auth'
@@ -21,12 +22,20 @@ export default class MainMovie extends React.Component {
         //this.movie = new Movie();
         //Default state
         this.state = Forms;
+        //Invite status
+        this.state['submitted_invite'] = false;
+
+        //Update states
         this.state['submitted_update'] = false;
+        this.state['error_update'] = false;
 
     }
 
 
     componentDidMount() {
+        //Clean global cache
+        cleanFormCache();
+
         // //Movie details
         this.user.get(
             this.props.match.params.id, //imdb code
@@ -43,19 +52,38 @@ export default class MainMovie extends React.Component {
             //Change state for user
             this.setState({
                 user: r
-            })
-        }).catch(()=> {
+            });
+
+        }).catch((e)=> {
+            console.log(e);
         })
     }
 
 
     handleRequestUpdate(res) {
-        //Set first state
+        //Initial state after submit
         this.setState({
-            error: false,
-            submitted_update: true
+            error_update: false,
+            submitted_update: true,
+            updated: false
         });
-        console.log(res);
+
+        //Request for update
+        this.user.update(
+            res, this.props.match.params.id, //user id
+            this.auth.token
+        ).then((r)=> {
+            this.setState({
+                submitted_update: false,
+                updated: 'User updated'
+            });
+        }).catch((err)=> {
+            this.setState({
+                error_update: err,
+                submitted_update: false
+            })
+        })
+
     }
 
     render() {
@@ -77,6 +105,8 @@ export default class MainMovie extends React.Component {
                                 input={this.state.user_new_or_update.inputs} // Make inputs
                                 buttons={this.state.user_new_or_update.buttons} // Make buttons
                                 submitted={this.state.submitted_update}
+                                error={this.state.error_update}
+                                success={this.state.updated}
                             />
                         </section>
 
@@ -92,7 +122,7 @@ export default class MainMovie extends React.Component {
                                 action={(res)=> this.handleRequest(res)}
                                 input={this.state.invite_user.inputs} // Make inputs
                                 buttons={this.state.invite_user.buttons} // Make buttons
-                                submitted={this.state.submitted_update}
+                                submitted={this.state.submitted_invite}
                             />
                         </section>
                     }

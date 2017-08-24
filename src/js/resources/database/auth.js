@@ -5,6 +5,7 @@ import setting from 'backend/settings'
 import axios from 'axios'
 //Helpers
 import storageHelper from 'resources/helpers/storageHelper';
+import responseHelper from 'resources/helpers/responseHelper';
 import logHelper from 'resources/helpers/logHelper'
 
 export default class Authentication {
@@ -39,9 +40,11 @@ export default class Authentication {
                     err('No token in response')
                 }
 
-
             }).catch((e)=> {
-                err(e.response)
+                //Bad response
+                err(responseHelper.badResponse(
+                    e.response
+                ))
             })
         }));
 

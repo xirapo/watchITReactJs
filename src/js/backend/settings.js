@@ -12,8 +12,8 @@ Settings.appView = '/app';
 //Remote host settings
 Settings.remote = {
     ws_host: 'ws://localhost:9600',
-    api_host: 'http://127.0.0.1:8000/api'
-    //api_host: 'http://api.witth.me'
+    //api_host: 'http://127.0.0.1:8000/api'
+    api_host: 'http://api.witth.me'
 };
 
 

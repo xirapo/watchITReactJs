@@ -55,7 +55,7 @@ const FORMS = {
             size: 'm12 l12',
             required: true
         }, {
-            type: 'text',
+            type: 'email',
             placeholder: "e-mail",
             autoComplete: 'nope',
             name: "email",
