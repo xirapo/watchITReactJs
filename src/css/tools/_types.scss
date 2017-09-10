@@ -4,6 +4,10 @@
   .font-size-#{$i} {
     font-size: 0px + $i !important;
   }
+
+  .font-size-#{$i}-rem {
+    font-size: (0 + $i)#{"rem"} !important;
+  }
 }
 
 .align-center {

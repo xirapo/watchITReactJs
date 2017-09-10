@@ -2,7 +2,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 //Components
-import AppMainSearchResultBox from 'front/components/app-main-search-result-box/index.jsx'
+import AppMainSearchResultBox from 'front/components/app-main-movies-top-search-result-box/index.jsx'
 import PointsLoader from 'front/components/util-points-loader/index.jsx'
 import CustomScrollbars from 'front/components/util-scroller/index.jsx';
 

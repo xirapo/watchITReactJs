@@ -4,7 +4,7 @@ import React from 'react'
 import BoxLoader from 'front/components/util-box-loader/index.jsx'
 import MainHeader from 'front/components/util-header/index.jsx'
 import FormBox from 'front/components/app-form/index.jsx'
-import BoxAlert from 'front/components/app-alerts/index.jsx'
+import BoxImage from 'front/components/app-image/index.jsx'
 //Require for auth
 //Database (Api Handler)
 import Auth from 'resources/database/auth'
@@ -93,9 +93,24 @@ export default class MainMovie extends React.Component {
                 {/*Close button*/}
                 <MainHeader text="Profile"/>
                 <section className="col l12 m12 clearfix full-height">
+                    {/* Image uploader */}
+                    {
+                        <section className="col l4 m4 input-black-box">
+                            <h5 className="white-text">
+                                <i className="icon-edit margin-right-10"/>
+                                Upload Picture
+                            </h5>
+                            <div className="margin-top-2-rem clearfix">
+                                <BoxImage
+                                    src={this.state.user.profile_pic_middle}
+                                />
+                            </div>
+                        </section>
+                    }
+
                     {/*Main Loader or Movie details*/}
                     {
-                        <section className="col l6 m6 input-black-box">
+                        <section className="col l4 m4 input-black-box">
                             <h5 className="white-text">
                                 <i className="icon-edit margin-right-10"/>
                                 Edit Profile
@@ -113,7 +128,7 @@ export default class MainMovie extends React.Component {
                     }
 
                     {
-                        <section className="col l6 m6 input-black-box">
+                        <section className="col l4 m4 input-black-box">
                             <h5 className="white-text">
                                 <i className="icon-message margin-right-10"/>
                                 Invite a friend

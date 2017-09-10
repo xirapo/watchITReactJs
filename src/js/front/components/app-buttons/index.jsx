@@ -17,7 +17,7 @@ export default class BoxButton extends React.Component {
         return (
             <button
                 type={this.props.type}
-                className={"text-lowercase full-width waves-effect waves-light btn " + this.props.className}
+                className={"lowercase full-width waves-effect waves-light btn " + this.props.className}
                 onClick={this.props.onClick}
             >
                 {

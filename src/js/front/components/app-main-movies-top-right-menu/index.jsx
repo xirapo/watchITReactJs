@@ -5,32 +5,22 @@ import NavBarMenu from 'front/components/app-nav-bar-menu/index.jsx'
 export default class AppTopRightMenu extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            user_menu: [{
-                'label': 'Profile',
-                'action': 'profile'
-            }]
-        }
-    }
 
-    onChange(to, e) {
-        let actions = {
-            'profile': '#/user/' + to + '/' + this.props.user.id
-        };
-
-        //Redirect to
-        location.href = actions[to]
     }
 
 
     render() {
         return (
-            this.props.user && <div className="absolute">
-                <NavBarMenu
-                    btnText="Account"
-                    list={this.state.user_menu}
-                    onChange={(t,e)=>this.onChange(t,e)}
-                />
+            this.props.user &&
+            <div className="absolute right-2-rem">
+                <a title="Settings"
+                   className="btn-floating btn-small waves-effect margin-right-1-rem waves-light black">
+                    <i className="icon-tools font-size-1-rem"/>
+                </a>
+                <a href={`#/user/profile/${this.props.user.id}`} title="Profile"
+                   className="btn-floating btn-small waves-effect waves-light black">
+                    <i className="icon-user font-size-1-rem"/>
+                </a>
             </div> || <div></div>
         )
     }
