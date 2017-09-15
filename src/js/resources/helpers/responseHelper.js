@@ -11,14 +11,18 @@ export default ({
          * */
         let returnArr = [];
 
+        //Process snapshot
         snapshot.forEach(childSnapshot => {
             let item = childSnapshot.val();
-            debugger;
-            returnArr.push(Object.keys(item).reduce((old, v)=> {
+            //Unpack message
+            let unpackItem = Object.keys(item).reduce((old, v)=> {
                 return item[v]
-            }), {});
+            }, {});
+            //Push unpacked message
+            returnArr.push(unpackItem);
         });
 
+        //Return new packed items
         return returnArr;
     }
 })

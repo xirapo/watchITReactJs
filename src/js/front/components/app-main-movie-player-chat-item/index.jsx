@@ -1,14 +1,9 @@
 //Basic
 import React from 'react'
 import PropTypes from 'prop-types'
-import BoxInput from 'front/components/app-inputs/index.jsx'
-//Auth users
-import Auth from 'resources/database/auth'
-//Helpers
-import logHelper from 'resources/helpers/logHelper'
-import firebase from 'backend/firebase'
 
-export default class AppMoviesPlayerChat extends React.Component {
+
+export default class AppMoviesPlayerChatItem extends React.Component {
     constructor(props) {
         super(props);
 
@@ -24,24 +19,11 @@ export default class AppMoviesPlayerChat extends React.Component {
     render() {
         return (
             (
-                <div className="left relative full-height full-width">
-                    <div className="height-80-p full-width">
-                        <div className="chat-list">
-                            {
-                                
-                            }
-                        </div>
-                        {
-                            this.state.user &&
-                            <BoxInput
-                                onKeyDown={(e)=> this.sendMessage(e)}
-                                placeholder="Write a message..."
-                            />
-                        }
+                <article className="row">
+                    <div className="col l12 m12">
+                        {this.props.child}
                     </div>
-
-
-                </div>
+                </article>
             )
         )
     }

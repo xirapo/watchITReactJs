@@ -2,6 +2,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import BoxInput from 'front/components/app-inputs/index.jsx'
+import ChatItem from 'front/components/app-main-movie-player-chat-item/index.jsx'
 //Auth users
 import Auth from 'resources/database/auth'
 //Helpers
@@ -41,15 +42,16 @@ export default class AppMoviesPlayerChat extends React.Component {
         //Make reference to real time database
         this.ref = this.database.ref('movie/chat/');
         this.channel = this.ref.child(this.props.channel);
+
         //Log
-        logHelper.info('\nINITIALIZING CHAT AND LOADING OLD CHATS FOR CHANNEL:' + this.props.channel);
-
-        //Event listeners for new incoming message
-        //this.channel.on('child_added', this.onNewMessage);
-
+        logHelper.info(
+            '\nINITIALIZING CHAT AND LOADING OLD CHATS FOR CHANNEL:' + this.props.channel
+        );
 
         //Handle logged user
         this.auth.authUser.then((user)=> {
+            //Event listeners for new incoming message
+            this.channel.on('child_added', this.onNewMessage);
             //Read old messages
             this.ref.limitToLast(
                 user.settings.max_old_chats
@@ -66,14 +68,14 @@ export default class AppMoviesPlayerChat extends React.Component {
 
     readOldMessage(snapshot) {
         //old messages
-        let _oldMessages = resHelper.snapshotToArray(snapshot);
-
-        //Log
-        logHelper.info(
-            '\nLOADED ' + +_oldMessages.length + ' MESSAGES FOR CHANNEL: ' + this.props.channel
+        let _oldMessages = resHelper.snapshotToArray(
+            snapshot
         );
 
-        console.log(_oldMessages);
+        //Log
+        logHelper.ok(
+            '\nLOADED ' + _oldMessages.length + ' MESSAGES FOR CHANNEL: ' + this.props.channel
+        );
 
         //Init
         this.setState({
@@ -86,7 +88,7 @@ export default class AppMoviesPlayerChat extends React.Component {
         if (e.keyCode == 13) {
             this.ref.push().set({
                 message: e.target.value,
-                user: {name: this.user.displayName, thumb: this.user.photoURL},
+                user: {name: this.user.displayName, thumb: this.user.photoURL, id: this.user.uid},
                 timestamp: timeHelper.unixNowTimeZoned(
                     this.state.user.settings.timezone
                 )
@@ -117,13 +119,11 @@ export default class AppMoviesPlayerChat extends React.Component {
                     {
                         <div className="chat-list">
                             {
-                                this.state.chats.map((i, v)=> {
+                                this.state.chats.map((v, i)=> {
                                     return (
-                                        <div key={i}>
-                                            <span className="red-text">
-                                                {v.message}
-                                            </span>
-                                        </div>
+                                       <ChatItem key={i}>
+                                           {v.message}
+                                       </ChatItem>
                                     )
                                 })
                             }
