@@ -42,19 +42,11 @@ const FORMS = {
             type: 'text',
             placeholder: "first name",
             autoComplete: 'nope',
-            name: "first_name",
+            name: "displayName",
             icon: 'icon-text',
             size: 'm12 l12',
             required: true
-        }, {
-            type: 'text',
-            placeholder: "last name",
-            autoComplete: 'nope',
-            name: "last_name",
-            icon: 'icon-text',
-            size: 'm12 l12',
-            required: true
-        }, {
+        },{
             type: 'email',
             placeholder: "e-mail",
             autoComplete: 'nope',
@@ -68,13 +60,6 @@ const FORMS = {
             placeholder: "password",
             autoComplete: 'nope',
             name: "password",
-            icon: 'icon-dial-pad',
-            size: 'm12 l12'
-        }, {
-            type: 'password',
-            placeholder: "repeat password",
-            autoComplete: 'nope',
-            name: "re-password",
             icon: 'icon-dial-pad',
             size: 'm12 l12'
         }],

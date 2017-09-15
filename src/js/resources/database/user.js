@@ -3,39 +3,53 @@
  */
 import setting from 'backend/settings';
 import logHelper from 'resources/helpers/logHelper';
-import responseHelper from 'resources/helpers/responseHelper';
-import axios from 'axios'
+import Auth from 'resources/database/auth'
 
 export default class User {
 
-    update(data, id, token) {
+    update(data) {
         /**
          * Create a new user
          * @param data
          */
 
         return (new Promise((resolve, err) => {
-            //Log
-            logHelper.info('\nUPDATE USER ID: ' + id);
-            //Request to details endpoint
-            axios({
-                url: setting.api.user + '?id=' + id,
-                method: 'put',
-                data: data,
-                timeout: setting.api.timeout,
-                headers: {'Authorization': 'Bearer ' + token}
-            }).then((res)=> {
+
+            //Get authorized user
+            let _auth = new Auth();
+
+            //Request firebase user update
+            _auth.authUser.then((user)=> {
+                //Save promises
+                let _promises = [];
                 //Log
-                logHelper.ok('USER UPDATED FOR ID: ' + id);
-                resolve(res.data);
-            }).catch((e)=> {
-                //Process error
-                err(
-                    responseHelper.badResponse(
-                        e.response
-                    )
-                )
-            })
+                logHelper.info('\nUPDATE USER ID: ' + user.uid);
+                
+                if (data.get('displayName'))
+                    _promises.push(user.updateProfile(
+                        {'displayName': data.get('displayName')}
+                    ));
+
+                if (data.get('email'))
+                    _promises.push(user.updateEmail(
+                        data.get('email')
+                    ));
+
+                if (data.get('password'))
+                    _promises.push(user.updatePassword(
+                        data.get('password')
+                    ));
+
+                //Check for all promises
+                Promise.all(_promises).then(
+                    resolve
+                ).catch((e)=> {
+                      err([e.message])
+                })
+
+            });
+
+
         }));
     }
 

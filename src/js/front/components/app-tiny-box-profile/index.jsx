@@ -26,7 +26,7 @@ export default class AppTinyProfile extends React.Component {
                     <div className="col l3 m3 small-picture">
                         <a href="#" className="clearfix profile-picture-img">
                             <figure>
-                                <img src={this.props.user.profile_pic_small} alt=""/>
+                                <img src={this.props.user.photoURL || 'http://lorempixel.com/60/60/abstract/'} alt=""/>
                             </figure>
                         </a>
                         <div className="small-picture-border">
@@ -37,7 +37,7 @@ export default class AppTinyProfile extends React.Component {
                     </div>
                     <div className="col l9 m9 small-user-data">
                         <div className="col l12 m12 truncate white-text">
-                            <strong className="bold no-margin">{this.props.user.fullname}</strong>
+                            <strong className="bold no-margin">{this.props.user.displayName}</strong>
                         </div>
                         <div className="col l12 m12">
                             <a href="" onClick={(e)=> this.onLogOut(e)} className="grey-text bold">

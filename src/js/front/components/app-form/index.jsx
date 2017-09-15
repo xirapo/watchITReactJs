@@ -117,7 +117,6 @@ export default class FormBox extends React.Component {
                 {this.props.success && <BoxAlert label="success-label">
                     {this.props.success}
                 </BoxAlert>}
-
             </form>
         )
     }

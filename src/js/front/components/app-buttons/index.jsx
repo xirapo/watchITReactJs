@@ -22,7 +22,7 @@ export default class BoxButton extends React.Component {
             >
                 {
                     /*If click*/
-                    this.props.type == "submit"
+                    (this.props.type == "submit" || this.props.forceLoader)
                     && this.props.clicked && <PointsLoader />
                     || this.props.children
                 }

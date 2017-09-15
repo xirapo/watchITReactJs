@@ -58,63 +58,66 @@ export default class NavBarMenu extends React.Component {
 
     render() {
         return (
-            <ul className="dropdown">
 
+            <ul className="dropdown">
                 {/*Drop down main container*/}
-                <li >
-                    <a className="dropdown-button" href="javascript:void(0)">
-                        <i className="icon-triangle-down white-text nav-var-icon normalize-small-icon left margin-right-4"/>
-                        <span className="white-text">{this.props.btnText}</span>
-                        {
-                            /*The main button*/
-                            //Set personalized label
-                            this.state.label
-                            && <span className={"dropdown-result no-bold blue-text"}>
+                {/*Check for valid list of subs*/}
+                {
+                    this.props.list.length > 0 && <li >
+                        <a className="dropdown-button" href="javascript:void(0)">
+                            <i className="icon-triangle-down white-text nav-var-icon normalize-small-icon left margin-right-4"/>
+                            <span className="white-text">{this.props.btnText}</span>
+                            {
+                                /*The main button*/
+                                //Set personalized label
+                                this.state.label
+                                && <span className={"dropdown-result no-bold blue-text"}>
                                 {this.state.label}
                             </span>
 
-                            //Or get default
-                            || this.props.list.map((i, k)=> {
-                                return (
-                                    i.default
-                                    && <span className="dropdown-result no-bold blue-text" key={k}>
+                                //Or get default
+                                || this.props.list.map((i, k)=> {
+                                    return (
+                                        i.default
+                                        && <span className="dropdown-result no-bold blue-text" key={k}>
                                         {i.label}
                                     </span>
-                                )
-                            })
-                        }
-                    </a>
-
-                    {/*Menu List*/}
-                    <ul className="dropdown-content relative">
-                        <CustomScrollbars
-                            autoHide
-                            autoHideTimeout={1000}
-                            autoHideDuration={200}
-                            autoHeight={true}
-                            autoHeightMax={500}
-                            thumbMinSize={30}
-                            universal={true}>
-
-                            {
-                                /*The sub menu items*/
-                                this.props.list.map((i, k)=> {
-                                    return (
-                                        <li key={k}>
-                                            <a href="javascript:void(0)" onClick={(e)=>this.onClick(e)}
-                                               className="drop-item"
-                                               data-action={i.action}
-                                               data-label={i.label}>
-                                                {i.label}
-                                            </a>
-                                        </li>
                                     )
                                 })
                             }
+                        </a>
 
-                        </CustomScrollbars >
-                    </ul>
-                </li>
+                        {/*Menu List*/}
+                        <ul className="dropdown-content relative">
+                            <CustomScrollbars
+                                autoHide
+                                autoHideTimeout={1000}
+                                autoHideDuration={200}
+                                autoHeight={true}
+                                autoHeightMax={500}
+                                thumbMinSize={30}
+                                universal={true}>
+
+                                {
+                                    /*The sub menu items*/
+                                    this.props.list.map((i, k)=> {
+                                        return (
+                                            <li key={k}>
+                                                <a href="javascript:void(0)" onClick={(e)=>this.onClick(e)}
+                                                   className="drop-item"
+                                                   data-action={i.action}
+                                                   data-label={i.label}>
+                                                    {i.label}
+                                                </a>
+                                            </li>
+                                        )
+                                    })
+                                }
+
+                            </CustomScrollbars >
+                        </ul>
+                    </li>
+                }
             </ul>
         )
     }

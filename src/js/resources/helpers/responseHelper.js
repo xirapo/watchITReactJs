@@ -2,33 +2,24 @@
  * Created by gmena on 04-20-17.
  */
 //Crypt helper
-import cryptHelper from './cryptHelper'
+//import cryptHelper from './cryptHelper'
 
 export default ({
-    badResponse: (response)=> {
+    snapshotToArray: (snapshot)=> {
         /**
-         * Process bad response from server
+         * Process firebase snapshot response
          * */
-        if ('data' in response) {
-            try {
-                //Check if is json
-                let error_list = JSON.parse(
-                    response.data.status_message
-                ), error = [];
+        let returnArr = [];
 
-                //Iterate over keys
-                Object.keys(error_list).forEach((k)=> {
-                    error_list[k].reduce((err, v)=> {
-                        err.push(v['message']);
-                        return err
-                    }, error);
-                });
+        snapshot.forEach(childSnapshot => {
+            let item = childSnapshot.val();
+            debugger;
+            returnArr.push(Object.keys(item).reduce((old, v)=> {
+                return item[v]
+            }), {});
+        });
 
-                return error
-            } catch (e) {
-                return [response.data.status_message]
-            }
-        }
+        return returnArr;
     }
 })
 

@@ -8,7 +8,8 @@
 .main-view {
   //Search box
   .input-black-box {
-    width: 32rem !important;
+    //width: 32rem !important;
+    width: 45% !important;
   }
 
   //Main movies lists
@@ -113,11 +114,22 @@
     width: 2rem !important;
   }
 
+  .profile-picture-upload {
+    .loaded-img, .placeholder-img {
+      overflow: hidden !important;
+      max-height: 50vh !important;
+    }
+  }
+
   .input-field-black i {
     position: absolute !important;
     top: 1rem;
     right: 1.3rem;
     color: $gray;
+  }
+
+  .result-search-box-img {
+    display: none;
   }
 
   .search-result-box-title {
@@ -251,9 +263,6 @@
 //Video stream and loader
 .video-stream, .player-overlay-loader {
   height: 93vh !important;
-  .btn-close {
-    top: 3vh !important;
-  }
 }
 
 .points-loader {

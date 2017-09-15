@@ -1,11 +1,10 @@
 /**
  * Created by gmena on 04-19-17.
  */
+import firebase from 'backend/firebase'
 import setting from 'backend/settings'
-import axios from 'axios'
 //Helpers
 import storageHelper from 'resources/helpers/storageHelper';
-import responseHelper from 'resources/helpers/responseHelper';
 import logHelper from 'resources/helpers/logHelper'
 
 export default class Authentication {
@@ -20,34 +19,50 @@ export default class Authentication {
         return (new Promise((resolve, err) => {
             //Log
             logHelper.info('\nREQUESTING LOGIN WITH CREDENTIALS: ' + email + '-' + password);
-            //Set form data
-            let _request_params = new FormData();
-            _request_params.append('email', email);
-            _request_params.append('password', password);
+            firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+                .then(()=> {
+                    //Firebase authentication
+                    firebase.auth().signInWithEmailAndPassword(
+                        email, //User email
+                        password //User password
+                    ).then((e)=> {
+                        //Append user settings
+                        e.settings = setting.user;
+                        //Prepare token
+                        e.getIdToken(true).then((t)=> {
+                            storageHelper.add(t, false).to.user_token();
+                            storageHelper.add(e).to.user();
+                            resolve(e)
+                        })
+                    }).catch((error)=> {
+                        if (error.code)
+                            err([error.message]); //Bad response
+                        // ...
+                    });
+                })
+                .catch(function (error) {
+                    // Handle Errors here.
+                    //var errorCode = error.code;
+                    var errorMessage = error.message;
+                    err(errorMessage);
+                });
 
-            //Request to auth endpoint
-            axios.post(setting.api.auth, _request_params).then((res)=> {
-                if ('data' in res) {
-                    //TODO maybe save time of login for expire token
-                    //Log
-                    logHelper.ok('LOGGED IN USER WITH TOKEN: ' + res.data.data.token);
-                    //Save in storage
-                    storageHelper.add(res.data.data.token, false).to.user_token();
-                    storageHelper.add(res.data.data.user).to.user();
-                    resolve(res.data)
-                } else {
-                    //Invalid token from response
-                    err('No token in response')
-                }
-
-            }).catch((e)=> {
-                //Bad response
-                err(responseHelper.badResponse(
-                    e.response
-                ))
-            })
         }));
 
+    }
+
+    get logout() {
+        /**
+         * Logout
+         */
+        return new Promise((res, err)=> {
+            firebase.auth().signOut().then((r)=> {
+                //Clean logged data
+                logHelper.info('\nUSER LOGGED OUT');
+                storageHelper.remove().user_token();
+                res(r)
+            }).catch(err)
+        })
     }
 
     get authUser() {
@@ -55,10 +70,22 @@ export default class Authentication {
          * Return authenticated user basic data
          * @return object|null
          */
+        return new Promise((res, err)=> {
+            firebase.auth().onAuthStateChanged(function (user) {
+                if (user) {
+                    //Append user settings
+                    user.settings = setting.user;
+                    // User is signed in.
+                    res(user)
+                } else {
+                    //Error what to do?
+                    //err(user)
+                    // No user is signed in.
+                    location.href = '#/'
+                }
+            });
+        })
 
-        return storageHelper.get(
-            //Nothing ;)
-        ).from.user();
     }
 
     get token() {
@@ -66,9 +93,17 @@ export default class Authentication {
          * Return authenticated token
          * @return string|null
          */
-        return storageHelper.get(
-            false //No parse
-        ).from.user_token();
+
+        return new Promise((res, err)=> {
+            this.authUser.then((user)=> {
+                user.getIdToken(true).then((t)=> {
+                    storageHelper.add(t, false).to.user_token();
+                    res(t)
+                })
+            }).catch((err)=> {
+                err(err)
+            })
+        });
     }
 
 

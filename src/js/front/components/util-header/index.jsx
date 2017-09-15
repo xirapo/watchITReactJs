@@ -16,6 +16,10 @@ export default class MainHeader extends React.Component {
             <header className="row vertical-padding horizontal-padding transparent z-depth-1 clearfix">
                 <div className="col l6 m6">
                     <h5 className="white-text bold">
+                        {
+                            this.props.icon && <i className={`${this.props.icon} margin-right-1-rem normalize-small-icon`}/>
+                        }
+
                         {this.props.text}
                     </h5>
                 </div>

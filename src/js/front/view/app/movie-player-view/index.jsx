@@ -3,6 +3,7 @@ import React from 'react'
 //Components
 import AppMoviePlayer from 'front/components/app-main-movie-player/index.jsx'
 import AppMoviePlayerLoader from 'front/components/app-main-movie-player-loader/index.jsx'
+import AppMoviePlayerChat from 'front/components/app-main-movie-player-chat/index.jsx'
 import AppMoviesPlayerSwarm from 'front/components/app-main-movie-player-swarm/index.jsx'
 import MainLoader from 'front/components/util-main-loader/index.jsx'
 import BtnClose from 'front/components/util-btn-close/index.jsx'
@@ -65,7 +66,8 @@ export default class MoviePlayer extends React.Component {
                 movieSelectedSub: this.props.match.params.sub
             });
 
-        }).catch(()=> {
+        }).catch((d)=> {
+            console.log(d);
         })
     }
 
@@ -86,7 +88,7 @@ export default class MoviePlayer extends React.Component {
                     dSpeed: (flix.swarm.downloadSpeed() / 1024).toFixed(2),
                     uSpeed: (flix.swarm.uploadSpeed() / 1024).toFixed(2),
                     dLoaded: parseInt(((flix.swarm.cachedDownload + flix.swarm.downloaded) / 1024) / 1024, 10),
-                    fSize: parseInt((flix.fileSize / 1024) / 1024, 10) ,
+                    fSize: parseInt((flix.fileSize / 1024) / 1024, 10),
                     aPeers: (flix.swarm.wires.filter(function (w) {
                         return !w.peerChoking
                     }).length).toString()
@@ -174,14 +176,25 @@ export default class MoviePlayer extends React.Component {
                             }
 
                             {/*Main player*/}
-                            <AppMoviePlayer
-                                torrent={this.state.movieInfo.torrent}
-                                subs={this.state.movieSubs}
-                                sub_selected={this.state.movieSelectedSub}
-                                onProgress={(p,s)=>{this.onProgress(p,s)}}
-                                onReady={(u, flix)=>{this.onReady(u, flix)}}
-                                onCanPlay={(u)=>{this.onCanPlay(u)}}
-                            />
+                            {/*<div className="col l9 m9 full-height">*/}
+                            <div className="col l9 m9 full-height no-padding">
+                                <AppMoviePlayer
+                                    torrent={this.state.movieInfo.torrent}
+                                    subs={this.state.movieSubs}
+                                    sub_selected={this.state.movieSelectedSub}
+                                    onProgress={(p,s)=>{this.onProgress(p,s)}}
+                                    onReady={(u, flix)=>{this.onReady(u, flix)}}
+                                    onCanPlay={(u)=>{this.onCanPlay(u)}}
+                                />
+                            </div>
+
+                            {/*Chat box*/}
+                            {
+                                this.state.canPlay &&
+                                <div className="col l3 m3 full-height">
+                                    <AppMoviePlayerChat channel={this.state.movieInfo.imdb_code}/>
+                                </div>
+                            }
                         </section>
                     )
                 }

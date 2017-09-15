@@ -2,7 +2,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 //Components
-import AppMainSearchResultBox from 'front/components/app-main-movies-top-search-result-box/index.jsx'
+import AppMainSearchResultBoxItem from 'front/components/app-main-movies-top-search-result-box/index.jsx'
 import PointsLoader from 'front/components/util-points-loader/index.jsx'
 import CustomScrollbars from 'front/components/util-scroller/index.jsx';
 
@@ -40,9 +40,26 @@ export default class AppMainSearchResult extends React.Component {
                             autoHideDuration={200}
                             thumbMinSize={30}
                             universal={true}>
-                            <AppMainSearchResultBox
-                                result={this.props.result}
-                            />
+                            {
+                                this.props.result.length > 0 &&
+                                <div className="col l12 m12 result-search-box">
+                                    <ul className="collection no-border">
+                                        {(
+                                            this.props.result.map((i, k)=> {
+                                                return (
+                                                    <AppMainSearchResultBoxItem key={k}
+                                                        {...i}
+                                                    />
+                                                )
+                                            })
+                                        )}
+                                    </ul>
+                                </div>
+                                || <div className="col l12 m12 result-search-box text-center padding-10">
+                                    <span className="white-text bold">No results were found</span>
+                                </div>
+
+                            }
                         </CustomScrollbars>
                     </div>
                 }
@@ -50,3 +67,12 @@ export default class AppMainSearchResult extends React.Component {
         )
     }
 }
+
+
+
+
+
+
+
+
+

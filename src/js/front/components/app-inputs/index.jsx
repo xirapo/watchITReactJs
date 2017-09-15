@@ -34,10 +34,22 @@ export default class BoxInput extends React.Component {
         });
 
         //If handler
-        if (this.props.onInput) {
+        if (this.props.onInput)
             this.props.onInput(e);
-        }
 
+
+    }
+
+    onChange(e) {
+        //If handler
+        if (this.props.onChange)
+            this.props.onChange(e);
+    }
+
+    onKeyDown(e) {
+        //If handler
+        if (this.props.onKeyDown)
+            this.props.onKeyDown(e);
     }
 
 
@@ -47,6 +59,8 @@ export default class BoxInput extends React.Component {
                 {this.props.icon && <i className={this.props.icon + " gray-text"}/>                }
                 <input {...this.props}
                     onInput={(e)=> this.onInput(e) }
+                    onChange={(e)=> this.onChange(e) }
+                    onKeyDown={(e)=> this.onKeyDown(e) }
                     className="white-text validate"
                     value={this.state.value}
                 />

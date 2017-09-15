@@ -37,28 +37,32 @@ export default class Search {
                     _cache
                 )
             }
-            //Request to search endpoint
-            axios({
-                url: _uri,
-                method: 'get',
-                timeout: setting.api.timeout,
-                headers: {'Authorization': 'Bearer ' + token}
-            }).then((res)=> {
-                logHelper.log('\nSEARCH FROM REMOTE: ' + q);
-                logHelper.ok(res.data.data.length + ' SEARCH RESULTS FROM REMOTE');
-                //set cache
-                cache.set(
-                    _uri_crypt,
-                    res.data.data,
-                    setting.api.cache_time
-                );
 
-                //resolve
-                resolve(
-                    res.data.data
-                );
-            }).catch((e)=> {
-                err(e.response)
+            //Get token
+            token.then((token)=> {
+                //Request to search endpoint
+                axios({
+                    url: _uri,
+                    method: 'get',
+                    timeout: setting.api.timeout,
+                    headers: {'Authorization': 'Bearer ' + token}
+                }).then((res)=> {
+                    logHelper.log('\nSEARCH FROM REMOTE: ' + q);
+                    logHelper.ok(res.data.data.length + ' SEARCH RESULTS FROM REMOTE');
+                    //set cache
+                    cache.set(
+                        _uri_crypt,
+                        res.data.data,
+                        setting.api.cache_time
+                    );
+
+                    //resolve
+                    resolve(
+                        res.data.data
+                    );
+                }).catch((e)=> {
+                    err(e.response)
+                })
             })
         }));
 

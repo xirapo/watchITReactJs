@@ -54,7 +54,7 @@ export default class BoxImage extends React.Component {
                 {
                     /*No poster found*/
                     this.state.status < 0 && <img
-                        alt="" className={this.state.status > -2 ? "hidden" : "center-block responsive-img"}
+                        alt="" className={this.state.status > -2 ? "hidden" : "placeholder-img center-block responsive-img"}
                         src={ "http://lorempixel.com/" + this.props.placeholder.w + "/" + this.props.placeholder.h + (this.props.placeholder.c && "/abstract/NO IMAGE" ||"/abstract/" )}
                         onLoad={(e)=>this.handleImageLoaded(e, -2)}
                     />

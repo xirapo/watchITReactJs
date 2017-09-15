@@ -59,26 +59,15 @@ export default class Main extends React.Component {
             this.auth.token
         );
 
-        //Get basic user data
-        this.basicUserData(
-            this.auth.authUser.id,
-            this.auth.token
-        );
-    }
-
-    basicUserData(id, token) {
-        //Get data
-        this.user.get(
-            id, //User id
-            token //The request token
-        ).then((res)=> {
+        //Basic user data
+        this.auth.authUser.then((user)=> {
             this.setState({
-                user: res
+                user: user
             });
-        }).catch((e)=> {
-        });
+        })
 
     }
+
 
     filterMovies(filter = {}, token, cached = true) {
 
@@ -260,15 +249,13 @@ export default class Main extends React.Component {
 
     logOut(e) {
         e.preventDefault();
-        //Clean logged data
-        storageHelper.remove().user_token();
-        storageHelper.remove().user();
-
-        //Redirect
-        setTimeout(()=> {
-            location.href = '#/'
-        }, 1000);
-
+        //Logout user
+        this.auth.logout.then(()=> {
+            //Redirect
+            setTimeout(()=> {
+                location.href = '#/'
+            }, 1000);
+        })
     }
 
 

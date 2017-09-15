@@ -22,7 +22,7 @@ export default class BtnClose extends React.Component {
     render() {
         return (
             <a href={this.props.action} onClick={(e)=>this.onClose(e)}
-               className="btn-close clearfix font-size-45 top-2-vh right-2-vw">
+               className="btn-close clearfix font-size-45 top-2-vh">
                 <i className="icon-cross white-text"/>
             </a>
         )

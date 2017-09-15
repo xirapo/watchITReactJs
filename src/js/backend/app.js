@@ -80,13 +80,13 @@ cleanFormCache();
 // Wipe the tmpFolder when closing the app (this frees up disk space)
 win.on('close', function () {
     //If user setting clear cache
-    if (user_settings.storage.movies) {
+    if (user_settings.clean.movies) {
         //Remove movies
         wipeTmpFolder();
     }
 
     //If user setting clear cache
-    if (user_settings.storage.subs) {
+    if (user_settings.clean.subs) {
         //Remove subs
         wipeTmpSubs();
     }

@@ -17,12 +17,21 @@
   }
 }
 
-
 ///* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {
   //User profile box
   .profile-media {
     width: 28vw !important;
+  }
+
+  .search-result-box {
+    .result-search-box-img {
+      display: inline-block !important;
+    }
+
+    .result-search-box-content {
+      margin-left: 1rem !important;
+    }
   }
 }
 
@@ -55,7 +64,7 @@
 @media (min-width: 1300px) {
   //Main images
   .movie-details-poster {
-    width: 32.33333% !important;
+    width: 30.33333% !important;
   }
 
   //User profile box
@@ -67,7 +76,7 @@
 @media (min-width: 1500px) {
   //Main images
   .movie-details-poster {
-    width: 32.33333% !important;
+    width: 30.33333% !important;
   }
 
   //User profile box
@@ -91,7 +100,7 @@
 
 @media (min-width: 1900px) {
   .movie-details-poster {
-    width: 58vh !important;
+    width: 53vh !important;
   }
 
   //User profile box
@@ -114,7 +123,8 @@
   }
 
   .movie-details-description {
-    height: 22vh;
+    display: none;
+    //display: 22vh;
   }
 }
 

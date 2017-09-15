@@ -39,30 +39,34 @@ export default class Movies {
                 )
             }
 
-            //Request to list endpoint
-            axios({
-                url: _uri,
-                method: 'get',
-                timeout: setting.api.timeout,
-                headers: {'Authorization': 'Bearer ' + token}
-            }).then((res)=> {
-                //Log
-                logHelper.info('\nMOVIES LIST FROM REMOTE');
-                logHelper.ok(res.data.data.length + ' MOVIES LOADED FROM REMOTE');
-                //set cache
-                cache.set(
-                    _uri_crypt,
-                    res.data.data,
-                    setting.api.cache_time
-                );
+            //Get token
+            token.then((token)=> {
+                //Request to list endpoint
+                axios({
+                    url: _uri,
+                    method: 'get',
+                    timeout: setting.api.timeout,
+                    headers: {'Authorization': 'Bearer ' + token}
+                }).then((res)=> {
+                    //Log
+                    logHelper.info('\nMOVIES LIST FROM REMOTE');
+                    logHelper.ok(res.data.data.length + ' MOVIES LOADED FROM REMOTE');
+                    //set cache
+                    cache.set(
+                        _uri_crypt,
+                        res.data.data,
+                        setting.api.cache_time
+                    );
 
-                //resolve
-                resolve(
-                    res.data.data
-                );
-            }).catch((e)=> {
-                err(e.response)
+                    //resolve
+                    resolve(
+                        res.data.data
+                    );
+                }).catch((e)=> {
+                    err(e.response)
+                })
             })
+
         }));
 
     }
@@ -95,30 +99,33 @@ export default class Movies {
                 )
             }
 
-            //Request to details endpoint
-            axios({
-                url: _uri,
-                method: 'get',
-                timeout: setting.api.timeout,
-                headers: {'Authorization': 'Bearer ' + token}
-            }).then((res)=> {
-                //Log
-                logHelper.info('\nMOVIE DETAILS FROM REMOTE: ' + imdb);
-                logHelper.ok('1 MOVIES DETAILS FROM REMOTE');
-                //set cache
-                cache.set(
-                    _uri_crypt,
-                    res.data.data,
-                    setting.api.cache_time
-                );
+            //Get token
+            token.then((token)=> {
+                //Request to details endpoint
+                axios({
+                    url: _uri,
+                    method: 'get',
+                    timeout: setting.api.timeout,
+                    headers: {'Authorization': 'Bearer ' + token}
+                }).then((res)=> {
+                    //Log
+                    logHelper.info('\nMOVIE DETAILS FROM REMOTE: ' + imdb);
+                    logHelper.ok('1 MOVIES DETAILS FROM REMOTE');
+                    //set cache
+                    cache.set(
+                        _uri_crypt,
+                        res.data.data,
+                        setting.api.cache_time
+                    );
 
-                //resolve
-                resolve(
-                    res.data.data
-                );
-            }).catch((e)=> {
-                err(e.response)
-            })
+                    //resolve
+                    resolve(
+                        res.data.data
+                    );
+                }).catch((e)=> {
+                    err(e.response)
+                })
+            });
         }));
 
     }
