@@ -1,7 +1,7 @@
 //Basic
 import React from 'react'
 import PropTypes from 'prop-types'
-
+import AppTinyProfileAvatar from 'front/components/app-tiny-box-profile-avatar/index.jsx'
 
 export default class AppMoviesPlayerChatItem extends React.Component {
     constructor(props) {
@@ -11,17 +11,30 @@ export default class AppMoviesPlayerChatItem extends React.Component {
 
     static get propTypes() {
         return {
+            uid: PropTypes.string.isRequired,
+            photo: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
             message: PropTypes.string.isRequired
         }
     }
 
-    
+
     render() {
         return (
             (
+                // this.props.flag == this.props.uid &&
                 <article className="row">
-                    <div className="col l12 m12">
-                        {this.props.child}
+                    <div className="left">
+                        <AppTinyProfileAvatar
+                            photo={this.props.photo}
+                            allow_border={false}
+                            size="l12 m12"
+                        />
+                    </div>
+                    <div className="left">
+                        <strong className="white-text">
+                            {this.props.message}
+                        </strong>
                     </div>
                 </article>
             )

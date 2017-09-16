@@ -1,5 +1,6 @@
 import React from 'react'
 import BarLoader from 'front/components/util-bar-loader/index.jsx'
+import AppTinyProfileAvatar from 'front/components/app-tiny-box-profile-avatar/index.jsx'
 
 //Class Profile
 export default class AppTinyProfile extends React.Component {
@@ -23,18 +24,9 @@ export default class AppTinyProfile extends React.Component {
         return (
             (
                 !this.state.logout && this.props.user && <div className="clearfix">
-                    <div className="col l3 m3 small-picture">
-                        <a href="#" className="clearfix profile-picture-img">
-                            <figure>
-                                <img src={this.props.user.photoURL || 'http://lorempixel.com/60/60/abstract/'} alt=""/>
-                            </figure>
-                        </a>
-                        <div className="small-picture-border">
-                            <figure>
-                                <img src="/src/media/img/layout/movie-reel.png" alt=""/>
-                            </figure>
-                        </div>
-                    </div>
+                    {/*Small avatar*/}
+                    <AppTinyProfileAvatar photo={this.props.user.photoURL}/>
+                    {/*Content info*/}
                     <div className="col l9 m9 small-user-data">
                         <div className="col l12 m12 truncate white-text">
                             <strong className="bold no-margin">{this.props.user.displayName}</strong>

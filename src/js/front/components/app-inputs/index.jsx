@@ -56,7 +56,7 @@ export default class BoxInput extends React.Component {
     render() {
         return (
             <div>
-                {this.props.icon && <i className={this.props.icon + " gray-text"}/>                }
+                {this.props.icon && <i className={this.props.icon + " gray-text"}/>}
                 <input {...this.props}
                     onInput={(e)=> this.onInput(e) }
                     onChange={(e)=> this.onChange(e) }

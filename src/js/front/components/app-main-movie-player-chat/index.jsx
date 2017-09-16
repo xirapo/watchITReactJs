@@ -9,6 +9,7 @@ import Auth from 'resources/database/auth'
 import timeHelper from 'resources/helpers/timeHelper'
 import logHelper from 'resources/helpers/logHelper'
 import resHelper from 'resources/helpers/responseHelper'
+import utilHelper from 'resources/helpers/utilHelper'
 import firebase from 'backend/firebase'
 
 export default class AppMoviesPlayerChat extends React.Component {
@@ -26,7 +27,9 @@ export default class AppMoviesPlayerChat extends React.Component {
         this.channel = null;
         //Chat list
         this.state = {
+            value: null,
             user: null,
+            flag: null,
             chats: []
         }
 
@@ -50,10 +53,11 @@ export default class AppMoviesPlayerChat extends React.Component {
 
         //Handle logged user
         this.auth.authUser.then((user)=> {
+
             //Event listeners for new incoming message
             this.channel.on('child_added', this.onNewMessage);
             //Read old messages
-            this.ref.limitToLast(
+            this.channel.limitToLast(
                 user.settings.max_old_chats
             ).once('value', this.readOldMessage);
 
@@ -68,7 +72,7 @@ export default class AppMoviesPlayerChat extends React.Component {
 
     readOldMessage(snapshot) {
         //old messages
-        let _oldMessages = resHelper.snapshotToArray(
+        let _oldMessages = resHelper.snapshotIterToArray(
             snapshot
         );
 
@@ -83,47 +87,68 @@ export default class AppMoviesPlayerChat extends React.Component {
         })
     }
 
-    sendMessage(e) {
+    sendMessage(e, input) {
         //If enter
         if (e.keyCode == 13) {
-            this.ref.push().set({
-                message: e.target.value,
-                user: {name: this.user.displayName, thumb: this.user.photoURL, id: this.user.uid},
+            //Outgoing message
+            let _message = e.target.value;
+
+            //If valid input
+            //if (utilHelper.validString(_message)) {
+            //Pushing messahes to channel
+            this.channel.push().set({
+                message: _message,
+                user: {
+                    name: this.state.user.displayName,
+                    thumb: this.state.user.photoURL,
+                    id: this.state.user.uid
+                },
                 timestamp: timeHelper.unixNowTimeZoned(
                     this.state.user.settings.timezone
                 )
             }).then(()=> {
                 //what?
                 //Log
-                logHelper.info(
-                    '\nNEW MESSAGE SENT TO CHANNEL:' + this.props.channel
-                );
+                this.setState({value: ''});
+                logHelper.info('\nNEW MESSAGE SENT TO CHANNEL:' + this.props.channel);
             })
+            //}
         }
     }
 
 
     onNewMessage(e) {
+        //Incoming message
+        let _newMessage = e.val();
+        let _user = _newMessage.user;
+
+        //Set new state
         this.setState({
+            flag: _user.uid,
             chats: this.state.chats.concat(
-                e.val()
+                [_newMessage]
             )
         })
     }
 
     render() {
         return (
-            <div className="left relative full-height full-width">
-                <div className="height-80-p full-width">
+            <div className="relative full-height full-width">
+                <div className="full-height absolute bottom-0 full-width">
 
                     {
-                        <div className="chat-list">
+                        <div className="chat-list vertical-padding clearfix">
                             {
                                 this.state.chats.map((v, i)=> {
                                     return (
-                                       <ChatItem key={i}>
-                                           {v.message}
-                                       </ChatItem>
+                                        <ChatItem
+                                            key={i}
+                                            message={v.message}
+                                            name={v.user.name}
+                                            photo={v.user.thumb}
+                                            uid={v.user.id}
+                                            flagSet={this.state.flag}
+                                        />
                                     )
                                 })
                             }
@@ -131,10 +156,13 @@ export default class AppMoviesPlayerChat extends React.Component {
                     }
                     {
                         this.state.user &&
-                        <BoxInput
-                            onKeyDown={(e)=> this.sendMessage(e)}
-                            placeholder="Write a message..."
-                        />
+                        <div className="col l12 m12">
+                            <BoxInput
+                                onKeyDown={(e)=> this.sendMessage(e)}
+                                placeholder="Write a message..."
+                                value={this.state.value}
+                            />
+                        </div>
                     }
                 </div>
             </div>

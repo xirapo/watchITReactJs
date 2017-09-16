@@ -9,7 +9,9 @@ import AppTinyProfile from 'front/components/app-tiny-box-profile/index.jsx'
 import AppTopRightMenu from 'front/components/app-main-movies-top-right-menu/index.jsx'
 import AppMainSearchResult from 'front/components/app-main-movies-top-search-result/index.jsx'
 //Helper
+import storageHelper from 'resources/helpers/storageHelper';
 import logHelper from 'resources/helpers/logHelper'
+import utilHelper from 'resources/helpers/utilHelper'
 import setting from 'backend/settings'
 //Require for auth
 //Database (Api Handler)
@@ -18,8 +20,7 @@ import User from 'resources/database/user'
 import Movie from 'resources/database/movies'
 import Search from 'resources/database/search'
 
-//Helpers
-import storageHelper from 'resources/helpers/storageHelper';
+
 
 //Login view class
 export default class Main extends React.Component {
@@ -204,7 +205,7 @@ export default class Main extends React.Component {
     onSearch(e) {
         //The incoming value;
         let _target_value = e.target.value;
-        let _invalid_input = !_target_value || /^\s*$/.test(_target_value) || _target_value.length == 0;
+        let _invalid_input = utilHelper.validString(_target_value);
 
         //Empty write
         if (_invalid_input) {

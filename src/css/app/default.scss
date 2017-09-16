@@ -270,3 +270,9 @@
     fill: rgba(26, 55, 65, 0.9) !important;
   }
 }
+
+.chat-list{
+  .profile-picture-img{
+    @include border-radius(5px)
+  }
+}

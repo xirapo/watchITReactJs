@@ -83397,6 +83397,11 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 .points-loader #to_be_colored_rect {
   fill: rgba(26, 55, 65, 0.9) !important; }
 
+.chat-list .profile-picture-img {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px; }
+
 /**
 https://smacss.com/book/type-state
 */
@@ -83748,6 +83753,9 @@ video::-webkit-media-text-track-display, video::cue {
     margin-left: 1rem !important; } }
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
+  .video-stream .btn-close {
+    right: 1rem; }
+
   .movies-poster {
     width: 14.26667% !important; }
 

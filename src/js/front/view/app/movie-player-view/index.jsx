@@ -176,25 +176,25 @@ export default class MoviePlayer extends React.Component {
                             }
 
                             {/*Main player*/}
-                            {/*<div className="col l9 m9 full-height">*/}
-                            <div className="col l9 m9 full-height no-padding">
-                                <AppMoviePlayer
-                                    torrent={this.state.movieInfo.torrent}
-                                    subs={this.state.movieSubs}
-                                    sub_selected={this.state.movieSelectedSub}
-                                    onProgress={(p,s)=>{this.onProgress(p,s)}}
-                                    onReady={(u, flix)=>{this.onReady(u, flix)}}
-                                    onCanPlay={(u)=>{this.onCanPlay(u)}}
-                                />
-                            </div>
+                            {/*<div className="col l9 m9 full-height">
+                             <div className="full-width full-height">*/}
+                            <AppMoviePlayer
+                                torrent={this.state.movieInfo.torrent}
+                                subs={this.state.movieSubs}
+                                sub_selected={this.state.movieSelectedSub}
+                                onProgress={(p,s)=>{this.onProgress(p,s)}}
+                                onReady={(u, flix)=>{this.onReady(u, flix)}}
+                                onCanPlay={(u)=>{this.onCanPlay(u)}}
+                            />
+
 
                             {/*Chat box*/}
-                            {
-                                this.state.canPlay &&
-                                <div className="col l3 m3 full-height">
-                                    <AppMoviePlayerChat channel={this.state.movieInfo.imdb_code}/>
-                                </div>
-                            }
+                            {/*
+                             this.state.canPlay &&
+                             <div className="width-20-rem absolute right-0 top-0 full-height">
+                             <AppMoviePlayerChat channel={this.state.movieInfo.imdb_code}/>
+                             </div>
+                             */}
                         </section>
                     )
                 }

@@ -37,6 +37,12 @@
 
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
+  .video-stream {
+    .btn-close {
+      right: 1rem;
+    }
+  }
+
   //Main images
   .movies-poster {
     width: 14.26667% !important;
@@ -99,6 +105,7 @@
 }
 
 @media (min-width: 1900px) {
+
   .movie-details-poster {
     width: 53vh !important;
   }

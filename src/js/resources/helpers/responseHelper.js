@@ -5,7 +5,7 @@
 //import cryptHelper from './cryptHelper'
 
 export default ({
-    snapshotToArray: (snapshot)=> {
+    snapshotIterToArray: (snapshot)=> {
         /**
          * Process firebase snapshot response
          * */
@@ -15,11 +15,11 @@ export default ({
         snapshot.forEach(childSnapshot => {
             let item = childSnapshot.val();
             //Unpack message
-            let unpackItem = Object.keys(item).reduce((old, v)=> {
-                return item[v]
-            }, {});
+            // let unpackItem = Object.keys(item).reduce((old, v)=> {
+            //     return item[v]
+            // }, {});
             //Push unpacked message
-            returnArr.push(unpackItem);
+            returnArr.push(item);
         });
 
         //Return new packed items
