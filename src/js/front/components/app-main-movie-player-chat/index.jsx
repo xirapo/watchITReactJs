@@ -27,7 +27,7 @@ export default class AppMoviesPlayerChat extends React.Component {
         this.channel = null;
         //Chat list
         this.state = {
-            value: null,
+            value: '',
             user: null,
             flag: null,
             chats: []
@@ -134,37 +134,36 @@ export default class AppMoviesPlayerChat extends React.Component {
     render() {
         return (
             <div className="relative full-height full-width">
-                <div className="full-height absolute bottom-0 full-width">
 
-                    {
-                        <div className="chat-list vertical-padding clearfix">
-                            {
-                                this.state.chats.map((v, i)=> {
-                                    return (
-                                        <ChatItem
-                                            key={i}
-                                            message={v.message}
-                                            name={v.user.name}
-                                            photo={v.user.thumb}
-                                            uid={v.user.id}
-                                            flagSet={this.state.flag}
-                                        />
-                                    )
-                                })
-                            }
-                        </div>
-                    }
-                    {
-                        this.state.user &&
-                        <div className="col l12 m12">
-                            <BoxInput
-                                onKeyDown={(e)=> this.sendMessage(e)}
-                                placeholder="Write a message..."
-                                value={this.state.value}
-                            />
-                        </div>
-                    }
-                </div>
+                {
+                    <div className="chat-list vertical-padding clearfix">
+                        {
+                            this.state.chats.map((v, i)=> {
+                                return (
+                                    <ChatItem
+                                        key={i}
+                                        message={v.message}
+                                        name={v.user.name}
+                                        photo={v.user.thumb}
+                                        uid={v.user.id}
+                                        flagSet={this.state.flag}
+                                    />
+                                )
+                            })
+                        }
+                    </div>
+                }
+                {
+                    this.state.user &&
+                    <div className="col l12 m12">
+                        <BoxInput
+                            onInput={(e)=> this.setState({value:e.target.value})}
+                            onKeyDown={(e)=> this.sendMessage(e)}
+                            placeholder="Write a message..."
+                            value={this.state.value}
+                        />
+                    </div>
+                }
             </div>
         )
     }

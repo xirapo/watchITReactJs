@@ -49,7 +49,7 @@ export default class MainMovie extends React.Component {
             //Set value for inputs in edit form
             this.state.user_new_or_update.inputs.forEach((i, v)=> {
                 if (i['name'] in user) {
-                    i['value'] = user[i['name']];
+                    i['defaultValue'] = user[i['name']];
                 }
             });
 

@@ -4,6 +4,11 @@
 /* Small devices (tablets, 768px and up) */
 //
 @media (min-width: 768px) {
+  .video-stream {
+    .chat-box-init-btn {
+      right: 1rem;
+    }
+  }
   //User profile box
   .profile-media {
     width: 34vw !important;
@@ -40,6 +45,9 @@
   .video-stream {
     .btn-close {
       right: 1rem;
+    }
+    .chat-box-init-btn {
+      right: 2rem;
     }
   }
 

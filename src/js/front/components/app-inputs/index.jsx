@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 export default class BoxInput extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {value: ''};
     }
 
     static get defaultProps() {
@@ -20,22 +19,12 @@ export default class BoxInput extends React.Component {
         }
     }
 
-    componentWillMount() {
-        if (this.props.value)
-            this.setState({
-                value: this.props.value
-            })
-    }
-
     onInput(e) {
-        //Set value to input
-        this.setState({
-            value: e.target.value
-        });
-
         //If handler
         if (this.props.onInput)
-            this.props.onInput(e);
+            this.props.onInput(
+                e
+            );
 
 
     }
@@ -43,13 +32,17 @@ export default class BoxInput extends React.Component {
     onChange(e) {
         //If handler
         if (this.props.onChange)
-            this.props.onChange(e);
+            this.props.onChange(
+                e
+            );
     }
 
     onKeyDown(e) {
         //If handler
         if (this.props.onKeyDown)
-            this.props.onKeyDown(e);
+            this.props.onKeyDown(
+                e
+            );
     }
 
 
@@ -62,7 +55,6 @@ export default class BoxInput extends React.Component {
                     onChange={(e)=> this.onChange(e) }
                     onKeyDown={(e)=> this.onKeyDown(e) }
                     className="white-text validate"
-                    value={this.state.value}
                 />
             </div>
         )

@@ -10,6 +10,7 @@ export default class FormBox extends React.Component {
     constructor(props) {
         super(props);
         this.fields = new FormData();
+        this.state = {input_state: ''}
     }
 
     static get defaultProps() {
@@ -112,7 +113,7 @@ export default class FormBox extends React.Component {
                         }
                     </div>
                 }
-                
+
                 {/*Sucess message*/}
                 {this.props.success && <BoxAlert label="success-label">
                     {this.props.success}

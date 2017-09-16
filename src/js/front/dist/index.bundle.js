@@ -12347,27 +12347,12 @@ var BoxInput = function (_React$Component) {
     function BoxInput(props) {
         _classCallCheck(this, BoxInput);
 
-        var _this = _possibleConstructorReturn(this, (BoxInput.__proto__ || Object.getPrototypeOf(BoxInput)).call(this, props));
-
-        _this.state = { value: '' };
-        return _this;
+        return _possibleConstructorReturn(this, (BoxInput.__proto__ || Object.getPrototypeOf(BoxInput)).call(this, props));
     }
 
     _createClass(BoxInput, [{
-        key: 'componentWillMount',
-        value: function componentWillMount() {
-            if (this.props.value) this.setState({
-                value: this.props.value
-            });
-        }
-    }, {
         key: 'onInput',
         value: function onInput(e) {
-            //Set value to input
-            this.setState({
-                value: e.target.value
-            });
-
             //If handler
             if (this.props.onInput) this.props.onInput(e);
         }
@@ -12402,8 +12387,7 @@ var BoxInput = function (_React$Component) {
                     onKeyDown: function onKeyDown(e) {
                         return _this2.onKeyDown(e);
                     },
-                    className: 'white-text validate',
-                    value: this.state.value
+                    className: 'white-text validate'
                 }))
             );
         }
@@ -21578,6 +21562,7 @@ var FormBox = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (FormBox.__proto__ || Object.getPrototypeOf(FormBox)).call(this, props));
 
         _this.fields = new FormData();
+        _this.state = { input_state: '' };
         return _this;
     }
 
@@ -46561,7 +46546,8 @@ var MoviePlayer = function (_React$Component) {
             state: 'Connecting',
             percent: 0,
             canPlay: false,
-            stopped: false
+            stopped: false,
+            toggle_screen: false
         };
 
         return _this;
@@ -46664,6 +46650,14 @@ var MoviePlayer = function (_React$Component) {
             }, 1000);
         }
     }, {
+        key: 'toggleView',
+        value: function toggleView(e) {
+            //Change state
+            this.setState({
+                toggle_screen: !this.state.toggle_screen
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
             var _this5 = this;
@@ -46684,7 +46678,8 @@ var MoviePlayer = function (_React$Component) {
                 ),
                 this.state.movieInfo && _react2.default.createElement(
                     'section',
-                    { className: 'absolute full-width full-height clearfix video-stream' },
+                    {
+                        className: 'absolute full-height clearfix video-stream ' + (this.state.toggle_screen && 'video-stream-fixed') },
                     _react2.default.createElement(_index12.default, { onClose: function onClose() {
                             _this5.onClose();
                         } }),
@@ -46708,19 +46703,46 @@ var MoviePlayer = function (_React$Component) {
                             })
                         )
                     ),
-                    _react2.default.createElement(_index2.default, {
-                        torrent: this.state.movieInfo.torrent,
-                        subs: this.state.movieSubs,
-                        sub_selected: this.state.movieSelectedSub,
-                        onProgress: function onProgress(p, s) {
-                            _this5.onProgress(p, s);
-                        },
-                        onReady: function onReady(u, flix) {
-                            _this5.onReady(u, flix);
-                        },
-                        onCanPlay: function onCanPlay(u) {
-                            _this5.onCanPlay(u);
-                        }
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'full-height movie-box' },
+                        _react2.default.createElement(_index2.default, {
+                            torrent: this.state.movieInfo.torrent,
+                            subs: this.state.movieSubs,
+                            sub_selected: this.state.movieSelectedSub,
+                            onProgress: function onProgress(p, s) {
+                                _this5.onProgress(p, s);
+                            },
+                            onReady: function onReady(u, flix) {
+                                _this5.onReady(u, flix);
+                            },
+                            onCanPlay: function onCanPlay(u) {
+                                _this5.onCanPlay(u);
+                            }
+                        })
+                    ),
+                    !this.state.toggle_screen && this.state.canPlay && _react2.default.createElement(
+                        'div',
+                        { onClick: function onClick(e) {
+                                return _this5.toggleView(e);
+                            },
+                            className: 'btn-floating btn-medium waves-effect waves-light chat-box-init-btn absolute bottom-3-rem grey' },
+                        _react2.default.createElement('i', { className: 'icon-message white-text' })
+                    )
+                ),
+                this.state.canPlay && _react2.default.createElement(
+                    'div',
+                    { className: 'chat-box full-height ' + (this.state.toggle_screen && 'chat-box-fixed') },
+                    this.state.toggle_screen && _react2.default.createElement(
+                        'div',
+                        { onClick: function onClick(e) {
+                                return _this5.toggleView(e);
+                            },
+                            className: 'btn-floating btn-medium waves-effect waves-light top-2-vh right-1-rem chat-box-init-stop absolute grey' },
+                        _react2.default.createElement('i', { className: 'icon-log-out white-text' })
+                    ),
+                    _react2.default.createElement(_index6.default, {
+                        channel: this.state.movieInfo.imdb_code
                     })
                 ),
                 this.state.stopped && _react2.default.createElement(_index10.default, null)
@@ -47046,7 +47068,7 @@ var MainMovie = function (_React$Component) {
                 //Set value for inputs in edit form
                 _this2.state.user_new_or_update.inputs.forEach(function (i, v) {
                     if (i['name'] in user) {
-                        i['value'] = user[i['name']];
+                        i['defaultValue'] = user[i['name']];
                     }
                 });
 
@@ -48740,7 +48762,7 @@ var AppMoviesPlayerChat = function (_React$Component) {
         _this.channel = null;
         //Chat list
         _this.state = {
-            value: null,
+            value: '',
             user: null,
             flag: null,
             chats: []
@@ -48842,32 +48864,31 @@ var AppMoviesPlayerChat = function (_React$Component) {
                 { className: 'relative full-height full-width' },
                 _react2.default.createElement(
                     'div',
-                    { className: 'full-height absolute bottom-0 full-width' },
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'chat-list vertical-padding clearfix' },
-                        this.state.chats.map(function (v, i) {
-                            return _react2.default.createElement(_index4.default, {
-                                key: i,
-                                message: v.message,
-                                name: v.user.name,
-                                photo: v.user.thumb,
-                                uid: v.user.id,
-                                flagSet: _this4.state.flag
-                            });
-                        })
-                    ),
-                    this.state.user && _react2.default.createElement(
-                        'div',
-                        { className: 'col l12 m12' },
-                        _react2.default.createElement(_index2.default, {
-                            onKeyDown: function onKeyDown(e) {
-                                return _this4.sendMessage(e);
-                            },
-                            placeholder: 'Write a message...',
-                            value: this.state.value
-                        })
-                    )
+                    { className: 'chat-list vertical-padding clearfix' },
+                    this.state.chats.map(function (v, i) {
+                        return _react2.default.createElement(_index4.default, {
+                            key: i,
+                            message: v.message,
+                            name: v.user.name,
+                            photo: v.user.thumb,
+                            uid: v.user.id,
+                            flagSet: _this4.state.flag
+                        });
+                    })
+                ),
+                this.state.user && _react2.default.createElement(
+                    'div',
+                    { className: 'col l12 m12' },
+                    _react2.default.createElement(_index2.default, {
+                        onInput: function onInput(e) {
+                            return _this4.setState({ value: e.target.value });
+                        },
+                        onKeyDown: function onKeyDown(e) {
+                            return _this4.sendMessage(e);
+                        },
+                        placeholder: 'Write a message...',
+                        value: this.state.value
+                    })
                 )
             );
         }

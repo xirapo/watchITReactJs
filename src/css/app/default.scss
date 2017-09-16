@@ -271,8 +271,34 @@
   }
 }
 
-.chat-list{
-  .profile-picture-img{
-    @include border-radius(5px)
+.movie-player {
+  .video-stream-fixed {
+    width: 75% !important;
+  }
+
+  .video-stream {
+    @include transition(width 1s ease-in-out);
+    width: 100%;
+  }
+
+  .chat-box-fixed {
+    width: 25% !important;
+  }
+
+  .chat-box {
+    @include transition(width 1s ease-in-out);
+    position: absolute;
+    height: 93vh !important;
+    bottom: 0;
+    right:0;
+    background-color: rgba(256, 256, 256, 0.2);
+    width: 0;
+
+    .chat-list {
+      .profile-picture-img {
+        @include border-radius(5px)
+      }
+    }
   }
 }
+

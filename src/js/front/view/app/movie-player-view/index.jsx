@@ -30,7 +30,8 @@ export default class MoviePlayer extends React.Component {
             state: 'Connecting',
             percent: 0,
             canPlay: false,
-            stopped: false
+            stopped: false,
+            toggle_screen: false
         };
 
     }
@@ -131,6 +132,13 @@ export default class MoviePlayer extends React.Component {
         }, 1000);
     }
 
+    toggleView(e) {
+        //Change state
+        this.setState({
+            toggle_screen: !this.state.toggle_screen
+        })
+    }
+
     render() {
         return (
             <div className="movie-player full-width full-height">
@@ -150,7 +158,8 @@ export default class MoviePlayer extends React.Component {
                 {
                     (
                         this.state.movieInfo &&
-                        <section className="absolute full-width full-height clearfix video-stream">
+                        <section
+                            className={`absolute full-height clearfix video-stream ${this.state.toggle_screen && 'video-stream-fixed'}`}>
                             {/*Close button*/}
                             <BtnClose onClose={()=>{this.onClose()}}/>
 
@@ -176,29 +185,50 @@ export default class MoviePlayer extends React.Component {
                             }
 
                             {/*Main player*/}
-                            {/*<div className="col l9 m9 full-height">
-                             <div className="full-width full-height">*/}
-                            <AppMoviePlayer
-                                torrent={this.state.movieInfo.torrent}
-                                subs={this.state.movieSubs}
-                                sub_selected={this.state.movieSelectedSub}
-                                onProgress={(p,s)=>{this.onProgress(p,s)}}
-                                onReady={(u, flix)=>{this.onReady(u, flix)}}
-                                onCanPlay={(u)=>{this.onCanPlay(u)}}
-                            />
-
-
-                            {/*Chat box*/}
                             {/*
-                             this.state.canPlay &&
-                             <div className="width-20-rem absolute right-0 top-0 full-height">
-                             <AppMoviePlayerChat channel={this.state.movieInfo.imdb_code}/>
-                             </div>
-                             */}
+                             <div className="full-width full-height">*/}
+                            <div className="full-height movie-box">
+                                <AppMoviePlayer
+                                    torrent={this.state.movieInfo.torrent}
+                                    subs={this.state.movieSubs}
+                                    sub_selected={this.state.movieSelectedSub}
+                                    onProgress={(p,s)=>{this.onProgress(p,s)}}
+                                    onReady={(u, flix)=>{this.onReady(u, flix)}}
+                                    onCanPlay={(u)=>{this.onCanPlay(u)}}
+                                />
+                            </div>
+
+                            {
+                                !this.state.toggle_screen && this.state.canPlay &&
+                                <div onClick={(e)=> this.toggleView(e)}
+                                     className="btn-floating btn-medium waves-effect waves-light chat-box-init-btn absolute bottom-3-rem grey">
+                                    <i className="icon-message white-text"/>
+                                </div>
+                            }
                         </section>
+
                     )
                 }
 
+                {/*Chat box*/}
+                {
+                    this.state.canPlay &&
+                    <div className={`chat-box full-height ${this.state.toggle_screen && 'chat-box-fixed'}`}>
+
+                        {
+                            this.state.toggle_screen &&
+                            <div onClick={(e)=> this.toggleView(e)}
+                                 className="btn-floating btn-medium waves-effect waves-light top-2-vh right-1-rem chat-box-init-stop absolute grey">
+                                <i className="icon-log-out white-text"/>
+                            </div>
+                        }
+                        <AppMoviePlayerChat
+                            channel={this.state.movieInfo.imdb_code}
+                        />
+                    </div>
+                }
+
+                {/*Loader box*/}
                 { this.state.stopped && <MainLoader />}
             </div>
         )
