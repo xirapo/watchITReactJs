@@ -290,9 +290,13 @@
     position: absolute;
     height: 93vh !important;
     bottom: 0;
-    right:0;
+    right: 0;
     background-color: rgba(256, 256, 256, 0.2);
     width: 0;
+
+    .chat-box-header {
+      background-color: rgba(0, 0, 0, 0.2)
+    }
 
     .chat-list {
       .profile-picture-img {

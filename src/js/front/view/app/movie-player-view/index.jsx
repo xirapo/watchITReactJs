@@ -4,6 +4,7 @@ import React from 'react'
 import AppMoviePlayer from 'front/components/app-main-movie-player/index.jsx'
 import AppMoviePlayerLoader from 'front/components/app-main-movie-player-loader/index.jsx'
 import AppMoviePlayerChat from 'front/components/app-main-movie-player-chat/index.jsx'
+import AppMoviePlayerChatHeader from 'front/components/app-main-movie-player-chat-header/index.jsx'
 import AppMoviesPlayerSwarm from 'front/components/app-main-movie-player-swarm/index.jsx'
 import MainLoader from 'front/components/util-main-loader/index.jsx'
 import BtnClose from 'front/components/util-btn-close/index.jsx'
@@ -212,19 +213,21 @@ export default class MoviePlayer extends React.Component {
 
                 {/*Chat box*/}
                 {
-                    this.state.canPlay &&
+                    this.state.canPlay && this.state.movieInfo &&
                     <div className={`chat-box full-height ${this.state.toggle_screen && 'chat-box-fixed'}`}>
-
                         {
                             this.state.toggle_screen &&
-                            <div onClick={(e)=> this.toggleView(e)}
-                                 className="btn-floating btn-medium waves-effect waves-light top-2-vh right-1-rem chat-box-init-stop absolute grey">
-                                <i className="icon-log-out white-text"/>
-                            </div>
+                            <AppMoviePlayerChatHeader
+                                onClose={(e)=> this.toggleView(e)}
+                            />
+
                         }
-                        <AppMoviePlayerChat
-                            channel={this.state.movieInfo.imdb_code}
-                        />
+                        {
+                            this.state.toggle_screen &&
+                            <AppMoviePlayerChat
+                                channel={this.state.movieInfo.imdb_code}
+                            />
+                        }
                     </div>
                 }
 

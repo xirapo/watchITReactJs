@@ -286,7 +286,7 @@ export default class Main extends React.Component {
                                 />
                             </div>
 
-                            <div className="col l2 m2 relative right top-right-small-menu top-1-rem">
+                            <div className="col l2 m2 relative right top-right-small-menu top-1-vh">
                                 {/*The top right man nav bar menu */}
                                 <AppTopRightMenu
                                     user={this.state.user}
