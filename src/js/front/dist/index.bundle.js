@@ -48737,7 +48737,7 @@ var AppMoviesPlayerChatItem = function (_React$Component) {
                         { className: 'left' },
                         _react2.default.createElement(
                             'div',
-                            { className: 'clearfix max-width-12-rem' },
+                            { className: 'clearfix max-width-12-vw' },
                             _react2.default.createElement(
                                 'strong',
                                 { className: 'white-text' },
