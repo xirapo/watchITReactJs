@@ -85090,6 +85090,9 @@ video::-webkit-media-text-track-display, video::cue {
   .movie-details-description {
     height: 20vh; } }
 @media (min-height: 1018px) {
+  .chat-list {
+    height: 80vh; }
+
   .movies-box {
     height: 76vh; }
 
@@ -85102,6 +85105,9 @@ video::-webkit-media-text-track-display, video::cue {
   .movie-details-description {
     height: 29vh; } }
 @media (min-height: 1050px) {
+  .chat-list {
+    height: 80vh; }
+
   .movies-box {
     height: 78vh; }
 
