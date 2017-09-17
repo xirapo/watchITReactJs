@@ -11314,6 +11314,7 @@ var CustomScrollbars = function (_React$Component) {
                 marginRight: '-16px',
                 marginBottom: '-16px'
             };
+
             return _react2.default.createElement('div', _extends({
                 style: _extends({}, style, viewStyle)
             }, props));
@@ -11359,12 +11360,7 @@ var CustomScrollbars = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-            var _this2 = this;
-
             return _react2.default.createElement(_reactCustomScrollbars.Scrollbars, _extends({
-                ref: function ref(e) {
-                    return _this2.props.getRef && _this2.props.getRef(e);
-                },
                 renderView: this.renderView,
                 renderThumbVertical: this.renderThumbVertical,
                 renderThumbHorizontal: this.renderThumbHorizontal,
@@ -48727,7 +48723,7 @@ var AppMoviesPlayerChatItem = function (_React$Component) {
                         { className: 'left' },
                         _react2.default.createElement(
                             'div',
-                            { className: 'clearfix' },
+                            { className: 'clearfix max-width-12-rem' },
                             _react2.default.createElement(
                                 'strong',
                                 { className: 'white-text' },
@@ -49033,8 +49029,8 @@ var AppMoviesPlayerChat = function (_React$Component) {
                     _react2.default.createElement(
                         _index6.default,
                         {
-                            getRef: function getRef(e) {
-                                return _this4.scroller = e;
+                            onUpdate: function onUpdate(e) {
+                                return console.log(e);
                             },
                             autoHide: true,
                             autoHideTimeout: 1000,

@@ -9,6 +9,7 @@ export default class CustomScrollbars extends React.Component {
             marginRight: '-16px',
             marginBottom: '-16px'
         };
+
         return (
             <div
                 style={{ ...style, ...viewStyle }}
@@ -58,7 +59,6 @@ export default class CustomScrollbars extends React.Component {
     render() {
         return (
             <Scrollbars
-                ref={(e)=>this.props.getRef && this.props.getRef(e) }
                 renderView={this.renderView}
                 renderThumbVertical={this.renderThumbVertical}
                 renderThumbHorizontal={this.renderThumbHorizontal}

@@ -141,7 +141,7 @@ export default class AppMoviesPlayerChat extends React.Component {
             <div className="relative height-42-rem full-width">
                 <div className="chat-list height-36-rem vertical-padding clearfix">
                     <CustomScrollbars
-                        getRef={(e)=> this.scroller = e}
+                        onUpdate={(e)=> console.log(e)}
                         autoHide
                         autoHideTimeout={1000}
                         autoHideDuration={200}
