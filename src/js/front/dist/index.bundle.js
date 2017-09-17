@@ -11298,13 +11298,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var CustomScrollbars = function (_React$Component) {
     _inherits(CustomScrollbars, _React$Component);
 
-    function CustomScrollbars(props) {
+    function CustomScrollbars() {
         _classCallCheck(this, CustomScrollbars);
 
-        var _this = _possibleConstructorReturn(this, (CustomScrollbars.__proto__ || Object.getPrototypeOf(CustomScrollbars)).call(this, props));
-
-        _this.scroller = null;
-        return _this;
+        return _possibleConstructorReturn(this, (CustomScrollbars.__proto__ || Object.getPrototypeOf(CustomScrollbars)).apply(this, arguments));
     }
 
     _createClass(CustomScrollbars, [{
@@ -11376,11 +11373,6 @@ var CustomScrollbars = function (_React$Component) {
                 autoHideTimeout: 1000,
                 autoHideDuration: 200
             }, this.props));
-        }
-    }, {
-        key: 'getRef',
-        get: function get() {
-            return this.scroller;
         }
     }]);
 
@@ -46332,7 +46324,7 @@ var Main = function (_React$Component) {
 
             //The incoming value;
             var _target_value = e.target.value;
-            var _invalid_input = _utilHelper2.default.validString(_target_value);
+            var _invalid_input = _utilHelper2.default.invalidString(_target_value);
 
             //Empty write
             if (_invalid_input) {
