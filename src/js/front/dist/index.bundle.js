@@ -11298,10 +11298,16 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var CustomScrollbars = function (_React$Component) {
     _inherits(CustomScrollbars, _React$Component);
 
-    function CustomScrollbars() {
+    function CustomScrollbars(props) {
         _classCallCheck(this, CustomScrollbars);
 
-        return _possibleConstructorReturn(this, (CustomScrollbars.__proto__ || Object.getPrototypeOf(CustomScrollbars)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (CustomScrollbars.__proto__ || Object.getPrototypeOf(CustomScrollbars)).call(this, props));
+
+        var getRef = props.getRef;
+        //reset props
+
+        _this.getRef = getRef;
+        return _this;
     }
 
     _createClass(CustomScrollbars, [{
@@ -11362,9 +11368,12 @@ var CustomScrollbars = function (_React$Component) {
         value: function render() {
             var _this2 = this;
 
+            var props = _extends({}, this.props);
+            delete props.getRef;
+
             return _react2.default.createElement(_reactCustomScrollbars.Scrollbars, _extends({
                 ref: function ref(e) {
-                    _this2.props.getRef && _this2.props.getRef(e);
+                    _this2.getRef && _this2.getRef(e);
                 },
                 renderView: this.renderView,
                 renderThumbVertical: this.renderThumbVertical,
@@ -11372,7 +11381,7 @@ var CustomScrollbars = function (_React$Component) {
                 autoHide: true,
                 autoHideTimeout: 1000,
                 autoHideDuration: 200
-            }, this.props));
+            }, props));
         }
     }]);
 
@@ -48957,6 +48966,9 @@ var AppMoviesPlayerChat = function (_React$Component) {
                 _this2.setState({
                     user: user
                 });
+
+                //Go bottom
+                _this2.scroller && _this2.scroller.scrollToBottom();
             });
         }
     }, {
@@ -49027,12 +49039,12 @@ var AppMoviesPlayerChat = function (_React$Component) {
                 { className: 'relative height-42-rem full-width' },
                 _react2.default.createElement(
                     'div',
-                    { className: 'chat-list height-36-rem vertical-padding clearfix' },
-                    _react2.default.createElement(
+                    { className: 'chat-list vertical-padding clearfix' },
+                    this.state.user && _react2.default.createElement(
                         _index6.default,
                         {
                             getRef: function getRef(e) {
-                                return _this4.setRef(e);
+                                return e && (_this4.scroller = e);
                             },
                             autoHide: true,
                             autoHideTimeout: 1000,

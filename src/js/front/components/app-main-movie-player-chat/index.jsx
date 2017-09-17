@@ -65,7 +65,10 @@ export default class AppMoviesPlayerChat extends React.Component {
             //Change state
             this.setState({
                 user: user
-            })
+            });
+
+            //Go bottom
+            this.scroller && this.scroller.scrollToBottom();
         })
     }
 
@@ -135,33 +138,36 @@ export default class AppMoviesPlayerChat extends React.Component {
     render() {
         return (
             <div className="relative height-42-rem full-width">
-                <div className="chat-list height-36-rem vertical-padding clearfix">
-                    <CustomScrollbars
-                        getRef={(e)=> this.setRef(e)}
-                        autoHide
-                        autoHideTimeout={1000}
-                        autoHideDuration={200}
-                        thumbMinSize={30}
-                        universal={true}
-                    >
-                        {
-                            this.state.chats.map((v, i)=> {
-                                return (
-                                    <ChatItem
-                                        key={i}
-                                        message={v.message}
-                                        name={v.user.name}
-                                        photo={v.user.thumb}
-                                        uid={v.user.id}
-                                        time={timeHelper.factory(
+                <div className="chat-list vertical-padding clearfix">
+                    {
+                        this.state.user &&
+                        <CustomScrollbars
+                            getRef={(e)=> e && (this.scroller=e)}
+                            autoHide
+                            autoHideTimeout={1000}
+                            autoHideDuration={200}
+                            thumbMinSize={30}
+                            universal={true}
+                        >
+                            {
+                                this.state.chats.map((v, i)=> {
+                                    return (
+                                        <ChatItem
+                                            key={i}
+                                            message={v.message}
+                                            name={v.user.name}
+                                            photo={v.user.thumb}
+                                            uid={v.user.id}
+                                            time={timeHelper.factory(
                                             this.state.user.settings.timezone,
                                             v.timestamp
                                         ).fromNow()}
-                                    />
-                                )
-                            })
-                        }
-                    </CustomScrollbars>
+                                        />
+                                    )
+                                })
+                            }
+                        </CustomScrollbars>
+                    }
                 </div>
 
                 {

@@ -134,6 +134,11 @@
 //FIXED HEIGHT
 //IN 600 ranges
 @media (max-height: 600px) {
+
+  .chat-list {
+    height: 73vh;
+  }
+
   .movies-box {
     height: 66vh;
   }
@@ -145,6 +150,10 @@
 }
 
 @media (min-height: 601px) {
+
+  .chat-list {
+    height: 75vh;
+  }
   .movies-box {
     height: 70vh;
   }
@@ -156,6 +165,7 @@
 
 //IN 700 ranges
 @media (min-height: 701px) {
+
   .movies-box {
     height: 69vh;
   }
@@ -166,6 +176,11 @@
 }
 
 @media (min-height: 769px) {
+
+  .chat-list {
+    height: 77vh;
+  }
+
   .movies-box {
     height: 70vh;
   }
@@ -176,16 +191,17 @@
 }
 
 @media (min-height: 800px) {
-  .movies-box {
-    height: 75vh;
-  }
-
   .movie-details-description {
     height: 15vh;
   }
 }
 
 @media (min-height: 850px) {
+
+  .chat-list {
+    height: 78vh;
+  }
+
   .movies-box {
     height: 75vh;
   }
@@ -196,6 +212,9 @@
 }
 
 @media (min-height: 1018px) {
+  .chat-list {
+    height: 80vh;
+  }
   .movies-box {
     height: 76vh;
   }

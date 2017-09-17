@@ -2,6 +2,12 @@ import React from 'react';
 import {Scrollbars} from 'react-custom-scrollbars';
 
 export default class CustomScrollbars extends React.Component {
+    constructor(props) {
+        super(props);
+        const {getRef} = props;
+        //reset props
+        this.getRef = getRef;
+    }
 
     renderView({style, ...props}) {
         const viewStyle = {
@@ -56,16 +62,19 @@ export default class CustomScrollbars extends React.Component {
 
 
     render() {
+        const props = Object.assign({}, this.props);
+        delete props.getRef;
+       
         return (
             <Scrollbars
-                ref={(e)=>{this.props.getRef && this.props.getRef(e)}}
+                ref={(e)=>{this.getRef && this.getRef(e)}}
                 renderView={this.renderView}
                 renderThumbVertical={this.renderThumbVertical}
                 renderThumbHorizontal={this.renderThumbHorizontal}
                 autoHide
                 autoHideTimeout={1000}
                 autoHideDuration={200}
-                {...this.props} />
+                {...props} />
         );
     }
 }
