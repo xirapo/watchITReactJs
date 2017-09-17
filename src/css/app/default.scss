@@ -279,10 +279,21 @@
   .video-stream {
     @include transition(width 1s ease-in-out);
     width: 100%;
+    .chat-box-toggle {
+      bottom: 3rem;
+    }
   }
 
   .chat-box-fixed {
     width: 25% !important;
+  }
+
+  .chat-box-toggle {
+    @extend .grey;
+    position: absolute;
+    &:hover {
+      @extend .orange;
+    }
   }
 
   .chat-box {
@@ -296,6 +307,11 @@
 
     .chat-box-header {
       background-color: rgba(0, 0, 0, 0.2)
+    }
+
+    .chat-box-toggle {
+      bottom: 50%;
+      left: -18px;
     }
 
     .chat-list {

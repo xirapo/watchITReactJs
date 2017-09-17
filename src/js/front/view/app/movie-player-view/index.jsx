@@ -5,6 +5,7 @@ import AppMoviePlayer from 'front/components/app-main-movie-player/index.jsx'
 import AppMoviePlayerLoader from 'front/components/app-main-movie-player-loader/index.jsx'
 import AppMoviePlayerChat from 'front/components/app-main-movie-player-chat/index.jsx'
 import AppMoviePlayerChatHeader from 'front/components/app-main-movie-player-chat-header/index.jsx'
+import AppMoviePlayerChatToggle from 'front/components/app-main-movie-player-chat-toggle/index.jsx'
 import AppMoviesPlayerSwarm from 'front/components/app-main-movie-player-swarm/index.jsx'
 import MainLoader from 'front/components/util-main-loader/index.jsx'
 import BtnClose from 'front/components/util-btn-close/index.jsx'
@@ -201,10 +202,10 @@ export default class MoviePlayer extends React.Component {
 
                             {
                                 !this.state.toggle_screen && this.state.canPlay &&
-                                <div onClick={(e)=> this.toggleView(e)}
-                                     className="btn-floating btn-medium waves-effect waves-light chat-box-init-btn absolute bottom-3-rem grey">
-                                    <i className="icon-message white-text"/>
-                                </div>
+                                <AppMoviePlayerChatToggle
+                                    onToggle={(e)=> this.toggleView(e)}
+                                    icon="icon-message"
+                                />
                             }
                         </section>
 
@@ -215,6 +216,13 @@ export default class MoviePlayer extends React.Component {
                 {
                     this.state.canPlay && this.state.movieInfo &&
                     <div className={`chat-box full-height ${this.state.toggle_screen && 'chat-box-fixed'}`}>
+                        {
+                            this.state.toggle_screen &&
+                            <AppMoviePlayerChatToggle
+                                onToggle={(e)=> this.toggleView(e)}
+                                icon="icon-message"
+                            />
+                        }
                         {
                             this.state.toggle_screen &&
                             <AppMoviePlayerChatHeader

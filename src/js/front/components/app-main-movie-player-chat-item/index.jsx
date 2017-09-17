@@ -14,7 +14,8 @@ export default class AppMoviesPlayerChatItem extends React.Component {
             uid: PropTypes.string.isRequired,
             photo: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
-            message: PropTypes.string.isRequired
+            message: PropTypes.string.isRequired,
+            time: PropTypes.string.isRequired
         }
     }
 
@@ -32,9 +33,17 @@ export default class AppMoviesPlayerChatItem extends React.Component {
                         />
                     </div>
                     <div className="left">
-                        <strong className="white-text">
-                            {this.props.message}
-                        </strong>
+                        <div className="clearfix">
+                            <strong className="white-text">
+                                {this.props.message}
+                            </strong>
+                        </div>
+                        <div className="clearfix margin-top-2">
+                            <span className="grey-text">
+                                {this.props.time}
+                            </span>
+                        </div>
+
                     </div>
                 </article>
             )

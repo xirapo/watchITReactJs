@@ -7,16 +7,16 @@ import momentjs from 'moment'
 import timezone from 'moment-timezone'
 
 
-export default ({
-    unixNowTimeZoned: (timezone_)=> {
-        //Initialize timezone
-        //timezone.tz.add(setting.appendTimeZones);
-        //Make local timezone
-        return momentjs().unix();
-        // TODO work on timezone
-        // return timezone(momentjs())
-        //     .tz(timezone_).unix()
+let Time = ({
+    factory: (timezone_ = 'US/Eastern', ...params)=> {
+        return timezone(momentjs(...params))
+            .tz(timezone_)
     },
+    unixNowTimeZoned: (timezone_)=> {
+        // TODO work on timezone
+        return Time.factory(timezone_).unix() * 1000
+    }
 
-})
+});
 
+export default Time;

@@ -3,6 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import BoxInput from 'front/components/app-inputs/index.jsx'
 import ChatItem from 'front/components/app-main-movie-player-chat-item/index.jsx'
+import CustomScrollbars from 'front/components/util-scroller/index.jsx';
 //Auth users
 import Auth from 'resources/database/auth'
 //Helpers
@@ -25,11 +26,11 @@ export default class AppMoviesPlayerChat extends React.Component {
         //Firebase ref
         this.ref = null;
         this.channel = null;
+        this.scroller = null;
         //Chat list
         this.state = {
             value: '',
             user: null,
-            flag: null,
             chats: []
         }
 
@@ -66,7 +67,9 @@ export default class AppMoviesPlayerChat extends React.Component {
                 user: user
             })
         })
+    }
 
+    componentWillUnmount() {
 
     }
 
@@ -84,7 +87,8 @@ export default class AppMoviesPlayerChat extends React.Component {
         //Init
         this.setState({
             chats: _oldMessages
-        })
+        });
+
     }
 
     sendMessage(e, input) {
@@ -94,25 +98,26 @@ export default class AppMoviesPlayerChat extends React.Component {
             let _message = e.target.value;
 
             //If valid input
-            //if (utilHelper.validString(_message)) {
-            //Pushing messahes to channel
-            this.channel.push().set({
-                message: _message,
-                user: {
-                    name: this.state.user.displayName,
-                    thumb: this.state.user.photoURL,
-                    id: this.state.user.uid
-                },
-                timestamp: timeHelper.unixNowTimeZoned(
-                    this.state.user.settings.timezone
-                )
-            }).then(()=> {
-                //what?
-                //Log
-                this.setState({value: ''});
-                logHelper.info('\nNEW MESSAGE SENT TO CHANNEL:' + this.props.channel);
-            })
-            //}
+            if (!utilHelper.invalidString(_message)) {
+                //Pushing messages to channel
+                this.channel.push().set({
+                    message: _message,
+                    user: {
+                        name: this.state.user.displayName,
+                        thumb: this.state.user.photoURL,
+                        id: this.state.user.uid
+                    },
+                    timestamp: timeHelper.unixNowTimeZoned(
+                        this.state.user.settings.timezone
+                    )
+                }).then(()=> {
+                    //what?
+                    //Log
+                    this.setState({value: ''});
+                    this.scroller.scrollToBottom();
+                    logHelper.info('\nNEW MESSAGE SENT TO CHANNEL:' + this.props.channel);
+                });
+            }
         }
     }
 
@@ -133,10 +138,16 @@ export default class AppMoviesPlayerChat extends React.Component {
 
     render() {
         return (
-            <div className="relative full-height full-width">
-
-                {
-                    <div className="chat-list vertical-padding clearfix">
+            <div className="relative height-42-rem full-width">
+                <div className="chat-list height-36-rem vertical-padding clearfix">
+                    <CustomScrollbars
+                        getRef={(e)=> this.scroller = e}
+                        autoHide
+                        autoHideTimeout={1000}
+                        autoHideDuration={200}
+                        thumbMinSize={30}
+                        universal={true}
+                    >
                         {
                             this.state.chats.map((v, i)=> {
                                 return (
@@ -146,13 +157,17 @@ export default class AppMoviesPlayerChat extends React.Component {
                                         name={v.user.name}
                                         photo={v.user.thumb}
                                         uid={v.user.id}
-                                        flagSet={this.state.flag}
+                                        time={timeHelper.factory(
+                                            this.state.user.settings.timezone,
+                                            v.timestamp
+                                        ).fromNow()}
                                     />
                                 )
                             })
                         }
-                    </div>
-                }
+                    </CustomScrollbars>
+                </div>
+
                 {
                     this.state.user &&
                     <div className="col l12 m12">

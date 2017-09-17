@@ -1649,113 +1649,113 @@
 .amber-text.text-accent-4 {
   color: #ffab00 !important; }
 
-.orange.lighten-5, .lighten-5.default-label {
+.orange.lighten-5, .movie-player .lighten-5.chat-box-toggle:hover, .lighten-5.default-label {
   background-color: #fff3e0 !important; }
-  .orange.lighten-5:after, .lighten-5.default-label:after {
+  .orange.lighten-5:after, .movie-player .lighten-5.chat-box-toggle:hover:after, .lighten-5.default-label:after {
     border-top-color: #fff3e0 !important; }
 
 .orange-text.text-lighten-5 {
   color: #fff3e0 !important; }
 
-.orange.lighten-4, .lighten-4.default-label {
+.orange.lighten-4, .movie-player .lighten-4.chat-box-toggle:hover, .lighten-4.default-label {
   background-color: #ffe0b2 !important; }
-  .orange.lighten-4:after, .lighten-4.default-label:after {
+  .orange.lighten-4:after, .movie-player .lighten-4.chat-box-toggle:hover:after, .lighten-4.default-label:after {
     border-top-color: #ffe0b2 !important; }
 
 .orange-text.text-lighten-4 {
   color: #ffe0b2 !important; }
 
-.orange.lighten-3, .lighten-3.default-label {
+.orange.lighten-3, .movie-player .lighten-3.chat-box-toggle:hover, .lighten-3.default-label {
   background-color: #ffcc80 !important; }
-  .orange.lighten-3:after, .lighten-3.default-label:after {
+  .orange.lighten-3:after, .movie-player .lighten-3.chat-box-toggle:hover:after, .lighten-3.default-label:after {
     border-top-color: #ffcc80 !important; }
 
 .orange-text.text-lighten-3 {
   color: #ffcc80 !important; }
 
-.orange.lighten-2, .lighten-2.default-label {
+.orange.lighten-2, .movie-player .lighten-2.chat-box-toggle:hover, .lighten-2.default-label {
   background-color: #ffb74d !important; }
-  .orange.lighten-2:after, .lighten-2.default-label:after {
+  .orange.lighten-2:after, .movie-player .lighten-2.chat-box-toggle:hover:after, .lighten-2.default-label:after {
     border-top-color: #ffb74d !important; }
 
 .orange-text.text-lighten-2 {
   color: #ffb74d !important; }
 
-.orange.lighten-1, .lighten-1.default-label {
+.orange.lighten-1, .movie-player .lighten-1.chat-box-toggle:hover, .lighten-1.default-label {
   background-color: #ffa726 !important; }
-  .orange.lighten-1:after, .lighten-1.default-label:after {
+  .orange.lighten-1:after, .movie-player .lighten-1.chat-box-toggle:hover:after, .lighten-1.default-label:after {
     border-top-color: #ffa726 !important; }
 
 .orange-text.text-lighten-1 {
   color: #ffa726 !important; }
 
-.orange, .default-label {
+.orange, .movie-player .chat-box-toggle:hover, .default-label {
   background-color: #ff9800 !important; }
-  .orange:after, .default-label:after {
+  .orange:after, .movie-player .chat-box-toggle:hover:after, .default-label:after {
     border-top-color: #ff9800 !important; }
 
 .orange-text {
   color: #ff9800 !important; }
 
-.orange.darken-1, .darken-1.default-label {
+.orange.darken-1, .movie-player .darken-1.chat-box-toggle:hover, .darken-1.default-label {
   background-color: #fb8c00 !important; }
-  .orange.darken-1:after, .darken-1.default-label:after {
+  .orange.darken-1:after, .movie-player .darken-1.chat-box-toggle:hover:after, .darken-1.default-label:after {
     border-top-color: #fb8c00 !important; }
 
 .orange-text.text-darken-1 {
   color: #fb8c00 !important; }
 
-.orange.darken-2, .darken-2.default-label {
+.orange.darken-2, .movie-player .darken-2.chat-box-toggle:hover, .darken-2.default-label {
   background-color: #f57c00 !important; }
-  .orange.darken-2:after, .darken-2.default-label:after {
+  .orange.darken-2:after, .movie-player .darken-2.chat-box-toggle:hover:after, .darken-2.default-label:after {
     border-top-color: #f57c00 !important; }
 
 .orange-text.text-darken-2 {
   color: #f57c00 !important; }
 
-.orange.darken-3, .darken-3.default-label {
+.orange.darken-3, .movie-player .darken-3.chat-box-toggle:hover, .darken-3.default-label {
   background-color: #ef6c00 !important; }
-  .orange.darken-3:after, .darken-3.default-label:after {
+  .orange.darken-3:after, .movie-player .darken-3.chat-box-toggle:hover:after, .darken-3.default-label:after {
     border-top-color: #ef6c00 !important; }
 
 .orange-text.text-darken-3 {
   color: #ef6c00 !important; }
 
-.orange.darken-4, .darken-4.default-label {
+.orange.darken-4, .movie-player .darken-4.chat-box-toggle:hover, .darken-4.default-label {
   background-color: #e65100 !important; }
-  .orange.darken-4:after, .darken-4.default-label:after {
+  .orange.darken-4:after, .movie-player .darken-4.chat-box-toggle:hover:after, .darken-4.default-label:after {
     border-top-color: #e65100 !important; }
 
 .orange-text.text-darken-4 {
   color: #e65100 !important; }
 
-.orange.accent-1, .accent-1.default-label {
+.orange.accent-1, .movie-player .accent-1.chat-box-toggle:hover, .accent-1.default-label {
   background-color: #ffd180 !important; }
-  .orange.accent-1:after, .accent-1.default-label:after {
+  .orange.accent-1:after, .movie-player .accent-1.chat-box-toggle:hover:after, .accent-1.default-label:after {
     border-top-color: #ffd180 !important; }
 
 .orange-text.text-accent-1 {
   color: #ffd180 !important; }
 
-.orange.accent-2, .accent-2.default-label {
+.orange.accent-2, .movie-player .accent-2.chat-box-toggle:hover, .accent-2.default-label {
   background-color: #ffab40 !important; }
-  .orange.accent-2:after, .accent-2.default-label:after {
+  .orange.accent-2:after, .movie-player .accent-2.chat-box-toggle:hover:after, .accent-2.default-label:after {
     border-top-color: #ffab40 !important; }
 
 .orange-text.text-accent-2 {
   color: #ffab40 !important; }
 
-.orange.accent-3, .accent-3.default-label {
+.orange.accent-3, .movie-player .accent-3.chat-box-toggle:hover, .accent-3.default-label {
   background-color: #ff9100 !important; }
-  .orange.accent-3:after, .accent-3.default-label:after {
+  .orange.accent-3:after, .movie-player .accent-3.chat-box-toggle:hover:after, .accent-3.default-label:after {
     border-top-color: #ff9100 !important; }
 
 .orange-text.text-accent-3 {
   color: #ff9100 !important; }
 
-.orange.accent-4, .accent-4.default-label {
+.orange.accent-4, .movie-player .accent-4.chat-box-toggle:hover, .accent-4.default-label {
   background-color: #ff6d00 !important; }
-  .orange.accent-4:after, .accent-4.default-label:after {
+  .orange.accent-4:after, .movie-player .accent-4.chat-box-toggle:hover:after, .accent-4.default-label:after {
     border-top-color: #ff6d00 !important; }
 
 .orange-text.text-accent-4 {
@@ -2033,81 +2033,81 @@
 .blue-grey-text.text-darken-4 {
   color: #263238 !important; }
 
-.grey.lighten-5 {
+.grey.lighten-5, .movie-player .lighten-5.chat-box-toggle {
   background-color: #fafafa !important; }
-  .grey.lighten-5:after {
+  .grey.lighten-5:after, .movie-player .lighten-5.chat-box-toggle:after {
     border-top-color: #fafafa !important; }
 
 .grey-text.text-lighten-5 {
   color: #fafafa !important; }
 
-.grey.lighten-4 {
+.grey.lighten-4, .movie-player .lighten-4.chat-box-toggle {
   background-color: #f5f5f5 !important; }
-  .grey.lighten-4:after {
+  .grey.lighten-4:after, .movie-player .lighten-4.chat-box-toggle:after {
     border-top-color: #f5f5f5 !important; }
 
 .grey-text.text-lighten-4 {
   color: #f5f5f5 !important; }
 
-.grey.lighten-3 {
+.grey.lighten-3, .movie-player .lighten-3.chat-box-toggle {
   background-color: #eeeeee !important; }
-  .grey.lighten-3:after {
+  .grey.lighten-3:after, .movie-player .lighten-3.chat-box-toggle:after {
     border-top-color: #eeeeee !important; }
 
 .grey-text.text-lighten-3 {
   color: #eeeeee !important; }
 
-.grey.lighten-2 {
+.grey.lighten-2, .movie-player .lighten-2.chat-box-toggle {
   background-color: #e0e0e0 !important; }
-  .grey.lighten-2:after {
+  .grey.lighten-2:after, .movie-player .lighten-2.chat-box-toggle:after {
     border-top-color: #e0e0e0 !important; }
 
 .grey-text.text-lighten-2 {
   color: #e0e0e0 !important; }
 
-.grey.lighten-1 {
+.grey.lighten-1, .movie-player .lighten-1.chat-box-toggle {
   background-color: #bdbdbd !important; }
-  .grey.lighten-1:after {
+  .grey.lighten-1:after, .movie-player .lighten-1.chat-box-toggle:after {
     border-top-color: #bdbdbd !important; }
 
 .grey-text.text-lighten-1 {
   color: #bdbdbd !important; }
 
-.grey {
+.grey, .movie-player .chat-box-toggle {
   background-color: #9e9e9e !important; }
-  .grey:after {
+  .grey:after, .movie-player .chat-box-toggle:after {
     border-top-color: #9e9e9e !important; }
 
 .grey-text {
   color: #9e9e9e !important; }
 
-.grey.darken-1 {
+.grey.darken-1, .movie-player .darken-1.chat-box-toggle {
   background-color: #757575 !important; }
-  .grey.darken-1:after {
+  .grey.darken-1:after, .movie-player .darken-1.chat-box-toggle:after {
     border-top-color: #757575 !important; }
 
 .grey-text.text-darken-1 {
   color: #757575 !important; }
 
-.grey.darken-2 {
+.grey.darken-2, .movie-player .darken-2.chat-box-toggle {
   background-color: #616161 !important; }
-  .grey.darken-2:after {
+  .grey.darken-2:after, .movie-player .darken-2.chat-box-toggle:after {
     border-top-color: #616161 !important; }
 
 .grey-text.text-darken-2 {
   color: #616161 !important; }
 
-.grey.darken-3 {
+.grey.darken-3, .movie-player .darken-3.chat-box-toggle {
   background-color: #424242 !important; }
-  .grey.darken-3:after {
+  .grey.darken-3:after, .movie-player .darken-3.chat-box-toggle:after {
     border-top-color: #424242 !important; }
 
 .grey-text.text-darken-3 {
   color: #424242 !important; }
 
-.grey.darken-4 {
+.grey.darken-4, .movie-player .darken-4.chat-box-toggle {
   background-color: #212121 !important; }
-  .grey.darken-4:after {
+  .grey.darken-4:after, .movie-player .darken-4.chat-box-toggle:after {
     border-top-color: #212121 !important; }
 
 .grey-text.text-darken-4 {
@@ -83406,8 +83406,12 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   -ms-transition: width 1s ease-in-out;
   transition: width 1s ease-in-out;
   width: 100%; }
+  .movie-player .video-stream .chat-box-toggle {
+    bottom: 3rem; }
 .movie-player .chat-box-fixed {
   width: 25% !important; }
+.movie-player .chat-box-toggle {
+  position: absolute; }
 .movie-player .chat-box {
   -webkit-transition: width 1s ease-in-out;
   -moz-transition: width 1s ease-in-out;
@@ -83422,6 +83426,9 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   width: 0; }
   .movie-player .chat-box .chat-box-header {
     background-color: rgba(0, 0, 0, 0.2); }
+  .movie-player .chat-box .chat-box-toggle {
+    bottom: 50%;
+    left: -18px; }
   .movie-player .chat-box .chat-list .profile-picture-img {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -83763,7 +83770,7 @@ video::-webkit-media-text-track-display, video::cue {
 /**MEDIA QUERIES*/
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
-  .video-stream .chat-box-init-btn {
+  .video-stream .chat-box-toggle {
     right: 1rem; }
 
   .profile-media {
@@ -83783,7 +83790,7 @@ video::-webkit-media-text-track-display, video::cue {
 @media (min-width: 1200px) {
   .video-stream .btn-close {
     right: 1rem; }
-  .video-stream .chat-box-init-btn {
+  .video-stream .chat-box-toggle {
     right: 2rem; }
 
   .movies-poster {

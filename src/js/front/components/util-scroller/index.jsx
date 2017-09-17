@@ -58,6 +58,7 @@ export default class CustomScrollbars extends React.Component {
     render() {
         return (
             <Scrollbars
+                ref={(e)=>this.props.getRef && this.props.getRef(e) }
                 renderView={this.renderView}
                 renderThumbVertical={this.renderThumbVertical}
                 renderThumbHorizontal={this.renderThumbHorizontal}
