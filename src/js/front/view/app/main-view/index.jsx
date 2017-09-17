@@ -21,7 +21,6 @@ import Movie from 'resources/database/movies'
 import Search from 'resources/database/search'
 
 
-
 //Login view class
 export default class Main extends React.Component {
     constructor(props) {
@@ -205,7 +204,7 @@ export default class Main extends React.Component {
     onSearch(e) {
         //The incoming value;
         let _target_value = e.target.value;
-        let _invalid_input = utilHelper.validString(_target_value);
+        let _invalid_input = !utilHelper.invalidString(_target_value);
 
         //Empty write
         if (_invalid_input) {

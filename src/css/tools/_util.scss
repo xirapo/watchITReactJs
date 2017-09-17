@@ -146,6 +146,9 @@ $m-width_height: max-height max-width min-height min-width;
     .#{$l}-#{$i} {
       #{$l}: 0px + $i !important;
     }
+    .#{$l}-#{$i}-#{"rem"} {
+      #{$l}: (0 + $i)#{"rem"} !important;
+    }
 
   }
 }

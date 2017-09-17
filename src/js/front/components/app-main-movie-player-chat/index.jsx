@@ -69,10 +69,6 @@ export default class AppMoviesPlayerChat extends React.Component {
         })
     }
 
-    componentWillUnmount() {
-
-    }
-
     readOldMessage(snapshot) {
         //old messages
         let _oldMessages = resHelper.snapshotIterToArray(
@@ -141,7 +137,7 @@ export default class AppMoviesPlayerChat extends React.Component {
             <div className="relative height-42-rem full-width">
                 <div className="chat-list height-36-rem vertical-padding clearfix">
                     <CustomScrollbars
-                        onUpdate={(e)=> console.log(e)}
+                        getRef={(e)=> this.setRef(e)}
                         autoHide
                         autoHideTimeout={1000}
                         autoHideDuration={200}

@@ -11298,10 +11298,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var CustomScrollbars = function (_React$Component) {
     _inherits(CustomScrollbars, _React$Component);
 
-    function CustomScrollbars() {
+    function CustomScrollbars(props) {
         _classCallCheck(this, CustomScrollbars);
 
-        return _possibleConstructorReturn(this, (CustomScrollbars.__proto__ || Object.getPrototypeOf(CustomScrollbars)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (CustomScrollbars.__proto__ || Object.getPrototypeOf(CustomScrollbars)).call(this, props));
+
+        _this.scroller = null;
+        return _this;
     }
 
     _createClass(CustomScrollbars, [{
@@ -11360,7 +11363,12 @@ var CustomScrollbars = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
+            var _this2 = this;
+
             return _react2.default.createElement(_reactCustomScrollbars.Scrollbars, _extends({
+                ref: function ref(e) {
+                    _this2.props.getRef && _this2.props.getRef(e);
+                },
                 renderView: this.renderView,
                 renderThumbVertical: this.renderThumbVertical,
                 renderThumbHorizontal: this.renderThumbHorizontal,
@@ -11368,6 +11376,11 @@ var CustomScrollbars = function (_React$Component) {
                 autoHideTimeout: 1000,
                 autoHideDuration: 200
             }, this.props));
+        }
+    }, {
+        key: 'getRef',
+        get: function get() {
+            return this.scroller;
         }
     }]);
 
@@ -48955,9 +48968,6 @@ var AppMoviesPlayerChat = function (_React$Component) {
             });
         }
     }, {
-        key: 'componentWillUnmount',
-        value: function componentWillUnmount() {}
-    }, {
         key: 'readOldMessage',
         value: function readOldMessage(snapshot) {
             //old messages
@@ -49029,8 +49039,8 @@ var AppMoviesPlayerChat = function (_React$Component) {
                     _react2.default.createElement(
                         _index6.default,
                         {
-                            onUpdate: function onUpdate(e) {
-                                return console.log(e);
+                            getRef: function getRef(e) {
+                                return _this4.setRef(e);
                             },
                             autoHide: true,
                             autoHideTimeout: 1000,
