@@ -33,7 +33,7 @@ export default class AppMoviesPlayerChatItem extends React.Component {
                         />
                     </div>
                     <div className="left">
-                        <div className="clearfix max-width-12-vw">
+                        <div className="clearfix max-width-16-vw">
                             <strong className="white-text">
                                 {this.props.message}
                             </strong>
