@@ -9,15 +9,18 @@ let Logger = ({
     __setLog: (type, message)=> {
         // Initial settings
         const [auth, dbref] = Logger.__init();
-
-        //On auth ready
-        return auth.authUser.then((user) => {
-            dbref.child(user.uid).push().set({
-                content: data,
-                type: type,
-                user: user
-            });
+        // Promise
+        return new Promise((res, err)=> {
+            //On auth ready
+            auth.authUser.then((user) => {
+                dbref.child(user.uid).push().set({
+                    content: data,
+                    type: type,
+                    user: user
+                }).then(res).catch(err);
+            }).catch(err)
         });
+
     },
     __init: (user)=> {
         //Initialize database
