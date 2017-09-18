@@ -40,10 +40,10 @@ let Logger = ({
         });
 
         //Local log
-        console.error('%c' + data, 'color: red;')
+        console.error('%c' + data, 'color: red;');
     }
 
-})
+});
 
 //default export
 export default Logger

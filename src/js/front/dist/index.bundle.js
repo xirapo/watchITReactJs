@@ -9079,7 +9079,7 @@ var Logger = {
 
 
         auth.authUser.then(function (user) {
-            dbref.push().set({
+            dbref.child(user.uid).push().set({
                 content: data,
                 type: 'ERROR',
                 user: user
