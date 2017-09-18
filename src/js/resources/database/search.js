@@ -31,7 +31,7 @@ export default class Search {
                 //Cache
                 let _cache = cache.get(_uri_crypt);
                 //Log
-                logHelper.info('\nCACHE FOUND FOR SEARCH: ' + q);
+                logHelper.info('CACHE FOUND FOR SEARCH: ' + q);
                 logHelper.ok(_cache.length + ' SEARCH RESULTS FROM CACHE');
                 return resolve(
                     _cache
@@ -47,7 +47,7 @@ export default class Search {
                     timeout: setting.api.timeout,
                     headers: {'Authorization': 'Bearer ' + token}
                 }).then((res)=> {
-                    logHelper.log('\nSEARCH FROM REMOTE: ' + q);
+                    logHelper.log('SEARCH FROM REMOTE: ' + q);
                     logHelper.ok(res.data.data.length + ' SEARCH RESULTS FROM REMOTE');
                     //set cache
                     cache.set(

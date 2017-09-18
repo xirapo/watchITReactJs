@@ -115,7 +115,7 @@ export default class MoviePlayer extends React.Component {
 
     onClose() {
         //Log
-        logHelper.warn('\nSTREAMING STOPPED');
+        logHelper.warn('STREAMING STOPPED');
         //Stop Torrent
         Streamer.stopTorrent();
         //Stopped

@@ -8416,7 +8416,7 @@ var Authentication = function () {
 
             return new Promise(function (resolve, err) {
                 //Log
-                _logHelper2.default.info('\nREQUESTING LOGIN WITH CREDENTIALS: ' + email + '-' + password);
+                _logHelper2.default.info('REQUESTING LOGIN WITH CREDENTIALS: ' + email + '-' + password);
                 _firebase2.default.auth().setPersistence(_firebase2.default.auth.Auth.Persistence.LOCAL).then(function () {
                     //Firebase authentication
                     _firebase2.default.auth().signInWithEmailAndPassword(email, //User email
@@ -8451,7 +8451,7 @@ var Authentication = function () {
             return new Promise(function (res, err) {
                 _firebase2.default.auth().signOut().then(function (r) {
                     //Clean logged data
-                    _logHelper2.default.info('\nUSER LOGGED OUT');
+                    _logHelper2.default.info('USER LOGGED OUT');
                     _storageHelper2.default.remove().user_token();
                     res(r);
                 }).catch(err);
@@ -9033,10 +9033,6 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }(); /**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * Created by gmena on 05-03-17.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          */
-
 var _auth = __webpack_require__(26);
 
 var _auth2 = _interopRequireDefault(_auth);
@@ -9047,34 +9043,27 @@ var _firebase2 = _interopRequireDefault(_firebase);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/**
+ * Created by gmena on 05-03-17.
+ */
+
 var Logger = {
     __setLog: function __setLog(type, message) {
         // Initial settings
-        var _Logger$__init = Logger.__init(),
-            _Logger$__init2 = _slicedToArray(_Logger$__init, 2),
-            auth = _Logger$__init2[0],
-            dbref = _Logger$__init2[1];
+        //Initialize database
+        var db = _firebase2.default.database();
+        var dbref = db.ref('user/log/' + type + '/');
+        var auth = new _auth2.default();
+
         // Promise
-
-
         return new Promise(function (res, err) {
             //On auth ready
             auth.authUser.then(function (user) {
                 dbref.child(user.uid).push().set({
-                    content: message,
-                    type: type,
-                    user: user
+                    content: JSON.stringify(message)
                 }).then(res).catch(err);
             }).catch(err);
         });
-    },
-    __init: function __init(user) {
-        //Initialize database
-        var db = _firebase2.default.database();
-        var dbref = db.ref('user/log/');
-        var auth = new _auth2.default();
-
-        return [auth, dbref];
     },
     ok: function ok(message) {
         //Logging OK
@@ -15748,7 +15737,7 @@ var Movies = function () {
                     //Cache
                     var _cache = _lscache2.default.get(_uri_crypt);
                     //Log
-                    _logHelper2.default.info('\nMOVIES LIST CACHE FOUND');
+                    _logHelper2.default.info('MOVIES LIST CACHE FOUND');
                     _logHelper2.default.ok(_cache.length + ' MOVIES LOADED FROM CACHE');
                     return resolve(_cache);
                 }
@@ -15763,7 +15752,7 @@ var Movies = function () {
                         headers: { 'Authorization': 'Bearer ' + token }
                     }).then(function (res) {
                         //Log
-                        _logHelper2.default.info('\nMOVIES LIST FROM REMOTE');
+                        _logHelper2.default.info('MOVIES LIST FROM REMOTE');
                         _logHelper2.default.ok(res.data.data.length + ' MOVIES LOADED FROM REMOTE');
                         //set cache
                         _lscache2.default.set(_uri_crypt, res.data.data, _settings2.default.api.cache_time);
@@ -15798,7 +15787,7 @@ var Movies = function () {
                     //Cache
                     var _cache = _lscache2.default.get(_uri_crypt);
                     //Log
-                    _logHelper2.default.info('\nMOVIE DETAILS CACHE FOUND FOR: ' + imdb);
+                    _logHelper2.default.info('MOVIE DETAILS CACHE FOUND FOR: ' + imdb);
                     _logHelper2.default.ok('1 MOVIES DETAILS FROM CACHE');
 
                     return resolve(_cache);
@@ -15814,7 +15803,7 @@ var Movies = function () {
                         headers: { 'Authorization': 'Bearer ' + token }
                     }).then(function (res) {
                         //Log
-                        _logHelper2.default.info('\nMOVIE DETAILS FROM REMOTE: ' + imdb);
+                        _logHelper2.default.info('MOVIE DETAILS FROM REMOTE: ' + imdb);
                         _logHelper2.default.ok('1 MOVIES DETAILS FROM REMOTE');
                         //set cache
                         _lscache2.default.set(_uri_crypt, res.data.data, _settings2.default.api.cache_time);
@@ -15894,7 +15883,7 @@ var User = function () {
                     //Save promises
                     var _promises = [];
                     //Log
-                    _logHelper2.default.info('\nUPDATE USER ID: ' + user.uid);
+                    _logHelper2.default.info('UPDATE USER ID: ' + user.uid);
 
                     if (data.get('displayName')) _promises.push(user.updateProfile({ 'displayName': data.get('displayName') }));
 
@@ -15920,7 +15909,7 @@ var User = function () {
                 //Make a generic password
                 var password = _utilHelper2.default.makeUid();
                 //Log
-                _logHelper2.default.info('\nCREATING USER: ' + fullname);
+                _logHelper2.default.info('CREATING USER: ' + fullname);
                 //Request to details endpoint
                 _firebase2.default.auth().createUserWithEmailAndPassword(email, password).then(function (res) {
                     //Log
@@ -46326,7 +46315,7 @@ var Main = function (_React$Component) {
                 });
 
                 //Log
-                _logHelper2.default.info('\nSCROLLING READY TO UPDATE');
+                _logHelper2.default.info('SCROLLING READY TO UPDATE');
                 _logHelper2.default.info('LOADING NEW SET OF MOVIES MAX: ' + _settings2.default.api.step + ' MOVIES');
 
                 //Load new set of movies
@@ -46388,7 +46377,7 @@ var Main = function (_React$Component) {
 
             //Set new state
             //Reset limit
-            //logHelper.warn('\nRESET OFFSET AND ENABLED INFINTE SCROLL');
+            //logHelper.warn('RESET OFFSET AND ENABLED INFINTE SCROLL');
             this.offset = _settings2.default.api.offset;
             this.setState({
                 movies: [],
@@ -46728,7 +46717,7 @@ var MoviePlayer = function (_React$Component) {
             var _this4 = this;
 
             //Log
-            _logHelper2.default.warn('\nSTREAMING STOPPED');
+            _logHelper2.default.warn('STREAMING STOPPED');
             //Stop Torrent
             Streamer.stopTorrent();
             //Stopped
@@ -49033,10 +49022,8 @@ var AppMoviesPlayerChat = function (_React$Component) {
             //Make reference to real time database
             this.ref = this.database.ref('movie/chat/');
             this.channel = this.ref.child(this.props.channel);
-
             //Log
-            _logHelper2.default.info('\nINITIALIZING CHAT AND LOADING OLD CHATS FOR CHANNEL:' + this.props.channel);
-
+            _logHelper2.default.info('INITIALIZING CHAT AND LOADING OLD CHATS FOR CHANNEL:' + this.props.channel);
             //Handle logged user
             this.auth.authUser.then(function (user) {
 
@@ -49061,7 +49048,7 @@ var AppMoviesPlayerChat = function (_React$Component) {
             var _oldMessages = _responseHelper2.default.snapshotIterToArray(snapshot);
 
             //Log
-            _logHelper2.default.ok('\nLOADED ' + _oldMessages.length + ' MESSAGES FOR CHANNEL: ' + this.props.channel);
+            _logHelper2.default.ok('LOADED ' + _oldMessages.length + ' MESSAGES FOR CHANNEL: ' + this.props.channel);
 
             //Init
             this.setState({
@@ -49094,7 +49081,7 @@ var AppMoviesPlayerChat = function (_React$Component) {
                         //Log
                         _this3.setState({ value: '' });
                         _this3.scroller.scrollToBottom();
-                        _logHelper2.default.info('\nNEW MESSAGE SENT TO CHANNEL:' + _this3.props.channel);
+                        _logHelper2.default.info('NEW MESSAGE SENT TO CHANNEL:' + _this3.props.channel);
                     });
                 }
             }
@@ -49490,7 +49477,7 @@ var AppMoviesPlayer = function (_React$Component) {
                 //When player load
                 _this2.player.one('loadedmetadata', function () {
                     //Log
-                    _logHelper2.default.info('\nPLAYER METADATA LOADED');
+                    _logHelper2.default.info('PLAYER METADATA LOADED');
 
                     //If has subs
                     if (_this2.props.subs) {
@@ -49499,7 +49486,7 @@ var AppMoviesPlayer = function (_React$Component) {
                             //Convert to vtt
                             Sub.urlSrt2VttFile(_this2.props.subs[_this2.props.sub_selected].link).then(function (vtt) {
                                 //Log
-                                _logHelper2.default.info('\nADDING ' + _this2.props.sub_selected.toUpperCase() + ' SUBTITLE: ' + vtt);
+                                _logHelper2.default.info('ADDING ' + _this2.props.sub_selected.toUpperCase() + ' SUBTITLE: ' + vtt);
                                 //Adding tracks
                                 var _elem = document.createElement('track');
                                 _elem.src = vtt;
@@ -49517,7 +49504,7 @@ var AppMoviesPlayer = function (_React$Component) {
                 //When get ready to play;;
                 _this2.player.on('canplay', function () {
                     //Log
-                    _logHelper2.default.ok('\nPLAYING MOVIE: ' + _this2.state.url);
+                    _logHelper2.default.ok('PLAYING MOVIE: ' + _this2.state.url);
                     //Set controls true
                     _this2.player.controls(true);
                     //Set canPlay
@@ -49532,7 +49519,7 @@ var AppMoviesPlayer = function (_React$Component) {
             });
 
             //Log
-            _logHelper2.default.info('\nSTARTING STREAMING FOR: ' + this.props.torrent);
+            _logHelper2.default.info('STARTING STREAMING FOR: ' + this.props.torrent);
             //Start streamer
             Streamer.playTorrent(this.props.torrent, this.onReady, this.onProgress, this.onError);
         }
@@ -49550,7 +49537,7 @@ var AppMoviesPlayer = function (_React$Component) {
         key: 'onReady',
         value: function onReady(url, flix) {
             //Log
-            _logHelper2.default.info('\nREADY TO PLAY MOVIE: ' + url);
+            _logHelper2.default.info('READY TO PLAY MOVIE: ' + url);
             //Set url
             this.setState({
                 url: url,
@@ -49575,7 +49562,7 @@ var AppMoviesPlayer = function (_React$Component) {
         key: 'onError',
         value: function onError(e) {
             //Log
-            _logHelper2.default.error('\nERROR WHILE STREAMING: ' + e);
+            _logHelper2.default.error('ERROR WHILE STREAMING: ' + e);
             //Handle error
             if (this.props.onError) {
                 this.props.onError(e);
@@ -51362,7 +51349,7 @@ var Search = function () {
                     //Cache
                     var _cache = _lscache2.default.get(_uri_crypt);
                     //Log
-                    _logHelper2.default.info('\nCACHE FOUND FOR SEARCH: ' + q);
+                    _logHelper2.default.info('CACHE FOUND FOR SEARCH: ' + q);
                     _logHelper2.default.ok(_cache.length + ' SEARCH RESULTS FROM CACHE');
                     return resolve(_cache);
                 }
@@ -51376,7 +51363,7 @@ var Search = function () {
                         timeout: _settings2.default.api.timeout,
                         headers: { 'Authorization': 'Bearer ' + token }
                     }).then(function (res) {
-                        _logHelper2.default.log('\nSEARCH FROM REMOTE: ' + q);
+                        _logHelper2.default.log('SEARCH FROM REMOTE: ' + q);
                         _logHelper2.default.ok(res.data.data.length + ' SEARCH RESULTS FROM REMOTE');
                         //set cache
                         _lscache2.default.set(_uri_crypt, res.data.data, _settings2.default.api.cache_time);

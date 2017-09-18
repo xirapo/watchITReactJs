@@ -111,7 +111,7 @@ export default class Main extends React.Component {
             });
 
             //Log
-            logHelper.info('\nSCROLLING READY TO UPDATE');
+            logHelper.info('SCROLLING READY TO UPDATE');
             logHelper.info('LOADING NEW SET OF MOVIES MAX: ' + setting.api.step + ' MOVIES');
 
             //Load new set of movies
@@ -181,7 +181,7 @@ export default class Main extends React.Component {
 
         //Set new state
         //Reset limit
-        //logHelper.warn('\nRESET OFFSET AND ENABLED INFINTE SCROLL');
+        //logHelper.warn('RESET OFFSET AND ENABLED INFINTE SCROLL');
         this.offset = setting.api.offset;
         this.setState({
             movies: [],

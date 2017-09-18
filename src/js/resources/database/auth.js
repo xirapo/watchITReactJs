@@ -18,7 +18,7 @@ export default class Authentication {
 
         return (new Promise((resolve, err) => {
             //Log
-            logHelper.info('\nREQUESTING LOGIN WITH CREDENTIALS: ' + email + '-' + password);
+            logHelper.info('REQUESTING LOGIN WITH CREDENTIALS: ' + email + '-' + password);
             firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
                 .then(()=> {
                     //Firebase authentication
@@ -58,7 +58,7 @@ export default class Authentication {
         return new Promise((res, err)=> {
             firebase.auth().signOut().then((r)=> {
                 //Clean logged data
-                logHelper.info('\nUSER LOGGED OUT');
+                logHelper.info('USER LOGGED OUT');
                 storageHelper.remove().user_token();
                 res(r)
             }).catch(err)

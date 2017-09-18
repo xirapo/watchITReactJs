@@ -10,7 +10,7 @@ let Logger = ({
         // Initial settings
         //Initialize database
         const db = firebase.database();
-        const dbref = db.ref('user/log/');
+        const dbref = db.ref('user/log/' + type + '/');
         const auth = new Auth();
 
         // Promise
@@ -18,13 +18,10 @@ let Logger = ({
             //On auth ready
             auth.authUser.then((user) => {
                 dbref.child(user.uid).push().set({
-                    content: message,
-                    type: type,
-                    user: user
+                    content: JSON.stringify(message)
                 }).then(res).catch(err);
             }).catch(err)
         });
-
     },
     ok: (message)=> {
         //Logging OK
@@ -45,7 +42,6 @@ let Logger = ({
             //local log
             console.info('%c' + message, 'color: blue;');
         });
-
     },
     warn: (message)=> {
         //Logging INFO

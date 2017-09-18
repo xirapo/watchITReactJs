@@ -25,7 +25,7 @@ export default class User {
                 //Save promises
                 let _promises = [];
                 //Log
-                logHelper.info('\nUPDATE USER ID: ' + user.uid);
+                logHelper.info('UPDATE USER ID: ' + user.uid);
 
                 if (data.get('displayName'))
                     _promises.push(user.updateProfile(
@@ -64,7 +64,7 @@ export default class User {
             //Make a generic password
             let password = utilHelper.makeUid();
             //Log
-            logHelper.info('\nCREATING USER: ' + fullname);
+            logHelper.info('CREATING USER: ' + fullname);
             //Request to details endpoint
             firebase.auth().createUserWithEmailAndPassword(
                 email,

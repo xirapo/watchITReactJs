@@ -46,12 +46,8 @@ export default class AppMoviesPlayerChat extends React.Component {
         //Make reference to real time database
         this.ref = this.database.ref('movie/chat/');
         this.channel = this.ref.child(this.props.channel);
-
         //Log
-        logHelper.info(
-            '\nINITIALIZING CHAT AND LOADING OLD CHATS FOR CHANNEL:' + this.props.channel
-        );
-
+        logHelper.info('INITIALIZING CHAT AND LOADING OLD CHATS FOR CHANNEL:' + this.props.channel);
         //Handle logged user
         this.auth.authUser.then((user)=> {
 
@@ -79,9 +75,7 @@ export default class AppMoviesPlayerChat extends React.Component {
         );
 
         //Log
-        logHelper.ok(
-            '\nLOADED ' + _oldMessages.length + ' MESSAGES FOR CHANNEL: ' + this.props.channel
-        );
+        logHelper.ok('LOADED ' + _oldMessages.length + ' MESSAGES FOR CHANNEL: ' + this.props.channel);
 
         //Init
         this.setState({
@@ -114,7 +108,7 @@ export default class AppMoviesPlayerChat extends React.Component {
                     //Log
                     this.setState({value: ''});
                     this.scroller.scrollToBottom();
-                    logHelper.info('\nNEW MESSAGE SENT TO CHANNEL:' + this.props.channel);
+                    logHelper.info('NEW MESSAGE SENT TO CHANNEL:' + this.props.channel);
                 });
             }
         }
