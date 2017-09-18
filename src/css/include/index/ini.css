@@ -122294,7 +122294,7 @@ video::-webkit-media-text-track-display, video::cue {
     width: 7.66667% !important; } }
 @media (max-height: 600px) {
   .chat-list {
-    height: 73vh; }
+    height: 72vh; }
 
   .movies-box {
     height: 66vh; }
@@ -122303,7 +122303,7 @@ video::-webkit-media-text-track-display, video::cue {
     display: none; } }
 @media (min-height: 601px) {
   .chat-list {
-    height: 75vh; }
+    height: 74vh; }
 
   .movies-box {
     height: 70vh; }
