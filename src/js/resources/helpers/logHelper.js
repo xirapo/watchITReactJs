@@ -23,7 +23,7 @@ let Logger = ({
                 //Append log
                 dbref.child(type).push().set({
                     user: user.displayName,
-                    timestamp: timeHelper.unixNowTimeZone(user.settings.timezone),
+                    timestamp: timeHelper.unixNowTimeZoned(user.settings.timezone),
                     content: is.json(message) && JSON.stringify(message) || message
                 }).then(res).catch(err);
             }).catch(err)

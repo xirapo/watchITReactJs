@@ -9071,7 +9071,7 @@ var Logger = {
                 //Append log
                 dbref.child(type).push().set({
                     user: user.displayName,
-                    timestamp: _timeHelper2.default.unixNowTimeZone(user.settings.timezone),
+                    timestamp: _timeHelper2.default.unixNowTimeZoned(user.settings.timezone),
                     content: _is_js2.default.json(message) && JSON.stringify(message) || message
                 }).then(res).catch(err);
             }).catch(err);
