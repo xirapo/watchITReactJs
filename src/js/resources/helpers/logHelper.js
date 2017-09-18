@@ -13,16 +13,60 @@ let Logger = ({
 
         return [auth, dbref]
     },
-    ok: (data)=> {
-        console.log('%c' + data, 'color: green;')
+    ok: (data)=> { // Initial sett
+        const [auth,dbref] = Logger.__init();
+
+        //On auth ready
+        auth.authUser.then((user) => {
+            dbref.child(user.uid).push().set({
+                content:data,
+                type:'OK',
+                user:user
+            });
+        });
     },
-    log: (data)=> {
+    log: (data)=> { // Initial sett
+        const [auth,dbref] = Logger.__init();
+
+        //On auth ready
+        auth.authUser.then((user) => {
+            dbref.child(user.uid).push().set({
+                content:data,
+                type:'LOG',
+                user:user
+            });
+        });
         console.log(data)
     },
     info: (data)=> {
+
+        // Initial sett
+        const [auth,dbref] = Logger.__init();
+
+        //On auth ready
+        auth.authUser.then((user) => {
+            dbref.child(user.uid).push().set({
+                content:data,
+                type:'INFO',
+                user:user
+            });
+        });
         console.info('%c' + data, 'color: blue;')
     },
     warn: (data)=> {
+        // Initial sett
+        const [auth,dbref] = Logger.__init();
+
+        //On auth ready
+        auth.authUser.then((user) => {
+            dbref.child(user.uid).push().set({
+                content:data,
+                type:'WARNNING',
+                user:user
+            });
+        });
+
+
         console.warn('%c' + data, 'color: orange;')
 
     },
