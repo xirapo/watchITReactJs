@@ -49134,7 +49134,7 @@ var AppMoviesPlayerChat = function (_React$Component) {
                         //Log
                         _this3.setState({ value: '' });
                         _this3.scroller.scrollToBottom();
-                        _logHelper2.default.info('NEW MESSAGE SENT TO CHANNEL:' + _this3.props.channel);
+                        _logHelper2.default.ok('NEW MESSAGE SENT TO CHANNEL:' + _this3.props.channel);
                     });
                 }
             }
@@ -49145,6 +49145,8 @@ var AppMoviesPlayerChat = function (_React$Component) {
             //Incoming message
             var _newMessage = e.val();
             var _user = _newMessage.user;
+            //Logger
+            _logHelper2.default.info('NEW MESSAGE RECEIVED FROM CHANNEL:' + this.props.channel);
 
             //Set new state
             this.setState({

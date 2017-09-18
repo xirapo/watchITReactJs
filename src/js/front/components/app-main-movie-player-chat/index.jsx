@@ -108,7 +108,7 @@ export default class AppMoviesPlayerChat extends React.Component {
                     //Log
                     this.setState({value: ''});
                     this.scroller.scrollToBottom();
-                    logHelper.info('NEW MESSAGE SENT TO CHANNEL:' + this.props.channel);
+                    logHelper.ok('NEW MESSAGE SENT TO CHANNEL:' + this.props.channel);
                 });
             }
         }
@@ -119,6 +119,8 @@ export default class AppMoviesPlayerChat extends React.Component {
         //Incoming message
         let _newMessage = e.val();
         let _user = _newMessage.user;
+        //Logger
+        logHelper.info('NEW MESSAGE RECEIVED FROM CHANNEL:' + this.props.channel);
 
         //Set new state
         this.setState({
