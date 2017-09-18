@@ -8,16 +8,17 @@ import firebase from 'backend/firebase';
 let Logger = ({
     __setLog: (type, message)=> {
         // Initial settings
-        //Initialize database
-        const db = firebase.database();
-        const dbref = db.ref('user/log/' + type + '/');
         const auth = new Auth();
 
         // Promise
         return new Promise((res, err)=> {
             //On auth ready
             auth.authUser.then((user) => {
-                dbref.child(user.uid).push().set({
+                //Initialize database
+                const db = firebase.database();
+                const dbref = db.ref('user/log/' + user.uid + '/');
+
+                dbref.child(type).push().set({
                     user: user.displayName,
                     content: JSON.stringify(message)
                 }).then(res).catch(err);

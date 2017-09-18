@@ -9050,16 +9050,18 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Logger = {
     __setLog: function __setLog(type, message) {
         // Initial settings
-        //Initialize database
-        var db = _firebase2.default.database();
-        var dbref = db.ref('user/log/' + type + '/');
         var auth = new _auth2.default();
 
         // Promise
         return new Promise(function (res, err) {
             //On auth ready
             auth.authUser.then(function (user) {
-                dbref.child(user.uid).push().set({
+                //Initialize database
+                var db = _firebase2.default.database();
+                var dbref = db.ref('user/log/' + user.uid + '/');
+
+                dbref.child(type).push().set({
+                    user: user.displayName,
                     content: JSON.stringify(message)
                 }).then(res).catch(err);
             }).catch(err);
