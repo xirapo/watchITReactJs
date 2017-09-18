@@ -15,7 +15,6 @@ let Time = ({
     unixNowTimeZoned: (timezone_)=> {
         return Time.factory(timezone_).unix() * 1000
     }
-
 });
 
 export default Time;

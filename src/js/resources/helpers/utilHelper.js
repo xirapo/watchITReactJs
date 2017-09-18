@@ -2,8 +2,6 @@
  * Created by gmena on 04-20-17.
  */
 //Crypt helper
-//import setting from 'backend/settings'
-
 
 export default ({
     invalidString: (string)=> {
