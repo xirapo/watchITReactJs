@@ -121867,8 +121867,12 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   .movie-player .chat-box .chat-box-toggle {
     bottom: 50%;
     left: -18px; }
-  .movie-player .chat-box .chat-list .chat-item span, .movie-player .chat-box .chat-list .chat-item strong {
-    font-size: 1.2rem !important; }
+  .movie-player .chat-box .chat-list .chat-item .item-text {
+    margin-top: -5px; }
+    .movie-player .chat-box .chat-list .chat-item .item-text span {
+      font-size: 1rem; }
+    .movie-player .chat-box .chat-list .chat-item .item-text strong {
+      font-size: 1.2rem; }
   .movie-player .chat-box .chat-list .chat-item .profile-picture-img {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -122280,9 +122284,9 @@ video::-webkit-media-text-track-display, video::cue {
     width: 19vw !important; } }
 @media (min-width: 1900px) {
   .chat-list .chat-item .small-picture {
-    width: 16%; }
+    width: 15%; }
   .chat-list .chat-item .item-text {
-    width: 84%; }
+    width: 85%; }
 
   .movie-details-poster {
     width: 53vh !important; }

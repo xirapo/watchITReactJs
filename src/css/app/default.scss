@@ -318,8 +318,14 @@
 
     .chat-list {
       .chat-item {
-        span, strong {
-          font-size: 1.2rem !important;
+        .item-text {
+          margin-top: -5px;
+          span {
+            font-size: 1rem;
+          }
+          strong {
+            font-size: 1.2rem;
+          }
         }
         .profile-picture-img {
           @include border-radius(5px)
