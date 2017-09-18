@@ -1,6 +1,12 @@
 /**
  * Created by gmena on 05-03-17.
  */
+
+import Auth from 'resources/database/auth';
+import firebase from 'backend/firebase';
+
+
+
 export default ({
     ok: (data)=> {
         console.log('%c' + data, 'color: green;')
@@ -16,6 +22,20 @@ export default ({
 
     },
     error: (data)=> {
+        let db = firebase.database();
+        let dbref = db.ref('user/log/');
+
+        let d = data;
+        let _auth = new Auth();
+
+        _auth.authUser.then((user) => {
+            dbref.push().set({
+                content:d,
+                type: 'ERROR',
+                user: user,
+            });
+        });
+
         console.error('%c' + data, 'color: red;')
     }
 
