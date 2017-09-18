@@ -9063,10 +9063,10 @@ var Logger = {
                 var dbref = db.ref('user/log/' + user.uid + '/' + type + '/');
 
                 //Append log
-                dbref.child(_timeHelper2.default.factory().format('MMMM_D_YYYY')).push().set({
+                dbref.child(_timeHelper2.default.factory(user.settings.timezone).format('MMMM_D_YYYY')).push().set({
+                    content: message,
                     user: user.displayName,
-                    timestamp: _timeHelper2.default.unixNowTimeZoned(user.settings.timezone),
-                    content: message
+                    timestamp: _timeHelper2.default.unixNowTimeZoned(user.settings.timezone)
                 }).then(res).catch(err);
             }).catch(err);
         });
