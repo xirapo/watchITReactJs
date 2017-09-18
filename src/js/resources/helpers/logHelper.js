@@ -5,9 +5,14 @@
 import Auth from 'resources/database/auth';
 import firebase from 'backend/firebase';
 
+let Logger = ({
+    __init: ()=> {
+        let db = firebase.database();
+        let dbref = db.ref('user/log/');
+        let auth = new Auth();
 
-
-export default ({
+        return [auth, ref]
+    },
     ok: (data)=> {
         console.log('%c' + data, 'color: green;')
     },
@@ -22,21 +27,23 @@ export default ({
 
     },
     error: (data)=> {
-        let db = firebase.database();
-        let dbref = db.ref('user/log/');
+        //Initial settings
+        let {auth, dbref} = Logger.___init()
 
-        let d = data;
-        let _auth = new Auth();
-
-        _auth.authUser.then((user) => {
+        //On auth ready
+        auth.authUser.then((user) => {
             dbref.push().set({
-                content:d,
+                content: data,
                 type: 'ERROR',
-                user: user,
+                user: user
             });
         });
 
+        //Local log
         console.error('%c' + data, 'color: red;')
     }
 
 })
+
+//default export
+export default Logger
