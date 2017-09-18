@@ -21736,7 +21736,7 @@ var AppTinyProfileAvatar = function (_React$Component) {
         value: function render() {
             return _react2.default.createElement(
                 'div',
-                { className: 'col ' + this.props.size + ' small-picture' },
+                { className: (this.props.size && 'col ' + this.props.size) + ' small-picture' },
                 _react2.default.createElement(
                     'a',
                     { href: this.props.href, className: 'clearfix profile-picture-img' },
@@ -48723,21 +48723,17 @@ var AppMoviesPlayerChatItem = function (_React$Component) {
                 _react2.default.createElement(
                     'article',
                     { className: 'row' },
+                    _react2.default.createElement(_index2.default, {
+                        photo: this.props.photo,
+                        allow_border: false,
+                        size: 'l3 m3'
+                    }),
                     _react2.default.createElement(
                         'div',
-                        { className: 'left' },
-                        _react2.default.createElement(_index2.default, {
-                            photo: this.props.photo,
-                            allow_border: false,
-                            size: 'l12 m12'
-                        })
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'left' },
+                        { className: 'col l9 m9' },
                         _react2.default.createElement(
                             'div',
-                            { className: 'clearfix max-width-12-vw' },
+                            { className: 'full-width' },
                             _react2.default.createElement(
                                 'strong',
                                 { className: 'white-text' },
@@ -48746,7 +48742,7 @@ var AppMoviesPlayerChatItem = function (_React$Component) {
                         ),
                         _react2.default.createElement(
                             'div',
-                            { className: 'clearfix margin-top-2' },
+                            { className: 'full-width margin-top-2' },
                             _react2.default.createElement(
                                 'span',
                                 { className: 'grey-text' },
@@ -49036,7 +49032,7 @@ var AppMoviesPlayerChat = function (_React$Component) {
 
             return _react2.default.createElement(
                 'div',
-                { className: 'relative height-42-rem full-width' },
+                { className: 'relative height-42-rem col l12 m12' },
                 _react2.default.createElement(
                     'div',
                     { className: 'chat-list vertical-padding clearfix' },

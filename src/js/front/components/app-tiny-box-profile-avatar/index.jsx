@@ -20,7 +20,7 @@ export default class AppTinyProfileAvatar extends React.Component {
     render() {
         return (
 
-            <div className={`col ${this.props.size} small-picture`}>
+            <div className={`${this.props.size && 'col ' + this.props.size} small-picture`}>
                 <a href={this.props.href} className="clearfix profile-picture-img">
                     <figure>
                         <img src={this.props.photo || 'http://lorempixel.com/60/60/abstract/'} alt=""/>

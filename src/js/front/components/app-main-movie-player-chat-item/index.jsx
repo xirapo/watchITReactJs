@@ -25,20 +25,19 @@ export default class AppMoviesPlayerChatItem extends React.Component {
             (
                 // this.props.flag == this.props.uid &&
                 <article className="row">
-                    <div className="left">
-                        <AppTinyProfileAvatar
-                            photo={this.props.photo}
-                            allow_border={false}
-                            size="l12 m12"
-                        />
-                    </div>
-                    <div className="left">
-                        <div className="clearfix max-width-16-vw">
+                    <AppTinyProfileAvatar
+                        photo={this.props.photo}
+                        allow_border={false}
+                        size="l3 m3"
+                    />
+
+                    <div className="col l9 m9">
+                        <div className="full-width">
                             <strong className="white-text">
                                 {this.props.message}
                             </strong>
                         </div>
-                        <div className="clearfix margin-top-2">
+                        <div className="full-width margin-top-2">
                             <span className="grey-text">
                                 {this.props.time}
                             </span>
