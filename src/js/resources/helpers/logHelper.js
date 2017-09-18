@@ -11,7 +11,7 @@ let Logger = ({
         let dbref = db.ref('user/log/');
         let auth = new Auth();
 
-        return [auth, ref]
+        return [auth, dbref]
     },
     ok: (data)=> {
         console.log('%c' + data, 'color: green;')
@@ -28,7 +28,7 @@ let Logger = ({
     },
     error: (data)=> {
         //Initial settings
-        let {auth, dbref} = Logger.___init()
+        let {auth, dbref} = Logger.___init();
 
         //On auth ready
         auth.authUser.then((user) => {
