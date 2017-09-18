@@ -18,7 +18,7 @@ export default class AppMoviesPlayerChatHeader extends React.Component {
                 <div className="col l12 m12">
                     <strong className="white-text margin-top-8 truncate bold">
                         {/*this.state.movieInfo.imdb_code*/}
-                        Some data here
+                        Channel {this.props.channel}
                     </strong>
                 </div>
             </header>

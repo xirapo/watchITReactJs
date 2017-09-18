@@ -227,6 +227,7 @@ export default class MoviePlayer extends React.Component {
                             this.state.toggle_screen &&
                             <AppMoviePlayerChatHeader
                                 onClose={(e)=> this.toggleView(e)}
+                                channel={this.state.movieInfo.title}
                             />
 
                         }

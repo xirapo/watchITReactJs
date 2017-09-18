@@ -46877,7 +46877,8 @@ var MoviePlayer = function (_React$Component) {
                     this.state.toggle_screen && _react2.default.createElement(_index8.default, {
                         onClose: function onClose(e) {
                             return _this5.toggleView(e);
-                        }
+                        },
+                        channel: this.state.movieInfo.title
                     }),
                     this.state.toggle_screen && _react2.default.createElement(_index6.default, {
                         channel: this.state.movieInfo.imdb_code
@@ -48787,7 +48788,8 @@ var AppMoviesPlayerChatHeader = function (_React$Component) {
                     _react2.default.createElement(
                         "strong",
                         { className: "white-text margin-top-8 truncate bold" },
-                        "Some data here"
+                        "Channel ",
+                        this.props.channel
                     )
                 )
             );
