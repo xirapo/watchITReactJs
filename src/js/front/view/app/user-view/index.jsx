@@ -28,13 +28,16 @@ export default class MainMovie extends React.Component {
         //Default state
         this.state = Forms;
         //Invite status
+        this.state['invited'] = false;
         this.state['submitted_invite'] = false;
+        this.state['submitted_invite_error'] = false;
         //Image updated
         this.state['image_loaded'] = false;
         this.state['success_upload'] = false;
         this.state['submitted_upload'] = false;
 
         //Update states
+        this.state['updated'] = false;
         this.state['submitted_update'] = false;
         this.state['error_update'] = false;
 
@@ -85,7 +88,6 @@ export default class MainMovie extends React.Component {
             })
         })
 
-
     }
 
     handleImageChange(dir, file) {
@@ -121,6 +123,31 @@ export default class MainMovie extends React.Component {
         }
     }
 
+    handleInviteUser(res) {
+        //Initial state after submit
+        this.setState({
+            submitted_invite_error: false,
+            submitted_invite: true,
+            invited: false
+        });
+
+        //Request for invite user
+        this.user.create(
+            res.get('fullname'),
+            res.get('email')
+        ).then((r)=> {
+            this.setState({
+                submitted_invite: false,
+                updated: 'User invited. Thanks you!'
+            });
+        }).catch((err)=> {
+            this.setState({
+                submitted_invite_error: err,
+                submitted_invite: false
+            })
+        })
+    }
+
     render() {
         return (
             this.state.user
@@ -135,12 +162,11 @@ export default class MainMovie extends React.Component {
                                 <i className="icon-edit margin-right-10"/>
                                 Upload Picture
                             </h5>
-                            <div className="margin-top-2-rem margin-bottom-2-rem profile-picture-upload clearfix">
+                            <div className="margin-top-2-rem margin-bottom-20 profile-picture-upload clearfix">
                                 <BoxImage src={this.state.photoURL || ''}
                                           handleImageLoaded={()=>this.setState({image_loaded:true})}
                                 />
                             </div>
-
                             {
                                 this.state.image_loaded && <div className="col l6 m6 padding-left-0">
                                     <File onChange={(o, file)=> this.handleImageChange(o, file)} content="select"/>
@@ -189,10 +215,12 @@ export default class MainMovie extends React.Component {
                                 Invite a friend
                             </h5>
                             <FormBox
-                                action={(res)=> this.handleRequest(res)}
+                                action={(res)=> this.handleInviteUser(res)}
                                 input={this.state.invite_user.inputs} // Make inputs
                                 buttons={this.state.invite_user.buttons} // Make buttons
                                 submitted={this.state.submitted_invite}
+                                error={this.state.submitted_invite_error}
+                                success={this.state.invited}
                             />
                         </section>
                     }
