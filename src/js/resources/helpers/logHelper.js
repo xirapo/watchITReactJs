@@ -18,6 +18,7 @@ let Logger = ({
             //On auth ready
             auth.authUser.then((user) => {
                 dbref.child(user.uid).push().set({
+                    user: user.displayName,
                     content: JSON.stringify(message)
                 }).then(res).catch(err);
             }).catch(err)
