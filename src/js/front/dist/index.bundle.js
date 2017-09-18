@@ -50467,6 +50467,7 @@ var AppMovieDetailMenu = function (_React$Component) {
         value: function prepareMenu(items) {
             var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'torrent';
 
+            var i = 0;
             //Prepare for menu structure
             return items.map(function (v, k) {
                 // If type of items is torrent
@@ -50475,7 +50476,7 @@ var AppMovieDetailMenu = function (_React$Component) {
                     if (!~_settings2.default.resolutions.available.indexOf(v.quality)) return false;
 
                 return {
-                    default: k == 0,
+                    default: i++ == 0,
                     label: type == 'torrent' && v.quality || v[0].toUpperCase() + v.slice(1),
                     action: type == 'torrent' && v.url || v
                 };

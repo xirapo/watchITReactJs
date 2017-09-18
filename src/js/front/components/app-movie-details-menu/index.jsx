@@ -18,16 +18,17 @@ export default class AppMovieDetailMenu extends React.Component {
     }
 
     prepareMenu(items, type = 'torrent') {
+        let i = 0;
         //Prepare for menu structure
         return items.map((v, k)=> {
             // If type of items is torrent
             if (type == 'torrent')
-                //If not found in available resolutions list... Skip !!
+            //If not found in available resolutions list... Skip !!
                 if (!(~(settings.resolutions.available.indexOf(v.quality))))
                     return false;
 
             return {
-                default: (k == 0),
+                default: (i++ == 0),
                 label: type == 'torrent' && v.quality || (v[0].toUpperCase() + v.slice(1)),
                 action: type == 'torrent' && v.url || v
             };
