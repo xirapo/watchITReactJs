@@ -14,7 +14,7 @@ let Logger = ({
             //On auth ready
             auth.authUser.then((user) => {
                 dbref.child(user.uid).push().set({
-                    content: data,
+                    content: message,
                     type: type,
                     user: user
                 }).then(res).catch(err);
