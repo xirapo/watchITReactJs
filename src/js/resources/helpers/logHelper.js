@@ -41,7 +41,7 @@ let Logger = ({
     log: (message)=> { // Initial sett
         //Logging OK
         Logger.__setLog('LOG', message).then(()=> {
-            console.log(data); //local log
+            console.log(message); //local log
         });
     },
     info: (message)=> {

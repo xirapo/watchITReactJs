@@ -9048,45 +9048,68 @@ var _firebase2 = _interopRequireDefault(_firebase);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Logger = {
+    __setLog: function __setLog(type, message) {
+        // Initial settings
+        var _Logger$__init = Logger.__init(),
+            _Logger$__init2 = _slicedToArray(_Logger$__init, 2),
+            auth = _Logger$__init2[0],
+            dbref = _Logger$__init2[1];
+        // Promise
+
+
+        return new Promise(function (res, err) {
+            //On auth ready
+            auth.authUser.then(function (user) {
+                dbref.child(user.uid).push().set({
+                    content: message,
+                    type: type,
+                    user: user
+                }).then(res).catch(err);
+            }).catch(err);
+        });
+    },
     __init: function __init(user) {
+        //Initialize database
         var db = _firebase2.default.database();
         var dbref = db.ref('user/log/');
         var auth = new _auth2.default();
 
         return [auth, dbref];
     },
-    ok: function ok(data) {
-        console.log('%c' + data, 'color: green;');
-    },
-    log: function log(data) {
-        console.log(data);
-    },
-    info: function info(data) {
-        console.info('%c' + data, 'color: blue;');
-    },
-    warn: function warn(data) {
-        console.warn('%c' + data, 'color: orange;');
-    },
-    error: function error(data) {
-        //Initial settings
-        var _Logger$___init = Logger.___init(),
-            _Logger$___init2 = _slicedToArray(_Logger$___init, 2),
-            auth = _Logger$___init2[0],
-            dbref = _Logger$___init2[1];
-
-        //On auth ready
-
-
-        auth.authUser.then(function (user) {
-            dbref.child(user.uid).push().set({
-                content: data,
-                type: 'ERROR',
-                user: user
-            });
+    ok: function ok(message) {
+        //Logging OK
+        Logger.__setLog('OK', message).then(function () {
+            //local log
+            console.log('%c' + message, 'color: green;');
         });
-
-        //Local log
-        console.error('%c' + data, 'color: red;');
+    },
+    log: function log(message) {
+        // Initial sett
+        //Logging OK
+        Logger.__setLog('LOG', message).then(function () {
+            console.log(message); //local log
+        });
+    },
+    info: function info(message) {
+        //Logging INFO
+        Logger.__setLog('INFO', message).then(function () {
+            //local log
+            console.info('%c' + message, 'color: blue;');
+        });
+    },
+    warn: function warn(message) {
+        //Logging INFO
+        Logger.__setLog('WARNING', message).then(function () {
+            //local log
+            console.warn('%c' + message, 'color: orange;');
+        });
+    },
+    error: function error(message) {
+        //Logging INFO
+        Logger.__setLog('ERROR', message).then(function () {
+            //local log
+            console.error('%c' + message, 'color: red;');
+        });
     }
 
 };
