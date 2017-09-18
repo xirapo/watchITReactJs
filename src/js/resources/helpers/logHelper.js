@@ -21,7 +21,11 @@ let Logger = ({
                 const dbref = db.ref('user/log/' + user.uid + '/' + type + '/');
 
                 //Append log
-                dbref.child(timeHelper.factory().format('MMMM_D_YYYY')).push().set({
+                dbref.child(
+                    timeHelper.factory(
+                        user.settings.timezone
+                    ).format('MMMM_D_YYYY')
+                ).push().set({
                     user: user.displayName,
                     timestamp: timeHelper.unixNowTimeZoned(user.settings.timezone),
                     content: message
