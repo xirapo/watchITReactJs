@@ -28,7 +28,7 @@ let Logger = ({
     },
     error: (data)=> {
         //Initial settings
-        let {auth, dbref} = Logger.___init();
+        const [auth, dbref] = Logger.___init();
 
         //On auth ready
         auth.authUser.then((user) => {
