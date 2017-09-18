@@ -5,7 +5,7 @@
 import Auth from 'resources/database/auth';
 import firebase from 'backend/firebase';
 import timeHelper from 'resources/helpers/timeHelper'
-import is from 'is_js'
+//import is from 'is_js'
 
 let Logger = ({
     __setLog: (type, message)=> {
@@ -24,7 +24,7 @@ let Logger = ({
                 dbref.child(type).push().set({
                     user: user.displayName,
                     timestamp: timeHelper.unixNowTimeZoned(user.settings.timezone),
-                    content: is.json(message) && JSON.stringify(message) || message
+                    content: message
                 }).then(res).catch(err);
             }).catch(err)
         });
