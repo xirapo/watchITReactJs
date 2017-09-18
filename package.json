@@ -40,6 +40,7 @@
     "lscache": "^1.1.0",
     "moment": "^2.18.1",
     "moment-timezone": "^0.5.13",
+    "oy-vey": "^0.9.0",
     "peerflix": "0.30.0",
     "prop-types": "15.5.8",
     "react": "15.5.4",

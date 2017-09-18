@@ -9035,6 +9035,10 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }(); /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * Created by gmena on 05-03-17.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          */
+
 var _auth = __webpack_require__(26);
 
 var _auth2 = _interopRequireDefault(_auth);
@@ -9044,10 +9048,6 @@ var _firebase = __webpack_require__(48);
 var _firebase2 = _interopRequireDefault(_firebase);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * Created by gmena on 05-03-17.
- */
 
 var Logger = {
     __init: function __init(user) {
@@ -9072,8 +9072,9 @@ var Logger = {
     error: function error(data) {
         //Initial settings
         var _Logger$___init = Logger.___init(),
-            auth = _Logger$___init.auth,
-            dbref = _Logger$___init.dbref;
+            _Logger$___init2 = _slicedToArray(_Logger$___init, 2),
+            auth = _Logger$___init2[0],
+            dbref = _Logger$___init2[1];
 
         //On auth ready
 
