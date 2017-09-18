@@ -7,21 +7,13 @@ const FORMS = {
     invite_user: {
         inputs: [{
             type: 'text',
-            placeholder: "first name",
+            placeholder: "fullname",
             autoComplete: 'nope',
             name: "first_name",
             icon: 'icon-text',
             size: 'm12 l12',
             required: true
-        }, {
-            type: 'text',
-            placeholder: "last name",
-            autoComplete: 'nope',
-            name: "last_name",
-            icon: 'icon-text',
-            size: 'm12 l12',
-            required: true
-        }, {
+        },{
             type: 'text',
             placeholder: "e-mail",
             autoComplete: 'nope',

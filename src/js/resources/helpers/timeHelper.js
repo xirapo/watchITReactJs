@@ -13,7 +13,6 @@ let Time = ({
             .tz(timezone_)
     },
     unixNowTimeZoned: (timezone_)=> {
-        // TODO work on timezone
         return Time.factory(timezone_).unix() * 1000
     }
 

@@ -24,7 +24,6 @@ let Logger = ({
                 user:user
             });
         });
-        console.log('%c' + data, 'color: green;')
     },
     log: (data)=> { // Initial sett
         const [auth,dbref] = Logger.__init();

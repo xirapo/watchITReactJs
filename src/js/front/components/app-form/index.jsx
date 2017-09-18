@@ -100,7 +100,7 @@ export default class FormBox extends React.Component {
 
                 {/*Alert*/}
                 {
-                    this.props.error &&
+                    this.props.error && this.props.error.length > 0 &&
                     <div className="row">
                         {
                             this.props.error.map((i, k)=> {

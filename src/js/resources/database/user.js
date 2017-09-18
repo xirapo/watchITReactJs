@@ -1,15 +1,17 @@
 /**
  * Created by gmena on 04-19-17.
  */
-import setting from 'backend/settings';
+//import setting from 'backend/settings';
+import firebase from 'backend/firebase'
 import logHelper from 'resources/helpers/logHelper';
+import utilHelper from 'resources/helpers/utilHelper'
 import Auth from 'resources/database/auth'
 
 export default class User {
 
     update(data) {
         /**
-         * Create a new user
+         * UUpdate an user
          * @param data
          */
 
@@ -24,7 +26,7 @@ export default class User {
                 let _promises = [];
                 //Log
                 logHelper.info('\nUPDATE USER ID: ' + user.uid);
-                
+
                 if (data.get('displayName'))
                     _promises.push(user.updateProfile(
                         {'displayName': data.get('displayName')}
@@ -44,7 +46,7 @@ export default class User {
                 Promise.all(_promises).then(
                     resolve
                 ).catch((e)=> {
-                      err([e.message])
+                    err([e.message])
                 })
 
             });
@@ -53,26 +55,26 @@ export default class User {
         }));
     }
 
-    get(id, token) {
+    create(fullname, email) {
         /**
-         * Return user details
+         * Create user
          * @param id
          */
         return (new Promise((resolve, err) => {
+            //Make a generic password
+            let password = utilHelper.makeUid();
             //Log
-            logHelper.info('\nLOADING DATA FROM REMOTE FOR USER ID: ' + id);
+            logHelper.info('\nCREATING USER: ' + fullname);
             //Request to details endpoint
-            axios({
-                url: setting.api.user + '?id=' + id,
-                method: 'get',
-                timeout: setting.api.timeout,
-                headers: {'Authorization': 'Bearer ' + token}
-            }).then((res)=> {
+            firebase.auth().createUserWithEmailAndPassword(
+                email,
+                password
+            ).then((res)=> {
                 //Log
-                logHelper.ok('USER DATA LOADED FROM REMOTE FOR: ' + res.data.data.fullname.toUpperCase());
-                resolve(res.data.data);
+                //logHelper.ok('USER DATA LOADED FROM REMOTE FOR: ' + res.data.data.fullname.toUpperCase());
+                console.log(res);
             }).catch((e)=> {
-                err(e.response)
+                err([e.message])
             })
         }));
 
