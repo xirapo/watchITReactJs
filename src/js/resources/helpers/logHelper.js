@@ -6,7 +6,7 @@ import Auth from 'resources/database/auth';
 import firebase from 'backend/firebase';
 
 let Logger = ({
-    __init: ()=> {
+    __init: (user)=> {
         let db = firebase.database();
         let dbref = db.ref('user/log/');
         let auth = new Auth();
@@ -32,7 +32,7 @@ let Logger = ({
 
         //On auth ready
         auth.authUser.then((user) => {
-            dbref.push().set({
+            dbref.child(user.uid).push().set({
                 content: data,
                 type: 'ERROR',
                 user: user

@@ -9050,12 +9050,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  */
 
 var Logger = {
-    __init: function __init() {
+    __init: function __init(user) {
         var db = _firebase2.default.database();
         var dbref = db.ref('user/log/');
         var auth = new _auth2.default();
 
-        return [auth, ref];
+        return [auth, dbref];
     },
     ok: function ok(data) {
         console.log('%c' + data, 'color: green;');
