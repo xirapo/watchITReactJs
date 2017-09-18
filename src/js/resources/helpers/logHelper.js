@@ -8,7 +8,11 @@ import firebase from 'backend/firebase';
 let Logger = ({
     __setLog: (type, message)=> {
         // Initial settings
-        const [auth, dbref] = Logger.__init();
+        //Initialize database
+        const db = firebase.database();
+        const dbref = db.ref('user/log/');
+        const auth = new Auth();
+
         // Promise
         return new Promise((res, err)=> {
             //On auth ready
@@ -22,21 +26,12 @@ let Logger = ({
         });
 
     },
-    __init: (user)=> {
-        //Initialize database
-        let db = firebase.database();
-        let dbref = db.ref('user/log/');
-        let auth = new Auth();
-
-        return [auth, dbref]
-    },
     ok: (message)=> {
         //Logging OK
         Logger.__setLog('OK', message).then(()=> {
             //local log
             console.log('%c' + message, 'color: green;');
         });
-
     },
     log: (message)=> { // Initial sett
         //Logging OK
