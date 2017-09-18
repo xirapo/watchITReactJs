@@ -9060,10 +9060,10 @@ var Logger = {
             auth.authUser.then(function (user) {
                 //Initialize database
                 var db = _firebase2.default.database();
-                var dbref = db.ref('user/log/' + user.uid + '/');
+                var dbref = db.ref('user/log/' + user.uid + '/' + type + '/');
 
                 //Append log
-                dbref.child(type).push().set({
+                dbref.child(_timeHelper2.default.factory().format('MMMM_D_YYYY')).push().set({
                     user: user.displayName,
                     timestamp: _timeHelper2.default.unixNowTimeZoned(user.settings.timezone),
                     content: message

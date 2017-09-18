@@ -122284,9 +122284,9 @@ video::-webkit-media-text-track-display, video::cue {
     width: 19vw !important; } }
 @media (min-width: 1900px) {
   .chat-list .chat-item .small-picture {
-    width: 15%; }
+    width: 16%; }
   .chat-list .chat-item .item-text {
-    width: 85%; }
+    width: 84%; }
 
   .movie-details-poster {
     width: 53vh !important; }
@@ -122298,7 +122298,7 @@ video::-webkit-media-text-track-display, video::cue {
     width: 7.66667% !important; } }
 @media (max-height: 600px) {
   .chat-list {
-    height: 72vh; }
+    height: 73vh; }
 
   .movies-box {
     height: 66vh; }
@@ -122307,7 +122307,7 @@ video::-webkit-media-text-track-display, video::cue {
     display: none; } }
 @media (min-height: 601px) {
   .chat-list {
-    height: 74vh; }
+    height: 75vh; }
 
   .movies-box {
     height: 70vh; }

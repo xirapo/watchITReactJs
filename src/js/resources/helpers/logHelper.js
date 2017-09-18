@@ -18,10 +18,10 @@ let Logger = ({
             auth.authUser.then((user) => {
                 //Initialize database
                 const db = firebase.database();
-                const dbref = db.ref('user/log/' + user.uid + '/');
+                const dbref = db.ref('user/log/' + user.uid + '/' + type + '/');
 
                 //Append log
-                dbref.child(type).push().set({
+                dbref.child(timeHelper.factory().format('MMMM_D_YYYY')).push().set({
                     user: user.displayName,
                     timestamp: timeHelper.unixNowTimeZoned(user.settings.timezone),
                     content: message

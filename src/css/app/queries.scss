@@ -151,10 +151,10 @@
   .chat-list {
     .chat-item {
       .small-picture {
-        width: 15%;
+        width: 16%;
       }
       .item-text {
-        width: 85%;
+        width: 84%;
       }
     }
   }
@@ -179,7 +179,7 @@
 @media (max-height: 600px) {
 
   .chat-list {
-    height: 72vh;
+    height: 73vh;
   }
 
   .movies-box {
@@ -195,7 +195,7 @@
 @media (min-height: 601px) {
 
   .chat-list {
-    height: 74vh;
+    height: 75vh;
   }
   .movies-box {
     height: 70vh;
