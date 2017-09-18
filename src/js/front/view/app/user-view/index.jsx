@@ -208,7 +208,7 @@ export default class MainMovie extends React.Component {
 
                     }
 
-                    {
+                    {/*
                         <section className="col l4 m4 input-black-box">
                             <h5 className="white-text">
                                 <i className="icon-message margin-right-10"/>
@@ -223,7 +223,7 @@ export default class MainMovie extends React.Component {
                                 success={this.state.invited}
                             />
                         </section>
-                    }
+                   */ }
                 </section>
             </div> || <div className="row relative full-height">
                 <BoxLoader size="100"/>
