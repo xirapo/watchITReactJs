@@ -172,7 +172,7 @@ export default class AppMoviesPlayerChat extends React.Component {
 
                 {
                     this.state.user &&
-                    <div className="col l12 m12">
+                    <div className="col l12 m12 input-field-black">
                         <BoxInput
                             onInput={(e)=> this.setState({value:e.target.value})}
                             onKeyDown={(e)=> this.sendMessage(e)}

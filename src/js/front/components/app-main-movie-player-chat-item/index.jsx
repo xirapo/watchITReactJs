@@ -24,14 +24,14 @@ export default class AppMoviesPlayerChatItem extends React.Component {
         return (
             (
                 // this.props.flag == this.props.uid &&
-                <article className="row">
+                <article className="row chat-item">
                     <AppTinyProfileAvatar
                         photo={this.props.photo}
                         allow_border={false}
                         size="l3 m3"
                     />
 
-                    <div className="col l9 m9">
+                    <div className="col l9 m9 item-text">
                         <div className="full-width">
                             <strong className="white-text">
                                 {this.props.message}
@@ -42,7 +42,6 @@ export default class AppMoviesPlayerChatItem extends React.Component {
                                 {this.props.time}
                             </span>
                         </div>
-
                     </div>
                 </article>
             )

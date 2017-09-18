@@ -48722,7 +48722,7 @@ var AppMoviesPlayerChatItem = function (_React$Component) {
                 // this.props.flag == this.props.uid &&
                 _react2.default.createElement(
                     'article',
-                    { className: 'row' },
+                    { className: 'row chat-item' },
                     _react2.default.createElement(_index2.default, {
                         photo: this.props.photo,
                         allow_border: false,
@@ -48730,7 +48730,7 @@ var AppMoviesPlayerChatItem = function (_React$Component) {
                     }),
                     _react2.default.createElement(
                         'div',
-                        { className: 'col l9 m9' },
+                        { className: 'col l9 m9 item-text' },
                         _react2.default.createElement(
                             'div',
                             { className: 'full-width' },
@@ -49062,7 +49062,7 @@ var AppMoviesPlayerChat = function (_React$Component) {
                 ),
                 this.state.user && _react2.default.createElement(
                     'div',
-                    { className: 'col l12 m12' },
+                    { className: 'col l12 m12 input-field-black' },
                     _react2.default.createElement(_index2.default, {
                         onInput: function onInput(e) {
                             return _this4.setState({ value: e.target.value });

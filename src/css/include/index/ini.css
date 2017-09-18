@@ -122206,6 +122206,11 @@ video::-webkit-media-text-track-display, video::cue {
 /**MEDIA QUERIES*/
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
+  .chat-list .chat-item .small-picture {
+    width: 30%; }
+  .chat-list .chat-item .item-text {
+    width: 70%; }
+
   .video-stream .chat-box-toggle {
     right: 1rem; }
 
@@ -122242,6 +122247,11 @@ video::-webkit-media-text-track-display, video::cue {
   .profile-media {
     width: 25vw !important; } }
 @media (min-width: 1300px) {
+  .chat-list .chat-item .small-picture {
+    width: 19%; }
+  .chat-list .chat-item .item-text {
+    width: 81%; }
+
   .movie-details-poster {
     width: 30.33333% !important; }
 
@@ -122260,6 +122270,11 @@ video::-webkit-media-text-track-display, video::cue {
   .profile-media {
     width: 19vw !important; } }
 @media (min-width: 1900px) {
+  .chat-list .chat-item .small-picture {
+    width: 16%; }
+  .chat-list .chat-item .item-text {
+    width: 84%; }
+
   .movie-details-poster {
     width: 53vh !important; }
 
