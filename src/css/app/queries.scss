@@ -35,6 +35,17 @@
 
 ///* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {
+  .chat-list {
+    .chat-item {
+      .small-picture {
+        width: 25%;
+      }
+      .item-text {
+        width: 75%;
+      }
+    }
+  }
+
   //User profile box
   .profile-media {
     width: 28vw !important;
@@ -76,6 +87,7 @@
 
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: 1250px) {
+
   //Main images
   .movies-poster {
     width: 14.26667% !important;

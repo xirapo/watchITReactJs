@@ -121845,15 +121845,17 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   .movie-player .video-stream .chat-box-toggle {
     bottom: 3rem; }
 .movie-player .chat-box-fixed {
+  opacity: 1 !important;
   width: 25% !important; }
 .movie-player .chat-box-toggle {
   position: absolute; }
 .movie-player .chat-box {
-  -webkit-transition: width 1s ease-in-out;
-  -moz-transition: width 1s ease-in-out;
-  -o-transition: width 1s ease-in-out;
-  -ms-transition: width 1s ease-in-out;
-  transition: width 1s ease-in-out;
+  -webkit-transition: width 1s ease-in-out, opacity 2s ease-in-out;
+  -moz-transition: width 1s ease-in-out, opacity 2s ease-in-out;
+  -o-transition: width 1s ease-in-out, opacity 2s ease-in-out;
+  -ms-transition: width 1s ease-in-out, opacity 2s ease-in-out;
+  transition: width 1s ease-in-out, opacity 2s ease-in-out;
+  opacity: 0;
   position: absolute;
   height: 93vh !important;
   bottom: 0;
@@ -121865,7 +121867,9 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   .movie-player .chat-box .chat-box-toggle {
     bottom: 50%;
     left: -18px; }
-  .movie-player .chat-box .chat-list .profile-picture-img {
+  .movie-player .chat-box .chat-list .chat-item span, .movie-player .chat-box .chat-list .chat-item strong {
+    font-size: 1.2rem !important; }
+  .movie-player .chat-box .chat-list .chat-item .profile-picture-img {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px; }
@@ -122220,6 +122224,11 @@ video::-webkit-media-text-track-display, video::cue {
   .profile-media {
     width: 30vw !important; } }
 @media (min-width: 992px) {
+  .chat-list .chat-item .small-picture {
+    width: 25%; }
+  .chat-list .chat-item .item-text {
+    width: 75%; }
+
   .profile-media {
     width: 28vw !important; }
 

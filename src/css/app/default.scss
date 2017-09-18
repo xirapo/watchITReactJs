@@ -285,6 +285,7 @@
   }
 
   .chat-box-fixed {
+    opacity: 1 !important;
     width: 25% !important;
   }
 
@@ -297,7 +298,8 @@
   }
 
   .chat-box {
-    @include transition(width 1s ease-in-out);
+    @include transition(width 1s ease-in-out, opacity 2s ease-in-out);
+    opacity: 0;
     position: absolute;
     height: 93vh !important;
     bottom: 0;
@@ -315,8 +317,13 @@
     }
 
     .chat-list {
-      .profile-picture-img {
-        @include border-radius(5px)
+      .chat-item {
+        span, strong {
+          font-size: 1.2rem !important;
+        }
+        .profile-picture-img {
+          @include border-radius(5px)
+        }
       }
     }
   }
