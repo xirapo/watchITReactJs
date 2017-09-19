@@ -155,9 +155,9 @@ export default class AppMoviesPlayerChat extends React.Component {
                                             photo={v.user.thumb}
                                             uid={v.user.id}
                                             time={timeHelper.factory(
-                                            this.state.user.settings.timezone,
-                                            v.timestamp
-                                        ).fromNow()}
+                                                   this.state.user.settings.timezone,
+                                                   v.timestamp
+                                                ).fromNow()}
                                         />
                                     )
                                 })

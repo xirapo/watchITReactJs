@@ -11,8 +11,8 @@ export default class CustomScrollbars extends React.Component {
 
     renderView({style, ...props}) {
         const viewStyle = {
-            marginRight: '-16px',
-            marginBottom: '-16px'
+            marginRight: '-17px',
+            marginBottom: '-17px'
         };
 
         return (

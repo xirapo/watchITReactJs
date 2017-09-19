@@ -12,7 +12,6 @@ export default class AppMoviesPlayerChatItem extends React.Component {
     static get propTypes() {
         return {
             uid: PropTypes.string.isRequired,
-            photo: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
             message: PropTypes.string.isRequired,
             time: PropTypes.string.isRequired

@@ -11409,8 +11409,8 @@ var CustomScrollbars = function (_React$Component) {
                 props = _objectWithoutProperties(_ref, ['style']);
 
             var viewStyle = {
-                marginRight: '-16px',
-                marginBottom: '-16px'
+                marginRight: '-17px',
+                marginBottom: '-17px'
             };
 
             return _react2.default.createElement('div', _extends({
@@ -48891,7 +48891,6 @@ var AppMoviesPlayerChatItem = function (_React$Component) {
         get: function get() {
             return {
                 uid: _propTypes2.default.string.isRequired,
-                photo: _propTypes2.default.string.isRequired,
                 name: _propTypes2.default.string.isRequired,
                 message: _propTypes2.default.string.isRequired,
                 time: _propTypes2.default.string.isRequired
@@ -49579,7 +49578,7 @@ var AppMoviesPlayer = function (_React$Component) {
 
             //Log
             _logHelper2.default.info('STARTING STREAMING FOR: ' + this.props.torrent);
-            _logHelper2.default.ok('STREAMING MOVIE: ' + this.props.movie_title);
+            _logHelper2.default.ok('STREAMING MOVIE: ' + this.props.movie_title.toUpper());
             //Start streamer
             Streamer.playTorrent(this.props.torrent, this.onReady, this.onProgress, this.onError);
         }
