@@ -49578,7 +49578,7 @@ var AppMoviesPlayer = function (_React$Component) {
 
             //Log
             _logHelper2.default.info('STARTING STREAMING FOR: ' + this.props.torrent);
-            _logHelper2.default.ok('STREAMING MOVIE: ' + this.props.movie_title.toUpper());
+            _logHelper2.default.ok('STREAMING MOVIE: ' + this.props.movie_title.toUpperCase());
             //Start streamer
             Streamer.playTorrent(this.props.torrent, this.onReady, this.onProgress, this.onError);
         }
