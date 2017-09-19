@@ -285,8 +285,6 @@
   }
 
   .chat-box-fixed {
-    @include box-shadow(0 0 5px #000);
-    background-color: #fff !important;
     opacity: 1 !important;
     width: 25% !important;
   }
@@ -315,6 +313,8 @@
     }
 
     .chat-box-toggle {
+      @include box-shadow(0 0 5px #000);
+      background-color: #fff !important;
       bottom: 50%;
       left: -18px;
     }

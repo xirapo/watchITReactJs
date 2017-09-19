@@ -121845,16 +121845,9 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   .movie-player .video-stream .chat-box-toggle {
     bottom: 3rem; }
 .movie-player .chat-box-fixed {
-  -moz-box-shadow: 0 0 5px #000;
-  -webkit-box-shadow: 0 0 5px #000;
-  box-shadow: 0 0 5px #000;
-  background-color: #fff !important;
   opacity: 1 !important;
   width: 25% !important; }
 .movie-player .chat-box-toggle {
-  -moz-box-shadow: 0 0 5px #fff;
-  -webkit-box-shadow: 0 0 5px #fff;
-  box-shadow: 0 0 5px #fff;
   background-color: transparent;
   position: absolute; }
 .movie-player .chat-box {
@@ -121873,6 +121866,10 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   .movie-player .chat-box .chat-box-header {
     background-color: rgba(0, 0, 0, 0.2); }
   .movie-player .chat-box .chat-box-toggle {
+    -moz-box-shadow: 0 0 5px #fff;
+    -webkit-box-shadow: 0 0 5px #fff;
+    box-shadow: 0 0 5px #fff;
+    background-color: #fff !important;
     bottom: 50%;
     left: -18px; }
   .movie-player .chat-box .chat-list .chat-item .item-text {

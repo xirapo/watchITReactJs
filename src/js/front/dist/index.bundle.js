@@ -49560,7 +49560,7 @@ var AppMoviesPlayer = function (_React$Component) {
                 //When get ready to play;;
                 _this2.player.on('canplay', function () {
                     //Log
-                    _logHelper2.default.ok('PLAYING MOVIE: ' + _this2.state.url);
+                    _logHelper2.default.ok('PLAYING MOVIE ON SERVER: ' + _this2.state.url);
                     //Set controls true
                     _this2.player.controls(true);
                     //Set canPlay
@@ -49576,7 +49576,7 @@ var AppMoviesPlayer = function (_React$Component) {
 
             //Log
             _logHelper2.default.info('STARTING STREAMING FOR: ' + this.props.torrent);
-            _logHelper2.default.info('STREAMING MOVIE: ' + this.props.movie_title);
+            _logHelper2.default.ok('STREAMING MOVIE: ' + this.props.movie_title);
             //Start streamer
             Streamer.playTorrent(this.props.torrent, this.onReady, this.onProgress, this.onError);
         }

@@ -76,7 +76,7 @@ export default class AppMoviesPlayer extends React.Component {
                 //When get ready to play;;
                 this.player.on('canplay', ()=> {
                     //Log
-                    logHelper.ok('PLAYING MOVIE: ' + this.state.url);
+                    logHelper.ok('PLAYING MOVIE ON SERVER: ' + this.state.url);
                     //Set controls true
                     this.player.controls(true);
                     //Set canPlay
@@ -97,7 +97,7 @@ export default class AppMoviesPlayer extends React.Component {
 
         //Log
         logHelper.info('STARTING STREAMING FOR: ' + this.props.torrent);
-        logHelper.info('STREAMING MOVIE: ' + this.props.movie_title);
+        logHelper.ok('STREAMING MOVIE: ' + this.props.movie_title);
         //Start streamer
         Streamer.playTorrent(
             this.props.torrent,
