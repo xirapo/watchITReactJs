@@ -290,7 +290,8 @@
   }
 
   .chat-box-toggle {
-    @extend .grey;
+    @include box-shadow(0 0 5px #fff);
+    background-color: transparent;
     position: absolute;
     &:hover {
       @extend .orange;
@@ -299,8 +300,7 @@
 
   .chat-box {
     @include transition(width 1s ease-in-out, opacity 2s ease-in-out);
-    @include box-shadow(0 0 5px #fff);
-    background-color: transparent;
+    background-color: rgba(256, 256, 256, 0.2);
     position: absolute;
     height: 93vh !important;
     opacity: 0;

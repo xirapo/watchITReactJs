@@ -2033,81 +2033,81 @@
 .blue-grey-text.text-darken-4 {
   color: #263238 !important; }
 
-.grey.lighten-5, .movie-player .lighten-5.chat-box-toggle {
+.grey.lighten-5 {
   background-color: #fafafa !important; }
-  .grey.lighten-5:after, .movie-player .lighten-5.chat-box-toggle:after {
+  .grey.lighten-5:after {
     border-top-color: #fafafa !important; }
 
 .grey-text.text-lighten-5 {
   color: #fafafa !important; }
 
-.grey.lighten-4, .movie-player .lighten-4.chat-box-toggle {
+.grey.lighten-4 {
   background-color: #f5f5f5 !important; }
-  .grey.lighten-4:after, .movie-player .lighten-4.chat-box-toggle:after {
+  .grey.lighten-4:after {
     border-top-color: #f5f5f5 !important; }
 
 .grey-text.text-lighten-4 {
   color: #f5f5f5 !important; }
 
-.grey.lighten-3, .movie-player .lighten-3.chat-box-toggle {
+.grey.lighten-3 {
   background-color: #eeeeee !important; }
-  .grey.lighten-3:after, .movie-player .lighten-3.chat-box-toggle:after {
+  .grey.lighten-3:after {
     border-top-color: #eeeeee !important; }
 
 .grey-text.text-lighten-3 {
   color: #eeeeee !important; }
 
-.grey.lighten-2, .movie-player .lighten-2.chat-box-toggle {
+.grey.lighten-2 {
   background-color: #e0e0e0 !important; }
-  .grey.lighten-2:after, .movie-player .lighten-2.chat-box-toggle:after {
+  .grey.lighten-2:after {
     border-top-color: #e0e0e0 !important; }
 
 .grey-text.text-lighten-2 {
   color: #e0e0e0 !important; }
 
-.grey.lighten-1, .movie-player .lighten-1.chat-box-toggle {
+.grey.lighten-1 {
   background-color: #bdbdbd !important; }
-  .grey.lighten-1:after, .movie-player .lighten-1.chat-box-toggle:after {
+  .grey.lighten-1:after {
     border-top-color: #bdbdbd !important; }
 
 .grey-text.text-lighten-1 {
   color: #bdbdbd !important; }
 
-.grey, .movie-player .chat-box-toggle {
+.grey {
   background-color: #9e9e9e !important; }
-  .grey:after, .movie-player .chat-box-toggle:after {
+  .grey:after {
     border-top-color: #9e9e9e !important; }
 
 .grey-text {
   color: #9e9e9e !important; }
 
-.grey.darken-1, .movie-player .darken-1.chat-box-toggle {
+.grey.darken-1 {
   background-color: #757575 !important; }
-  .grey.darken-1:after, .movie-player .darken-1.chat-box-toggle:after {
+  .grey.darken-1:after {
     border-top-color: #757575 !important; }
 
 .grey-text.text-darken-1 {
   color: #757575 !important; }
 
-.grey.darken-2, .movie-player .darken-2.chat-box-toggle {
+.grey.darken-2 {
   background-color: #616161 !important; }
-  .grey.darken-2:after, .movie-player .darken-2.chat-box-toggle:after {
+  .grey.darken-2:after {
     border-top-color: #616161 !important; }
 
 .grey-text.text-darken-2 {
   color: #616161 !important; }
 
-.grey.darken-3, .movie-player .darken-3.chat-box-toggle {
+.grey.darken-3 {
   background-color: #424242 !important; }
-  .grey.darken-3:after, .movie-player .darken-3.chat-box-toggle:after {
+  .grey.darken-3:after {
     border-top-color: #424242 !important; }
 
 .grey-text.text-darken-3 {
   color: #424242 !important; }
 
-.grey.darken-4, .movie-player .darken-4.chat-box-toggle {
+.grey.darken-4 {
   background-color: #212121 !important; }
-  .grey.darken-4:after, .movie-player .darken-4.chat-box-toggle:after {
+  .grey.darken-4:after {
     border-top-color: #212121 !important; }
 
 .grey-text.text-darken-4 {
@@ -121848,6 +121848,10 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   opacity: 1 !important;
   width: 25% !important; }
 .movie-player .chat-box-toggle {
+  -moz-box-shadow: 0 0 5px #fff;
+  -webkit-box-shadow: 0 0 5px #fff;
+  box-shadow: 0 0 5px #fff;
+  background-color: transparent;
   position: absolute; }
 .movie-player .chat-box {
   -webkit-transition: width 1s ease-in-out, opacity 2s ease-in-out;
@@ -121855,10 +121859,7 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   -o-transition: width 1s ease-in-out, opacity 2s ease-in-out;
   -ms-transition: width 1s ease-in-out, opacity 2s ease-in-out;
   transition: width 1s ease-in-out, opacity 2s ease-in-out;
-  -moz-box-shadow: 0 0 5px #fff;
-  -webkit-box-shadow: 0 0 5px #fff;
-  box-shadow: 0 0 5px #fff;
-  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0.2);
   position: absolute;
   height: 93vh !important;
   opacity: 0;
