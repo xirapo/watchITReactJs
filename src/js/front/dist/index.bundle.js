@@ -46862,7 +46862,7 @@ var MoviePlayer = function (_React$Component) {
                         onToggle: function onToggle(e) {
                             return _this5.toggleView(e);
                         },
-                        icon: 'icon-message'
+                        icon: 'icon-chat'
                     })
                 ),
                 this.state.canPlay && this.state.movieInfo && _react2.default.createElement(
@@ -46872,7 +46872,7 @@ var MoviePlayer = function (_React$Component) {
                         onToggle: function onToggle(e) {
                             return _this5.toggleView(e);
                         },
-                        icon: 'icon-message'
+                        icon: 'icon-chat'
                     }),
                     this.state.toggle_screen && _react2.default.createElement(_index8.default, {
                         onClose: function onClose(e) {

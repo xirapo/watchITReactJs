@@ -204,7 +204,7 @@ export default class MoviePlayer extends React.Component {
                                 !this.state.toggle_screen && this.state.canPlay &&
                                 <AppMoviePlayerChatToggle
                                     onToggle={(e)=> this.toggleView(e)}
-                                    icon="icon-message"
+                                    icon="icon-chat"
                                 />
                             }
                         </section>
@@ -220,7 +220,7 @@ export default class MoviePlayer extends React.Component {
                             this.state.toggle_screen &&
                             <AppMoviePlayerChatToggle
                                 onToggle={(e)=> this.toggleView(e)}
-                                icon="icon-message"
+                                icon="icon-chat"
                             />
                         }
                         {

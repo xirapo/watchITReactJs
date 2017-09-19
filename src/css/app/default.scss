@@ -285,6 +285,8 @@
   }
 
   .chat-box-fixed {
+    @include box-shadow(0 0 5px #000);
+    background-color: #fff;
     opacity: 1 !important;
     width: 25% !important;
   }
