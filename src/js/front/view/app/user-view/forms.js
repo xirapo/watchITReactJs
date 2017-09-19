@@ -13,7 +13,7 @@ const FORMS = {
             icon: 'icon-text',
             size: 'm12 l12',
             required: true
-        },{
+        }, {
             type: 'text',
             placeholder: "e-mail",
             autoComplete: 'nope',
@@ -38,7 +38,7 @@ const FORMS = {
             icon: 'icon-text',
             size: 'm12 l12',
             required: true
-        },{
+        }, {
             type: 'email',
             placeholder: "e-mail",
             autoComplete: 'nope',
@@ -47,14 +47,14 @@ const FORMS = {
             //disabled: true,
             size: 'm12 l12',
             required: true
-        }, {
-            type: 'password',
-            placeholder: "password",
-            autoComplete: 'nope',
-            name: "password",
-            icon: 'icon-dial-pad',
-            size: 'm12 l12'
-        }],
+        } /*{
+         type: 'password',
+         placeholder: "password",
+         autoComplete: 'nope',
+         name: "password",
+         icon: 'icon-dial-pad',
+         size: 'm12 l12'
+         }*/],
         buttons: [{
             type: 'submit',
             text: 'Update',

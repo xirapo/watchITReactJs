@@ -15898,8 +15898,11 @@ var User = function () {
                     if (data.get('displayName')) _promises.push(user.updateProfile({ 'displayName': data.get('displayName') }));
 
                     if (data.get('email')) _promises.push(user.updateEmail(data.get('email')));
-
-                    if (data.get('password')) _promises.push(user.updatePassword(data.get('password')));
+                    //
+                    // if (data.get('password'))
+                    //     _promises.push(user.updatePassword(
+                    //         data.get('password')
+                    //     ));
 
                     //Check for all promises
                     Promise.all(_promises).then(resolve).catch(function (e) {
@@ -51167,15 +51170,14 @@ var FORMS = {
             icon: 'icon-email',
             //disabled: true,
             size: 'm12 l12',
-            required: true
-        }, {
-            type: 'password',
-            placeholder: "password",
-            autoComplete: 'nope',
-            name: "password",
-            icon: 'icon-dial-pad',
-            size: 'm12 l12'
-        }],
+            required: true /*{
+                           type: 'password',
+                           placeholder: "password",
+                           autoComplete: 'nope',
+                           name: "password",
+                           icon: 'icon-dial-pad',
+                           size: 'm12 l12'
+                           }*/ }],
         buttons: [{
             type: 'submit',
             text: 'Update',

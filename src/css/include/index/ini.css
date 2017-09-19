@@ -121682,6 +121682,8 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
     opacity: 1; }
 .main-view .movies-poster {
   padding: 0.3vh 0.3vw !important; }
+  .main-view .movies-poster .placeholder-img {
+    max-height: 23.5vw; }
 .main-view .movies-poster .hover-poster-box {
   padding: 0.3vh 0.3vw !important;
   position: absolute;
@@ -122254,6 +122256,8 @@ video::-webkit-media-text-track-display, video::cue {
 
   .movies-poster {
     width: 14.26667% !important; }
+    .movies-poster .placeholder-img {
+      max-height: 20vw !important; }
 
   .profile-media {
     width: 26vw !important; } }
@@ -122284,6 +122288,8 @@ video::-webkit-media-text-track-display, video::cue {
 @media (min-width: 1600px) {
   .movies-poster {
     width: 9.966667% !important; }
+    .movies-poster .placeholder-img {
+      max-height: 13.9vw !important; }
 
   .profile-media {
     width: 19vw !important; } }
@@ -122300,7 +122306,9 @@ video::-webkit-media-text-track-display, video::cue {
     width: 17vw !important; }
 
   .movies-poster {
-    width: 7.66667% !important; } }
+    width: 7.66667% !important; }
+    .movies-poster .placeholder-img {
+      max-height: 10.4vw !important; } }
 @media (max-height: 600px) {
   .chat-list {
     height: 73vh; }

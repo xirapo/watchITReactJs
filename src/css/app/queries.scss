@@ -76,6 +76,9 @@
   //Main images
   .movies-poster {
     width: 14.26667% !important;
+    .placeholder-img {
+      max-height: 20vw !important;
+    }
   }
 
   //User profile box
@@ -136,6 +139,9 @@
   //Main images
   .movies-poster {
     width: 9.966667% !important;
+    .placeholder-img {
+      max-height: 13.9vw !important;
+    }
   }
 
   //User profile box
@@ -169,6 +175,9 @@
   //Main images
   .movies-poster {
     width: 7.66667% !important;
+    .placeholder-img {
+      max-height: 10.4vw !important;
+    }
   }
 }
 
@@ -280,6 +289,7 @@
   .chat-list {
     height: 81vh;
   }
+
   .movies-box {
     height: 78vh;
   }

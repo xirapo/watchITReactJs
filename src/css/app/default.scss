@@ -30,6 +30,9 @@
   //Poster main movies lists
   .movies-poster {
     padding: 0.3vh 0.3vw !important;
+    .placeholder-img {
+      max-height: 23.5vw
+    }
   }
 
   .movies-poster {

@@ -36,11 +36,11 @@ export default class User {
                     _promises.push(user.updateEmail(
                         data.get('email')
                     ));
-
-                if (data.get('password'))
-                    _promises.push(user.updatePassword(
-                        data.get('password')
-                    ));
+                //
+                // if (data.get('password'))
+                //     _promises.push(user.updatePassword(
+                //         data.get('password')
+                //     ));
 
                 //Check for all promises
                 Promise.all(_promises).then(
