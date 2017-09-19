@@ -48951,7 +48951,7 @@ var AppMoviesPlayerChatToggle = function (_React$Component) {
                         return _this2.onToggle(e);
                     },
                     className: 'btn btn-small btn-floating transparent chat-box-toggle' },
-                _react2.default.createElement('i', { className: this.props.icon + ' white-text' })
+                _react2.default.createElement('i', { className: this.props.icon + ' loader-text' })
             );
         }
     }], [{

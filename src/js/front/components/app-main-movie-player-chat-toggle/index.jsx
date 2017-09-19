@@ -22,7 +22,7 @@ export default class AppMoviesPlayerChatToggle extends React.Component {
         return (
             <div onClick={(e)=> this.onToggle(e)}
                  className="btn btn-small btn-floating transparent chat-box-toggle">
-                <i className={`${this.props.icon} white-text`}/>
+                <i className={`${this.props.icon} loader-text`}/>
             </div>
         )
     }

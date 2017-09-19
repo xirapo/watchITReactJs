@@ -299,12 +299,13 @@
 
   .chat-box {
     @include transition(width 1s ease-in-out, opacity 2s ease-in-out);
-    opacity: 0;
+    @include box-shadow(0 0 5px #fff);
+    background-color: transparent;
     position: absolute;
     height: 93vh !important;
+    opacity: 0;
     bottom: 0;
     right: 0;
-    background-color: rgba(256, 256, 256, 0.2);
     width: 0;
 
     .chat-box-header {

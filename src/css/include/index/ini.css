@@ -121855,12 +121855,15 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   -o-transition: width 1s ease-in-out, opacity 2s ease-in-out;
   -ms-transition: width 1s ease-in-out, opacity 2s ease-in-out;
   transition: width 1s ease-in-out, opacity 2s ease-in-out;
-  opacity: 0;
+  -moz-box-shadow: 0 0 5px #fff;
+  -webkit-box-shadow: 0 0 5px #fff;
+  box-shadow: 0 0 5px #fff;
+  background-color: transparent;
   position: absolute;
   height: 93vh !important;
+  opacity: 0;
   bottom: 0;
   right: 0;
-  background-color: rgba(255, 255, 255, 0.2);
   width: 0; }
   .movie-player .chat-box .chat-box-header {
     background-color: rgba(0, 0, 0, 0.2); }
@@ -122220,7 +122223,7 @@ video::-webkit-media-text-track-display, video::cue {
     width: 70%; }
 
   .video-stream .chat-box-toggle {
-    right: 1rem; }
+    right: 1.5rem; }
 
   .profile-media {
     width: 34vw !important; } }
