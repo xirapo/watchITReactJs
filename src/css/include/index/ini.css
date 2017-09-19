@@ -121848,7 +121848,7 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   -moz-box-shadow: 0 0 5px #000;
   -webkit-box-shadow: 0 0 5px #000;
   box-shadow: 0 0 5px #000;
-  background-color: #fff;
+  background-color: #fff !important;
   opacity: 1 !important;
   width: 25% !important; }
 .movie-player .chat-box-toggle {

@@ -97,6 +97,7 @@ export default class AppMoviesPlayer extends React.Component {
 
         //Log
         logHelper.info('STARTING STREAMING FOR: ' + this.props.torrent);
+        logHelper.info('STREAMING MOVIE: ' + this.props.movie_title);
         //Start streamer
         Streamer.playTorrent(
             this.props.torrent,

@@ -46844,6 +46844,7 @@ var MoviePlayer = function (_React$Component) {
                         'div',
                         { className: 'full-height movie-box' },
                         _react2.default.createElement(_index2.default, {
+                            movie_title: this.state.movieInfo.title,
                             torrent: this.state.movieInfo.torrent,
                             subs: this.state.movieSubs,
                             sub_selected: this.state.movieSelectedSub,
@@ -49575,6 +49576,7 @@ var AppMoviesPlayer = function (_React$Component) {
 
             //Log
             _logHelper2.default.info('STARTING STREAMING FOR: ' + this.props.torrent);
+            _logHelper2.default.info('STREAMING MOVIE: ' + this.props.movie_title);
             //Start streamer
             Streamer.playTorrent(this.props.torrent, this.onReady, this.onProgress, this.onError);
         }
