@@ -290,7 +290,6 @@
   }
 
   .chat-box-toggle {
-    @include box-shadow(0 0 5px #fff);
     background-color: transparent;
     position: absolute;
     &:hover {
