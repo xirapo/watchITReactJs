@@ -9,11 +9,12 @@ import timezone from 'moment-timezone'
 
 let Time = ({
     factory: (timezone_ = 'US/Eastern', ...params)=> {
-        return timezone(momentjs(...params))
+        return timezone(...params)
             .tz(timezone_)
     },
-    unixNowTimeZoned: (timezone_)=> {
-        return Time.factory(timezone_).unix() * 1000
+    dateTimeZoned: (timezone_)=> {
+        return Time.factory(timezone_)
+            .format()
     }
 });
 

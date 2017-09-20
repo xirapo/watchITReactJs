@@ -100,7 +100,7 @@ export default class AppMoviesPlayerChat extends React.Component {
                         thumb: this.state.user.photoURL,
                         id: this.state.user.uid
                     },
-                    timestamp: timeHelper.unixNowTimeZoned(
+                    datetime: timeHelper.dateTimeZoned(
                         this.state.user.settings.timezone
                     )
                 }).then(()=> {
@@ -156,7 +156,7 @@ export default class AppMoviesPlayerChat extends React.Component {
                                             uid={v.user.id}
                                             time={timeHelper.factory(
                                                    this.state.user.settings.timezone,
-                                                   v.timestamp
+                                                   v.datetime
                                                 ).fromNow()}
                                         />
                                     )

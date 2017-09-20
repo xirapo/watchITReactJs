@@ -9066,7 +9066,7 @@ var Logger = {
                 dbref.child(_timeHelper2.default.factory(user.settings.timezone).format('MMMM_D_YYYY')).push().set({
                     content: message,
                     user: user.displayName,
-                    timestamp: _timeHelper2.default.unixNowTimeZoned(user.settings.timezone)
+                    datetime: _timeHelper2.default.dateTimeZoned(user.settings.timezone)
                 }).then(res).catch(err);
             }).catch(err);
         });
@@ -22231,10 +22231,10 @@ var Time = {
 
         var timezone_ = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'US/Eastern';
 
-        return (0, _momentTimezone2.default)(_moment2.default.apply(undefined, params)).tz(timezone_);
+        return _momentTimezone2.default.apply(undefined, params).tz(timezone_);
     },
-    unixNowTimeZoned: function unixNowTimeZoned(timezone_) {
-        return Time.factory(timezone_).unix() * 1000;
+    dateTimeZoned: function dateTimeZoned(timezone_) {
+        return Time.factory(timezone_).format();
     }
 };
 
@@ -49131,7 +49131,7 @@ var AppMoviesPlayerChat = function (_React$Component) {
                             thumb: this.state.user.photoURL,
                             id: this.state.user.uid
                         },
-                        timestamp: _timeHelper2.default.unixNowTimeZoned(this.state.user.settings.timezone)
+                        datetime: _timeHelper2.default.dateTimeZoned(this.state.user.settings.timezone)
                     }).then(function () {
                         //what?
                         //Log
@@ -49187,7 +49187,7 @@ var AppMoviesPlayerChat = function (_React$Component) {
                                 name: v.user.name,
                                 photo: v.user.thumb,
                                 uid: v.user.id,
-                                time: _timeHelper2.default.factory(_this4.state.user.settings.timezone, v.timestamp).fromNow()
+                                time: _timeHelper2.default.factory(_this4.state.user.settings.timezone, v.datetime).fromNow()
                             });
                         })
                     )

@@ -28,7 +28,7 @@ let Logger = ({
                 ).push().set({
                     content: message,
                     user: user.displayName,
-                    timestamp: timeHelper.unixNowTimeZoned(
+                    datetime: timeHelper.dateTimeZoned(
                         user.settings.timezone
                     )
                 }).then(res).catch(err);
