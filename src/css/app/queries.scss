@@ -278,8 +278,9 @@
 
 @media (min-height: 1018px) {
   .chat-list {
-    height: 81vh;
+    height: 80vh;
   }
+
   .movies-box {
     height: 76vh;
   }
@@ -290,6 +291,10 @@
 }
 
 @media (min-height: 1027px) {
+  .chat-list {
+    height: 80vh;
+  }
+
   .movies-box {
     height: 75vh;
   }

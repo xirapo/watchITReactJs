@@ -49133,7 +49133,7 @@ var AppMoviesPlayerChat = function (_React$Component) {
         }
     }, {
         key: 'sendMessage',
-        value: function sendMessage(e, input) {
+        value: function sendMessage(e) {
             var _this3 = this;
 
             //If enter
