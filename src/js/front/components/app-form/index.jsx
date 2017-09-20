@@ -51,8 +51,8 @@ export default class FormBox extends React.Component {
         //Merge default values with input values
         this.props.input.reduce((old, v, i)=> {
             //If has value declared on inputs list
-            if ('value' in v && !(old.get(v['name'])))
-                old.set(v['name'], v['value']);
+            if ('defaultValue' in v && !(old.get(v['name'])))
+                old.set(v['name'], v['defaultValue']);
             return old
         }, this.fields);
 

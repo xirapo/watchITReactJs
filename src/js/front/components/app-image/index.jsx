@@ -34,6 +34,11 @@ export default class BoxImage extends React.Component {
             status: status,
             loaded: loaded
         });
+        
+        if (status < 0) {//If placeholder loaded in place of original image
+            if (this.props.placeholderImageLoaded)
+                this.props.placeholderImageLoaded(e);
+        }
 
         //If need a hook :)
         if (this.props.handleImageLoaded) {
@@ -41,8 +46,10 @@ export default class BoxImage extends React.Component {
         }
     }
 
-
     handleImageError(e) {
+        if (this.props.handleImageError)
+            this.props.handleImageError(e);
+
         this.setState({
             status: -1
         });
@@ -53,10 +60,11 @@ export default class BoxImage extends React.Component {
             <figure className="image-container no-margin">
                 {
                     /*No poster found*/
-                    this.state.status < 0 && <img
-                        alt="" className={this.state.status > -2 ? "hidden" : "placeholder-img center-block responsive-img"}
-                        src={ "http://lorempixel.com/" + this.props.placeholder.w + "/" + this.props.placeholder.h + (this.props.placeholder.c && "/abstract/NO IMAGE" ||"/abstract/" )}
-                        onLoad={(e)=>this.handleImageLoaded(e, -2)}
+                    this.state.status < 0
+                    && <img ref={(e) =>this.props.getRef && this.props.getRef(e)}
+                            className={this.state.status > -2 ? "hidden" : "placeholder-img center-block responsive-img"}
+                            src={ "http://lorempixel.com/" + this.props.placeholder.w + "/" + this.props.placeholder.h + (this.props.placeholder.c && "/abstract/NO IMAGE" ||"/abstract/" )}
+                            onLoad={(e)=>this.handleImageLoaded(e, -2)}
                     />
                 }
 
