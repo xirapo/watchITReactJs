@@ -2,6 +2,7 @@
 import React from 'react'
 //Components
 import NavBarMenu from 'front/components/app-nav-bar-menu/index.jsx'
+import TrailerModal from 'front/components/app-movie-details-trailer-modal/index.jsx'
 //Helpers
 import cryptHelper from 'resources/helpers/cryptHelper'
 //Setting
@@ -13,8 +14,17 @@ export default class AppMovieDetailMenu extends React.Component {
         //Default state
         this.state = {
             torrent: null,
-            sub: null
+            sub: null,
+            isModalOpen: false
         };
+    }
+
+    openModal() {
+        this.setState({ isModalOpen: true })
+    }
+
+    closeModal() {
+        this.setState({ isModalOpen: false })
     }
 
     prepareMenu(items, type = 'torrent') {
@@ -102,15 +112,24 @@ export default class AppMovieDetailMenu extends React.Component {
                         />
                     }
 
-                    {/*Watch Trailer
+                    {//Watch Trailer
                      <ul>
                      <li className="dropdown">
-                     <a className="dropdown-button flow-text" href="#modal-trailer">
+                     <a className="dropdown-button flow-text" onClick={() => this.openModal()}>
                      <span className="font-light-gray right">Trailer</span>
                      <i className="icon-video relative top-2 left margin-left-4"/>
                      </a>
                      </li>
-                     </ul>*/}
+                     </ul>
+
+                    }
+
+                    { // Modal
+                        <TrailerModal isOpen={this.state.isModalOpen} onClose={() => this.closeModal()}>
+                            <p><h1>He</h1></p>
+                            <p><button onClick={() => this.closeModal()}>Close</button></p>
+                        </TrailerModal>
+                    }
                 </div>
             </nav>
         )
