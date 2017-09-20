@@ -121,7 +121,8 @@ export default class AppMoviesPlayerChat extends React.Component {
         let _user = _newMessage.user;
         //Logger
         logHelper.info('NEW MESSAGE RECEIVED FROM CHANNEL:' + this.props.channel);
-
+        //i]k
+        this.scroller.scrollToBottom();
         //Set new state
         this.setState({
             flag: _user.uid,

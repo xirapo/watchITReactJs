@@ -49174,7 +49174,8 @@ var AppMoviesPlayerChat = function (_React$Component) {
             var _user = _newMessage.user;
             //Logger
             _logHelper2.default.info('NEW MESSAGE RECEIVED FROM CHANNEL:' + this.props.channel);
-
+            //i]k
+            this.scroller.scrollToBottom();
             //Set new state
             this.setState({
                 flag: _user.uid,
