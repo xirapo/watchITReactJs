@@ -7,6 +7,16 @@ export default class DragBar extends React.Component {
         this.isMax = true;
     }
 
+    componentDidMount() {
+        win.on('maximize', ()=> {
+            this.isMax = true;
+        }).on('resize', ()=> {
+            this.isMax = false;
+        }).on('unmaximize', ()=> {
+            this.isMax = false;
+        })
+    }
+
     closeWin() {
         win.close();
     }

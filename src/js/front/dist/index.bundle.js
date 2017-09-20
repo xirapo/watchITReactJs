@@ -47575,17 +47575,30 @@ var DragBar = function (_React$Component) {
     }
 
     _createClass(DragBar, [{
-        key: "closeWin",
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var _this2 = this;
+
+            win.on('maximize', function () {
+                _this2.isMax = true;
+            }).on('resize', function () {
+                _this2.isMax = false;
+            }).on('unmaximize', function () {
+                _this2.isMax = false;
+            });
+        }
+    }, {
+        key: 'closeWin',
         value: function closeWin() {
             win.close();
         }
     }, {
-        key: "minimizeWin",
+        key: 'minimizeWin',
         value: function minimizeWin() {
             win.minimize();
         }
     }, {
-        key: "maximizeWin",
+        key: 'maximizeWin',
         value: function maximizeWin() {
             if (!this.isMax) {
                 //If not maximized
@@ -47599,49 +47612,49 @@ var DragBar = function (_React$Component) {
             }
         }
     }, {
-        key: "render",
+        key: 'render',
         value: function render() {
-            var _this2 = this;
+            var _this3 = this;
 
             return _react2.default.createElement(
-                "section",
-                { className: "full-width full-height absolute" },
+                'section',
+                { className: 'full-width full-height absolute' },
                 _react2.default.createElement(
-                    "header",
-                    { id: "drag-bar", className: "clearfix relative transparent z-depth-100 z-index-1000" },
+                    'header',
+                    { id: 'drag-bar', className: 'clearfix relative transparent z-depth-100 z-index-1000' },
                     _react2.default.createElement(
-                        "h5",
-                        { className: "no-margin font-type-titles float-left" },
+                        'h5',
+                        { className: 'no-margin font-type-titles float-left' },
                         _react2.default.createElement(
-                            "span",
-                            { className: "white-text" },
-                            "watch"
+                            'span',
+                            { className: 'white-text' },
+                            'watch'
                         ),
                         _react2.default.createElement(
-                            "strong",
-                            { className: "bold loader-text" },
-                            "IT"
+                            'strong',
+                            { className: 'bold loader-text' },
+                            'IT'
                         )
                     ),
                     _react2.default.createElement(
-                        "ul",
-                        { className: "list-unlisted relative float-right" },
+                        'ul',
+                        { className: 'list-unlisted relative float-right' },
                         _react2.default.createElement(
-                            "li",
-                            { onClick: this.minimizeWin, className: "float-left margin-right-2" },
-                            _react2.default.createElement("i", { className: "icon-circle-with-minus font-size-2-vh orange-text" })
+                            'li',
+                            { onClick: this.minimizeWin, className: 'float-left margin-right-2' },
+                            _react2.default.createElement('i', { className: 'icon-circle-with-minus font-size-2-vh orange-text' })
                         ),
                         _react2.default.createElement(
-                            "li",
+                            'li',
                             { onClick: function onClick(e) {
-                                    return _this2.maximizeWin(e);
-                                }, className: "float-left margin-right-2" },
-                            _react2.default.createElement("i", { className: "icon-circle-with-plus font-size-2-vh green-text " })
+                                    return _this3.maximizeWin(e);
+                                }, className: 'float-left margin-right-2' },
+                            _react2.default.createElement('i', { className: 'icon-circle-with-plus font-size-2-vh green-text ' })
                         ),
                         _react2.default.createElement(
-                            "li",
-                            { onClick: this.closeWin, className: "float-left margin-right-2" },
-                            _react2.default.createElement("i", { className: "icon-circle-with-cross font-size-2-vh red-text" })
+                            'li',
+                            { onClick: this.closeWin, className: 'float-left margin-right-2' },
+                            _react2.default.createElement('i', { className: 'icon-circle-with-cross font-size-2-vh red-text' })
                         )
                     )
                 ),

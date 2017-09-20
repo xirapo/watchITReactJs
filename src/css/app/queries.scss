@@ -269,6 +269,13 @@
   }
 }
 
+@media (min-height: 950px) {
+  .chat-list {
+    height: 79vh;
+  }
+}
+
+
 @media (min-height: 1018px) {
   .chat-list {
     height: 81vh;
