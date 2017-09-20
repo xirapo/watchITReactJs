@@ -47594,7 +47594,7 @@ var DragBar = function (_React$Component) {
                 win.maximize();
             } else {
                 //Unmaximize
-                this.max = false;
+                this.isMax = false;
                 win.unmaximize();
             }
         }

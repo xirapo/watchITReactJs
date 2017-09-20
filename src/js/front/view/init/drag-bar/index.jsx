@@ -23,7 +23,7 @@ export default class DragBar extends React.Component {
             win.maximize()
         } else {
             //Unmaximize
-            this.max = false;
+            this.isMax = false;
             win.unmaximize();
         }
     }
