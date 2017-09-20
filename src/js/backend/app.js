@@ -99,7 +99,10 @@ win.on('close', function () {
 // Cancel all new windows (Middle clicks / New Tab)
 win.on('new-win-policy', function (frame, url, policy) {
     policy.ignore();
+    return false;
 });
+//Maximize on start
+win.maximize();
 //Show windows on loaded
 win.on('loaded', function (frame, url, policy) {
     win.show()
