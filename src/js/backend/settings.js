@@ -64,8 +64,7 @@ Settings.user = {
 //Errors codes
 Settings.error_codes = {
     IMAGE_BROKEN_LINK: 300,
-    BAD_TORRENT: 301,
-    INVALID_LOGIN: 302
+    BAD_TORRENT: 301
 };
 
 export default Settings;

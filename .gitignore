@@ -4,3 +4,4 @@ node_modules
 build
 cache
 tmp/
+src/js/front/dist/

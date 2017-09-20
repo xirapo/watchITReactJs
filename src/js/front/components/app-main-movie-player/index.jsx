@@ -2,6 +2,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 //Helpers
+import setting from 'backend/settings';
 import logHelper from 'resources/helpers/logHelper'
 
 
@@ -29,7 +30,7 @@ export default class AppMoviesPlayer extends React.Component {
 
     static get propTypes() {
         return {
-            torrent: PropTypes.string.isRequired
+            movie: PropTypes.string.isRequired
         }
     }
 
@@ -96,11 +97,11 @@ export default class AppMoviesPlayer extends React.Component {
         );
 
         //Log
-        logHelper.info('STARTING STREAMING FOR: ' + this.props.torrent);
-        logHelper.ok('STREAMING MOVIE: ' + this.props.movie_title.toUpperCase());
+        logHelper.info('STARTING STREAMING FOR: ' + this.props.movie.torrent);
+        logHelper.ok('STREAMING MOVIE: ' + this.props.movie.title.toUpperCase());
         //Start streamer
         Streamer.playTorrent(
-            this.props.torrent,
+            this.props.movie.torrent,
             this.onReady,
             this.onProgress,
             this.onError
@@ -145,10 +146,18 @@ export default class AppMoviesPlayer extends React.Component {
 
     onError(e) {
         //Log
-        logHelper.error('ERROR WHILE STREAMING: ' + e);
+        //Error
+        logHelper.error({
+            reference: this.props.movie.imdb_code,
+            message: `ERROR WHILE STREAMING`,
+            code: setting.error_codes.BAD_TORRENT
+        });
+
         //Handle error
         if (this.props.onError) {
             this.props.onError(e);
+
+
         }
     }
 

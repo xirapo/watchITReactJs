@@ -191,8 +191,7 @@ export default class MoviePlayer extends React.Component {
                              <div className="full-width full-height">*/}
                             <div className="full-height movie-box">
                                 <AppMoviePlayer
-                                    movie_title={this.state.movieInfo.title}
-                                    torrent={this.state.movieInfo.torrent}
+                                    movie={this.state.movieInfo}
                                     subs={this.state.movieSubs}
                                     sub_selected={this.state.movieSelectedSub}
                                     onProgress={(p,s)=>{this.onProgress(p,s)}}

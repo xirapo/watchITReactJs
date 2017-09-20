@@ -8372,6 +8372,82 @@ module.exports = ReactCurrentOwner;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+/**
+ * Handle global settings
+ * **/
+var Settings = {};
+
+/////////////////////
+//////Uri Conf///////
+/////////////////////
+
+Settings.loginView = '/';
+Settings.appView = '/app';
+//Remote host settings
+Settings.remote = {
+    ws_host: 'ws://localhost:9600',
+    //api_host: 'http://127.0.0.1:8000/api'
+    api_host: 'http://api.witth.me'
+};
+
+/////////////////////
+//Resource Settings//
+/////////////////////
+
+//WatchIt WebSocket
+// Settings.ws = {
+//     ws_url: Settings.remote.ws_host,
+//     my_channel: 'client_channel',
+//     movie_channel: 'movies_channel_'
+// };
+
+//Avoid bad indexing
+if ('remote' in Settings)
+    //WatchIt API
+    Settings.api = {
+        timeout: 10000, // Request timeout milliseconds,
+        cache_time: 60, // cache expire minutes
+        step: 50, //Step by scroll load
+        offset: 1, //Default start offset
+        //Uri list
+        movies: Settings.remote.api_host + '/v1/movies/',
+        search: Settings.remote.api_host + '/v1/search/'
+    };
+
+//Subs conf
+Settings.subs = {
+    available: ['spanish', 'english']
+};
+
+//Resolution conf
+Settings.resolutions = {
+    available: ['720p', '1080p']
+};
+
+//Default user settings
+Settings.user = {
+    timezone: 'America/Managua',
+    max_old_chats: 50
+};
+
+//Errors codes
+Settings.error_codes = {
+    IMAGE_BROKEN_LINK: 300,
+    BAD_TORRENT: 301
+};
+
+exports.default = Settings;
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       * Created by gmena on 04-19-17.
@@ -8384,7 +8460,7 @@ var _firebase = __webpack_require__(58);
 
 var _firebase2 = _interopRequireDefault(_firebase);
 
-var _settings = __webpack_require__(30);
+var _settings = __webpack_require__(26);
 
 var _settings2 = _interopRequireDefault(_settings);
 
@@ -8392,7 +8468,7 @@ var _storageHelper = __webpack_require__(135);
 
 var _storageHelper2 = _interopRequireDefault(_storageHelper);
 
-var _logHelper = __webpack_require__(27);
+var _logHelper = __webpack_require__(28);
 
 var _logHelper2 = _interopRequireDefault(_logHelper);
 
@@ -8517,7 +8593,7 @@ var Authentication = function () {
 exports.default = Authentication;
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8527,7 +8603,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _auth = __webpack_require__(26);
+var _auth = __webpack_require__(27);
 
 var _auth2 = _interopRequireDefault(_auth);
 
@@ -8613,7 +8689,7 @@ var Logger = {
 exports.default = Logger;
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8843,7 +8919,7 @@ function internalError(message) {
 
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9115,83 +9191,6 @@ function getPooledWarningPropertyDefinition(propName, getVal) {
   }
 }
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
-
-/***/ }),
-/* 30 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-/**
- * Handle global settings
- * **/
-var Settings = {};
-
-/////////////////////
-//////Uri Conf///////
-/////////////////////
-
-Settings.loginView = '/';
-Settings.appView = '/app';
-//Remote host settings
-Settings.remote = {
-    ws_host: 'ws://localhost:9600',
-    //api_host: 'http://127.0.0.1:8000/api'
-    api_host: 'http://api.witth.me'
-};
-
-/////////////////////
-//Resource Settings//
-/////////////////////
-
-//WatchIt WebSocket
-// Settings.ws = {
-//     ws_url: Settings.remote.ws_host,
-//     my_channel: 'client_channel',
-//     movie_channel: 'movies_channel_'
-// };
-
-//Avoid bad indexing
-if ('remote' in Settings)
-    //WatchIt API
-    Settings.api = {
-        timeout: 10000, // Request timeout milliseconds,
-        cache_time: 60, // cache expire minutes
-        step: 50, //Step by scroll load
-        offset: 1, //Default start offset
-        //Uri list
-        movies: Settings.remote.api_host + '/v1/movies/',
-        search: Settings.remote.api_host + '/v1/search/'
-    };
-
-//Subs conf
-Settings.subs = {
-    available: ['spanish', 'english']
-};
-
-//Resolution conf
-Settings.resolutions = {
-    available: ['720p', '1080p']
-};
-
-//Default user settings
-Settings.user = {
-    timezone: 'America/Managua',
-    max_old_chats: 50
-};
-
-//Errors codes
-Settings.error_codes = {
-    IMAGE_BROKEN_LINK: 300,
-    BAD_TORRENT: 301,
-    INVALID_LOGIN: 302
-};
-
-exports.default = Settings;
 
 /***/ }),
 /* 31 */
@@ -12324,7 +12323,7 @@ module.exports = ReactInstanceMap;
 
 
 
-var SyntheticEvent = __webpack_require__(29);
+var SyntheticEvent = __webpack_require__(30);
 
 var getEventTarget = __webpack_require__(113);
 
@@ -13898,7 +13897,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Location = undefined;
 
-var _error = __webpack_require__(28);
+var _error = __webpack_require__(29);
 
 var errorsExports = _interopRequireWildcard(_error);
 
@@ -15708,7 +15707,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 //Tools
 
 
-var _settings = __webpack_require__(30);
+var _settings = __webpack_require__(26);
 
 var _settings2 = _interopRequireDefault(_settings);
 
@@ -15716,7 +15715,7 @@ var _requestHelper = __webpack_require__(134);
 
 var _requestHelper2 = _interopRequireDefault(_requestHelper);
 
-var _logHelper = __webpack_require__(27);
+var _logHelper = __webpack_require__(28);
 
 var _logHelper2 = _interopRequireDefault(_logHelper);
 
@@ -15869,11 +15868,11 @@ var _createClass = function () { function defineProperties(target, props) { for 
 //import utilHelper from 'resources/helpers/utilHelper'
 
 
-var _logHelper = __webpack_require__(27);
+var _logHelper = __webpack_require__(28);
 
 var _logHelper2 = _interopRequireDefault(_logHelper);
 
-var _auth = __webpack_require__(26);
+var _auth = __webpack_require__(27);
 
 var _auth2 = _interopRequireDefault(_auth);
 
@@ -17877,7 +17876,7 @@ exports.nonNegativeNumberSpec = nonNegativeNumberSpec;
 exports.looseObjectSpec = looseObjectSpec;
 exports.nullFunctionSpec = nullFunctionSpec;
 
-var _error = __webpack_require__(28);
+var _error = __webpack_require__(29);
 
 var errorsExports = _interopRequireWildcard(_error);
 
@@ -18315,7 +18314,7 @@ exports.base64Bytes_ = base64Bytes_;
 exports.dataURLBytes_ = dataURLBytes_;
 exports.dataURLContentType_ = dataURLContentType_;
 
-var _error = __webpack_require__(28);
+var _error = __webpack_require__(29);
 
 var errorsExports = _interopRequireWildcard(_error);
 
@@ -30430,7 +30429,7 @@ var array = _interopRequireWildcard(_array);
 
 var _blob = __webpack_require__(173);
 
-var _error = __webpack_require__(28);
+var _error = __webpack_require__(29);
 
 var errorsExports = _interopRequireWildcard(_error);
 
@@ -30894,7 +30893,7 @@ var args = _interopRequireWildcard(_args);
 
 var _blob = __webpack_require__(173);
 
-var _error = __webpack_require__(28);
+var _error = __webpack_require__(29);
 
 var errorsExports = _interopRequireWildcard(_error);
 
@@ -46270,7 +46269,7 @@ var _storageHelper = __webpack_require__(135);
 
 var _storageHelper2 = _interopRequireDefault(_storageHelper);
 
-var _logHelper = __webpack_require__(27);
+var _logHelper = __webpack_require__(28);
 
 var _logHelper2 = _interopRequireDefault(_logHelper);
 
@@ -46278,11 +46277,11 @@ var _utilHelper = __webpack_require__(137);
 
 var _utilHelper2 = _interopRequireDefault(_utilHelper);
 
-var _settings = __webpack_require__(30);
+var _settings = __webpack_require__(26);
 
 var _settings2 = _interopRequireDefault(_settings);
 
-var _auth = __webpack_require__(26);
+var _auth = __webpack_require__(27);
 
 var _auth2 = _interopRequireDefault(_auth);
 
@@ -46685,7 +46684,7 @@ var _index15 = __webpack_require__(375);
 
 var _index16 = _interopRequireDefault(_index15);
 
-var _auth = __webpack_require__(26);
+var _auth = __webpack_require__(27);
 
 var _auth2 = _interopRequireDefault(_auth);
 
@@ -46697,7 +46696,7 @@ var _cryptHelper = __webpack_require__(85);
 
 var _cryptHelper2 = _interopRequireDefault(_cryptHelper);
 
-var _logHelper = __webpack_require__(27);
+var _logHelper = __webpack_require__(28);
 
 var _logHelper2 = _interopRequireDefault(_logHelper);
 
@@ -46896,8 +46895,7 @@ var MoviePlayer = function (_React$Component) {
                         'div',
                         { className: 'full-height movie-box' },
                         _react2.default.createElement(_index2.default, {
-                            movie_title: this.state.movieInfo.title,
-                            torrent: this.state.movieInfo.torrent,
+                            movie: this.state.movieInfo,
                             subs: this.state.movieSubs,
                             sub_selected: this.state.movieSelectedSub,
                             onProgress: function onProgress(p, s) {
@@ -46996,7 +46994,7 @@ var _index15 = __webpack_require__(377);
 
 var _index16 = _interopRequireDefault(_index15);
 
-var _auth = __webpack_require__(26);
+var _auth = __webpack_require__(27);
 
 var _auth2 = _interopRequireDefault(_auth);
 
@@ -47191,7 +47189,7 @@ var _index13 = __webpack_require__(356);
 
 var _index14 = _interopRequireDefault(_index13);
 
-var _auth = __webpack_require__(26);
+var _auth = __webpack_require__(27);
 
 var _auth2 = _interopRequireDefault(_auth);
 
@@ -47472,11 +47470,11 @@ var _index = __webpack_require__(129);
 
 var _index2 = _interopRequireDefault(_index);
 
-var _auth = __webpack_require__(26);
+var _auth = __webpack_require__(27);
 
 var _auth2 = _interopRequireDefault(_auth);
 
-var _settings = __webpack_require__(30);
+var _settings = __webpack_require__(26);
 
 var _settings2 = _interopRequireDefault(_settings);
 
@@ -49089,7 +49087,7 @@ var _index5 = __webpack_require__(49);
 
 var _index6 = _interopRequireDefault(_index5);
 
-var _auth = __webpack_require__(26);
+var _auth = __webpack_require__(27);
 
 var _auth2 = _interopRequireDefault(_auth);
 
@@ -49097,7 +49095,7 @@ var _timeHelper = __webpack_require__(136);
 
 var _timeHelper2 = _interopRequireDefault(_timeHelper);
 
-var _logHelper = __webpack_require__(27);
+var _logHelper = __webpack_require__(28);
 
 var _logHelper2 = _interopRequireDefault(_logHelper);
 
@@ -49566,7 +49564,11 @@ var _propTypes = __webpack_require__(8);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _logHelper = __webpack_require__(27);
+var _settings = __webpack_require__(26);
+
+var _settings2 = _interopRequireDefault(_settings);
+
+var _logHelper = __webpack_require__(28);
 
 var _logHelper2 = _interopRequireDefault(_logHelper);
 
@@ -49659,10 +49661,10 @@ var AppMoviesPlayer = function (_React$Component) {
             });
 
             //Log
-            _logHelper2.default.info('STARTING STREAMING FOR: ' + this.props.torrent);
-            _logHelper2.default.ok('STREAMING MOVIE: ' + this.props.movie_title.toUpperCase());
+            _logHelper2.default.info('STARTING STREAMING FOR: ' + this.props.movie.torrent);
+            _logHelper2.default.ok('STREAMING MOVIE: ' + this.props.movie.title.toUpperCase());
             //Start streamer
-            Streamer.playTorrent(this.props.torrent, this.onReady, this.onProgress, this.onError);
+            Streamer.playTorrent(this.props.movie.torrent, this.onReady, this.onProgress, this.onError);
         }
 
         // destroy player on unmount
@@ -49703,7 +49705,13 @@ var AppMoviesPlayer = function (_React$Component) {
         key: 'onError',
         value: function onError(e) {
             //Log
-            _logHelper2.default.error('ERROR WHILE STREAMING: ' + e);
+            //Error
+            _logHelper2.default.error({
+                reference: this.props.movie.imdb_code,
+                message: 'ERROR WHILE STREAMING',
+                code: _settings2.default.error_codes.BAD_TORRENT
+            });
+
             //Handle error
             if (this.props.onError) {
                 this.props.onError(e);
@@ -49737,7 +49745,7 @@ var AppMoviesPlayer = function (_React$Component) {
         key: 'propTypes',
         get: function get() {
             return {
-                torrent: _propTypes2.default.string.isRequired
+                movie: _propTypes2.default.string.isRequired
             };
         }
     }]);
@@ -49764,7 +49772,7 @@ var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _settings = __webpack_require__(30);
+var _settings = __webpack_require__(26);
 
 var _settings2 = _interopRequireDefault(_settings);
 
@@ -49772,7 +49780,7 @@ var _index = __webpack_require__(59);
 
 var _index2 = _interopRequireDefault(_index);
 
-var _logHelper = __webpack_require__(27);
+var _logHelper = __webpack_require__(28);
 
 var _logHelper2 = _interopRequireDefault(_logHelper);
 
@@ -50678,7 +50686,7 @@ var _cryptHelper = __webpack_require__(85);
 
 var _cryptHelper2 = _interopRequireDefault(_cryptHelper);
 
-var _settings = __webpack_require__(30);
+var _settings = __webpack_require__(26);
 
 var _settings2 = _interopRequireDefault(_settings);
 
@@ -51396,11 +51404,11 @@ var _index11 = __webpack_require__(332);
 
 var _index12 = _interopRequireDefault(_index11);
 
-var _auth = __webpack_require__(26);
+var _auth = __webpack_require__(27);
 
 var _auth2 = _interopRequireDefault(_auth);
 
-var _settings = __webpack_require__(30);
+var _settings = __webpack_require__(26);
 
 var _settings2 = _interopRequireDefault(_settings);
 
@@ -51474,7 +51482,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 //Tools
 
 
-var _settings = __webpack_require__(30);
+var _settings = __webpack_require__(26);
 
 var _settings2 = _interopRequireDefault(_settings);
 
@@ -51482,7 +51490,7 @@ var _requestHelper = __webpack_require__(134);
 
 var _requestHelper2 = _interopRequireDefault(_requestHelper);
 
-var _logHelper = __webpack_require__(27);
+var _logHelper = __webpack_require__(28);
 
 var _logHelper2 = _interopRequireDefault(_logHelper);
 
@@ -61128,7 +61136,7 @@ var _constants = __webpack_require__(68);
 
 var constants = _interopRequireWildcard(_constants);
 
-var _error2 = __webpack_require__(28);
+var _error2 = __webpack_require__(29);
 
 var errorsExports = _interopRequireWildcard(_error2);
 
@@ -61658,7 +61666,7 @@ var _backoff = __webpack_require__(446);
 
 var backoff = _interopRequireWildcard(_backoff);
 
-var _error = __webpack_require__(28);
+var _error = __webpack_require__(29);
 
 var errorsExports = _interopRequireWildcard(_error);
 
@@ -62033,7 +62041,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.NetworkXhrIo = undefined;
 
-var _error = __webpack_require__(28);
+var _error = __webpack_require__(29);
 
 var errorsExports = _interopRequireWildcard(_error);
 
@@ -62437,7 +62445,7 @@ var fbsArray = _interopRequireWildcard(_array);
 
 var _async = __webpack_require__(444);
 
-var _error = __webpack_require__(28);
+var _error = __webpack_require__(29);
 
 var errors = _interopRequireWildcard(_error);
 
@@ -69202,7 +69210,7 @@ var EventPropagators = __webpack_require__(55);
 var ExecutionEnvironment = __webpack_require__(13);
 var ReactDOMComponentTree = __webpack_require__(12);
 var ReactUpdates = __webpack_require__(24);
-var SyntheticEvent = __webpack_require__(29);
+var SyntheticEvent = __webpack_require__(30);
 
 var getEventTarget = __webpack_require__(113);
 var isEventSupported = __webpack_require__(114);
@@ -76218,7 +76226,7 @@ var EventPropagators = __webpack_require__(55);
 var ExecutionEnvironment = __webpack_require__(13);
 var ReactDOMComponentTree = __webpack_require__(12);
 var ReactInputSelection = __webpack_require__(310);
-var SyntheticEvent = __webpack_require__(29);
+var SyntheticEvent = __webpack_require__(30);
 
 var getActiveElement = __webpack_require__(142);
 var isTextInputElement = __webpack_require__(320);
@@ -76418,7 +76426,7 @@ var EventPropagators = __webpack_require__(55);
 var ReactDOMComponentTree = __webpack_require__(12);
 var SyntheticAnimationEvent = __webpack_require__(539);
 var SyntheticClipboardEvent = __webpack_require__(540);
-var SyntheticEvent = __webpack_require__(29);
+var SyntheticEvent = __webpack_require__(30);
 var SyntheticFocusEvent = __webpack_require__(543);
 var SyntheticKeyboardEvent = __webpack_require__(545);
 var SyntheticMouseEvent = __webpack_require__(74);
@@ -76644,7 +76652,7 @@ module.exports = SimpleEventPlugin;
 
 
 
-var SyntheticEvent = __webpack_require__(29);
+var SyntheticEvent = __webpack_require__(30);
 
 /**
  * @interface Event
@@ -76688,7 +76696,7 @@ module.exports = SyntheticAnimationEvent;
 
 
 
-var SyntheticEvent = __webpack_require__(29);
+var SyntheticEvent = __webpack_require__(30);
 
 /**
  * @interface Event
@@ -76731,7 +76739,7 @@ module.exports = SyntheticClipboardEvent;
 
 
 
-var SyntheticEvent = __webpack_require__(29);
+var SyntheticEvent = __webpack_require__(30);
 
 /**
  * @interface Event
@@ -76854,7 +76862,7 @@ module.exports = SyntheticFocusEvent;
 
 
 
-var SyntheticEvent = __webpack_require__(29);
+var SyntheticEvent = __webpack_require__(30);
 
 /**
  * @interface Event
@@ -77035,7 +77043,7 @@ module.exports = SyntheticTouchEvent;
 
 
 
-var SyntheticEvent = __webpack_require__(29);
+var SyntheticEvent = __webpack_require__(30);
 
 /**
  * @interface Event
