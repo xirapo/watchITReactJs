@@ -3,6 +3,8 @@ import React from 'react'
 export default class DragBar extends React.Component {
     constructor(props) {
         super(props);
+        //Toggle maximize
+        this.isMax = true;
     }
 
     closeWin() {
@@ -14,7 +16,16 @@ export default class DragBar extends React.Component {
     }
 
     maximizeWin() {
-        win.maximize()
+        if (!this.isMax) {
+            //If not maximized
+            //Maximize
+            this.isMax = true;
+            win.maximize()
+        } else {
+            //Unmaximize
+            this.max = false;
+            win.unmaximize();
+        }
     }
 
 
@@ -31,7 +42,7 @@ export default class DragBar extends React.Component {
                         <li onClick={this.minimizeWin} className="float-left margin-right-2">
                             <i className="icon-circle-with-minus font-size-2-vh orange-text"/>
                         </li>
-                        <li onClick={this.maximizeWin} className="float-left margin-right-2">
+                        <li onClick={(e) => this.maximizeWin(e)} className="float-left margin-right-2">
                             <i className="icon-circle-with-plus font-size-2-vh green-text "/>
                         </li>
                         <li onClick={this.closeWin} className="float-left margin-right-2">

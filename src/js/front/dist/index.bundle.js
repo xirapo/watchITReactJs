@@ -47567,7 +47567,11 @@ var DragBar = function (_React$Component) {
     function DragBar(props) {
         _classCallCheck(this, DragBar);
 
-        return _possibleConstructorReturn(this, (DragBar.__proto__ || Object.getPrototypeOf(DragBar)).call(this, props));
+        //Toggle maximize
+        var _this = _possibleConstructorReturn(this, (DragBar.__proto__ || Object.getPrototypeOf(DragBar)).call(this, props));
+
+        _this.isMax = true;
+        return _this;
     }
 
     _createClass(DragBar, [{
@@ -47583,11 +47587,22 @@ var DragBar = function (_React$Component) {
     }, {
         key: "maximizeWin",
         value: function maximizeWin() {
-            win.maximize();
+            if (!this.isMax) {
+                //If not maximized
+                //Maximize
+                this.isMax = true;
+                win.maximize();
+            } else {
+                //Unmaximize
+                this.max = false;
+                win.unmaximize();
+            }
         }
     }, {
         key: "render",
         value: function render() {
+            var _this2 = this;
+
             return _react2.default.createElement(
                 "section",
                 { className: "full-width full-height absolute" },
@@ -47618,7 +47633,9 @@ var DragBar = function (_React$Component) {
                         ),
                         _react2.default.createElement(
                             "li",
-                            { onClick: this.maximizeWin, className: "float-left margin-right-2" },
+                            { onClick: function onClick(e) {
+                                    return _this2.maximizeWin(e);
+                                }, className: "float-left margin-right-2" },
                             _react2.default.createElement("i", { className: "icon-circle-with-plus font-size-2-vh green-text " })
                         ),
                         _react2.default.createElement(
