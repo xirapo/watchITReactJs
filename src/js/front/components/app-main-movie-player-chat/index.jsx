@@ -133,7 +133,7 @@ export default class AppMoviesPlayerChat extends React.Component {
 
     render() {
         return (
-            <div className="relative height-42-rem col l12 m12">
+            <div className="relative full-height col l12 m12">
                 <div className="chat-list vertical-padding clearfix">
                     {
                         this.state.user &&

@@ -122362,7 +122362,7 @@ video::-webkit-media-text-track-display, video::cue {
     height: 20vh; } }
 @media (min-height: 1018px) {
   .chat-list {
-    height: 80vh; }
+    height: 81vh; }
 
   .movies-box {
     height: 76vh; }

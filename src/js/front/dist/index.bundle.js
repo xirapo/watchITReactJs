@@ -49175,7 +49175,7 @@ var AppMoviesPlayerChat = function (_React$Component) {
 
             return _react2.default.createElement(
                 'div',
-                { className: 'relative height-42-rem col l12 m12' },
+                { className: 'relative full-height col l12 m12' },
                 _react2.default.createElement(
                     'div',
                     { className: 'chat-list vertical-padding clearfix' },
