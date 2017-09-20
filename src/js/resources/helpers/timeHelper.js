@@ -3,7 +3,6 @@
  */
 //Crypt helper
 //import setting from 'backend/settings'
-import momentjs from 'moment'
 import timezone from 'moment-timezone'
 
 
