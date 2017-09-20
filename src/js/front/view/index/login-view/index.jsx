@@ -43,10 +43,15 @@ export default class LoginForm extends React.Component {
             submitted: true
         });
 
-        //Try authenticate
-        this.auth.authenticate(
+        //Unpack params
+        let [email, pass]= [
             fields.get('email'),
             fields.get('password')
+        ];
+
+        //Try authenticate
+        this.auth.authenticate(
+            email, pass
         ).then((r)=> {
             //Redirect
             setTimeout(()=> {

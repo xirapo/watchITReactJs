@@ -19,33 +19,28 @@ export default class Authentication {
         return (new Promise((resolve, err) => {
             //Log
             logHelper.info('REQUESTING LOGIN WITH CREDENTIALS: ' + email + '-' + password);
-            firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-                .then(()=> {
-                    //Firebase authentication
-                    firebase.auth().signInWithEmailAndPassword(
-                        email, //User email
-                        password //User password
-                    ).then((e)=> {
-                        //Append user settings
-                        e.settings = setting.user;
-                        //Prepare token
-                        e.getIdToken(true).then((t)=> {
-                            storageHelper.add(t, false).to.user_token();
-                            storageHelper.add(e).to.user();
-                            resolve(e)
-                        })
-                    }).catch((error)=> {
-                        if (error.code)
-                            err([error.message]); //Bad response
-                        // ...
-                    });
-                })
-                .catch(function (error) {
-                    // Handle Errors here.
-                    //var errorCode = error.code;
-                    var errorMessage = error.message;
-                    err(errorMessage);
+            firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(()=> {
+                //Firebase authentication
+                firebase.auth().signInWithEmailAndPassword(
+                    email, //User email
+                    password //User password
+                ).then((e)=> {
+                    //Append user settings
+                    e.settings = setting.user;
+                    //Prepare token
+                    e.getIdToken(true).then((t)=> {
+                        storageHelper.add(t, false).to.user_token();
+                        storageHelper.add(e).to.user();
+                        resolve(e)
+                    })
+                }).catch((error)=> {
+                    err([error.message]); //Bad response
+                    // ...
                 });
+            }).catch((error) => {
+                err([error.message]);//Bad response
+                // ...
+            });
 
         }));
 
