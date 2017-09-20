@@ -76,15 +76,11 @@ export default class AppMoviesPlayerChat extends React.Component {
 
         //Log
         logHelper.ok('LOADED ' + _oldMessages.length + ' MESSAGES FOR CHANNEL: ' + this.props.channel);
-
-        //Init
-        this.setState({
-            chats: _oldMessages
-        });
+        this.setState({chats: _oldMessages});//Init
 
     }
 
-    sendMessage(e, input) {
+    sendMessage(e) {
         //If enter
         if (e.keyCode == 13) {
             //Outgoing message
@@ -121,8 +117,8 @@ export default class AppMoviesPlayerChat extends React.Component {
         let _user = _newMessage.user;
         //Logger
         logHelper.info('NEW MESSAGE RECEIVED FROM CHANNEL:' + this.props.channel);
-        //i]k
-        this.scroller.scrollToBottom();
+        //If new chat scroll down
+        this.scroller && this.scroller.scrollToBottom();
         //Set new state
         this.setState({
             flag: _user.uid,
