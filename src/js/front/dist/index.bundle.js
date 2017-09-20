@@ -47627,7 +47627,7 @@ var DragBar = function (_React$Component) {
                         { className: 'no-margin font-type-titles float-left' },
                         _react2.default.createElement(
                             'span',
-                            { className: 'white-text' },
+                            { className: 'grey-text' },
                             'watch'
                         ),
                         _react2.default.createElement(
