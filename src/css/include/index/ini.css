@@ -122373,9 +122373,6 @@ video::-webkit-media-text-track-display, video::cue {
   .movie-details-description {
     height: 29vh; } }
 @media (min-height: 1027px) {
-  .chat-list {
-    height: 80vh; }
-
   .movies-box {
     height: 75vh; }
 
