@@ -74,8 +74,8 @@ export default class MainMovie extends React.Component {
         });
 
         //Request for update
-        this.user.update(
-            res
+        this.user.updateProfile(
+            {name: res.get('displayName'), email: res.get('email')}
         ).then((r)=> {
             this.setState({
                 submitted_update: false,
@@ -110,8 +110,8 @@ export default class MainMovie extends React.Component {
 
             //If valid files to upload
             _ref.put(this.fileSelected).then((s)=> {
-                this.state.user.updateProfile(
-                    {'photoURL': s.downloadURL}
+                this.user.updateProfile(
+                    {photo: s.downloadURL}
                 ).then(()=> {
                     //Marks as success
                     this.setState({
@@ -209,21 +209,21 @@ export default class MainMovie extends React.Component {
                     }
 
                     {/*
-                        <section className="col l4 m4 input-black-box">
-                            <h5 className="white-text">
-                                <i className="icon-message margin-right-10"/>
-                                Invite a friend
-                            </h5>
-                            <FormBox
-                                action={(res)=> this.handleInviteUser(res)}
-                                input={this.state.invite_user.inputs} // Make inputs
-                                buttons={this.state.invite_user.buttons} // Make buttons
-                                submitted={this.state.submitted_invite}
-                                error={this.state.submitted_invite_error}
-                                success={this.state.invited}
-                            />
-                        </section>
-                   */ }
+                     <section className="col l4 m4 input-black-box">
+                     <h5 className="white-text">
+                     <i className="icon-message margin-right-10"/>
+                     Invite a friend
+                     </h5>
+                     <FormBox
+                     action={(res)=> this.handleInviteUser(res)}
+                     input={this.state.invite_user.inputs} // Make inputs
+                     buttons={this.state.invite_user.buttons} // Make buttons
+                     submitted={this.state.submitted_invite}
+                     error={this.state.submitted_invite_error}
+                     success={this.state.invited}
+                     />
+                     </section>
+                     */ }
                 </section>
             </div> || <div className="row relative full-height">
                 <BoxLoader size="100"/>

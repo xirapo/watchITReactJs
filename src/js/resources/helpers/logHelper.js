@@ -5,7 +5,7 @@
 import Auth from 'resources/database/auth';
 import firebase from 'backend/firebase';
 import timeHelper from 'resources/helpers/timeHelper'
-//import is from 'is_js'
+import is from 'is_js'
 
 let Logger = ({
     __setLog: (type, message)=> {
@@ -66,7 +66,7 @@ let Logger = ({
         //Logging INFO
         Logger.__setLog('ERROR', message).then(()=> {
             //local log
-            console.error('%c' + message, 'color: red;');
+            console.error(message.message, message);
         });
 
     }
