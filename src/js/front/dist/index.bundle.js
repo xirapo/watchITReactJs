@@ -22208,21 +22208,12 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _moment = __webpack_require__(0);
-
-var _moment2 = _interopRequireDefault(_moment);
-
 var _momentTimezone = __webpack_require__(470);
 
 var _momentTimezone2 = _interopRequireDefault(_momentTimezone);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/**
- * Created by gmena on 04-20-17.
- */
-//Crypt helper
-//import setting from 'backend/settings'
 var Time = {
     factory: function factory() {
         for (var _len = arguments.length, params = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -22236,8 +22227,11 @@ var Time = {
     dateTimeZoned: function dateTimeZoned(timezone_) {
         return Time.factory(timezone_).format();
     }
-};
-
+}; /**
+    * Created by gmena on 04-20-17.
+    */
+//Crypt helper
+//import setting from 'backend/settings'
 exports.default = Time;
 
 /***/ }),
