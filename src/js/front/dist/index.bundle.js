@@ -8431,14 +8431,12 @@ var Authentication = function () {
                             resolve(e);
                         });
                     }).catch(function (error) {
-                        if (error.code) err([error.message]); //Bad response
+                        err([error.message]); //Bad response
                         // ...
                     });
                 }).catch(function (error) {
-                    // Handle Errors here.
-                    //var errorCode = error.code;
-                    var errorMessage = error.message;
-                    err(errorMessage);
+                    err([error.message]); //Bad response
+                    // ...
                 });
             });
         }
@@ -9189,7 +9187,8 @@ Settings.user = {
 //Errors codes
 Settings.error_codes = {
     IMAGE_BROKEN_LINK: 300,
-    BAD_TORRENT: 301
+    BAD_TORRENT: 301,
+    INVALID_LOGIN: 302
 };
 
 exports.default = Settings;
@@ -47544,8 +47543,14 @@ var LoginForm = function (_React$Component) {
                 submitted: true
             });
 
+            //Unpack params
+            var _ref = [fields.get('email'), fields.get('password')],
+                email = _ref[0],
+                pass = _ref[1];
+
             //Try authenticate
-            this.auth.authenticate(fields.get('email'), fields.get('password')).then(function (r) {
+
+            this.auth.authenticate(email, pass).then(function (r) {
                 //Redirect
                 setTimeout(function () {
                     //Redirect to main app
